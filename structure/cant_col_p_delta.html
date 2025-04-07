@@ -59,11 +59,10 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'structure/cantilever_column_stability';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'structure/cant_col_p_delta';</script>
     <link rel="icon" href="../_static/headshot.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Welcome" href="../intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -129,6 +128,8 @@
       
       
       
+        
+      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -184,11 +185,7 @@
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Structural Engineering</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">P-Delta Analysis: Cantilever Column</a></li>
-</ul>
-
+        
     </div>
 </nav></div>
     </div>
@@ -258,7 +255,7 @@
       
       
       
-      <li><a href="https://github.com/hkaragah/hkaragah.github.io/issues/new?title=Issue%20on%20page%20%2Fstructure/cantilever_column_stability.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/hkaragah/hkaragah.github.io/issues/new?title=Issue%20on%20page%20%2Fstructure/cant_col_p_delta.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -288,7 +285,7 @@
       
       
       
-      <li><a href="../_sources/structure/cantilever_column_stability.ipynb" target="_blank"
+      <li><a href="../_sources/structure/cant_col_p_delta.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -870,12 +867,12 @@ Second-order moment at free end= -849.0 kip-in
 <ol class="arabic">
 <li><p>Define Geometry</p>
 <p>The geometry is defined in XZ-plane with the dimensions defined earlier. The base support (node 1) is defined as fixed and the top (node 2) will be free. To be able to obtain an accurate result, the column is meshed into a minimum four segments during the analysis.</p>
-<a class="reference internal image-reference" href="../_images/01.png"><img alt="Define geometry and mesh size" src="../_images/01.png" style="width: 600px;" />
+<a class="reference internal image-reference" href="../_images/cant_col_p_delta_01.png"><img alt="Define geometry and mesh size" src="../_images/cant_col_p_delta_01.png" style="width: 600px;" />
 </a>
 </li>
 <li><p>Define Load Patterns:</p>
 <p>The axial load is defined as <code class="docutils literal notranslate"><span class="pre">DL</span></code> and the laterl load is defined as <code class="docutils literal notranslate"><span class="pre">NL</span></code>. Note that the <code class="docutils literal notranslate"><span class="pre">Self</span> <span class="pre">Weight</span> <span class="pre">Multiplier</span></code> for the <code class="docutils literal notranslate"><span class="pre">DL</span></code> is set to zero.</p>
-<a class="reference internal image-reference" href="../_images/05.png"><img alt="Define load pattern" src="../_images/05.png" style="width: 600px;" />
+<a class="reference internal image-reference" href="../_images/cant_col_p_delta_05.png"><img alt="Define load pattern" src="../_images/cant_col_p_delta_05.png" style="width: 600px;" />
 </a>
 </li>
 <li><p>Define Load Cases:</p>
@@ -884,10 +881,10 @@ Second-order moment at free end= -849.0 kip-in
 <p class="admonition-title">Note</p>
 <p>Note that superimposition cannot be used in a nonlinear analysis, thus all the applicable load patterns must be considered simultaneously in the nonlinear analysis.</p>
 </div>
-<a class="reference internal image-reference" href="../_images/04.png"><img alt="Define load cases" src="../_images/04.png" style="width: 600px;" />
+<a class="reference internal image-reference" href="../_images/cant_col_p_delta_04.png"><img alt="Define load cases" src="../_images/cant_col_p_delta_04.png" style="width: 600px;" />
 </a>
 <p>As shown in the figure below, the <code class="docutils literal notranslate"><span class="pre">DL</span></code> and <code class="docutils literal notranslate"><span class="pre">NL</span></code> load patterns are applied together with scale factors of one for the P-Delta analysis.</p>
-<a class="reference internal image-reference" href="../_images/06.png"><img alt="P-Delta load pattern" src="../_images/06.png" style="width: 600px;" />
+<a class="reference internal image-reference" href="../_images/cant_col_p_delta_06.png"><img alt="P-Delta load pattern" src="../_images/cant_col_p_delta_06.png" style="width: 600px;" />
 </a>
 </li>
 <li><p>Perform Analysis</p>
@@ -897,7 +894,7 @@ Second-order moment at free end= -849.0 kip-in
 <li><p>Second-order base moment = 846 kip-in</p></li>
 </ul>
 <p>Both the free-end drift and the moment at the base are within 0.5% of the AISC benchmark results.</p>
-<a class="reference internal image-reference" href="../_images/09.png"><img alt="Drift, Shear, and Moment diagram" src="../_images/09.png" style="height: 500px;" />
+<a class="reference internal image-reference" href="../_images/cant_col_p_delta_02.png"><img alt="Drift, Shear, and Moment diagram" src="../_images/cant_col_p_delta_02.png" style="height: 500px;" />
 </a>
 </li>
 </ol>
@@ -934,15 +931,6 @@ Second-order moment at free end= -849.0 kip-in
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="../intro.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Welcome</p>
-      </div>
-    </a>
 </div>
                 </footer>
               
