@@ -383,6 +383,8 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deflected-shape-due-to-lateral-load-and-p-delta-effect">Deflected Shape Due to Lateral Load and P-Delta Effect</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solve-ode">Solve ODE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#drift-and-moment-diagrams">Drift and Moment Diagrams</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sap2000-analysis">SAP2000 Analysis</a></li>
 </ul>
             </nav>
@@ -607,6 +609,7 @@ M^{(k)}(x)=-H(L-x)-P(\Delta^{(k)}-v)\\
 \end{align*}
 \end{split}\]</div>
 <p>which is a geometric series. If <span class="math notranslate nohighlight">\(|\frac{PL^2}{2EI}|&lt;1\)</span>, the terms of the series approaches zero, and the sequence of partial sums, <span class="math notranslate nohighlight">\(S_n\)</span> converges to <span class="math notranslate nohighlight">\(\frac{\Delta^{(1)}}{1-\frac{PL^2}{2EI}}\)</span>.</p>
+<p>Let’s define some utility functions first to compute the deflection, moment, the critical buckling load.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -687,6 +690,7 @@ M^{(k)}(x)=-H(L-x)-P(\Delta^{(k)}-v)\\
 </div>
 </div>
 </div>
+<p>Now, let’s define the input parameters. For the P-Delta analysis, the AISC 360-22 benchmark problem case 2 (AISC 360-22: Figure C-C2.3) is considered. The structure is a cantilever W14x48 with a concentrated lateral and axial loads at the free-end.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># AISC 360-22: Figure C-C2.3 (Benchmark Problem Case 2)</span>
@@ -716,23 +720,29 @@ M^{(k)}(x)=-H(L-x)-P(\Delta^{(k)}-v)\\
 <span class="n">G</span> <span class="o">=</span> <span class="n">E</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">nu</span><span class="p">))</span> <span class="c1"># ksi, shear modulus of elasticity</span>
 <span class="n">J</span> <span class="o">=</span> <span class="mf">1.45</span> <span class="c1"># in^4, torsional constant</span>
 
-
 <span class="c1"># Applied Loads</span>
-<span class="n">PD</span> <span class="o">=</span> <span class="mf">500.</span> <span class="c1"># kips, dead load</span>
-<span class="n">PL</span> <span class="o">=</span> <span class="mf">200.</span> <span class="c1"># kips, live load</span>
-<span class="c1"># Pu = 1.2 * PD + 1.6 * PL # kips, factored load (LRFD)</span>
-<span class="n">Pu</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">Pu</span> <span class="o">=</span> <span class="mi">200</span> <span class="c1"># kips, axial compression</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Pu (axial load)= </span><span class="si">{</span><span class="n">Pu</span><span class="si">}</span><span class="s1"> kips&#39;</span><span class="p">)</span>
+
+<span class="n">Ni</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># kips, lateral load</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Ni (lateral/notional load)= </span><span class="si">{</span><span class="n">Ni</span><span class="si">}</span><span class="s1"> kips&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pu (axial load)= 200 kips
+Ni (lateral/notional load)= 1 kips
+</pre></div>
+</div>
+</div>
+</div>
+<p>The critical buckling load, first and second-order drifts and moments are as follows.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Critical buckling load</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;PuL²/(2EI): </span><span class="si">{</span><span class="n">Pu</span><span class="o">*</span><span class="n">L</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">E</span><span class="o">*</span><span class="n">Iz</span><span class="p">)</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> &lt; 1.0 (P-Delta should converge)&#39;</span><span class="p">)</span>
 <span class="n">Pcr</span> <span class="o">=</span> <span class="n">euler_buckling</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">Iz</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Pcr (critical load)= </span><span class="si">{</span><span class="n">Pcr</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> kips (P/Pcr = </span><span class="si">{</span><span class="n">Pu</span><span class="o">/</span><span class="n">Pcr</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
-
-<span class="c1"># Notional load (AISC 360)</span>
-<span class="n">alpha</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="c1"># LRFD</span>
-<span class="n">Yi</span> <span class="o">=</span> <span class="n">Pu</span> <span class="c1"># kips, factored gravity loads (LRFD)</span>
-<span class="c1"># Ni = 0.002 * alpha * Yi # kips, notional load (AISC 360)</span>
-<span class="n">Ni</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Ni (notional load)= </span><span class="si">{</span><span class="n">Ni</span><span class="si">}</span><span class="s1"> kips&#39;</span><span class="p">)</span>
 
 <span class="c1"># First-order drift</span>
 <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span> <span class="o">=</span> <span class="n">first_order_deflection</span><span class="p">(</span><span class="n">Ni</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">Iz</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">nSEG</span><span class="p">)</span>
@@ -754,10 +764,8 @@ M^{(k)}(x)=-H(L-x)-P(\Delta^{(k)}-v)\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pu (axial load)= 200 kips
-PuL²/(2EI): 0.8 &lt; 1.0 (P-Delta should converge)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PuL²/(2EI): 0.8 &lt; 1.0 (P-Delta should converge)
 Pcr (critical load)= 306.8 kips (P/Pcr = 0.65)
-Ni (notional load)= 1 kips
 
 First-order drift at free end= 0.9009 in
 Second-order deflection at free end= 2.5649 in
@@ -769,7 +777,11 @@ Second-order moment at free end= -849.0 kip-in
 </div>
 </div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">solve_bvp</span></code> solver is used below to find the P-Delta drifts directly from the governing ODE. As shown, the resulted drift after covergence is the same as the closed form method which verifies the colsed form solution.</p>
+</section>
+<section id="solve-ode">
+<h2>Solve ODE<a class="headerlink" href="#solve-ode" title="Link to this heading">#</a></h2>
+<p>The governing ODE can be solved directly. The <code class="docutils literal notranslate"><span class="pre">solve_bvp</span></code> solver is used below to find the P-Delta drifts directly from the governing ODE. This way the colsed form equation can be verified.</p>
+<p>As shown, the resulted drift after covergence is the same as the closed form method which verifies the colsed form solution.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">drifts_ode</span> <span class="o">=</span> <span class="n">compute_2nd_order_drift</span><span class="p">(</span><span class="n">Ni</span><span class="p">,</span> <span class="n">Pu</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">Iz</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;ode&quot;</span><span class="p">)</span>
@@ -783,6 +795,10 @@ Second-order moment at free end= -849.0 kip-in
 </div>
 </div>
 </div>
+</section>
+<section id="drift-and-moment-diagrams">
+<h2>Drift and Moment Diagrams<a class="headerlink" href="#drift-and-moment-diagrams" title="Link to this heading">#</a></h2>
+<p>The following plots show the first and second order drift (left figure) and moment (right figure). The light grey curves illustrate the iterative drifts and moments after. The iterative drifts satify the boundary conditions because we explicitly enforced them when we formulate the governing ODE. However, the iterative moments do not necessarily satisfy the equilibrium (free-end moment is not zero) until the solution converges.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -854,9 +870,7 @@ Second-order moment at free end= -849.0 kip-in
 <ol class="arabic">
 <li><p>Define Geometry</p>
 <p>The geometry is defined in XZ-plane with the dimensions defined earlier. The base support (node 1) is defined as fixed and the top (node 2) will be free. To be able to obtain an accurate result, the column is meshed into a minimum four segments during the analysis.</p>
-<a class="reference internal image-reference" href="../_images/01.png"><img alt="Define geometry" src="../_images/01.png" style="width: 300px;" />
-</a>
-<a class="reference internal image-reference" href="../_images/08.png"><img alt="Define mesh" src="../_images/08.png" style="width: 400px;" />
+<a class="reference internal image-reference" href="../_images/01.png"><img alt="Define geometry and mesh size" src="../_images/01.png" style="width: 600px;" />
 </a>
 </li>
 <li><p>Define Load Patterns:</p>
@@ -877,10 +891,13 @@ Second-order moment at free end= -849.0 kip-in
 </a>
 </li>
 <li><p>Perform Analysis</p>
-<p>The following figures show the result of the P-Delta analysis. Both the free-end drift and the moment at the base are within 0.5% of the AISC benchmark results.</p>
-<a class="reference internal image-reference" href="../_images/02.png"><img alt="Free-end drift" src="../_images/02.png" style="height: 400px;" />
-</a>
-<a class="reference internal image-reference" href="../_images/03.png"><img alt="Moment diagram" src="../_images/03.png" style="height: 400px;" />
+<p>The following figures show the result of the P-Delta analysis. The values obtained for drift and moments are</p>
+<ul class="simple">
+<li><p>Second-order free-end drift = 2.5712 in</p></li>
+<li><p>Second-order base moment = 846 kip-in</p></li>
+</ul>
+<p>Both the free-end drift and the moment at the base are within 0.5% of the AISC benchmark results.</p>
+<a class="reference internal image-reference" href="../_images/09.png"><img alt="Drift, Shear, and Moment diagram" src="../_images/09.png" style="height: 500px;" />
 </a>
 </li>
 </ol>
@@ -943,6 +960,8 @@ Second-order moment at free end= -849.0 kip-in
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deflected-shape-due-to-lateral-load-and-p-delta-effect">Deflected Shape Due to Lateral Load and P-Delta Effect</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solve-ode">Solve ODE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#drift-and-moment-diagrams">Drift and Moment Diagrams</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sap2000-analysis">SAP2000 Analysis</a></li>
 </ul>
   </nav></div>
