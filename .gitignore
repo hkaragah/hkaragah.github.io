@@ -1,0 +1,10 @@
+# Ignore the build output from jupyter-book
+_build/
+
+# Ignore Python virtual environments
+.venv/
+
+# Ignore temporary files and checkpoints
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
