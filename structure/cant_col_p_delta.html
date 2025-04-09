@@ -63,6 +63,7 @@
     <link rel="icon" href="../_static/headshot.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="ASCE 7 vs. 2800 Standard: Comparing Design Spectral Response Acceleration Parameter (Sa)" href="../earthquake/asce7_2800_spectrum.html" />
     <link rel="prev" title="Welcome" href="../intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -187,6 +188,10 @@
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Structural Engineering</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">P-Delta Analysis: Cantilever Column</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Earthquake Engineering</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../earthquake/asce7_2800_spectrum.html">ASCE 7 vs. 2800 Standard: Comparing Design Spectral Response Acceleration Parameter (Sa)</a></li>
 </ul>
 
     </div>
@@ -780,6 +785,59 @@ Second-order moment at free end= -849.0 kip-in
 </div>
 </div>
 </div>
+<p>Let’s compute the lateral stiffness of the column with and without the P-Delta effect. The lateral stiffness without P-Delta is</p>
+<div class="math notranslate nohighlight">
+\[K_{no\ P\Delta}=\frac{N_i}{\Delta^{(1)}}\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The lateral stiffness without the P-Delta effect is the same as <span class="math notranslate nohighlight">\(\frac{3EI}{L^3}\)</span>.</p>
+</div>
+<p>and with P-Delta effect is</p>
+<div class="math notranslate nohighlight">
+\[K_{P\Delta}=\frac{N_i}{\Delta^{(n)}}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k_no_PD</span> <span class="o">=</span> <span class="n">Ni</span><span class="o">/</span><span class="n">y1</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">x1</span><span class="p">)]</span>
+<span class="n">k_PD</span> <span class="o">=</span> <span class="n">Ni</span><span class="o">/</span><span class="n">y2</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">x2</span><span class="p">)]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Lateral Stiffness (no P-Delta): </span><span class="si">{</span><span class="n">k_no_PD</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> kip/in&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Lateral Stiffness (P-Delta): </span><span class="si">{</span><span class="n">k_PD</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> kip/in&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="p">(</span><span class="n">k_no_PD</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">k_PD</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">k_no_PD</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1">% reduction in lateral stiffness&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Lateral Stiffness (no P-Delta): 1.11 kip/in
+Lateral Stiffness (P-Delta): 0.39 kip/in
+65% reduction in lateral stiffness
+</pre></div>
+</div>
+</div>
+</div>
+<p>The following figure shows how lateral stiffness reduces after each P-Delta iteration.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">stiffnesses</span> <span class="o">=</span> <span class="n">Ni</span> <span class="o">/</span> <span class="n">drifts</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+<span class="n">iterations</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">stiffnesses</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">iterations</span><span class="p">,</span> <span class="n">stiffnesses</span><span class="p">,</span> <span class="s1">&#39;ko-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Lateral Stiffness&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s2">&quot;No P-Delta&quot;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">k_no_PD</span><span class="p">),</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">k_no_PD</span> <span class="o">-</span> <span class="mf">0.1</span><span class="p">),</span>
+             <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s2">&quot;fancy,head_length=.5,head_width=.5,tail_width=.2&quot;</span><span class="p">,</span> <span class="n">connectionstyle</span><span class="o">=</span><span class="s2">&quot;arc3,rad=0.2&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Iteration&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Lateral Stiffness (kip/in)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Lateral Stiffness Reduction Due to P-Delta Effects&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/aa423061a56a97d6e8fed0e297c9fe5e22643e62d51c0c9084be6a64bf329fd0.png" src="../_images/aa423061a56a97d6e8fed0e297c9fe5e22643e62d51c0c9084be6a64bf329fd0.png" />
+</div>
+</div>
 </section>
 <section id="solve-ode">
 <h2>Solve ODE<a class="headerlink" href="#solve-ode" title="Link to this heading">#</a></h2>
@@ -945,6 +1003,15 @@ Second-order moment at free end= -849.0 kip-in
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title">Welcome</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="../earthquake/asce7_2800_spectrum.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">ASCE 7 vs. 2800 Standard: Comparing Design Spectral Response Acceleration Parameter (Sa)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
