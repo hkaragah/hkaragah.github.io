@@ -25,6 +25,8 @@ class Steel:
     @property
     def eps_y(self) -> float:
         return self.fy / self.E
+    
+    
 
 
 class BilinearSteel(Steel, Material):
@@ -42,19 +44,42 @@ class BilinearSteel(Steel, Material):
 
     @property
     def eps_u(self) -> float:
-        return self.eps_y + (self.fu - self.fy) / (self.E * self.alpha)  # Ultimate strain
+        if self.alpha == 0:
+            return 0.05
+        else:
+            return self.eps_y + (self.fu - self.fy) / (self.E * self.alpha)  # Ultimate strain
 
     def stress(self, eps: Union[float, np.ndarray]) -> Union[float, np.ndarray]:
         """
         Calculate the stress based on the strain using the bilinear model.
         """
         return np.where(
-            eps < self.eps_y,
-            self.E * eps,
+            eps > 0, 
             np.where(
-                eps < self.eps_u,
-                self.fy + (self.fu - self.fy) * (eps - self.eps_y) / (self.eps_u - self.eps_y),
-                0  # Beyond ultimate strain, stress is considered zero
+                eps < self.eps_y,
+                self.E * eps,
+                np.where(
+                    eps < self.eps_u,
+                    np.where(
+                        np.isclose(self.alpha, 0), 
+                        self.fy,
+                        self.fy + (self.fu - self.fy) * (eps - self.eps_y) / (self.eps_u - self.eps_y)
+                    ),
+                    0
+                )
+            ), 
+            np.where(
+                eps > -self.eps_y,
+                self.E * eps,
+                np.where(
+                    eps > -self.eps_u,
+                    np.where(
+                        np.isclose(self.alpha, 0),
+                        -self.fy,
+                        -self.fy + (self.fu - self.fy) * (eps + self.eps_y) / (self.eps_u + self.eps_y)
+                    ),
+                    0
+                )
             )
         )
         
@@ -148,3 +173,11 @@ class RambergOsgoodA992Steel(RambergOsgoodSteel):
     def __init__(self, name= "A992 Steel", fy: float=50, fu: float=65, alpha: float=0.01) -> None:
         super().__init__(name, fy, fu, alpha)
         
+        
+        
+def main():
+    pass
+    
+    
+if __name__ == "__main__":
+    main()

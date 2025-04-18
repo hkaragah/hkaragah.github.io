@@ -10,6 +10,26 @@ from abc import ABC, abstractmethod
 from math import pi, sqrt, sin, cos, radians, degrees
 import matplotlib.pyplot as plt
 from dataclasses import dataclass, field
+import pandas as pd
+import os
+from functools import lru_cache
+
+
+# Load the full AISC database once and cache it
+@lru_cache(maxsize=1)
+def load_aisc_database():
+    path = os.path.join('..', 'assets', 'data', 'structure', 'aisc-shapes-database-v16.0.xlsx')
+    return pd.read_excel(path, sheet_name='Database v16.0')
+
+
+# Lookup shape properties from cached DataFrame
+@lru_cache(maxsize=None)  # Cache each shape label lookup
+def get_aisc_shape(label: str) -> pd.Series:
+    df = load_aisc_database()
+    result = df[df['AISC_Manual_Label'] == label]
+    if result.empty:
+        raise ValueError(f"Shape {label} not found in AISC shapes database.")
+    return result.iloc[0]
 
 
 @dataclass
@@ -301,3 +321,41 @@ class ISection:
         ax.set_aspect('equal')
         
         return ax
+    
+
+@dataclass
+class AISCShape:
+    label: str
+    
+    @property
+    def props(self) -> Dict[str, float]:
+        """Return the properties of the AISC shape"""
+        return get_aisc_shape(self.label).to_dict()
+    
+    @property
+    def area(self):
+        return self.props['A']
+    
+    @property
+    def elastic_momoent_of_inertia(self):
+        return self.props['Ix'], self.props['Iy']
+    
+    @property
+    def plastic_moment_of_inertia(self):
+        return self.props['Zx'], self.props['Zy']
+    
+    @property
+    def section_modulus(self):
+        return self.props['Sx'], self.props['Sy']
+    
+    @property
+    def radius_of_gyration(self):
+        return self.props['rx'], self.props['ry']
+
+
+def main():
+    pass
+    
+    
+if __name__ == "__main__":
+    main()
