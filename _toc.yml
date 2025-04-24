@@ -6,7 +6,7 @@ root: intro
 parts:
   - caption: Structural Engineering
     chapters:
-    - file: structure/cant_col_p_delta
+    - file: structure/p_delta/cant_col_p_delta
   - caption: Earthquake Engineering
     chapters:
-    - file: earthquake/asce7_2800_spectrum
+    - file: earthquake/asce7_2800_spectrum/asce7_2800_spectrum
