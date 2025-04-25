@@ -18,7 +18,7 @@ from functools import lru_cache
 # Load the full AISC database once and cache it
 @lru_cache(maxsize=1)
 def load_aisc_database():
-    path = os.path.join('..', 'assets', 'data', 'structure', 'aisc-shapes-database-v16.0.xlsx')
+    path = os.path.join('..', '..', 'assets', 'data', 'structure', 'aisc-shapes-database-v16.0.xlsx')
     return pd.read_excel(path, sheet_name='Database v16.0')
 
 
