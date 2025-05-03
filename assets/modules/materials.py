@@ -1,7 +1,8 @@
 
-from typing import Protocol, Union
+from typing import Protocol, Union, Optional
 import numpy as np
 from scipy.optimize import curve_fit, root_scalar
+from traitlets import default
 
 
 class Material(Protocol):
@@ -11,9 +12,100 @@ class Material(Protocol):
     def stress(self, eps: float) -> float:
         pass
 
+# Concrete material classes =========================================================
+class Concrete:
+    def __init__(self, fc: float) -> None:
+        """
 
+        Args:
+            fc (float): psi, Compressive strength
+        """
+        self.fc = fc
+    
+    @property
+    def E(self) -> float:
+        """
+
+        Returns:
+            float: psi, Modulus of elasticity (Ec) per ACI 318-25: 19.2.2
+        """
+        return 57000 * np.sqrt(self.fc)  # psi, Modulus of elasticity
+    
+    @property
+    def fr(self) -> float:
+        """
+
+        Returns:
+            float: psi, Modulus of rupture (fr) per ACI 318-25: 19.2.3
+        """
+        return 7.5 * np.sqrt(self.fc)  # psi, Fracture strength
+    
+    def stress(self, eps:Union[float, np.ndarray]) -> float:
+        """Calculate the stress based on the strain using the concrete model.
+        
+        Args:
+            eps (float): Strain value for which to calculate stress.
+            
+        Returns:
+            float: Calculated stress value.
+        """
+        raise NotImplementedError("Concrete stress method not implemented.")
+
+
+class ACIConcrete(Concrete):
+    def __init__(self, fc: float) -> None:
+        super().__init__(fc)
+        self.name = "ACI Concrete"
+    
+    @property
+    def eps_cu(self) -> float:
+        """Ultimate strain (eps_u) for concrete.
+        This is a constant value of 0.003 as per ACI 318-25:22.2.2.1.
+
+        Returns:
+            float: Ultimate strain (eps_cu) for concrete.
+        """
+        return -0.003
+    
+    @property
+    def beta_1(self) -> float:
+        """Computes the beta_1 factor for concrete based on the compressive strength (fc).
+        The beta_1 factor is used in the design of reinforced concrete structures and is defined in ACI 318-25:22.2.2.4.3.
+
+        Raises:
+            ValueError: If the compressive strength (fc) is not within the specified range.
+
+        Returns:
+            float: beta_1 factor for concrete.
+        """
+        if 2500 <= self.fc <= 4000:
+            return 0.85
+        elif 4000 < self.fc <= 8000:
+            return 0.85 - 0.05 * ((self.fc - 4000) / 1000)
+        elif self.fc >= 8000:
+            return 0.65
+        else:
+            raise ValueError("Concrete compressive strength (fc) must be within 2500 psi to 8000 psi.")
+        
+    def stress(self, eps:Union[float, np.ndarray]) -> Union[float, np.ndarray]:
+        eps_array = np.asarray(eps)
+        eps_ratio = eps_array / self.eps_cu
+        stress = np.where(
+            eps_ratio > 1,
+            0.0,
+            np.where(
+                eps_ratio < 1 - self.beta_1,
+                0.0,
+                - 0.85 * self.fc
+            )
+        )
+        return stress.item() if np.isscalar(eps) else stress
+
+        
+    
+# Steel material classes =========================================================
 class Steel:
-    def __init__(self, name: str, fy: float, fu: float) -> None:
+    def __init__(self, name: str, fy: float, fu: Optional[float]=None) -> None:
         self.name = name
         self.fy = fy  # ksi, Yield strength
         self.fu = fu  # ksi, Ultimate strength
@@ -26,33 +118,40 @@ class Steel:
     def eps_y(self) -> float:
         return self.fy / self.E
     
-    
-
 
 class BilinearSteel(Steel, Material):
-    """
-    Bilinear steel material with strain hardening.
-    """
-
-    def __init__(self, name: str, fy: float, fu: float, alpha: float=0.01) -> None:
+    def __init__(self, name: str, fy: float, fu: Optional[float]=None, alpha: Optional[float]=None) -> None:
+        """Bilinear steel material with optional strain hardening.
+        
+        Args:
+            name (str): Name of the material.
+            fy (float): Yield strength in ksi.
+            fu (float): Ultimate strength in ksi.
+            alpha (float): Strain hardening ratio. Default is 0.01.
+        """
         super().__init__(name, fy, fu)
         self.alpha = alpha  # strain hardening ratio
     
     @property
-    def eps_y(self) -> float:
-        return self.fy / self.E  # Yield strain
-
-    @property
     def eps_u(self) -> float:
-        if self.alpha == 0:
+        if any(value is None for value in (self.alpha, self.fu)):
+            return None
+        try:
+            return self.eps_y + (self.fu - self.fy) / (self.E * self.alpha)
+        except ZeroDivisionError:
             return 0.05
-        else:
-            return self.eps_y + (self.fu - self.fy) / (self.E * self.alpha)  # Ultimate strain
 
     def stress(self, eps: Union[float, np.ndarray]) -> Union[float, np.ndarray]:
+        """Calculate the stress based on the strain using the bilinear model.
+        
+        Args:
+            eps (Union[float, np.ndarray]): Strain value(s) for which to calculate stress.
+            
+        Returns:
+            Union[float, np.ndarray]: Calculated stress value(s). Returns None if alpha or fu is not provided or is None.
         """
-        Calculate the stress based on the strain using the bilinear model.
-        """
+        if any(value is None for value in (self.alpha, self.fu)):
+            return None
         return np.where(
             eps > 0, 
             np.where(
@@ -101,7 +200,7 @@ class BilinearA992Steel(BilinearSteel):
     def __init__(self, name= "A992 Steel", fy: float=50, fu: float=65, alpha: float=0.01) -> None:
         super().__init__(name, fy, fu, alpha)
         
-        
+    
 class RambergOsgoodSteel(Steel, Material):
     """ 
     Uses Ramberg-Osgood equation for stress-strain relationship.
@@ -174,7 +273,13 @@ class RambergOsgoodA992Steel(RambergOsgoodSteel):
         super().__init__(name, fy, fu, alpha)
         
         
-        
+# Steel Rebars ==========
+
+
+
+
+
+      
 def main():
     pass
     

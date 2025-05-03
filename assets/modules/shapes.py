@@ -13,24 +13,7 @@ from dataclasses import dataclass, field
 import pandas as pd
 import os
 from functools import lru_cache
-
-
-# Load the full AISC database once and cache it
-@lru_cache(maxsize=1)
-def load_aisc_database():
-    path = os.path.join('..', '..', 'assets', 'data', 'structure', 'aisc-shapes-database-v16.0.xlsx')
-    return pd.read_excel(path, sheet_name='Database v16.0')
-
-
-# Lookup shape properties from cached DataFrame
-@lru_cache(maxsize=None)  # Cache each shape label lookup
-def get_aisc_shape(label: str) -> pd.Series:
-    df = load_aisc_database()
-    result = df[df['AISC_Manual_Label'] == label]
-    if result.empty:
-        raise ValueError(f"Shape {label} not found in AISC shapes database.")
-    return result.iloc[0]
-
+from itertools import combinations
 
 @dataclass
 class Point:
@@ -48,6 +31,9 @@ class Point:
     
     def to_array(self) -> np.ndarray:
         return np.array([[self.x], [self.y]])
+    
+    def to_tuple(self) -> Tuple[float, float]:
+        return (self.x, self.y)
 
 
 @dataclass
@@ -59,32 +45,65 @@ class TransParams:
     
     def __repr__(self):
         return f"TransParams(angle_deg={self.angle_deg}, pivot={self.pivot}, dx={self.dx}, dy={self.dy})"
-    
 
-def distance(p1: Point, p2: Point) -> float:
-    """Computes the Euclidean distance between two points."""
-    return sqrt((p1.x - p2.x)**2 + (p1.y - p2.y)**2)
+class Circle:
+    def __init__(self, radius: float, center: Union[Point, Tuple]= Point(0, 0)) -> None:
+        self.radius = radius
+        if isinstance(center, tuple):
+            self._center = Point(*center)
+        elif isinstance(center, Point):
+            self._center = center
+        else:
+            raise TypeError("center must be a tuple (x, y) or a Point object.")
+    
+    @property
+    def area(self) -> float:
+        return np.pi * self.radius**2
+    
+    @property
+    def center(self) -> Point:
+        return self._center
+    
+    @center.setter
+    def center(self, new_center: Union[Point, Tuple]) -> None:
+        if isinstance(new_center, tuple):
+            self._center = Point(*new_center)
+        elif isinstance(new_center, Point):
+            self._center = new_center
+        else:
+            raise TypeError("center must be a tuple (x, y) or a Point object.")
+        
+    def plot(self, ax: matplotlib.axes.Axes = None, show_center = False, fill=False, **kwargs) -> matplotlib.axes.Axes:
+        
+        if ax is None:
+            fig_size = kwargs.get('fig_size', (4, 4))
+            _, ax = plt.subplots(figsize=kwargs.get('fig_size', fig_size))
+        
+        circle = plt.Circle(
+            (self.center.x, self.center.y), 
+            self.radius,
+            fill = fill,
+            facecolor=kwargs.get('facecolor'), 
+            edgecolor=kwargs.get('edgecolor', 'black'),
+            linewidth=kwargs.get('linewidth', 1),
+            alpha=kwargs.get('alpha', 1.0), 
+            zorder=10
+        )
+        ax.add_artist(circle)
+        ax.set_aspect('equal')
+        
+        ax.grid(True)
+        
+        if show_center:
+            ax.plot(self.center.x, self.center.y, marker='o', color=kwargs.get('point_color', 'black'))
 
-
-def get_2D_rotation_matrix(angle: float) -> np.ndarray:
-    """Returns a 2D rotation matrix for a given angle in degrees."""
-    angle_rad = radians(angle)
-    return np.array([[cos(angle_rad), -sin(angle_rad)],
-                     [sin(angle_rad), cos(angle_rad)]])
+        return ax
     
+    def __repr__(self):
+        return f"Circle(radius={self.radius}, center={self.center})"
     
-def rotate2D(point: Point, transform_params: TransParams) -> Point:
-    """Rotate a point by a given angle in degrees around a pivot point."""
-    pivot = transform_params.pivot if transform_params.pivot else Point(0, 0)
-    angle_deg = transform_params.angle_deg if transform_params.angle_deg else 0
-    rotation_matrix = get_2D_rotation_matrix(angle_deg)
-    
-    point = point.to_array() - pivot.to_array()
-    point = rotation_matrix @ point
-    point = point + pivot.to_array()
-    
-    return Point(point[0, 0], point[1, 0])
-
+    def __str__(self):
+        return f"Circle(radius={self.radius:.3f}, center={self.center})"
 
 @dataclass
 class RectangleParams:
@@ -186,22 +205,29 @@ class Rectangle:
         self.center = rotate2D(self.center, trans_params)
         self.rotation = self.rotation + angle_deg
     
-    def plot(self, ax=None, show_center=True, **kwargs):
+    def plot(self, ax: matplotlib.axes.Axes = None, show_center = False, **kwargs):
         corners = self.corners
         corners.append(corners[0]) # Add the first corner again to close the polygon
         corners = [(p.x, p.y) for p in corners] # Convert to tuples
         xs, ys = zip(*corners)
         
+        
         if ax is None:
-            _, ax = plt.subplots(figsize=kwargs.get('fig_size', (4, 4)))
+            fig_size = kwargs.get('fig_size', (4, 4))
+            _, ax = plt.subplots(figsize=kwargs.get('fig_size', fig_size))
             
         ax.set_aspect('equal')
         ax.grid(True)
         ax.tick_params(axis='both', labelsize=kwargs.get('tick_size', 8))
-        ax.plot(xs, ys, color=kwargs.get('line_color', 'black'), linewidth=kwargs.get('line_width', 1), zorder=5)
-        ax.fill(xs, ys, color=kwargs.get('fill_color', 'blue'), alpha=kwargs.get('alpha', 0.5))
+        ax.plot(xs, ys, color=kwargs.get('line_color', 'black'), linewidth=kwargs.get('line_width', 1), zorder=10)
+        
+        fill_color = kwargs.get('fill_color')
+        if fill_color:
+            ax.fill(xs, ys, color=kwargs.get('fill_color', fill_color), alpha=kwargs.get('alpha', 0.5))
+            
         if show_center:
-            ax.plot(self.center.x, self.center.y, marker='o', color=kwargs.get('point_color', 'red'))
+            centeroid_color = kwargs.get('centroid_color', 'red')
+            ax.plot(self.center.x, self.center.y, marker='o', color=kwargs.get('point_color', centeroid_color))
             
         return ax
     
@@ -353,6 +379,98 @@ class AISCShape:
         return self.props['rx'], self.props['ry']
 
 
+# Utility functions =====================================================
+# Load the full AISC database once and cache it
+@lru_cache(maxsize=1)
+def load_aisc_database():
+    path = os.path.join('..', '..', 'assets', 'data', 'structure', 'aisc-shapes-database-v16.0.xlsx')
+    return pd.read_excel(path, sheet_name='Database v16.0')
+
+
+# Lookup shape properties from cached DataFrame
+@lru_cache(maxsize=None)  # Cache each shape label lookup
+def get_aisc_shape(label: str) -> pd.Series:
+    df = load_aisc_database()
+    result = df[df['AISC_Manual_Label'] == label]
+    if result.empty:
+        raise ValueError(f"Shape {label} not found in AISC shapes database.")
+    return result.iloc[0]
+
+
+def distance(p1: Point, p2: Point) -> float:
+    """Computes the Euclidean distance between two points."""
+    diff = p1 - p2
+    return np.linalg.norm([diff.x, diff.y])
+
+
+def get_2D_rotation_matrix(angle: float) -> np.ndarray:
+    """Returns a 2D rotation matrix for a given angle in degrees."""
+    angle_rad = radians(angle)
+    return np.array([[cos(angle_rad), -sin(angle_rad)],
+                     [sin(angle_rad), cos(angle_rad)]])
+    
+    
+def rotate2D(point: Point, transform_params: TransParams) -> Point:
+    """Rotate a point by a given angle in degrees around a pivot point."""
+    pivot = transform_params.pivot if transform_params.pivot else Point(0, 0)
+    angle_deg = transform_params.angle_deg if transform_params.angle_deg else 0
+    rotation_matrix = get_2D_rotation_matrix(angle_deg)
+    
+    point = point.to_array() - pivot.to_array()
+    point = rotation_matrix @ point
+    point = point + pivot.to_array()
+    
+    return Point(point[0, 0], point[1, 0])
+
+
+def circles_overlap(c1: Circle, c2: Circle) -> bool:
+    """
+    Returns:
+        bool: True if the circles overlap, False otherwise.
+    """
+    center_dist = distance(c1.center, c2.center)
+    return center_dist < (c1.radius + c2.radius)
+
+
+def no_circles_overlap(circles: list[Circle]) -> bool:
+    """
+    Returns:
+        bool: True if all circles are disjoint (no overlaps), False otherwise.
+    """
+    for c1, c2 in combinations(circles, 2):
+        if circles_overlap(c1, c2):
+            return False
+    return True
+
+
+def circle_within_rectangle(circle: Circle, rectangle: Rectangle) -> bool:
+    """
+    Check if a circle is completely within a rectangle.
+    
+    Args:
+        circle (Circle): The circle to check.
+        rectangle (Rectangle): The rectangle to check against.
+        
+    Returns:
+        bool: True if the circle is within the rectangle, False otherwise.
+    """
+    bottum_left_corner = rectangle.corners[0]
+    top_right_corner = rectangle.corners[2]
+    circle_left = circle.center.x - circle.radius
+    circle_right = circle.center.x + circle.radius
+    circle_bottom = circle.center.y - circle.radius
+    circle_top = circle.center.y + circle.radius
+    
+    return (
+        circle_left >= bottum_left_corner.x and
+        circle_right <= top_right_corner.x and
+        circle_bottom >= bottum_left_corner.y and
+        circle_top <= top_right_corner.y
+    )
+
+
+
+# Main function =========================================================
 def main():
     pass
     
