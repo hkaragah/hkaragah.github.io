@@ -31,7 +31,6 @@ class RectangleConcreteSection:
     @property
     def net_area(self) -> float:
         rebar_area = sum([rebar.area for rebar in self.rebars])
-        print(rebar_area)
         return self.gross_area - rebar_area
     
     @property
@@ -170,47 +169,13 @@ def get_rebar_forces(concrete_sec: RectangleConcreteSection, curvature:Union[flo
     is_taller = concrete_sec.shape.height > concrete_sec.shape.width
     y_total = max(concrete_sec.shape.height, concrete_sec.shape.width)
     y_bar = np.array([rebar.center.y if is_taller else rebar.center.x for rebar in concrete_sec.rebars]).reshape(-1, 1)
-    # print(f"curvature shape: {curvature.shape}, y_bar shape: {y_bar.shape}, y_neutral shape: {y_neutral.shape}")
     strain = curvature.T * (y_bar - (y_total / 2 - y_neutral.T))
     stress = np.array([rebar.mat.stress(eps) for rebar, eps in zip(concrete_sec.rebars, strain)])
     force = stress * np.array([rebar.area for rebar in concrete_sec.rebars]).reshape(-1, 1)
     
-    # print(f"y_bar: {y_bar.shape}, strain: {strain.shape}, stress: {stress.shape}, force: {force.shape}")
     return y_bar, strain, stress, force
     
     
-def get_rect_concrete_force(concrete_sec: RectangleConcreteSection, curvature:Union[float, np.ndarray], y_neutral:Union[float, np.ndarray], n_points:int=100) -> float:
-    """Calculate forces in a rectangular concrete section due to induced curvature.
-
-    Args:
-        concrete_sec: Rectangular concrete section object
-        curvature: Curvature value(s) of the section
-        y_neutral: Neutral axis position(s)
-        n_points: Number of points to discretize the section
-        
-    Returns:
-        Tuple containing:
-        - y_coordinates: Coordinates of the discretized strips
-        - strain: Strain at each strip
-        - stress: Stress at each strip
-        - force: Force at each strip
-    """
-    curvature_array = np.atleast_1d(curvature)
-    y_neutral_array = np.atleast_1d(y_neutral)
-    
-    # Determine section orientation and dimensions
-    is_taller = concrete_sec.shape.height > concrete_sec.shape.width
-    section_height = concrete_sec.shape.height
-    section_width = concrete_sec.shape.width
-    
-    major_dimension = max(section_height, section_width)
-    minor_dimension = min(section_height, section_width)
-
-
-from typing import Union, Tuple, List
-import numpy as np
-import shapes as sh  # Assuming this is the correct import for the shapes module
-
 def get_rect_concrete_force(
     concrete_sec: 'RectangleConcreteSection', 
     curvature: Union[float, np.ndarray], 
@@ -291,7 +256,6 @@ def get_section_internal_force(concrete_sec: RectangleConcreteSection, curvature
 def get_section_internal_moment(concrete_sec: RectangleConcreteSection, curvature:Union[float, np.ndarray], y_neutral:Union[float, np.ndarray]) -> float:
     y_bar, _, _, f_bar = get_rebar_forces(concrete_sec, curvature, y_neutral)
     y_con, _, _, f_con = get_rect_concrete_force(concrete_sec, curvature, y_neutral)
-    # print(f"y_bar: {y_bar.shape}, f_bar: {f_bar.shape}, y_con: {y_con.shape}, f_con: {f_con.shape}")
     total_bar_moment = (y_bar * f_bar).sum(axis=0)
     total_con_moment = (y_con * f_con).sum(axis=0)
     
@@ -308,7 +272,6 @@ def compute_neutral_axis(concrete_sec: RectangleConcreteSection, external_force:
     def equilibrium(y_neutral: Union[float, np.ndarray]) -> float:    
         curvature = concrete_sec.mat.eps_u / y_neutral
         internal_force = get_section_internal_force(concrete_sec, curvature, y_neutral)
-        # print(f"y_neutral: {y_neutral:.3f}, internal_force: {internal_force/1e3:.0f} kips, external_force: {external_force/1e3:.0f}")
         return internal_force - external_force
 
     if method in ['bisect', 'brentq']:
@@ -369,12 +332,60 @@ def min_depth_of_neutral_axis(con: RectangleConcreteSection) -> float:
     
     return -eps_cu / (-eps_cu + eps_su) * y_total
     
+
+def nominal_tensile_strength(concrete_sec: RectangleConcreteSection) -> float:
+    """Calculates the nominal tensile strength of the concrete section per ACI 318-25: 22.4.3.
+    The nominal tensile strength is the sum of the yield strengths of all the rebars in the section.
+
+    Args:
+        concrete_sec (RectangleConcreteSection): Concrete section object.
+
+    Returns:
+        float: Nominal tensile strength of the section in lbs.
+    """
+    strength = 0.0
+    for rebar in concrete_sec.rebars:
+        strength += rebar.mat.fy * rebar.area
+        
+    return strength
+        
+        
+def nominal_compressive_strength(concrete_sec: RectangleConcreteSection) -> float:
+    """Calculates the nominal compressive strength of the concrete section per ACI 318-25: 22.4.2..
+    The nominal compressive strength is the sum of the compressive strength of the concrete and the yield strengths of all the rebars in the section.
+
+    Args:
+        concrete_sec (RectangleConcreteSection): Concrete section object.
+
+    Returns:
+        float:  Nominal compressive strength of the section in lbs.
+    """
+    strength = 0.85 * concrete_sec.mat.fc * concrete_sec.net_area
     
-def generate_axial_moment(con: RectangleConcreteSection, n_points:int=100, **kwargs) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
+    for rebar in concrete_sec.rebars:
+        strength += rebar.mat.fy * rebar.area
+    
+    return -1 * strength
+    
+
+def max_nominal_compressive_strength(concrete_sec: RectangleConcreteSection) -> float:
+    """Calculates the maximum nominal compressive strength of the concrete section per ACI 318-25: 22.4.2.1.
+    The reduction factor is to account for accidnetal eccentricity in the section.
+
+    Args:
+        concrete_sec (RectangleConcreteSection): Concrete section object.
+
+    Returns:
+        float: Maximum nominal compressive strength of the section in lbs.
+    """
+    return 0.80 * nominal_compressive_strength(concrete_sec)
+
+
+def generate_force_moment_interaction(con: RectangleConcreteSection, n_points:int=100, **kwargs) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
     y_total = max(con.shape.height, con.shape.width)
     
     y_neutral_min = min_depth_of_neutral_axis(con)
-    y_neutral_max = kwargs.get('ynmax_multiplier', 1.5) * y_total
+    y_neutral_max = kwargs.get('ynmax_multiplier', 1.0) * y_total
     y_neutral = np.linspace(y_neutral_min, y_neutral_max, n_points).reshape(-1, 1)
     
     curvature = con.mat.eps_u / y_neutral
@@ -382,8 +393,23 @@ def generate_axial_moment(con: RectangleConcreteSection, n_points:int=100, **kwa
     _, _, _, f_bar = get_rebar_forces(con, curvature, y_neutral)
     _, _, _, f_con = get_rect_concrete_force(con, curvature, y_neutral)
     
+    # Calculate the total force and moment in the section
     f_total = f_bar.sum(axis=0) + f_con.sum(axis=0)
     m_total = get_section_internal_moment(con, curvature, y_neutral)
+    
+    # Calculate section forces and moments under pure tension and compression
+    tensile_strength = nominal_tensile_strength(con)
+    compressive_strength = nominal_compressive_strength(con)
+    
+    # Prepend (np.inf, tensile_strength, 0)
+    y_neutral = np.vstack(([np.inf], y_neutral))
+    f_total = np.hstack(([tensile_strength], f_total))
+    m_total = np.hstack(([0], m_total))
+
+    # Append (np.inf, compressive_strength, 0)
+    y_neutral = np.vstack((y_neutral, [np.inf]))
+    f_total = np.hstack((f_total, [compressive_strength]))
+    m_total = np.hstack((m_total, [0]))
     
     return y_neutral, f_total, m_total
     

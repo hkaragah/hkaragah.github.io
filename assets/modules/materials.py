@@ -91,7 +91,7 @@ class ACIConcrete(Concrete):
         eps_array = np.asarray(eps)
         eps_ratio = eps_array / self.eps_u
         stress = np.where(
-            eps_ratio > 1,
+            eps_ratio > 1.001,
             0.0,
             np.where(
                 eps_ratio < 1 - self.beta_1,
