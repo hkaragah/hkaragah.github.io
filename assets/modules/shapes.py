@@ -14,16 +14,21 @@ import pandas as pd
 import os
 from functools import lru_cache
 from itertools import combinations
+import shapely.geometry as sg 
 
 @dataclass
 class Point:
     x: float
     y: float
     
-    def __add__(self, other: 'Point') -> 'Point':
+    def __add__(self, other: Union['Point', Tuple[float, float]]) -> 'Point':
+        if isinstance(other, tuple):
+            return Point(self.x + other[0], self.y + other[1])
         return Point(self.x + other.x, self.y + other.y)
     
-    def __sub__(self, other: 'Point') -> 'Point':
+    def __sub__(self, other: Union['Point', Tuple[float, float]]) -> 'Point':
+        if isinstance(other, tuple):
+            return Point(self.x + other[0], self.y + other[1])
         return Point(self.x - other.x, self.y - other.y)
 
     def __repr__(self):
@@ -73,29 +78,29 @@ class Circle:
         else:
             raise TypeError("center must be a tuple (x, y) or a Point object.")
         
-    def plot(self, ax: matplotlib.axes.Axes = None, show_center = False, fill=False, **kwargs) -> matplotlib.axes.Axes:
+    def plot(self, ax: matplotlib.axes.Axes = None, **kwargs) -> matplotlib.axes.Axes:
         
         if ax is None:
-            fig_size = kwargs.get('fig_size', (4, 4))
+            fig_size = kwargs.get('fig_size')
             _, ax = plt.subplots(figsize=kwargs.get('fig_size', fig_size))
-        
+            
         circle = plt.Circle(
             (self.center.x, self.center.y), 
             self.radius,
-            fill = fill,
+            fill=False if kwargs.get('facecolor') is None else True,
             facecolor=kwargs.get('facecolor'), 
-            edgecolor=kwargs.get('edgecolor', 'black'),
-            linewidth=kwargs.get('linewidth', 1),
-            alpha=kwargs.get('alpha', 1.0), 
-            zorder=10
+            edgecolor=kwargs.get('edgecolor'),
+            linewidth=kwargs.get('linewidth'),
+            alpha=kwargs.get('alpha'), 
+            zorder=kwargs.get('zorder'),
         )
+        
         ax.add_artist(circle)
         ax.set_aspect('equal')
-        
         ax.grid(True)
         
-        if show_center:
-            ax.plot(self.center.x, self.center.y, marker='o', color=kwargs.get('point_color', 'black'))
+        if kwargs.get('centeroid_color') is not None:
+            ax.plot(self.center.x, self.center.y, marker='o', color=kwargs.get('centeroid_color'))
 
         return ax
     
@@ -123,6 +128,11 @@ class Rectangle:
                 'center': args[2] if len(args) > 2 else Point(0, 0),
                 'rotation': args[3] if len(args) > 3 else 0
             }
+
+        center = kwargs.get('center', Point(0, 0))
+        if isinstance(center, tuple):
+            center = Point(*center)
+        kwargs['center'] = center
 
         params = RectangleParams(**kwargs)
         
@@ -205,29 +215,25 @@ class Rectangle:
         self.center = rotate2D(self.center, trans_params)
         self.rotation = self.rotation + angle_deg
     
-    def plot(self, ax: matplotlib.axes.Axes = None, show_center = False, **kwargs):
+    def plot(self, ax: matplotlib.axes.Axes = None, **kwargs):
         corners = self.corners
         corners.append(corners[0]) # Add the first corner again to close the polygon
         corners = [(p.x, p.y) for p in corners] # Convert to tuples
         xs, ys = zip(*corners)
         
-        
         if ax is None:
-            fig_size = kwargs.get('fig_size', (4, 4))
-            _, ax = plt.subplots(figsize=kwargs.get('fig_size', fig_size))
+            _, ax = plt.subplots(figsize=kwargs.get('figsize'))
             
         ax.set_aspect('equal')
         ax.grid(True)
-        ax.tick_params(axis='both', labelsize=kwargs.get('tick_size', 8))
-        ax.plot(xs, ys, color=kwargs.get('line_color', 'black'), linewidth=kwargs.get('line_width', 1), zorder=10)
+        ax.tick_params(axis='both', labelsize=kwargs.get('ticksize'))
+        ax.plot(xs, ys, color=kwargs.get('edgecolor', 'black'), linewidth=kwargs.get('linewidth', 1), zorder=kwargs.get('zorder'))
         
-        fill_color = kwargs.get('fill_color')
-        if fill_color:
-            ax.fill(xs, ys, color=kwargs.get('fill_color', fill_color), alpha=kwargs.get('alpha', 0.5))
+        if kwargs.get('facecolor') is not None:
+            ax.fill(xs, ys, color=kwargs.get('facecolor'), alpha=kwargs.get('alpha', 0.5), zorder=kwargs.get('zorder'))
             
-        if show_center:
-            centeroid_color = kwargs.get('centroid_color', 'red')
-            ax.plot(self.center.x, self.center.y, marker='o', color=kwargs.get('point_color', centeroid_color))
+        if kwargs.get('centroid_color') is not None:
+            ax.plot(self.center.x, self.center.y, marker='+', color=kwargs.get('centroid_color'))
             
         return ax
     
@@ -423,13 +429,16 @@ def rotate2D(point: Point, transform_params: TransParams) -> Point:
     return Point(point[0, 0], point[1, 0])
 
 
-def circles_overlap(c1: Circle, c2: Circle) -> bool:
+def circles_overlap(cricle1: Circle, circle2: Circle) -> bool:
     """
     Returns:
         bool: True if the circles overlap, False otherwise.
     """
-    center_dist = distance(c1.center, c2.center)
-    return center_dist < (c1.radius + c2.radius)
+    # center_dist = distance(c1.center, c2.center)
+    # return center_dist < (c1.radius + c2.radius)
+    c1 = sg.Point(cricle1.center.x, cricle1.center.y).buffer(cricle1.radius)
+    c2 = sg.Point(circle2.center.x, circle2.center.y).buffer(circle2.radius)
+    return c1.intersects(c2)
 
 
 def no_circles_overlap(circles: list[Circle]) -> bool:
@@ -454,22 +463,75 @@ def circle_within_rectangle(circle: Circle, rectangle: Rectangle) -> bool:
     Returns:
         bool: True if the circle is within the rectangle, False otherwise.
     """
-    bottum_left_corner = rectangle.corners[0]
-    top_right_corner = rectangle.corners[2]
-    circle_left = circle.center.x - circle.radius
-    circle_right = circle.center.x + circle.radius
-    circle_bottom = circle.center.y - circle.radius
-    circle_top = circle.center.y + circle.radius
+    # bottum_left_corner = rectangle.corners[0]
+    # top_right_corner = rectangle.corners[2]
+    # circle_left = circle.center.x - circle.radius
+    # circle_right = circle.center.x + circle.radius
+    # circle_bottom = circle.center.y - circle.radius
+    # circle_top = circle.center.y + circle.radius
     
-    return (
-        circle_left >= bottum_left_corner.x and
-        circle_right <= top_right_corner.x and
-        circle_bottom >= bottum_left_corner.y and
-        circle_top <= top_right_corner.y
-    )
+    # return (
+    #     circle_left >= bottum_left_corner.x and
+    #     circle_right <= top_right_corner.x and
+    #     circle_bottom >= bottum_left_corner.y and
+    #     circle_top <= top_right_corner.y
+    # )
+    c = sg.Point(circle.center.x, circle.center.y).buffer(circle.radius)
+    r = sg.box(rectangle.corners[0].x, rectangle.corners[0].y, rectangle.corners[2].x, rectangle.corners[2].y)
+    return c.within(r)
 
 
+def get_rectangle_net_area(rectangles: List[Rectangle], circles: List[Circle], show_plot: bool = True) -> float:
+    """Compute the net area of rectangles after subtracting the area of the overlapping circle.
 
+    Args:
+        rectangles List(Rectangle): List of Rectangle objects.
+        circles List(Circle): List of Circle objects to be subtracted from the rectangle.
+
+    Returns:
+        float: Net area of the rectangles after subtracting the area of the overlapping circle.
+    """
+    if not all(isinstance(rect, Rectangle) for rect in rectangles):
+        raise TypeError("rectangles must be a list of Rectangle objects.")
+    
+    if not all(isinstance(circle, Circle) for circle in circles):
+        raise TypeError("circles must be a list of Circle objects.")
+    
+    circle_geoms = [
+        sg.Point(circle.center.x, circle.center.y).buffer(circle.radius)
+        for circle in circles
+    ]
+    
+    net_areas = []
+    
+    fig, ax = plt.subplots() if show_plot else (None, None)
+
+    for rect in rectangles:
+        r = sg.box(rect.corners[0].x, rect.corners[0].y, rect.corners[2].x, rect.corners[2].y)
+        net_area = r.area
+        
+        for c in circle_geoms:
+            net_area -= r.intersection(c).area
+            
+        net_areas.append(net_area)
+
+        if show_plot:
+            # Plot rectangle
+            x, y = r.exterior.xy
+            ax.fill(x, y, edgecolor='black', fill=False)
+            
+    if show_plot:
+        for c in circle_geoms:
+            x, y = c.exterior.xy
+            ax.fill(x, y, color='red', alpha=0.3)
+
+        ax.set_aspect('equal')
+        ax.set_title("Rectangles and Rebars (Circles)")
+        plt.show()
+        
+    return np.array([net_areas])
+    
+    
 # Main function =========================================================
 def main():
     pass

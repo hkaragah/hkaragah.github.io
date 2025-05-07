@@ -73,7 +73,15 @@ class RebarSection:
         if ax is None:
             fig, ax = plt.subplots()
         
-        self.shape.plot(ax=ax, **kwargs)
+        self.shape.plot(
+            ax=ax,
+            facecolor=kwargs.get('facecolor'), 
+            edgecolor=kwargs.get('edgecolor', 'black'),
+            linewidth=kwargs.get('linewidth', 1),
+            alpha=kwargs.get('alpha'),
+            centroid_color=kwargs.get('centroid_color'),
+            zorder=kwargs.get('zorder'),
+        )
         
         return ax
 

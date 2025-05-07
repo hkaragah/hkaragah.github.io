@@ -58,7 +58,7 @@ class ACIConcrete(Concrete):
         self.name = "ACI Concrete"
     
     @property
-    def eps_cu(self) -> float:
+    def eps_u(self) -> float:
         """Ultimate strain (eps_u) for concrete.
         This is a constant value of 0.003 as per ACI 318-25:22.2.2.1.
 
@@ -89,7 +89,7 @@ class ACIConcrete(Concrete):
         
     def stress(self, eps:Union[float, np.ndarray]) -> Union[float, np.ndarray]:
         eps_array = np.asarray(eps)
-        eps_ratio = eps_array / self.eps_cu
+        eps_ratio = eps_array / self.eps_u
         stress = np.where(
             eps_ratio > 1,
             0.0,
@@ -105,41 +105,52 @@ class ACIConcrete(Concrete):
     
 # Steel material classes =========================================================
 class Steel:
-    def __init__(self, name: str, fy: float, fu: Optional[float]=None) -> None:
+    def __init__(self, name: str, fy: float, fu: Optional[float]=None, alpha:Optional[float]=None) -> None:
+        """
+
+        Args:
+            name (str): ASTM designation of the steel material (e.g., "A36", "A992").
+            fy (float): Yield strength in psi.
+            fu (Optional[float], optional): Ultimate strength in psi. Defaults to None.
+            alpha (Optional[float], optional): Strain hardening ratio. Defaults to None.
+        """
         self.name = name
-        self.fy = fy  # ksi, Yield strength
-        self.fu = fu  # ksi, Ultimate strength
-    
+        self.fy = fy
+        self.fu = fy if fu is None else fu
+        self.alpha = alpha if alpha is not None else 0.0
+        
     @property
     def E(self) -> float:
-        return 29000 # ksi, Modulus of elasticity
+        """Modulus of elasticity for steel.
+        """
+        return 29e6 # psi, Modulus of elasticity
     
     @property
     def eps_y(self) -> float:
-        return self.fy / self.E
-    
-
-class BilinearSteel(Steel, Material):
-    def __init__(self, name: str, fy: float, fu: Optional[float]=None, alpha: Optional[float]=None) -> None:
-        """Bilinear steel material with optional strain hardening.
-        
-        Args:
-            name (str): Name of the material.
-            fy (float): Yield strength in ksi.
-            fu (float): Ultimate strength in ksi.
-            alpha (float): Strain hardening ratio. Default is 0.01.
+        """Strain at yield point (eps_y) for steel.
         """
-        super().__init__(name, fy, fu)
-        self.alpha = alpha  # strain hardening ratio
+        return self.fy / self.E
     
     @property
     def eps_u(self) -> float:
-        if any(value is None for value in (self.alpha, self.fu)):
-            return None
-        try:
-            return self.eps_y + (self.fu - self.fy) / (self.E * self.alpha)
-        except ZeroDivisionError:
-            return 0.05
+        """Ultimate strain (eps_u) for steel.
+        This is calculated based on the yield strain (eps_y), ultimate strength (fu), and strain hardening ratio (alpha).
+        The formula used is: eps_u = eps_y + (fu - fy) / (E * alpha).
+        If alpha is 0, eps_u is set to 0.05 as a default value.
+        """
+        return 0.05 if self.alpha==0.0 else self.eps_y + (self.fu - self.fy) / (self.E * self.alpha)
+        
+class BilinearSteel(Steel, Material):
+    def __init__(self, name: str, fy: float, fu: Optional[float]=None, alpha: Optional[float]=None) -> None:
+        """Bilinear steel material.
+        
+        Args:
+            name (str): ASTM designation of the steel material (e.g., "A36", "A992").
+            fy (float): Yield strength in psi.
+            fu (Optional[float], optional): Ultimate strength in psi. Defaults to None.
+            alpha (Optional[float], optional): Strain hardening ratio. Defaults to None.
+        """
+        super().__init__(name, fy, fu, alpha)
 
     def stress(self, eps: Union[float, np.ndarray]) -> Union[float, np.ndarray]:
         """Calculate the stress based on the strain using the bilinear model.
@@ -148,36 +159,34 @@ class BilinearSteel(Steel, Material):
             eps (Union[float, np.ndarray]): Strain value(s) for which to calculate stress.
             
         Returns:
-            Union[float, np.ndarray]: Calculated stress value(s). Returns None if alpha or fu is not provided or is None.
+            Union[float, np.ndarray]: Calculated stress value(s) in psi.
         """
-        if any(value is None for value in (self.alpha, self.fu)):
-            return None
-        return np.where(
+        return np.where( # Tension
             eps > 0, 
             np.where(
-                eps < self.eps_y,
+                eps < self.eps_y, # Elastic region
                 self.E * eps,
                 np.where(
-                    eps < self.eps_u,
+                    eps < self.eps_u, # Plastic region
                     np.where(
                         np.isclose(self.alpha, 0), 
                         self.fy,
                         self.fy + (self.fu - self.fy) * (eps - self.eps_y) / (self.eps_u - self.eps_y)
                     ),
-                    0
+                    0 # Post-ultimate region
                 )
             ), 
-            np.where(
-                eps > -self.eps_y,
+            np.where( # Compression
+                eps > -self.eps_y, # Elastic region
                 self.E * eps,
                 np.where(
-                    eps > -self.eps_u,
+                    eps > -self.eps_u, # Plastic region
                     np.where(
                         np.isclose(self.alpha, 0),
                         -self.fy,
                         -self.fy + (self.fu - self.fy) * (eps + self.eps_y) / (self.eps_u + self.eps_y)
                     ),
-                    0
+                    0 # Post-ultimate region
                 )
             )
         )
