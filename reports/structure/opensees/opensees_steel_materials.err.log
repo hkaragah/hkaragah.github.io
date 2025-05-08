@@ -1,0 +1,145 @@
+Traceback (most recent call last):
+  File "c:\Hossein\portfolio\.venv\Lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+    executenb(
+    ~~~~~~~~~^
+        nb,
+        ^^^
+    ...<4 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "c:\Hossein\portfolio\.venv\Lib\site-packages\nbclient\client.py", line 1319, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "c:\Hossein\portfolio\.venv\Lib\site-packages\jupyter_core\utils\__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\hkara\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 720, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "c:\Hossein\portfolio\.venv\Lib\site-packages\nbclient\client.py", line 709, in async_execute
+    await self.async_execute_cell(
+        cell, index, execution_count=self.code_cells_executed + 1
+    )
+  File "c:\Hossein\portfolio\.venv\Lib\site-packages\nbclient\client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "c:\Hossein\portfolio\.venv\Lib\site-packages\nbclient\client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import openseespy.opensees as ops
+
+
+# Reset model
+ops.wipe()
+ops.model('basic', '-ndm', 1, '-ndf', 1)
+
+
+# Materials
+nMat = 2
+matTags = list(range(1, nMat + 1))
+matNames = ['Steel01', 'Steel02']
+
+Fy, E0, b = 50, 29000, 0.005
+ops.uniaxialMaterial('Steel01', matTags[0], Fy, E0, b)
+
+R0, cR1, cR2 = 15, 0.925, 0.15
+ops.uniaxialMaterial('Steel02', matTags[1], Fy, E0, b, R0, cR1, cR2)
+
+
+# Geometry
+A, L = 1.0, 1.0  # Area and length
+fixed_nodeTags = list(range(1, nMat + 1)) 
+free_nodeTags = []
+eleTags =  list(range(1, nMat + 1))
+for i in range(nMat):
+    free_nodeTags.append(fixed_nodeTags[i] + 100)
+    ops.node(fixed_nodeTags[i], 0.0)
+    ops.node(free_nodeTags[i], L)
+    ops.fix(fixed_nodeTags[i], 1)
+    if i != 0:
+        ops.equalDOF(free_nodeTags[0], free_nodeTags[i], 1)
+    ops.element('Truss', eleTags[i], fixed_nodeTags[i], free_nodeTags[i], A, matTags[i])  
+
+
+
+
+# Cyclic strain history (OpenSees doc example)
+# https://opensees.berkeley.edu/OpenSees/manuals/comparisonManual/2770.htm
+run1 = [0.20]
+run2 = [-0.20]
+run3 = [0.02, -0.02, 0.0]
+run4 = [-0.02, 0.02, 0.0]
+run5 = [0.20, -0.20, 0.0]
+run6 = [-0.20, 0.20, 0.0]
+run7 = [0.0005, 0, 0.001, 0, 0.005, 0, 0.05, 0, 0.10, 0, 0.15, 0, 0.20, 0.0]
+run8 = [-0.0005, 0, -0.001, 0, -0.005, 0, -0.05, 0, -0.10, 0, -0.15, 0, -0.20, 0.0]
+run9 = [0.001, -0.001, 0.005, -0.005, 0.01, -0.01, 0.02, -0.02, 0.0]
+run10 = [0.001, -0.001, 0.005, -0.005, 0.01, -0.01, 0.02, -0.02, 0.05, -0.05, 0.10, -0.10, 0.15, -0.15, 0.20, -0.20, 0.0]
+runs = [run1, run2, run3, run4, run5, run6, run7, run8, run9, run10]
+
+
+# Dummy load pattern
+timeSeriesTag = 1
+ops.timeSeries('Linear', timeSeriesTag)
+patternTag = 1
+ops.pattern('Plain', patternTag, timeSeriesTag)
+loading_nodeTag = free_nodeTags[0]
+load_value = 1e-8
+ops.load(loading_nodeTag, load_value)  # Dummy load to satisfy pattern requirements
+
+
+# Analysis settings
+ops.constraints('Plain')
+ops.numberer('Plain')
+ops.system('BandGeneral')
+ops.test('NormDispIncr', 1e-8, 10)
+ops.algorithm('Newton')        
+   
+nIncr = 1000
+dof = 1
+strains = {}
+stresses = {}
+
+
+for i, run in enumerate(runs): # Loop over each strain history
+    strain_peaks = run
+    disp_peaks = [L * eps for eps in strain_peaks] 
+    strains[i] = [0]  
+    stresses[i] = {}
+    for eleTag in eleTags:
+        stresses[i][eleTag] = [0]   
+    current_disp = 0.0   
+    ops.reset() # Earase previous analysis results
+            
+    for target_disp in disp_peaks: # Loop over displacement peaks in each history
+        delta_disp = (target_disp - current_disp) / nIncr
+
+        for _ in range(nIncr): # Incremental analysis, run the analysis for each displacement increment
+            ops.integrator('DisplacementControl', free_nodeTags[0], dof, delta_disp)
+            ops.analysis('Static')
+            ok = ops.analyze(1)
+            
+            if ok != 0:
+                print(f"Analysis failed during increment to {target_disp}")
+                break
+            current_disp += delta_disp
+            strains[i].append(current_disp / L)
+            for eleTag in eleTags:
+                stress = ops.eleResponse(eleTag, 'axialForce')[0] / A
+                stresses[i][eleTag].append(stress)
+
+
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mModuleNotFoundError[39m                       Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[2][39m[32m, line 1[39m
+[32m----> [39m[32m1[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mopenseespy[39;00m[34;01m.[39;00m[34;01mopensees[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[34;01mops[39;00m
+[32m      4[39m [38;5;66;03m# Reset model[39;00m
+[32m      5[39m ops.wipe()
+
+[31mModuleNotFoundError[39m: No module named 'openseespy'
+
