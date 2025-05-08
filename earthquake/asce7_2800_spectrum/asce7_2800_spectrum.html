@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -76,7 +76,7 @@
     <link rel="icon" href="../../_static/headshot.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="prev" title="P-Delta Analysis: Cantilever Column" href="../../structure/p_delta/cant_col_p_delta.html" />
+    <link rel="prev" title="OpenSees Uniaxial Steel Materials" href="../../structure/opensees/opensees_steel_materials.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -200,6 +200,9 @@
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Structural Engineering</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../structure/p_delta/cant_col_p_delta.html">P-Delta Analysis: Cantilever Column</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../structure/moment_curvature/steel_w_sec_moment_curvature.html">Moment-Curvature: Steel W-Section</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../structure/shear_wall_neutral_axis/rect_shear_wall_neutral_axis.html">Rectangular Concrete Shear Wall Neutral Axis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../structure/opensees/opensees_steel_materials.html">OpenSees Uniaxial Steel Materials</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Earthquake Engineering</span></p>
 <ul class="current nav bd-sidenav">
@@ -587,9 +590,10 @@ S_{DS} &amp;T_0\ge T\le T_S\\
 </section>
 <section id="standard-4th-edition">
 <h2>2800 Standard (4th Edition)<a class="headerlink" href="#standard-4th-edition" title="Link to this heading">#</a></h2>
-<p>Design earthquake per 2800 standard is defined as the earthquake with 10% probability of exceedance in 50 years, corresponding to return period of 475 years. See the following references for detailed discussion.</p>
+<p>Design earthquake per 2800 standard is defined as the earthquake with 10% probability of exceedance in 50 years, corresponding to return period of 475 years. Unline ASCE 7-22 seismic hazard which is based on uniform risk (ASCE7-22: C11.4), the seismic hazard parameters in 2800 Standard are based on uniform hazard. See the following references for detailed discussion.</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://nhess.copernicus.org/articles/20/2889/2020/">Farahani, S. and Behnam, B. and Tahershamsi, A. (2020), Macrozonation of seismic transient and permanent ground deformation of Iran, Natural Hazards and Earth System Sciences, 20(11), pp. 2889–2903.</a></p></li>
+<li><p><a class="reference external" href="https://doi.org/10.1007/s10518-019-00625-0">Zaman, M., Ghayamghamian, M.R. Risk-adjusted design basis earthquake: a case study of Tehran megacity. Bull Earthquake Eng 17, 3777–3799 (2019).</a></p></li>
 <li><p><a class="reference external" href="https://iitk.ac.in/nicee/wcee/article/WCEE2012_3018.pdf">Hamzehloo et al. (2012), Seismic Hazard Maps of Iran, 15th World Conference on Earthquake Engineering (15 WCEE), Lisbon, Portugal.</a></p></li>
 </ul>
 <a class="reference internal image-reference" href="../../_images/asce7_2800_spectrum_05.png"><img alt="Define load pattern" src="../../_images/asce7_2800_spectrum_05.png" style="width: 600px;" />
@@ -1039,12 +1043,12 @@ N=
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../../structure/p_delta/cant_col_p_delta.html"
+       href="../../structure/opensees/opensees_steel_materials.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">P-Delta Analysis: Cantilever Column</p>
+        <p class="prev-next-title">OpenSees Uniaxial Steel Materials</p>
       </div>
     </a>
 </div>
