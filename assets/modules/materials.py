@@ -50,6 +50,12 @@ class Concrete:
             float: Calculated stress value.
         """
         raise NotImplementedError("Concrete stress method not implemented.")
+    
+    def __repr__(self):
+        return f"Concrete Material: {self.name}, fc: {self.fc} psi, E: {self.E} psi, fr: {self.fr} psi"
+    
+    def __str__(self):
+        return f"Concrete Material: {self.name}, fc: {self.fc} psi, E: {self.E} psi, fr: {self.fr} psi"
 
 
 class ACIConcrete(Concrete):
@@ -100,7 +106,12 @@ class ACIConcrete(Concrete):
             )
         )
         return stress.item() if np.isscalar(eps) else stress
+    
+    def __repr__(self):
+        return f"Concrete Material: {self.name}, fc: {self.fc} psi, E: {self.E} psi, fr: {self.fr:.2f} psi, eps_u: {self.eps_u:.2e}, beta_1: {self.beta_1}"
 
+    def __str__(self):
+        return f"Concrete Material: {self.name}, fc: {self.fc} psi, E: {self.E} psi, fr: {self.fr:.2f} psi, eps_u: {self.eps_u:.2e}, beta_1: {self.beta_1}"
         
     
 # Steel material classes =========================================================
@@ -139,6 +150,12 @@ class Steel:
         If alpha is 0, eps_u is set to 0.05 as a default value.
         """
         return 0.05 if self.alpha==0.0 else self.eps_y + (self.fu - self.fy) / (self.E * self.alpha)
+        
+    def __repr__(self):
+        return f"Steel Material: {self.name}, fy: {self.fy} psi, fu: {self.fu} psi, E: {self.E} psi, eps_y: {self.eps_y:.2e}, eps_u: {self.eps_u:.2e}, alpha: {self.alpha}"
+    
+    def __str__(self):
+        return f"Steel Material: {self.name}, fy: {self.fy} psi, fu: {self.fu} psi, E: {self.E} psi, eps_y: {self.eps_y:.2e}, eps_u: {self.eps_u:.2e}, alpha: {self.alpha}"
         
 class BilinearSteel(Steel, Material):
     def __init__(self, name: str, fy: float, fu: Optional[float]=None, alpha: Optional[float]=None) -> None:
@@ -197,7 +214,7 @@ class BilinearA36Steel(BilinearSteel):
     ASTM A36 steel material with bilinear stress-strain curve.
     """
 
-    def __init__(self, name= "A36 Steel", fy: float=36, fu: float=58, alpha: float=0.01) -> None:
+    def __init__(self, name= "A36", fy: float=36e3, fu: float=58e3, alpha: float=0.01) -> None:
         super().__init__(name, fy, fu, alpha)
         
         
@@ -206,9 +223,8 @@ class BilinearA992Steel(BilinearSteel):
     ASTM A992 steel material with bilinear stress-strain curve.
     """
 
-    def __init__(self, name= "A992 Steel", fy: float=50, fu: float=65, alpha: float=0.01) -> None:
+    def __init__(self, name= "A992", fy: float=50e3, fu: float=65e3, alpha: float=0.01) -> None:
         super().__init__(name, fy, fu, alpha)
-        
     
 class RambergOsgoodSteel(Steel, Material):
     """ 

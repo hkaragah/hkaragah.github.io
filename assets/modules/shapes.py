@@ -359,30 +359,15 @@ class ISection:
 class AISCShape:
     label: str
     
-    @property
-    def props(self) -> Dict[str, float]:
-        """Return the properties of the AISC shape"""
-        return get_aisc_shape(self.label).to_dict()
-    
-    @property
-    def area(self):
-        return self.props['A']
-    
-    @property
-    def elastic_momoent_of_inertia(self):
-        return self.props['Ix'], self.props['Iy']
-    
-    @property
-    def plastic_moment_of_inertia(self):
-        return self.props['Zx'], self.props['Zy']
-    
-    @property
-    def section_modulus(self):
-        return self.props['Sx'], self.props['Sy']
-    
-    @property
-    def radius_of_gyration(self):
-        return self.props['rx'], self.props['ry']
+    def props(self, as_dataframe: bool = False) -> Dict[str, float] | pd.DataFrame:
+        """Return the properties of the AISC shape as dict or DataFrame"""
+        series = get_aisc_shape(self.label)
+        if as_dataframe:
+            df = series.to_frame().T
+            df.set_index("AISC_Manual_Label", inplace=True)
+            return df
+        
+        return series.to_dict()
 
 
 # Utility functions =====================================================
