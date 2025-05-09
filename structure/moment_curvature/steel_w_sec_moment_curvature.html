@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -664,6 +664,31 @@ Steel Material: A36, fy: 36000.0 psi, fu: 58000.0 psi, E: 29000000.0 psi, eps_y:
 </div>
 </div>
 <p>Now, assuming the outer most fiber of the section (the exterior edges of the top and bottom flange) attained the yield strain, let’s compute the curvature and moment. Note that here, I am deviating a little bit from the steps I mentioned earlier. Instead of assuming the curvature and the location of the neutral axis, I assume the maximum value of the normal strain. Here are the results.</p>
+<a class="reference internal image-reference" href="../../_images/moment_curvature_03.jpg"><img alt="Moment-Curvature at yield" src="../../_images/moment_curvature_03.jpg" style="width: 800px;" />
+</a>
+<p>Strain and curvature are</p>
+<div class="math notranslate nohighlight">
+\[\epsilon_y = \frac{f_y}{E} = \frac{50}{29000} = 1.72 \times 10^{-3}\]</div>
+<div class="math notranslate nohighlight">
+\[\kappa = \frac{\epsilon_y}{d/2} = \frac{ 1.72 \times 10^{-3}}{14/2} =  2.46 \times 10^{-4}\ 1/in\]</div>
+<div class="math notranslate nohighlight">
+\[\epsilon_{cs} = \epsilon_{ts} = \frac{d/2 - t_f}{d/2} \cdot \epsilon_y = \frac{14/2 - 0.72}{14/2} \times \epsilon_y = 1.54 \times 10^{-3}\]</div>
+<p>Knowing the strain, the normal stress is calculated using stress-strain relationship</p>
+<div class="math notranslate nohighlight">
+\[f_{cs} = f_{ts} = E \cdot \epsilon_{ts} = 29000 \times (1.54 \times 10^{-3}) = 44.7\ ksi\]</div>
+<p>The resultant internal force in the flange and web and their distances from the neutral axis are computed as</p>
+<div class="math notranslate nohighlight">
+\[C_{sf} = T_{sf} = \frac{F_y + f_{ts}}{2} \cdot b_f \cdot t_f = \frac{50.0 + 44.7}{2} \times 10 \times 0.72 = 340.9\ kips\]</div>
+<div class="math notranslate nohighlight">
+\[C_{sw} = T_{sw} = \frac{f_{ts}}{2} \cdot \tfrac{1}{2}(d - 2 t_f) \cdot t_w = \frac{44.7}{2} \times \tfrac{1}{2}(14 - 2 \times 0.72) \times 0.415 = 58.2\ kips\]</div>
+<div class="math notranslate nohighlight">
+\[y_{sf} = (d/2 - t_f) + \frac{f_{ts} \cdot \tfrac{t_f^2}{2} + \tfrac{1}{2}(F_y-f_{ts}) \cdot \tfrac{2t_f^2}{3}}{f_{ts}\cdot t_f + \tfrac{1}{2}(F_y-f_{ts}) \cdot t_f} = (14/2 - 0.72)+\frac{44.7 \times \tfrac{0.72^2}{2} + \tfrac{1}{2}(50.0-44.7) \cdot \tfrac{2 \times 0.72^2}{3}}{44.7 \times 0.72 + \tfrac{1}{2}(50.0-44.7) \times 0.72} = 6.64\ in\]</div>
+<div class="math notranslate nohighlight">
+\[y_{cw} = \tfrac{2}{3} (d/2 - t_f) = \tfrac{2}{3} (14/2 - 0.72) = 4.19\ in\]</div>
+<p>The force equilibrium is already satisfied. Let’s calculate the internal moment</p>
+<div class="math notranslate nohighlight">
+\[M = 2 \times (T_{sf} \cdot y_{sf} + T_{sw} \cdot y_{cw}) = 2 \times (340.9 \times 6.64 + 58.2 \times 4.19) \times \tfrac{1\ ft}{12\ in} \approx 418\ kip-ft\]</div>
+<p>Below, I compued the curvature and moment using the functions developed earlier. The obtained moment from hand calculation is close enough. The difference is attributed to rounding errors in my hand calculations.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Strain at the outter most fiber</span>
