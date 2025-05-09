@@ -3,14 +3,15 @@
 
 format: jb-book
 root: intro
+
 parts:
   - caption: Structural Engineering
     chapters:
-    - file: structure/p_delta/cant_col_p_delta
-    - file: structure/moment_curvature/steel_w_sec_moment_curvature
-    - file: structure/shear_wall_neutral_axis/rect_shear_wall_neutral_axis
-    - file: structure/opensees/opensees_steel_materials
-    
+      - file: structure/p_delta/cant_col_p_delta
+      - file: structure/moment_curvature/steel_w_sec_moment_curvature
+      - file: structure/shear_wall_neutral_axis/rect_shear_wall_neutral_axis
+      - file: structure/opensees/opensees_steel_materials
+
   - caption: Earthquake Engineering
     chapters:
-    - file: earthquake/asce7_2800_spectrum/asce7_2800_spectrum
+      - file: earthquake/asce7_2800_spectrum/asce7_2800_spectrum
