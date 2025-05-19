@@ -11,6 +11,7 @@ parts:
       - file: structure/moment_curvature/steel_w_sec_moment_curvature
       - file: structure/shear_wall_neutral_axis/rect_shear_wall_neutral_axis
       - file: structure/opensees/opensees_steel_materials
+      - file: structure/structural_dynamics/modal_analysis_basic
 
   - caption: Earthquake Engineering
     chapters:

@@ -368,8 +368,63 @@ class AISCShape:
             return df
         
         return series.to_dict()
+    
+    @property
+    def A(self) -> float:
+        """Return the area of the AISC shape [in2]"""
+        return self.props()['A']
+    
+    @property
+    def Ix(self) -> float:
+        """Return the moment of inertia about the x-axis [in4]"""
+        return self.props()['Ix']
+    
+    @property
+    def Iy(self) -> float:
+        """Return the moment of inertia about the y-axis [in4]"""
+        return self.props()['Iy']
+    
 
-
+@dataclass
+class AISC_WSection(AISCShape):
+    # Get label and raise error if it is of self.props()['Type'] == 'W'
+    def __post_init__(self):
+        if self.props()['Type'] != 'W':
+            raise ValueError(f"AISC shape {self.label} is not a W-section.")
+    
+    @property
+    def d(self) -> float:
+        """Return the depth of the W-section [in]"""
+        return self.props()['d']
+    
+    @property
+    def bf(self) -> float:
+        """Return the flange width of the W-section [in]"""
+        return self.props()['bf']
+    
+    @property
+    def tf(self) -> float:
+        """Return the flange thickness of the W-section [in]"""
+        return self.props()['tf']
+    
+    @property
+    def tw(self) -> float:
+        """Return the web thickness of the W-section [in]"""
+        return self.props()['tw']
+    
+    @property
+    def Awy(self) -> float:
+        """Return the web area of the W-section [in2]"""
+        return self.d * self.tw
+    
+    @property
+    def alphaY(self) -> float:
+        """shear shape factor along y-axis
+        Return the ratio of web area (Aw) to the total area (A)
+        """
+        return self.Awy / self.A
+    
+    
 # Utility functions =====================================================
 # Load the full AISC database once and cache it
 @lru_cache(maxsize=1)

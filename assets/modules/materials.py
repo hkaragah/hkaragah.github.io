@@ -129,12 +129,37 @@ class Steel:
         self.fy = fy
         self.fu = fy if fu is None else fu
         self.alpha = alpha if alpha is not None else 0.0
+        self._nu = 0.25 # Poisson's ratio for steel
+        self._E = 29e6 # psi, Modulus of elasticity for steel
         
     @property
     def E(self) -> float:
-        """Modulus of elasticity for steel.
+        """Modulus of elasticity for steel in psi.
         """
-        return 29e6 # psi, Modulus of elasticity
+        return self._E
+    
+    @property
+    def nu(self) -> float:
+        """Poisson's ratio for steel.
+        """
+        return 0.25
+    
+    @nu.setter
+    def nu(self, value: float) -> None:
+        """Set the Poisson's ratio for steel.
+        
+        Args:
+            value (float): Poisson's ratio value.
+        """
+        if not (0 < value < 0.5):
+            raise ValueError("Poisson's ratio must be between 0 and 0.5.")
+        self._nu = value
+    
+    @property
+    def G(self) -> float:
+        """Shear modulus for steel.
+        """
+        return self._E / (2 * (1 + self._nu))
     
     @property
     def eps_y(self) -> float:
