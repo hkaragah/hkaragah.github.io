@@ -1,3 +1,11 @@
+##########################################
+# Shapes Module
+# Written by: Hossein Karagah
+# Date: 2024-08-01
+# Description: This module provides classes and functions to handle geometric shapes like circles, rectangles, and I-sections.
+##########################################
+
+
 from copy import deepcopy
 from logging import root
 from turtle import width

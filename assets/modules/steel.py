@@ -1,3 +1,11 @@
+##############################################
+# Steel Section Module
+# Written by: Hossein Karagah
+# Date: 2024-10-05
+# Description: This module defines the steel section classes representing geometric properties used in engineering calculation.
+##############################################
+
+
 import matplotlib
 import matplotlib.pyplot as plt
 import matplotlib.axes

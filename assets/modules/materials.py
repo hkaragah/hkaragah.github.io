@@ -1,3 +1,12 @@
+#######################################
+# Materials module for structural engineering
+# Written by: Hossein Karagah
+# Date: 2025-02-15
+# Description: This module provides classes and functions for defining and working with various construction materials, including concrete and steel.
+#######################################
+
+
+
 
 from typing import Protocol, Union, Optional
 import numpy as np

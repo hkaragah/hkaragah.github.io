@@ -1,3 +1,10 @@
+################################
+# Concrete Section Module
+# Written by: Hossein Karagah
+# Date: 2025-03-10
+# Description: This module provides classes and functions to model and analyze rectangular concrete sections with rebars.
+################################
+
 
 from copy import deepcopy
 import shapes as sh

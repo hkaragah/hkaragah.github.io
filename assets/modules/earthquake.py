@@ -1,7 +1,16 @@
+###############################
+# Earthquake Data Processing Module
+# Written by: Hossein Karagah
+# Date: 2025-05-25
+# Description: This module provides functions to read, process, and analyze earthquake data.
+###############################
+
+
 import numpy as np
 from scipy.integrate import cumulative_trapezoid, cumulative_simpson
 from scipy.interpolate import interp1d
 from scipy.signal import butter, filtfilt
+
 
 def read_values(file_path, dt, first_line):
     """
