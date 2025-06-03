@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -204,10 +204,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../moment_curvature/steel_w_sec_moment_curvature.html">Moment-Curvature: Steel W-Section</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../shear_wall_neutral_axis/rect_shear_wall_neutral_axis.html">Rectangular Concrete Shear Wall Neutral Axis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../opensees/opensees_steel_materials.html">OpenSees Uniaxial Steel Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../structural_dynamics/modal_analysis_basic.html">Modal Analysis: 3-DOF System</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Earthquake Engineering</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../earthquake/asce7_2800_spectrum/asce7_2800_spectrum.html">ASCE 7 vs. 2800 Standard: Comparing Design Spectral Response Acceleration Parameter (Sa)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../earthquake/frequency_content/frequency_content.html">Frequency content of Earthquake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../earthquake/response_spectrum/response_spectrum.html">Earthquake Response Spectrum</a></li>
 </ul>
 
     </div>
@@ -423,10 +426,12 @@ document.write(`
 <a target="_blank" href="https://colab.research.google.com/github/hkaragah/hkaragah.github.io/blob/main/structure/p_delta/cant_col_p_delta.ipynb">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
+<div style="font-size: 0.8em; color: #555;">By Hossein Karagah</div>
+<div style="font-size: 0.8em; color: #555;">© Copyright 2025 GNU GENERAL PUBLIC LICENSE.</div>
 </div><section class="tex2jax_ignore mathjax_ignore" id="p-delta-analysis-cantilever-column">
 <h1>P-Delta Analysis: Cantilever Column<a class="headerlink" href="#p-delta-analysis-cantilever-column" title="Link to this heading">#</a></h1>
 <p>In a P–Δ analysis of a cantilever column, the additional moments produced by the lateral deflection under the compressive load should be accounted for. This, in turn, further increases the deflection—a phenomenon that must be solved iteratively.</p>
-<a class="reference internal image-reference" href="../../_images/cant_col_p_delta_rendered_image.png"><img alt="Define load pattern" src="../../_images/cant_col_p_delta_rendered_image.png" style="width: 200px;" />
+<a class="reference internal image-reference" href="assets/img/structure/cant_col_p_delta/cant_col_p_delta_rendered_image.png"><img alt="Define load pattern" src="assets/img/structure/cant_col_p_delta/cant_col_p_delta_rendered_image.png" style="width: 200px;" />
 </a>
 <p>Here, the P-Delta analysis is performed on a steel cantilever column (the AISC 360-22 benchmark problem case 2) by developing and solving the closed-form equation. The equation is then solved using an iterative approach. The result is then compared with the those obtained by using <code class="docutils literal notranslate"><span class="pre">SciPy</span></code> solver as well as structural analysis software.</p>
 <p>Below is a step‐by‐step outline of the iterative process of analyzing for P-Delta:
@@ -477,7 +482,7 @@ For example, the <em>Euler-Bernoulli beam theory</em> may be used to write the d
 <li><p>Check Convergence: Compare the new deflection with the previous iteration. If the difference is below a predefined tolerance, the process converges. Otherwise, update <span class="math notranslate nohighlight">\(\Delta\)</span> and repeat.</p></li>
 </ol>
 <p>This process ensures that the nonlinear interaction between the axial load and the lateral displacement is properly captured.</p>
-<a class="reference internal image-reference" href="../../_images/aisc_stability_analysis-p_delta_diagram.png"><img alt="Define load pattern" src="../../_images/aisc_stability_analysis-p_delta_diagram.png" style="width: 600px;" />
+<a class="reference internal image-reference" href="assets/img/structure/cant_col_p_delta/aisc_stability_analysis-p_delta_diagram.png"><img alt="Define load pattern" src="assets/img/structure/cant_col_p_delta/aisc_stability_analysis-p_delta_diagram.png" style="width: 600px;" />
 </a>
 <hr class="docutils" />
 <section id="deflected-shape-due-to-lateral-load-and-p-delta-effect">
@@ -1061,12 +1066,12 @@ Base moment: 845.835 kip-in
 <ol class="arabic">
 <li><p>Define Geometry</p>
 <p>The geometry is defined in XZ-plane with the dimensions defined earlier. The base support (node 1) is defined as fixed and the top (node 2) will be free. To be able to obtain an accurate result, the column is meshed into a minimum four segments during the analysis.</p>
-<a class="reference internal image-reference" href="../../_images/cant_col_p_delta_01.png"><img alt="Define geometry and mesh size" src="../../_images/cant_col_p_delta_01.png" style="width: 600px;" />
+<a class="reference internal image-reference" href="assets/img/structure/cant_col_p_delta/cant_col_p_delta_01.png"><img alt="Define geometry and mesh size" src="assets/img/structure/cant_col_p_delta/cant_col_p_delta_01.png" style="width: 600px;" />
 </a>
 </li>
 <li><p>Define Load Patterns:</p>
 <p>The axial load is defined as <code class="docutils literal notranslate"><span class="pre">DL</span></code> and the laterl load is defined as <code class="docutils literal notranslate"><span class="pre">NL</span></code>. Note that the <code class="docutils literal notranslate"><span class="pre">Self</span> <span class="pre">Weight</span> <span class="pre">Multiplier</span></code> for the <code class="docutils literal notranslate"><span class="pre">DL</span></code> is set to zero.</p>
-<a class="reference internal image-reference" href="../../_images/cant_col_p_delta_05.png"><img alt="Define load pattern" src="../../_images/cant_col_p_delta_05.png" style="width: 600px;" />
+<a class="reference internal image-reference" href="assets/img/structure/cant_col_p_delta/cant_col_p_delta_05.png"><img alt="Define load pattern" src="assets/img/structure/cant_col_p_delta/cant_col_p_delta_05.png" style="width: 600px;" />
 </a>
 </li>
 <li><p>Define Load Cases:</p>
@@ -1075,10 +1080,10 @@ Base moment: 845.835 kip-in
 <p class="admonition-title">Note</p>
 <p>Note that superimposition cannot be used in a nonlinear analysis, thus all the applicable load patterns must be considered simultaneously in the nonlinear analysis.</p>
 </div>
-<a class="reference internal image-reference" href="../../_images/cant_col_p_delta_04.png"><img alt="Define load cases" src="../../_images/cant_col_p_delta_04.png" style="width: 600px;" />
+<a class="reference internal image-reference" href="assets/img/structure/cant_col_p_delta/cant_col_p_delta_04.png"><img alt="Define load cases" src="assets/img/structure/cant_col_p_delta/cant_col_p_delta_04.png" style="width: 600px;" />
 </a>
 <p>As shown in the figure below, the <code class="docutils literal notranslate"><span class="pre">DL</span></code> and <code class="docutils literal notranslate"><span class="pre">NL</span></code> load patterns are applied together with scale factors of one for the P-Delta analysis.</p>
-<a class="reference internal image-reference" href="../../_images/cant_col_p_delta_06.png"><img alt="P-Delta load pattern" src="../../_images/cant_col_p_delta_06.png" style="width: 600px;" />
+<a class="reference internal image-reference" href="assets/img/structure/cant_col_p_delta/cant_col_p_delta_06.png"><img alt="P-Delta load pattern" src="assets/img/structure/cant_col_p_delta/cant_col_p_delta_06.png" style="width: 600px;" />
 </a>
 </li>
 <li><p>Perform Analysis</p>
@@ -1088,7 +1093,7 @@ Base moment: 845.835 kip-in
 <li><p>Second-order base moment = 846 kip-in</p></li>
 </ul>
 <p>Both the free-end deflection and the moment at the base are within 0.5% of the AISC benchmark results.</p>
-<a class="reference internal image-reference" href="../../_images/cant_col_p_delta_02.png"><img alt="Drift, Shear, and Moment diagram" src="../../_images/cant_col_p_delta_02.png" style="height: 500px;" />
+<a class="reference internal image-reference" href="assets/img/structure/cant_col_p_delta/cant_col_p_delta_02.png"><img alt="Drift, Shear, and Moment diagram" src="assets/img/structure/cant_col_p_delta/cant_col_p_delta_02.png" style="height: 500px;" />
 </a>
 </li>
 </ol>

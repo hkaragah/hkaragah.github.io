@@ -1,0 +1,1608 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Frequency content of Earthquake &#8212; Hossein Karagah, PhD, PE</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-J3171580FP"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-J3171580FP');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-J3171580FP');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'earthquake/frequency_content/frequency_content';</script>
+    <link rel="icon" href="../../_static/headshot.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Earthquake Response Spectrum" href="../response_spectrum/response_spectrum.html" />
+    <link rel="prev" title="ASCE 7 vs. 2800 Standard: Comparing Design Spectral Response Acceleration Parameter (Sa)" href="../asce7_2800_spectrum/asce7_2800_spectrum.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+<aside class="bd-header-announcement" aria-label="Announcement">
+  <div class="bd-header-announcement__content">Hossein Karagah, PhD, PE</div>
+</aside>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/headshot.png" class="logo__image only-light" alt="Hossein Karagah, PhD, PE - Home"/>
+    <script>document.write(`<img src="../../_static/headshot.png" class="logo__image only-dark" alt="Hossein Karagah, PhD, PE - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Structural Engineering</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../structure/p_delta/cant_col_p_delta.html">P-Delta Analysis: Cantilever Column</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../structure/moment_curvature/steel_w_sec_moment_curvature.html">Moment-Curvature: Steel W-Section</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../structure/shear_wall_neutral_axis/rect_shear_wall_neutral_axis.html">Rectangular Concrete Shear Wall Neutral Axis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../structure/opensees/opensees_steel_materials.html">OpenSees Uniaxial Steel Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../structure/structural_dynamics/modal_analysis_basic.html">Modal Analysis: 3-DOF System</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Earthquake Engineering</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../asce7_2800_spectrum/asce7_2800_spectrum.html">ASCE 7 vs. 2800 Standard: Comparing Design Spectral Response Acceleration Parameter (Sa)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Frequency content of Earthquake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../response_spectrum/response_spectrum.html">Earthquake Response Spectrum</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/hkaragah/hkaragah.github.io" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/hkaragah/hkaragah.github.io/issues/new?title=Issue%20on%20page%20%2Fearthquake/frequency_content/frequency_content.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/earthquake/frequency_content/frequency_content.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Frequency content of Earthquake</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-earthquake-record">Import Earthquake Record</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analyzing-frequency-content">Analyzing Frequency Content</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fourier-transform-amplitude-spectrum">1. Fourier Transform / Amplitude Spectrum</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#power-spectral-density-psd">2. Power Spectral Density (PSD)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#window-functions">Window Functions</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-wevelet-transformation-cwt">3. Continuous Wevelet Transformation (CWT)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#formulation">Formulation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#common-wavelets">Common Wavelets</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div style="text-align: right;">
+<a target="_blank" href="https://colab.research.google.com/github/hkaragah/hkaragah.github.io/blob/main/earthquake/frequency_content/frequency_content.ipynb">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a>
+<div style="font-size: 0.8em; color: #555;">By Hossein Karagah</div>
+<div style="font-size: 0.8em; color: #555;">© Copyright 2025 GNU GENERAL PUBLIC LICENSE.</div>
+</div><section class="tex2jax_ignore mathjax_ignore" id="frequency-content-of-earthquake">
+<h1>Frequency content of Earthquake<a class="headerlink" href="#frequency-content-of-earthquake" title="Link to this heading">#</a></h1>
+<p>The frequency content of an earthquake refers to how the energy of seismic ground motion is distributed across different frequencies (Hz).</p>
+<ul class="simple">
+<li><p>Low frequencies (0.1–1 Hz): Long-period waves, affect tall structures, bridges, and flexible buildings.</p></li>
+<li><p>High frequencies (&gt;10 Hz): Short-period waves, impact small, stiff structures like houses and low-rise buildings.</p></li>
+</ul>
+<p>The frequency content of an earthquake can provide useful information in the following areas:</p>
+<ul class="simple">
+<li><p>Resonance Risk: A building will shake violently if the earthquake’s dominant frequencies match its natural frequency.</p></li>
+<li><p>Ground Motion Selection: It helps to select or scale earthquake records to match target frequency profiles.</p></li>
+<li><p>Soil-Structure Interaction: 	Soft soils amplify low-frequency waves; rock sites may transmit high-frequency waves better.</p></li>
+</ul>
+<p>The frequency content is typically analyzed using:</p>
+<ul class="simple">
+<li><p>Fourier Transform</p></li>
+<li><p>Power Spectral Density (PSD)</p></li>
+<li><p>Response Spectrum</p></li>
+<li><p>Wavelet Transform (to track how frequency content changes over time)</p></li>
+</ul>
+<p>Frequency content analysis (FFT, PSD, etc.) is commonly performed on not just acceleration, but also velocity and displacement records in earthquake engineering and seismology. Each signal type (acceleration, velocity, displacement) emphasizes different frequency ranges and structural responses:</p>
+<ol class="arabic">
+<li><p><strong>Acceleration Frequency Analysis</strong></p>
+<p>It is most common in earthquake engineering. It captures high-frequency content, <span class="math notranslate nohighlight">\(\geq 10 Hz\)</span>, (e.g., sharp shocks, rigid-body response). It is used for:</p>
+<ul class="simple">
+<li><p>Seismic code spectra</p></li>
+<li><p>Ground motion selection/scaling</p></li>
+<li><p>Short-period structural response and PGA studies</p></li>
+</ul>
+</li>
+<li><p><strong>Velocity Frequency Analysis</strong></p>
+<p>It emphasizes intermediate frequencies, <span class="math notranslate nohighlight">\(1-10 Hz\)</span>. Velocity spectra often correlate better with nonlinear structural damage and soil response, especially around resonance bands. It is useful for:</p>
+<ul class="simple">
+<li><p>Damage potential estimation</p></li>
+<li><p>Energy-based response analysis</p></li>
+<li><p>Peak ground velocity (PGV) studies</p></li>
+</ul>
+</li>
+<li><p><strong>Displacement Frequency Analysis</strong></p>
+<p>It is dominated by low-frequency content, <span class="math notranslate nohighlight">\(\leq 1 Hz\)</span>, and highlights permanent deformation and long-period ground movement not visible in acceleration. It is used in:</p>
+<ul class="simple">
+<li><p>Long-period structure response (e.g., high-rises, bridges, base-isolated systems)</p></li>
+<li><p>Near-fault permanent displacements</p></li>
+<li><p>Geotechnical and ground failure analysis</p></li>
+</ul>
+</li>
+</ol>
+<p>Before dive into calculating the reponse spectrum, let’s obtain an earthquke record. I use <a url="https://ngawest2.berkeley.edu/">PEER Ground Motion Database</a> and download an earthquake record including acceleration, velocity, and displacement time histories.</p>
+<hr class="docutils" />
+<section id="import-earthquake-record">
+<h2>Import Earthquake Record<a class="headerlink" href="#import-earthquake-record" title="Link to this heading">#</a></h2>
+<p>The records I selected to work on here are named</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">RSN5970_SIERRA.MEX_BOR360.AT2</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RSN5970_SIERRA.MEX_BOR360.VT2</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RSN5970_SIERRA.MEX_BOR360.DT2</span></code></p></li>
+</ul>
+<p>representing acceleration, velocity, and displacement time histories of <strong>2010 Baja California earthquake</strong>, respectively. The earthquake had a moment magnitude of 7.2 <span class="math notranslate nohighlight">\(M_w\)</span> and maximum Mercalli intensity of VII. The epicenter was located in south of Guadalupe Vistoria, Baja California, Mexico (32.286°N  115.295°W) at a depth of 10 km (6.2 mile).</p>
+<img alt="2010 Baja California earthquake" src="../../_images/frequency_content_01.png" />
+<p>Let’s examine the first 10 lines of <code class="docutils literal notranslate"><span class="pre">RSN5970_SIERRA.MEX_BOR360.AT2</span></code> file.</p>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.integrate</span><span class="w"> </span><span class="kn">import</span> <span class="n">solve_ivp</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.interpolate</span><span class="w"> </span><span class="kn">import</span> <span class="n">interp1d</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;../..&quot;</span><span class="p">))</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">assets.modules.earthquake</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">eq</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;pandas&#39;
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">file_path</span> <span class="o">=</span> <span class="s2">&quot;../../assets/data/earthquak/peer_records_raw/&quot;</span>
+
+<span class="n">name_str</span> <span class="o">=</span> <span class="s2">&quot;RSN5970_SIERRA.MEX_BOR360&quot;</span>
+
+<span class="n">file_names</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Acceleration&quot;</span><span class="p">:</span> <span class="n">name_str</span> <span class="o">+</span> <span class="s2">&quot;.AT2&quot;</span><span class="p">,</span> 
+    <span class="s2">&quot;Velocity&quot;</span><span class="p">:</span> <span class="n">name_str</span> <span class="o">+</span> <span class="s2">&quot;.VT2&quot;</span><span class="p">,</span> 
+    <span class="s2">&quot;Displacement&quot;</span><span class="p">:</span> <span class="n">name_str</span> <span class="o">+</span> <span class="s2">&quot;.DT2&quot;</span>
+<span class="p">}</span>
+
+<span class="n">file_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">file_names</span><span class="p">[</span><span class="s2">&quot;Acceleration&quot;</span><span class="p">])</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+
+<span class="c1"># Print the first 10 lines of the file</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;...&quot;</span><span class="p">)</span>
+    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PEER NGA STRONG MOTION DATABASE RECORD
+El Mayor-Cucapah, 4/4/2010, Borrego Springs, 360
+ACCELERATION TIME SERIES IN UNITS OF G
+NPTS=  30296, DT=   .0100 SEC
+-.3595791E-05  -.3602476E-05  -.3609122E-05  -.3614762E-05  -.3622277E-05
+-.3629087E-05  -.3634954E-05  -.3641761E-05  -.3647513E-05  -.3656279E-05
+-.3661616E-05  -.3667165E-05  -.3672715E-05  -.3675396E-05  -.3683046E-05
+-.3685863E-05  -.3696702E-05  -.3703039E-05  -.3704650E-05  -.3707040E-05
+-.3713379E-05  -.3714652E-05  -.3718122E-05  -.3746092E-05  -.3728889E-05
+-.3744301E-05  -.3756375E-05  -.3747034E-05  -.3767861E-05  -.3751488E-05
+...
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<p>The data starts from line 5, and there is one recording every 0.01 seconds as explained in the headline. Also, the acceleration data is recorded in <span class="math notranslate nohighlight">\(g\)</span>, and there are five acceleration values per line. Performing similar examination on the files with <code class="docutils literal notranslate"><span class="pre">.VT2</span></code> and <code class="docutils literal notranslate"><span class="pre">.DT2</span></code> shows that the velocity and displacement values are measured in cm/s, and cm, respectively.</p>
+<p>Using this information, I will parse the files as follows.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DT</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>  <span class="c1"># Sampling time interval in seconds</span>
+<span class="n">FIRST_LINE</span> <span class="o">=</span> <span class="mi">5</span>  <span class="c1"># First line to read in the file</span>
+<span class="n">g</span> <span class="o">=</span> <span class="mf">9.81</span> <span class="o">*</span> <span class="mi">100</span> <span class="c1"># gravitational acceleration (cm/s2)</span>
+
+<span class="n">time</span><span class="p">,</span> <span class="n">ground</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="p">{},</span> <span class="p">{},</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">file_names</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+    <span class="n">time</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="n">ground</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="n">header</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">eq</span><span class="o">.</span><span class="n">read_values</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">DT</span><span class="p">,</span> <span class="n">FIRST_LINE</span><span class="p">)</span>
+
+<span class="c1"># Print the first 5 values of the time and ground values</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;First 10 values of time and ground values:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Time (s)    Acceleration (g)    Velocity (cm/s)    Displacement (cm)&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">time</span><span class="p">[</span><span class="s1">&#39;Acceleration&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="si">:</span><span class="s2">8</span><span class="si">}</span><span class="s2">    </span><span class="si">{</span><span class="n">ground</span><span class="p">[</span><span class="s1">&#39;Acceleration&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="si">:</span><span class="s2">16</span><span class="si">}</span><span class="s2">    &quot;</span>
+          <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ground</span><span class="p">[</span><span class="s1">&#39;Velocity&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="si">:</span><span class="s2">15</span><span class="si">}</span><span class="s2">    </span><span class="si">{</span><span class="n">ground</span><span class="p">[</span><span class="s1">&#39;Displacement&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="si">:</span><span class="s2">15</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>First 10 values of time and ground values:
+
+Time (s)    Acceleration (g)    Velocity (cm/s)    Displacement (cm)
+     0.0       -3.595791e-06                0.0                0.0
+    0.01       -3.602476e-06       -3.52895e-05      -1.764475e-07
+    0.02       -3.609122e-06      -7.064436e-05      -7.061168e-07
+    0.03       -3.614762e-06      -0.0001060594      -1.589636e-06
+    0.04       -3.622277e-06       -0.000141539      -2.827628e-06
+    0.05       -3.629087e-06      -0.0001770888      -4.420768e-06
+    0.06       -3.634954e-06      -0.0002127008      -6.369716e-06
+    0.07       -3.641761e-06      -0.0002483749      -8.675094e-06
+    0.08       -3.647513e-06      -0.0002841106      -1.133752e-05
+    0.09       -3.656279e-06      -0.0003199174      -1.435766e-05
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<p>Let’s plot the recording for this earthquake. The figure displays the acceleration, velocity, and displacement time histories recorded during the 2010 Baja California (El Mayor–Cucapah) earthquake at the Borrego Springs station.</p>
+<p>Acceleration [g]</p>
+<ul class="simple">
+<li><p>Strong shaking began just before t ≈ 50 s, peaking near 0.03 g, and lasted ~20 seconds.</p></li>
+<li><p>The acceleration waveform is rich in high-frequency content, evident from the sharp oscillations.</p></li>
+<li><p>Aftershock and scattered wave energy rapidly decay by t ≈ 80 s.</p></li>
+</ul>
+<p>Velocity [cm/s]</p>
+<ul class="simple">
+<li><p>Velocity peaked around 4 cm/s, with broader, smoother waveforms.</p></li>
+<li><p>The waveform exhibits lower-frequency content than acceleration, indicating energy from larger, slower-moving components of ground motion.</p></li>
+<li><p>Clear S-wave arrival and long-period surface waves extend up to ~100 s.</p></li>
+</ul>
+<p>Displacement [cm]</p>
+<ul class="simple">
+<li><p>Permanent ground displacement reached nearly 8 cm, showing the cumulative ground movement caused by the event.</p></li>
+<li><p>The displacement waveform contains long-period, low-frequency components, with noticeable drift, likely from surface waves and permanent fault offset.</p></li>
+<li><p>It stabilizes after ~150 seconds.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the earthquake records</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">)</span>  <span class="c1"># Use default style instead of seaborn</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ground</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="n">ground</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="s1">&#39;r-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1"> [</span><span class="si">{</span><span class="n">header</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="si">}</span><span class="s1">]&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time (s)&#39;</span><span class="p">)</span>
+<span class="n">title_lines</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">header</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">title_lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="si">{</span><span class="n">title_lines</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ad5fb2c5aef00b82d8991fce6c35be21377fdf38984719167e7e531489449f03.png" src="../../_images/ad5fb2c5aef00b82d8991fce6c35be21377fdf38984719167e7e531489449f03.png" />
+</div>
+</div>
+<hr class="docutils" />
+<p>Usually recording devices records the ground acceleration, and the velocity and displacement are computed. To perform a quick check on the downloaded data, I will compute the velocity and displacement by integrating the acceleration using the trapizoid rule. Comparing the plots shows that computed velocity and displacement time histories closely follows the downloaded records.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute the velocity and displacement from acceleration</span>
+<span class="n">acc</span> <span class="o">=</span> <span class="n">ground</span><span class="p">[</span><span class="s1">&#39;Acceleration&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">g</span> <span class="c1"># ground acceleration in cm/s^2</span>
+<span class="n">vel</span><span class="p">,</span> <span class="n">disp</span> <span class="o">=</span> <span class="n">eq</span><span class="o">.</span><span class="n">integrate_acceleration</span><span class="p">(</span><span class="n">acc</span><span class="p">,</span> <span class="n">DT</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">baseline_correction</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">highpass_filter</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the earthquake records</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">)</span>  <span class="c1"># Use default style instead of seaborn</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ground</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="n">ground</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="s1">&#39;k-&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Downloaded </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s1">&#39;Velocity&#39;</span><span class="p">:</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">[</span><span class="s1">&#39;Acceleration&#39;</span><span class="p">],</span> <span class="n">vel</span><span class="p">,</span> <span class="s1">&#39;r-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Computed Velocity&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="s1">&#39;Displacement&#39;</span><span class="p">:</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">[</span><span class="s1">&#39;Acceleration&#39;</span><span class="p">],</span> <span class="n">disp</span><span class="p">,</span> <span class="s1">&#39;r-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Computed Displacement&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1"> [</span><span class="si">{</span><span class="n">header</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="si">}</span><span class="s1">]&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time (s)&#39;</span><span class="p">)</span>
+<span class="n">title_lines</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">header</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">title_lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="si">{</span><span class="n">title_lines</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/a3f81d2605d88e0b93d0bdc0855b1d93dc8df9ad0459e4a365cef9a214c04b5a.png" src="../../_images/a3f81d2605d88e0b93d0bdc0855b1d93dc8df9ad0459e4a365cef9a214c04b5a.png" />
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="analyzing-frequency-content">
+<h2>Analyzing Frequency Content<a class="headerlink" href="#analyzing-frequency-content" title="Link to this heading">#</a></h2>
+<p>As mentioned earlier, the frequency content of an earthquake record describes how much energy is present at different frequencies in the ground motion. It tells us which frequencies dominate the shaking, and it’s crucial for understanding how structures will respond. If the earthquake has a lot of energy near that frequency, resonance can occur → severe damage. The main ways to describe the frequency content of a ground acceleration time history <span class="math notranslate nohighlight">\(\ddot{u_g}\)</span> are as follows.</p>
+<hr class="docutils" />
+<section id="fourier-transform-amplitude-spectrum">
+<h3>1. Fourier Transform / Amplitude Spectrum<a class="headerlink" href="#fourier-transform-amplitude-spectrum" title="Link to this heading">#</a></h3>
+<p>It breaks the ground motion into sine waves of different frequencies. The result would be a plot of amplitude vs. frequency. It explains how much energy exists at each frequency.</p>
+<div class="math notranslate nohighlight">
+\[FT[\ddot{u_g}(t)]=\int_{-\infty}^{\infty} \ddot{u_g}(t)\exp^{-i\omega t}dt\]</div>
+<p>Applying the <em>Fourier Transform</em> to the acceleration record shows that the range of the dominant frequencies are mostly within the smaller frequecy values, especially between 0.05 Hz and 0.20 Hz. This range is correspond to oscillation periods ranging from 5 to 20 seconds.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate frequency content using FFT</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ground</span><span class="p">[</span><span class="s1">&#39;Acceleration&#39;</span><span class="p">])</span>
+<span class="n">freq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftfreq</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">DT</span><span class="p">)</span>  <span class="c1"># frequency array</span>
+
+<span class="n">fft_acc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">ground</span><span class="p">[</span><span class="s1">&#39;Acceleration&#39;</span><span class="p">])</span>  <span class="c1"># FFT of acceleration</span>
+<span class="n">fft_acc_mag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">fft_acc</span><span class="p">)</span>  <span class="c1"># magnitude spectrum</span>
+
+<span class="n">fft_vel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">ground</span><span class="p">[</span><span class="s1">&#39;Velocity&#39;</span><span class="p">])</span>  <span class="c1"># FFT of velocity</span>
+<span class="n">fft_vel_mag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">fft_vel</span><span class="p">)</span>  <span class="c1"># magnitude spectrum</span>
+
+<span class="n">fft_disp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">ground</span><span class="p">[</span><span class="s1">&#39;Displacement&#39;</span><span class="p">])</span>  <span class="c1"># FFT of displacement</span>
+<span class="n">fft_disp_mag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">fft_disp</span><span class="p">)</span>  <span class="c1"># magnitude spectrum</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Parameters for plotting</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Acceleration&#39;</span><span class="p">,</span> <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;mag&#39;</span><span class="p">:</span> <span class="n">fft_acc_mag</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Velocity&#39;</span><span class="p">,</span> <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;mag&#39;</span><span class="p">:</span> <span class="n">fft_vel_mag</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Displacement&#39;</span><span class="p">,</span> <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;mag&#39;</span><span class="p">:</span> <span class="n">fft_disp_mag</span><span class="p">},</span>
+<span class="p">]</span>
+
+<span class="c1"># Create subplots</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">mag</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;mag&#39;</span><span class="p">]</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span>
+
+    <span class="c1"># Main plot</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freq</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="o">//</span><span class="mi">2</span><span class="p">],</span> <span class="n">mag</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="o">//</span><span class="mi">2</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Amplitude&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;FFT of Ground </span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Frequency (Hz)&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Inset plot</span>
+    <span class="n">axins</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">inset_axes</span><span class="p">([</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.35</span><span class="p">,</span> <span class="mf">0.55</span><span class="p">])</span>
+    <span class="n">axins</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freq</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="o">//</span><span class="mi">2</span><span class="p">],</span> <span class="n">mag</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="o">//</span><span class="mi">2</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
+    <span class="n">axins</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">axins</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>
+    <span class="n">axins</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+    <span class="n">axins</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/72a55e964b62f2508011ed521fa161836aeceb1e7010878f8987ad1468245e12.png" src="../../_images/72a55e964b62f2508011ed521fa161836aeceb1e7010878f8987ad1468245e12.png" />
+</div>
+</div>
+<p>This figure displays the frequency domain representation (via Fast Fourier Transform, FFT) of a ground motion record in terms of Acceleration, Velocity, and Displacement. Each subplot shows the main spectrum (0–25 Hz) to capture most of the earthquake’s energy. The zoomed inset (0–0.5 Hz) highlights the low-frequency behavior critical for long-period structures.</p>
+<p><strong>Acceleration Spectrum:</strong> The amplitude is spread across a broad frequency range. The dominant components are found in the 1–15 Hz range, with concentration in very low-frequency contents (<span class="math notranslate nohighlight">\(&lt;0.25 Hz\)</span>). This suggests that the recorded ground motion may have occurred at a soft soil site, or the event was long-period dominant (e.g., from a distant or large earthquake).</p>
+<p><strong>Velocity Spectrum:</strong> The Peaks in this figure appear more concentrated in the 0.1–1 Hz range. The amplitude is significantly larger at lower frequencies compared to acceleration. It is useful for assessing energy content and damage potential in mid-rise or nonlinear structures. The shape and slope confirm dominant intermediate-period content, relevant to many real-world structures.</p>
+<p><strong>Displacement Spectrum:</strong> The energy is highly concentrated below 1 Hz, with a steep drop after that. The strong long-period components dominate, which is clearly visible in the zoomed inset. This finding is crucial for understanding the response of flexible structures, tall buildings, and base-isolated systems. The presence of significant long-period ground motion, likely indicating a large-magnitude earthquake or a recording station far from the fault (rich in surface waves and long-period energy).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Borrego Springs, CA is more than 90 miles away from the epicenter of this earthquake. (32.286°N  115.295°W)</p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="power-spectral-density-psd">
+<h3>2. Power Spectral Density (PSD)<a class="headerlink" href="#power-spectral-density-psd" title="Link to this heading">#</a></h3>
+<p>PSD shows energy distribution over frequency. Its plot is smoother than FFT plot and better for statistical or random processes. The PSD represents the average power per unit frequency:</p>
+<div class="math notranslate nohighlight">
+\[PSD(f)=\lim_{T \rightarrow \infty}\frac{1}{T} |FT(\ddot{u_g})|^2\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(FT(\ddot{u_g})\)</span> is the Fourier Transform  of the earthquake record</p></li>
+<li><p><span class="math notranslate nohighlight">\(T\)</span> is the total time duration of the record</p></li>
+</ul>
+<p>The units are typically <span class="math notranslate nohighlight">\(g^2/Hz\)</span> or <span class="math notranslate nohighlight">\((cm/s)^2/Hz\)</span>. The peaks in the PSD indicate frequencies with high energy content. The applications of PSD are:</p>
+<ul class="simple">
+<li><p>Indentifying dominant frequencies: Reveals where most of the motion energy is concentrated</p></li>
+<li><p>Structural Design: Helps match ground motion characteristics with structure periods</p></li>
+<li><p>Site Classification: PSD shape can indicate soil type (e.g., soft soil = low-frequency amplification)</p></li>
+<li><p>Filter Design and Response Studies: Basis for designing band-pass filters or evaluating resonance.</p></li>
+</ul>
+<hr class="docutils" />
+<p>The PSD is often implemented using <em>Welch’s Method</em> for smoother estimates. the Welch’s method is an improved technique for estimating the Power Spectral Density (PSD) of a signal. It reduces the noise of the PSD estimate by averaging multiple short, overlapping segments of the signal. The basic periodogram (FFT of the full signal) is noisy and varies from one sample to another. Welch’s method smooths out these fluctuations by averaging.</p>
+<p>To compute the PSD</p>
+<ol class="arabic simple">
+<li><p>The signal is divided into segments. Each segment is usually 50% overlapped with the previous. For instance, if the full signal is 1000 samples, there might be segments of 256 samples with 128 overlap.</p></li>
+<li><p>A window function (e.g., Hanning or Hamming) is applied to each segment to reduce the spectral leakage.</p></li>
+<li><p>The FFT of the record is computed in order to obtain the power spectral of each segment. Final PSD estimate is the average of the spectra from all segments.</p></li>
+<li><p>The magnitude is squared and normalized over frequency.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A <strong>window function</strong> is a mathematical function applied to a signal before performing the Fourier Transform (or PSD analysis). It is used to reduce spectral leakage — a distortion that happens when analyzing a finite-length signal that is not perfectly periodic.</p>
+<p>When you cut a continuous signal into chunks (segments), the start and end may not align smoothly, introducing artificial jumps. This introduces extra frequency components (leakage) in the spectrum.</p>
+<p>A window smoothly tapers the ends of the segment to zero, reducing these edge effects.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Spectral leakage</strong> is an artifact that occurs in frequency analysis (like Fourier Transform or PSD) when a non-periodic signal is truncated and treated as if it were periodic within a finite window of time.</p>
+<p>The Discrete Fourier Transform (DFT) assumes that the signal repeats perfectly after the sampling window ends. If the actual signal doesn’t match this assumption, the abrupt start and end cause discontinuities, which introduce artificial frequency components in the spectrum.</p>
+</div>
+<hr class="docutils" />
+<section id="window-functions">
+<h4>Window Functions<a class="headerlink" href="#window-functions" title="Link to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p><strong>Hanning (Hann) Window</strong></p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\omega(n)=0.5\left(1-\cos\left(\frac{2\pi n}{N-1}\right)\right),\ n=0, 1, ..., N-1\]</div>
+<p>Characterisitics:</p>
+<ul class="simple">
+<li><p>Cosine-shaped tapers to zero at both ends</p></li>
+<li><p>Good trade-off between frequency resolution and leakage reduction</p></li>
+<li><p>Common in PSD and general FFT applications</p></li>
+</ul>
+<ol class="arabic simple" start="2">
+<li><p><strong>Hamming Window</strong></p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\omega(n)=0.54-0.46\cos\left(\frac{2\pi n}{N-1}\right)\]</div>
+<p>Characteristics:</p>
+<ul class="simple">
+<li><p>Similar to Hann but does not go fully to zero at the edges</p></li>
+<li><p>Slightly less leakage but a wider main lobe (center peak with high energy concentration) in frequency</p></li>
+<li><p>Preferred when aim to preserve amplitude more accurately (amplitude sensitive applications)</p></li>
+</ul>
+<p>Here is a side-by-side comparison:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p></p></th>
+<th class="head text-center"><p>Hanning</p></th>
+<th class="head text-center"><p>Hamming</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Main Lobe Width</p></td>
+<td class="text-center"><p>Narrower</p></td>
+<td class="text-center"><p>Wider</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Frequency Resolution</p></td>
+<td class="text-center"><p>Better</p></td>
+<td class="text-center"><p>Slightly Worse</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Leakage (Side Lobes)</p></td>
+<td class="text-center"><p>More leakage than Hamming</p></td>
+<td class="text-center"><p>Less Leakage (lower side lobes)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Use Case</p></td>
+<td class="text-center"><p>General spectral analysis</p></td>
+<td class="text-center"><p>Amplitude-sensitive applications</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Comapre Hanning and Hamming windows</span>
+
+<span class="c1"># Length of the window</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="c1"># Generate Hanning and Hamming windows</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="n">hanning_window</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">n</span> <span class="o">/</span> <span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)))</span>
+<span class="n">hamming_window</span> <span class="o">=</span> <span class="mf">0.54</span> <span class="o">-</span> <span class="mf">0.46</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">n</span> <span class="o">/</span> <span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># Plot the window functions</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">hanning_window</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Hanning Window&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">hamming_window</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Hamming Window&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Hanning vs Hamming Window Functions&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Sample Index (n)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Amplitude&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/1e5a2019b8c696745f651f0918cac23aa10a425cc9350be485cf699973f7569f.png" src="../../_images/1e5a2019b8c696745f651f0918cac23aa10a425cc9350be485cf699973f7569f.png" />
+</div>
+</div>
+<p>Let me show you how these two window functions are different using a simple example. The original signal contains two sinusoidals: 20 Hz and 50 Hz. The windowed signals are tapered at the ends to reduce the edge discontinuities.</p>
+<p>As shown in the frequency domain plot, the original FFT has sharp peaks but also shows more spectral leakage (side energy). The <strong>Hanning Window</strong> reduces leakage with better frequency resolution (narrower main lobe). The <strong>Hamming Window</strong> slightly preserves amplitude better but shows a wider main lobe (poorer resolution).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.fft</span><span class="w"> </span><span class="kn">import</span> <span class="n">fft</span><span class="p">,</span> <span class="n">fftfreq</span>
+
+
+<span class="c1"># Parameters</span>
+<span class="n">fs</span> <span class="o">=</span> <span class="mi">1000</span>  <span class="c1"># Sampling frequency (Hz)</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">fs</span>  <span class="c1"># Sampling interval</span>
+<span class="n">L</span> <span class="o">=</span> <span class="mi">256</span>  <span class="c1"># Signal length</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">L</span><span class="p">)</span> <span class="o">*</span> <span class="n">T</span>  <span class="c1"># Time vector</span>
+
+<span class="c1"># Create a test signal with two sinusoids (20 Hz and 50 Hz)</span>
+<span class="n">signal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="mi">20</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="mi">50</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span> <span class="c1"># Acceleration signal (g)</span>
+
+<span class="c1"># Apply Hanning and Hamming windows</span>
+<span class="n">hanning</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">L</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">L</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)))</span>
+<span class="n">hamming</span> <span class="o">=</span> <span class="mf">0.54</span> <span class="o">-</span> <span class="mf">0.46</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">L</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">L</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="n">signal_hanning</span> <span class="o">=</span> <span class="n">signal</span> <span class="o">*</span> <span class="n">hanning</span>
+<span class="n">signal_hamming</span> <span class="o">=</span> <span class="n">signal</span> <span class="o">*</span> <span class="n">hamming</span>
+
+<span class="c1"># Compute FFTs</span>
+<span class="n">fft_orig</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">fft</span><span class="p">(</span><span class="n">signal</span><span class="p">))[:</span><span class="n">L</span> <span class="o">//</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">fft_hanning</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">fft</span><span class="p">(</span><span class="n">signal_hanning</span><span class="p">))[:</span><span class="n">L</span> <span class="o">//</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">fft_hamming</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">fft</span><span class="p">(</span><span class="n">signal_hamming</span><span class="p">))[:</span><span class="n">L</span> <span class="o">//</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">freqs</span> <span class="o">=</span> <span class="n">fftfreq</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">T</span><span class="p">)[:</span><span class="n">L</span> <span class="o">//</span> <span class="mi">2</span><span class="p">]</span>
+
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="c1"># Time domain</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">signal</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Original Signal&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">signal_hanning</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Hanning Windowed&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">signal_hamming</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Hamming Windowed&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Time Domain Signal (Original vs. Windowed)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time (s)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Acceleration (g)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper center&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+
+<span class="c1"># Frequency domain</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">fft_orig</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Original FFT&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">fft_hanning</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Hanning FFT&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">fft_hamming</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Hamming FFT&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Frequency Domain (FFT)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Frequency (Hz)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Magnitude&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper center&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/abb513fd7f6f1c6337c8eba35cc398f844c6cb9505155b2d20eafa6b71114ef7.png" src="../../_images/abb513fd7f6f1c6337c8eba35cc398f844c6cb9505155b2d20eafa6b71114ef7.png" />
+</div>
+</div>
+<p>Applying the <em>Welch’s Method</em> to the above signal using <code class="docutils literal notranslate"><span class="pre">Hann</span></code> window would result in the following PSD.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.signal</span><span class="w"> </span><span class="kn">import</span> <span class="n">welch</span>
+
+<span class="c1"># Assume &#39;signal&#39; is your input and &#39;fs&#39; is sampling frequency</span>
+<span class="n">frequencies</span><span class="p">,</span> <span class="n">psd</span> <span class="o">=</span> <span class="n">welch</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="s1">&#39;hann&#39;</span><span class="p">,</span> <span class="n">nperseg</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">noverlap</span><span class="o">=</span><span class="mi">128</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">frequencies</span><span class="p">,</span> <span class="n">psd</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Frequency (Hz)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;PSD (g²/Hz)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Power Spectral Density using Welch</span><span class="se">\&#39;</span><span class="s1">s Method&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/19dc03f9e54928c7e30113f46183670f10f241af4ecd0c45403eb78231afddf1.png" src="../../_images/19dc03f9e54928c7e30113f46183670f10f241af4ecd0c45403eb78231afddf1.png" />
+</div>
+</div>
+<hr class="docutils" />
+<p>Now, let’s get back to the earthequake record in hand, and plot the PSD for the acceleration record. For this PSD analysis, I use the <em>Welch’s Method</em> with <code class="docutils literal notranslate"><span class="pre">hann</span></code> window.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.signal</span><span class="w"> </span><span class="kn">import</span> <span class="n">welch</span>
+
+
+<span class="n">fs</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">DT</span>  <span class="c1"># Sampling frequency in Hz</span>
+
+<span class="c1"># Compute Power Spectral Density using Welch&#39;s method</span>
+<span class="n">f_acc</span><span class="p">,</span> <span class="n">psd_acc</span> <span class="o">=</span> <span class="n">welch</span><span class="p">(</span>
+    <span class="n">ground</span><span class="p">[</span><span class="s1">&#39;Acceleration&#39;</span><span class="p">],</span> 
+    <span class="n">fs</span><span class="o">=</span><span class="n">fs</span><span class="p">,</span> 
+    <span class="n">window</span><span class="o">=</span><span class="s1">&#39;hann&#39;</span><span class="p">,</span> <span class="c1"># Hamming window</span>
+    <span class="n">nperseg</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="c1"># Segment length</span>
+    <span class="n">noverlap</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span>  <span class="c1"># 50% overlap</span>
+<span class="p">)</span>
+
+<span class="n">f_vel</span><span class="p">,</span> <span class="n">psd_vel</span> <span class="o">=</span> <span class="n">welch</span><span class="p">(</span>
+    <span class="n">ground</span><span class="p">[</span><span class="s1">&#39;Velocity&#39;</span><span class="p">],</span> 
+    <span class="n">fs</span><span class="o">=</span><span class="n">fs</span><span class="p">,</span> 
+    <span class="n">window</span><span class="o">=</span><span class="s1">&#39;hann&#39;</span><span class="p">,</span> <span class="c1"># Hamming window</span>
+    <span class="n">nperseg</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="c1"># Segment length</span>
+    <span class="n">noverlap</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span>  <span class="c1"># 50% overlap</span>
+<span class="p">)</span>
+
+<span class="n">f_disp</span><span class="p">,</span> <span class="n">psd_disp</span> <span class="o">=</span> <span class="n">welch</span><span class="p">(</span>
+    <span class="n">ground</span><span class="p">[</span><span class="s1">&#39;Displacement&#39;</span><span class="p">],</span> 
+    <span class="n">fs</span><span class="o">=</span><span class="n">fs</span><span class="p">,</span> 
+    <span class="n">window</span><span class="o">=</span><span class="s1">&#39;hann&#39;</span><span class="p">,</span> <span class="c1"># Hamming window</span>
+    <span class="n">nperseg</span><span class="o">=</span><span class="mi">254</span><span class="p">,</span> <span class="c1"># Segment length</span>
+    <span class="n">noverlap</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span>  <span class="c1"># 50% overlap</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>  <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Acceleration&#39;</span><span class="p">,</span> <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="s1">&#39;PSD (g²/Hz)&#39;</span><span class="p">,</span> <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">:</span> <span class="n">f_acc</span><span class="p">,</span> <span class="s1">&#39;psd&#39;</span><span class="p">:</span> <span class="n">psd_acc</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Velocity&#39;</span><span class="p">,</span> <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="s1">&#39;PSD ((cm/s)²/Hz)&#39;</span><span class="p">,</span> <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">:</span> <span class="n">f_vel</span><span class="p">,</span> <span class="s1">&#39;psd&#39;</span><span class="p">:</span> <span class="n">psd_vel</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Displacement&#39;</span><span class="p">,</span> <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="s1">&#39;PSD ((cm)²/Hz)&#39;</span><span class="p">,</span> <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">:</span> <span class="n">f_disp</span><span class="p">,</span> <span class="s1">&#39;psd&#39;</span><span class="p">:</span> <span class="n">psd_disp</span><span class="p">},</span>
+<span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;f&#39;</span><span class="p">],</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;psd&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">],</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;ylabel&#39;</span><span class="p">])</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Power Spectral Density of Ground </span><span class="si">{</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>  <span class="c1"># Limit x-axis to 50 Hz</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Frequency (Hz)&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/a78a50bf335eb967b93cc703383291dca65c550453e62efc4ec5c99684f6a505.png" src="../../_images/a78a50bf335eb967b93cc703383291dca65c550453e62efc4ec5c99684f6a505.png" />
+</div>
+</div>
+<p>The PSD values are shown on a logarithmic scale in units <span class="math notranslate nohighlight">\(g^2/Hz\)</span>, <span class="math notranslate nohighlight">\((cm/s)^2/Hz\)</span>, and <span class="math notranslate nohighlight">\((cm)^2/Hz\)</span>, which ,respectively, quantify the average power of acceleration, velocity, and displacement each frequency.</p>
+<p><strong>Acceleration PSD:</strong> Energy is broadly spread from 0 to ~40 Hz, with relatively flat distribution in the 1–10 Hz range. The sharp drop in energy beyond ~40 Hz, typical of most earthquake motions. Similar to the FFT results, it confirms that acceleration is most sensitive to mid-to-high frequency content.</p>
+<p><strong>Velocity PSD:</strong> Dominant power observed in the 0.1–10 Hz range. The PSD magnitude is much higher at low frequencies (0.1–1 Hz), gradually decreasing with frequency. This supports the FFT observation: velocity is most informative for intermediate-period response, especially where energy-based damage metrics are concerned.</p>
+<p><strong>Displacement PSD:</strong> Highest energy density is concentrated at very low frequencies (&lt;1 Hz). It then follows by a rapid decay in PSD magnitude after ~2 Hz. There is a strong agreement with the FFT plot, where displacement revealed long-period, large-scale motion, which is critical for evaluating flexible structures or near-fault permanent shifts.</p>
+<p>Both FFT and PSD reveal consistent frequency characteristics. But FFT shows amplitude spectrum (per frequency), while PSD shows power per unit frequency, offering a more stable and interpretable view, especially when comparing signals of different lengths or computing energy-based metrics.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="continuous-wevelet-transformation-cwt">
+<h3>3. Continuous Wevelet Transformation (CWT)<a class="headerlink" href="#continuous-wevelet-transformation-cwt" title="Link to this heading">#</a></h3>
+<p>The wavelet transform is a powerful mathematical tool used to analyze non-stationary signals — i.e., signals whose frequency content changes over time (like earthquakes, ECGs, speech). Unlike the Fourier transform, which provides a global frequency breakdown, the wavelet transform gives a time–frequency representation.</p>
+<p>Instead of using infinite-length sinusoids (like in Fourier), the wavelet transform uses short, localized waveforms called wavelets that are:</p>
+<ul class="simple">
+<li><p>Oscillatory</p></li>
+<li><p>Localized in both time and frequency</p></li>
+<li><p>Scaled (stretched/compressed) and shifted (moved) to analyze different parts of the signal</p></li>
+</ul>
+<hr class="docutils" />
+<section id="formulation">
+<h4>Formulation<a class="headerlink" href="#formulation" title="Link to this heading">#</a></h4>
+<p>Given an earthquake acceleration <span class="math notranslate nohighlight">\(\ddot u_g(t)\)</span>, the CWT is defined as</p>
+<div class="math notranslate nohighlight">
+\[W(a,b)=\int_{-\infty}^{\infty}\ddot u_g(t)\cdot\psi^*\left(\frac{t-b}{a}\right)dt\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(W(a, b)\)</span> is the wavelet coefficient at scale <span class="math notranslate nohighlight">\(a\)</span> and time shift <span class="math notranslate nohighlight">\(b\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\psi(t)\)</span> is the mother wavelet (e.g., Morlet or Ricker)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\psi^*\)</span> is the complex conjugate of the wavelet</p></li>
+<li><p><span class="math notranslate nohighlight">\(a\)</span> is the scale (inverse of frequency), low <span class="math notranslate nohighlight">\(a\)</span> corresponds to high frequency and high <span class="math notranslate nohighlight">\(a\)</span> corresponds to low frequency</p></li>
+<li><p><span class="math notranslate nohighlight">\(b\)</span> is the translation (time shift)</p></li>
+</ul>
+<hr class="docutils" />
+<p>The wavelet is scaled and shifted, and convolved with the signal <span class="math notranslate nohighlight">\(\ddot u_g(t)\)</span>, producing coefficients that represent how much of the wavelet is present at each time and scale. In the resulting 2D array of wavelet coefficients <span class="math notranslate nohighlight">\(W(a,b)\)</span>:</p>
+<ul class="simple">
+<li><p>Rows represent different scales</p></li>
+<li><p>Columns represent diferent time</p></li>
+</ul>
+<p>The magnitude, <span class="math notranslate nohighlight">\(|W(a, b)|\)</span>, shows how strong the signal is at scale <span class="math notranslate nohighlight">\(a\)</span> and time <span class="math notranslate nohighlight">\(b\)</span>. the scale can be converted to frequency using</p>
+<div class="math notranslate nohighlight">
+\[f=\frac{f_c}{a \cdot \Delta t}\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(f_c\)</span> is the cenbter frequency of the wavelet (e.g., 0.8125 for Morlet)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Delta t\)</span> is the sampling interval</p></li>
+<li><p><span class="math notranslate nohighlight">\(a\)</span> is the scale.</p></li>
+</ul>
+<p>In earthquake analysis, the CWT helps to identify</p>
+<ul class="simple">
+<li><p>Arrival time of different waves (i.e., P-wave, S-wave, Surface wave)</p></li>
+<li><p>Frequency bursts due to damage or phase transitions</p></li>
+<li><p>Energy concentration over time</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="common-wavelets">
+<h4>Common Wavelets<a class="headerlink" href="#common-wavelets" title="Link to this heading">#</a></h4>
+<ol class="arabic">
+<li><p><strong>Morlet Wavelet</strong></p>
+<p>A complex sinusoid (cosine + sine) modulated by Gaussian envelope:</p>
+<div class="math notranslate nohighlight">
+\[\psi(t)=\pi^{-1/4}e^{i\omega_0t}e^{-t^2/2}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\omega_0\)</span> is the central frequency (often 5-6).</p>
+<p>Characteristics:</p>
+<ul class="simple">
+<li><p>Complex-valued: gives both magnitude and phase</p></li>
+<li><p>Good frequency resolution</p></li>
+<li><p>Tunable time–frequency balance via <span class="math notranslate nohighlight">\(\omega_0\)</span></p></li>
+<li><p>Produces smooth, continuous time–frequency maps</p></li>
+<li><p>Can easily be used to calculate power spectra or instantaneous phase</p></li>
+</ul>
+<p>Use cases:</p>
+<ul class="simple">
+<li><p>Time–frequency analysis</p></li>
+<li><p>Continuous wavelet transform (CWT)</p></li>
+<li><p>Earthquake, speech, EEG, and vibration signals</p></li>
+</ul>
+</li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">morlet_wavelet</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">omega0</span><span class="o">=</span><span class="mf">6.0</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mf">0.25</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">omega0</span> <span class="o">*</span> <span class="n">t</span> <span class="o">/</span> <span class="n">scale</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">t</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">scale</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+
+
+<span class="n">TMIN</span><span class="p">,</span> <span class="n">TMAX</span><span class="p">,</span> <span class="n">NPOINTS</span> <span class="o">=</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1000</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">TMIN</span><span class="p">,</span> <span class="n">TMAX</span><span class="p">,</span> <span class="n">NPOINTS</span><span class="p">)</span>
+<span class="n">OMEGA0</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">12</span><span class="p">]</span>
+<span class="n">SCALES</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">]</span>
+
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">OMEGA0</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">SCALES</span><span class="p">),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">omega0</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">OMEGA0</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">scale</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">SCALES</span><span class="p">):</span>
+        <span class="n">wavelet</span> <span class="o">=</span> <span class="n">morlet_wavelet</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">,</span> <span class="n">omega0</span><span class="o">=</span><span class="n">omega0</span><span class="p">)</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">wavelet</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Real&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">imag</span><span class="p">(</span><span class="n">wavelet</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Imag&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;ω₀=</span><span class="si">{</span><span class="n">omega0</span><span class="si">}</span><span class="s1">, Scale=</span><span class="si">{</span><span class="n">scale</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">OMEGA0</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Time (s)&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Amplitude&quot;</span><span class="p">)</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Morlet Wavelet: Effect of ω₀ and Scale&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">1.02</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/85b8307bd37a1f4e17dca35d6cb5a500939b7ca48ce167c7707bffbd28239f25.png" src="../../_images/85b8307bd37a1f4e17dca35d6cb5a500939b7ca48ce167c7707bffbd28239f25.png" />
+</div>
+</div>
+<ol class="arabic" start="2">
+<li><p><strong>Ricker Wavelet (aka. Mexican Hat)</strong></p>
+<p>It is defined as the 2nd-derivative of a Gaussian, real-valued only:</p>
+<div class="math notranslate nohighlight">
+\[\psi(t)=\frac{2}{\sqrt{3}\pi^{1/4}}\left(1-t^2\right)e^{-t^2/2}\]</div>
+<p>and the scaled wavelet is given by</p>
+<div class="math notranslate nohighlight">
+\[\psi_s(t)=\frac{1}{\sqrt{s}}\psi\left(\frac{t}{s}\right)\]</div>
+<p>Characteristics:</p>
+<ul class="simple">
+<li><p>Real-valued, thus no phase information</p></li>
+<li><p>Symmetric, impulse-like shape</p></li>
+<li><p>Excellent localization in time</p></li>
+<li><p>Good for detecting short bursts (impulse arrivals)</p></li>
+</ul>
+<p>Use cases:</p>
+<ul class="simple">
+<li><p>Seismology: modeling source time functions</p></li>
+<li><p>Synthetic seismic data generation</p></li>
+<li><p>Detection of P-wave or S-wave arrivals</p></li>
+<li><p>More common in discrete time signal generation than full spectral analysis</p></li>
+</ul>
+<p>Limitation in your case:</p>
+<ul class="simple">
+<li><p>Not ideal for CWT-based time–frequency mapping</p></li>
+<li><p>Since it lacks phase and is non-complex, it doesn’t allow detailed spectral analysis or clean power plots</p></li>
+</ul>
+<p>Below, I define a function to compute the normalized amplitudes of the Ricker (Mexican Hat) wevelet, and then plot the function for different scale factor. As shown, wavelet is stretched along the time axis when the scale factor is greater than one, and compressed when it is less than one.</p>
+</li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">mexican_hat_mathematical</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Mathematical definition of Mexican Hat (Ricker) wavelet</span>
+<span class="sd">    ψ(t) = (2/√3π^(1/4)) * (1 - t²) * exp(-t²/2)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">t_scaled</span> <span class="o">=</span> <span class="n">t</span> <span class="o">/</span> <span class="n">scale</span>  <span class="c1"># Scale the time vector</span>
+    <span class="n">coefficient</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">))</span>
+    <span class="n">wavelet</span> <span class="o">=</span> <span class="n">coefficient</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">t_scaled</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">t_scaled</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">wavelet</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">scale</span><span class="p">)</span> <span class="c1"># Normalize by scale factor</span>
+
+
+<span class="n">COLORS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;green&#39;</span><span class="p">]</span>
+
+<span class="c1"># Define time base</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">TMIN</span><span class="p">,</span> <span class="n">TMAX</span><span class="p">,</span> <span class="n">NPOINTS</span><span class="p">)</span>
+
+<span class="n">a_min</span><span class="p">,</span> <span class="n">a_max</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">SCALES</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">scale</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">SCALES</span><span class="p">):</span>
+    <span class="n">wavelet</span> <span class="o">=</span> <span class="n">mexican_hat_mathematical</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">)</span>
+    
+    <span class="n">a_min</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">wavelet</span><span class="p">))</span>
+    <span class="n">a_max</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">wavelet</span><span class="p">))</span>
+    
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">wavelet</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">COLORS</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Scale: </span><span class="si">{</span><span class="n">scale</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+    
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Amplitude&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Scale = </span><span class="si">{</span><span class="n">scale</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time (s)&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">SCALES</span><span class="p">)):</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">1.25</span><span class="o">*</span><span class="nb">min</span><span class="p">(</span><span class="n">a_min</span><span class="p">),</span> <span class="mf">1.25</span><span class="o">*</span><span class="nb">max</span><span class="p">(</span><span class="n">a_max</span><span class="p">))</span>
+    
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Ricker (Mexican Hat) Wavelets - Mathematical Definition&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/6c12fa52372a08c821d17312113d18da16a50021a97c2ed56a84ad53804522d5.png" src="../../_images/6c12fa52372a08c821d17312113d18da16a50021a97c2ed56a84ad53804522d5.png" />
+</div>
+</div>
+<p>Let’s also use <a ref="https://pywavelets.readthedocs.io/en/latest/">PyWavelets module (<code class="docutils literal notranslate"><span class="pre">pywt</span></code>)</a> to plot this wavelet and compare it to the function that I defined above. The plots shows that the normalized wavelet obtained from <code class="docutils literal notranslate"><span class="pre">mexican_hat_pywt</span></code> and <code class="docutils literal notranslate"><span class="pre">mexican_hat_mathematical</span></code> are in agrrement.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pywt</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">mexican_hat_pywt</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">wavelet_func</span> <span class="o">=</span> <span class="n">pywt</span><span class="o">.</span><span class="n">ContinuousWavelet</span><span class="p">(</span><span class="s1">&#39;mexh&#39;</span><span class="p">)</span>
+    <span class="n">psi</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="n">wavelet_func</span><span class="o">.</span><span class="n">wavefun</span><span class="p">(</span><span class="n">length</span><span class="o">=</span><span class="n">NPOINTS</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">t</span> <span class="o">*</span> <span class="n">scale</span>  <span class="c1"># Scale the time vector</span>
+    <span class="n">psi_normalized</span> <span class="o">=</span> <span class="n">psi</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">scale</span><span class="p">)</span>  <span class="c1"># Normalize amplitude</span>
+    <span class="k">return</span> <span class="n">t</span><span class="p">,</span> <span class="n">psi_normalized</span>
+
+
+<span class="n">a_min</span><span class="p">,</span> <span class="n">a_max</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">SCALES</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">scale</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">SCALES</span><span class="p">):</span>
+    <span class="n">wavelet_math</span> <span class="o">=</span> <span class="n">mexican_hat_mathematical</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">)</span>
+    <span class="n">t_pywt</span><span class="p">,</span> <span class="n">wavelet_pywt</span> <span class="o">=</span> <span class="n">mexican_hat_pywt</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">)</span>
+
+    <span class="n">a_min</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">wavelet_math</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">wavelet_pywt</span><span class="p">)))</span>
+    <span class="n">a_max</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">wavelet_math</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">wavelet_pywt</span><span class="p">)))</span>
+    
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">wavelet_math</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">COLORS</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Mathematical&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_pywt</span><span class="p">,</span> <span class="n">wavelet_pywt</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">COLORS</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;PyWavelets&#39;</span><span class="p">)</span>
+    
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">TMIN</span><span class="p">,</span> <span class="n">TMAX</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Amplitude&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Scale = </span><span class="si">{</span><span class="n">scale</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">SCALES</span><span class="p">)):</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">1.25</span><span class="o">*</span><span class="nb">min</span><span class="p">(</span><span class="n">a_min</span><span class="p">),</span> <span class="mf">1.25</span><span class="o">*</span><span class="nb">max</span><span class="p">(</span><span class="n">a_max</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time (s)&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Ricker (Mexican Hat) Wavelets at Different Scales&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ec102edb26b21199de34e06ce5ffdb07b17113eedf96e4c54441b68b18fc4142.png" src="../../_images/ec102edb26b21199de34e06ce5ffdb07b17113eedf96e4c54441b68b18fc4142.png" />
+</div>
+</div>
+<ol class="arabic" start="3">
+<li><p><strong>Daubechies Wavelets</strong></p>
+<p>Family of orthogonal wavelets with compact support and asymmetry.</p>
+<ul class="simple">
+<li><p>The wavelet functions and their shifts are mathematically orthogonal, i.e.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\left&lt;\psi(t-n), \psi(t-m)\right&gt;=0\ \text{for}\ n\neq m\]</div>
+<ul class="simple">
+<li><p>The wavelet function is zero outside a finite interval.</p></li>
+<li><p>The wavelet shape is not symmetric (i.e., not an even function)</p></li>
+</ul>
+<p>Characteristics:</p>
+<ul class="simple">
+<li><p>Designed for Discrete Wavelet Transform (DWT), not CWT</p></li>
+<li><p>No analytical expression</p></li>
+<li><p>Indexed by number of vanishing moments (e.g., db2, db4). Vanishing moments is the maximum polynomial degree that the wavelet is orthogonal to. A wavelet, <span class="math notranslate nohighlight">\(\psi(t)\)</span>, has <span class="math notranslate nohighlight">\(N\)</span> vanishing moments if:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\int_{-\infty}^{\infty} t^k\psi(t)dt=0\ \text{for}\ k=0, 1, 2, ..., N-1\]</div>
+<p>For instance, db2 has two vanishing moments, meaning that it is orthogonal to constants and linear trends.</p>
+<p>Use cases:</p>
+<ul class="simple">
+<li><p>Signal compression</p></li>
+<li><p>Denoising</p></li>
+<li><p>Structural damage detection</p></li>
+<li><p>Multiresolution analysis</p></li>
+</ul>
+<p><em>Symlets</em> or <em>Coiflets</em> are variants of <em>Daubechies</em> with improved symmetry. They are mostly used in DWT, image compression, and signal feature extraction.</p>
+</li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pywt</span>
+
+
+<span class="n">TYPES</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;db2&#39;</span><span class="p">,</span> <span class="s1">&#39;db4&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;sym2&#39;</span><span class="p">,</span> <span class="s1">&#39;sym4&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;coif2&#39;</span><span class="p">,</span> <span class="s1">&#39;coif4&#39;</span><span class="p">]]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">TYPES</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="nb">type</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">TYPES</span><span class="p">):</span>
+    <span class="n">wavelet0</span> <span class="o">=</span> <span class="n">pywt</span><span class="o">.</span><span class="n">Wavelet</span><span class="p">(</span><span class="nb">type</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">wavelet1</span> <span class="o">=</span> <span class="n">pywt</span><span class="o">.</span><span class="n">Wavelet</span><span class="p">(</span><span class="nb">type</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">phi0</span><span class="p">,</span> <span class="n">psi0</span><span class="p">,</span> <span class="n">x0</span> <span class="o">=</span> <span class="n">wavelet0</span><span class="o">.</span><span class="n">wavefun</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">phi1</span><span class="p">,</span> <span class="n">psi1</span><span class="p">,</span> <span class="n">x1</span> <span class="o">=</span> <span class="n">wavelet1</span><span class="o">.</span><span class="n">wavefun</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">psi0</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">type</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span><span class="si">}</span><span class="s1"> Wavelet&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">phi1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">type</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span><span class="si">}</span><span class="s1"> Wavelet&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Amplitude&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time (s)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Comparing Daubechies Wavelets&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/5c37b3c64c6f45dd8bde57418c78546077bb2798f58c8d021bcfd1112692ba05.png" src="../../_images/5c37b3c64c6f45dd8bde57418c78546077bb2798f58c8d021bcfd1112692ba05.png" />
+</div>
+</div>
+<hr class="docutils" />
+<p>Considering the use cases of each wavelet, the Morlet wavelet is utilized for the transformation. The CWT is plotted as a scalogram (spectrum power spectrum), where the colors represet the range of power, <span class="math notranslate nohighlight">\(|W(a, b)|^2\)</span>. The scalogram shows that most of the energy (bright red bands) is concentrated between 45 to 55 seconds. It also reveals that the dominant frequencies are capped at around 20 Hz, which is consistent with the results obtain from FFT and PSD.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pywt</span>
+
+<span class="c1"># Estimate target frequency range (e.g., 0.1–80 Hz)</span>
+<span class="n">f_min</span> <span class="o">=</span> <span class="mf">0.1</span>  <span class="c1"># Hz</span>
+<span class="n">f_max</span> <span class="o">=</span> <span class="mi">80</span>   <span class="c1"># Hz</span>
+<span class="n">num_freqs</span> <span class="o">=</span> <span class="mi">500</span>
+
+<span class="c1"># Sampling interval</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="n">DT</span>
+
+<span class="c1"># Define frequency array and compute corresponding scales for Morlet</span>
+<span class="n">frequencies</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">f_min</span><span class="p">,</span> <span class="n">f_max</span><span class="p">,</span> <span class="n">num_freqs</span><span class="p">)</span>
+<span class="n">scales</span> <span class="o">=</span> <span class="n">pywt</span><span class="o">.</span><span class="n">central_frequency</span><span class="p">(</span><span class="s1">&#39;morl&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">frequencies</span> <span class="o">*</span> <span class="n">dt</span><span class="p">)</span>
+
+
+<span class="c1"># Perform wavelet transform for acceleration data</span>
+<span class="n">coef_acc</span><span class="p">,</span> <span class="n">freqs_acc</span> <span class="o">=</span> <span class="n">pywt</span><span class="o">.</span><span class="n">cwt</span><span class="p">(</span><span class="n">ground</span><span class="p">[</span><span class="s1">&#39;Acceleration&#39;</span><span class="p">],</span> <span class="n">scales</span><span class="p">,</span> <span class="s1">&#39;morl&#39;</span><span class="p">,</span> <span class="n">sampling_period</span><span class="o">=</span><span class="n">dt</span><span class="p">)</span>
+
+<span class="c1"># Compute wavelet power (suppress sign and emphasize persistent energy)</span>
+<span class="n">power_acc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">coef_acc</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+
+
+<span class="c1"># Perform wavelet transform for velocity data</span>
+<span class="n">coef_vel</span><span class="p">,</span> <span class="n">freqs_vel</span> <span class="o">=</span> <span class="n">pywt</span><span class="o">.</span><span class="n">cwt</span><span class="p">(</span><span class="n">ground</span><span class="p">[</span><span class="s1">&#39;Velocity&#39;</span><span class="p">],</span> <span class="n">scales</span><span class="p">,</span> <span class="s1">&#39;morl&#39;</span><span class="p">,</span> <span class="n">sampling_period</span><span class="o">=</span><span class="n">dt</span><span class="p">)</span>
+<span class="n">power_vel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">coef_vel</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+
+
+<span class="c1"># Perform wavelet transform for displacement data</span>
+<span class="n">coef_disp</span><span class="p">,</span> <span class="n">freqs_disp</span> <span class="o">=</span> <span class="n">pywt</span><span class="o">.</span><span class="n">cwt</span><span class="p">(</span><span class="n">ground</span><span class="p">[</span><span class="s1">&#39;Displacement&#39;</span><span class="p">],</span> <span class="n">scales</span><span class="p">,</span> <span class="s1">&#39;morl&#39;</span><span class="p">,</span> <span class="n">sampling_period</span><span class="o">=</span><span class="n">dt</span><span class="p">)</span>
+<span class="n">power_disp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">coef_disp</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define data for iteration</span>
+<span class="n">powers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Acceleration&#39;</span><span class="p">:</span> <span class="n">power_acc</span><span class="p">,</span>
+    <span class="s1">&#39;Velocity&#39;</span><span class="p">:</span> <span class="n">power_vel</span><span class="p">,</span>
+    <span class="s1">&#39;Displacement&#39;</span><span class="p">:</span> <span class="n">power_disp</span>
+<span class="p">}</span>
+
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Acceleration&#39;</span><span class="p">,</span> <span class="s1">&#39;Velocity&#39;</span><span class="p">,</span> <span class="s1">&#39;Displacement&#39;</span><span class="p">]</span>
+<span class="n">units</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;cm/s&#39;</span><span class="p">,</span> <span class="s1">&#39;cm&#39;</span><span class="p">]</span>
+<span class="n">max_freq</span> <span class="o">=</span> <span class="p">[</span><span class="mi">40</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+
+<span class="c1"># Create subplots with more space for colorbars</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Adjust subplot spacing to make room for colorbars</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">right</span><span class="o">=</span><span class="mf">0.82</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">labels</span><span class="p">):</span>
+    <span class="n">vmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">powers</span><span class="p">[</span><span class="n">label</span><span class="p">],</span> <span class="mf">99.5</span><span class="p">)</span>
+    
+    <span class="n">img</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span>
+        <span class="n">powers</span><span class="p">[</span><span class="n">label</span><span class="p">],</span>
+        <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="n">time</span><span class="p">[</span><span class="n">label</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">time</span><span class="p">[</span><span class="n">label</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">frequencies</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">frequencies</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span>
+        <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">,</span>
+        <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span>
+        <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span>
+    <span class="p">)</span>
+    
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency (Hz)&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Wavelet Power Spectrum of Ground </span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">101</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">frequencies</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">max_freq</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_freq</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">max_freq</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">//</span> <span class="mi">4</span><span class="p">))</span>
+    
+    <span class="c1"># Overlay signal</span>
+    <span class="n">ax_</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+    <span class="n">ax_</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">[</span><span class="n">label</span><span class="p">],</span> <span class="n">ground</span><span class="p">[</span><span class="n">label</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
+    <span class="n">ax_</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="n">units</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+    <span class="n">ax_</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">labelcolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># Get the position of the current subplot</span>
+    <span class="n">pos</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">get_position</span><span class="p">()</span>
+    
+    <span class="c1"># Create colorbar axes aligned with each subplot</span>
+    <span class="n">cbar_ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span>
+        <span class="mf">0.87</span><span class="p">,</span>                    <span class="c1"># x position (further right of subplots)</span>
+        <span class="n">pos</span><span class="o">.</span><span class="n">y0</span><span class="p">,</span>                  <span class="c1"># y position (bottom of current subplot)</span>
+        <span class="mf">0.02</span><span class="p">,</span>                   <span class="c1"># width (slightly wider)</span>
+        <span class="n">pos</span><span class="o">.</span><span class="n">height</span>               <span class="c1"># height (same as subplot)</span>
+    <span class="p">])</span>
+    
+    <span class="n">cbar</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cax</span><span class="o">=</span><span class="n">cbar_ax</span><span class="p">)</span>
+    <span class="n">cbar</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s1">&#39;Wavelet Power (a.u.)&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time (s)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/f730d084a6479d3d110a970fa185089435b64ce359ac58d6b939e775a9f4773b.png" src="../../_images/f730d084a6479d3d110a970fa185089435b64ce359ac58d6b939e775a9f4773b.png" />
+</div>
+</div>
+<p>The figure shows the time-frequency distribution of ground motion for the recorded earthquake using the continuous wavelet transform (CWT). Each subplot corresponds to the ground acceleration, velocity, and displacement. The original signal in each subplot represents by a white overlay, and the color scale represents wavelet power (in arbitrary units)—higher power regions, shown in red, indicate stronger energy at specific times and frequencies.</p>
+<p><strong>Acceleration CWT:</strong> The dominant energy occurs between 5–20 Hz, especially around 40–60 seconds, consistent with high-frequency bursts typical of acceleration records. This is where the most intense shaking occurs. These high-frequency components affect short-period structures like low-rise buildings.</p>
+<p><strong>Velocity CWT:</strong> The energy is more focused around 2–10 Hz, and visually appears more concentrated and sustained during 40–60 seconds. This reflects stronger mid-frequency energy. Velocity wavelet spectra are particularly useful for evaluating energy input and damage potential in mid-rise and non-linear structures.</p>
+<p><strong>Displacement CWT:</strong> The strong and long-duration energy observed below 1–2 Hz, again dominant around 40–60 seconds. The displacement CWT captures the long-period content of the earthquake. It is critical for understanding the response of tall buildings, bridges, or base-isolated structures.</p>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./earthquake\frequency_content"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../asce7_2800_spectrum/asce7_2800_spectrum.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">ASCE 7 vs. 2800 Standard: Comparing Design Spectral Response Acceleration Parameter (Sa)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../response_spectrum/response_spectrum.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Earthquake Response Spectrum</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-earthquake-record">Import Earthquake Record</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analyzing-frequency-content">Analyzing Frequency Content</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fourier-transform-amplitude-spectrum">1. Fourier Transform / Amplitude Spectrum</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#power-spectral-density-psd">2. Power Spectral Density (PSD)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#window-functions">Window Functions</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-wevelet-transformation-cwt">3. Continuous Wevelet Transformation (CWT)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#formulation">Formulation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#common-wavelets">Common Wavelets</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Hossein Karagah
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025 GNU GENERAL PUBLIC LICENSE.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

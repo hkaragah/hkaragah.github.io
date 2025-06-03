@@ -1,0 +1,1049 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Earthquake Response Spectrum &#8212; Hossein Karagah, PhD, PE</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-J3171580FP"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-J3171580FP');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-J3171580FP');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'earthquake/response_spectrum/response_spectrum';</script>
+    <link rel="icon" href="../../_static/headshot.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Frequency content of Earthquake" href="../frequency_content/frequency_content.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+<aside class="bd-header-announcement" aria-label="Announcement">
+  <div class="bd-header-announcement__content">Hossein Karagah, PhD, PE</div>
+</aside>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/headshot.png" class="logo__image only-light" alt="Hossein Karagah, PhD, PE - Home"/>
+    <script>document.write(`<img src="../../_static/headshot.png" class="logo__image only-dark" alt="Hossein Karagah, PhD, PE - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Structural Engineering</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../structure/p_delta/cant_col_p_delta.html">P-Delta Analysis: Cantilever Column</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../structure/moment_curvature/steel_w_sec_moment_curvature.html">Moment-Curvature: Steel W-Section</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../structure/shear_wall_neutral_axis/rect_shear_wall_neutral_axis.html">Rectangular Concrete Shear Wall Neutral Axis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../structure/opensees/opensees_steel_materials.html">OpenSees Uniaxial Steel Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../structure/structural_dynamics/modal_analysis_basic.html">Modal Analysis: 3-DOF System</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Earthquake Engineering</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../asce7_2800_spectrum/asce7_2800_spectrum.html">ASCE 7 vs. 2800 Standard: Comparing Design Spectral Response Acceleration Parameter (Sa)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../frequency_content/frequency_content.html">Frequency content of Earthquake</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Earthquake Response Spectrum</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/hkaragah/hkaragah.github.io" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/hkaragah/hkaragah.github.io/issues/new?title=Issue%20on%20page%20%2Fearthquake/response_spectrum/response_spectrum.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/earthquake/response_spectrum/response_spectrum.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Earthquake Response Spectrum</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-earthquake-record">Import Earthquake Record</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sdof-influenced-by-ground-motion-equation-of-motion">SDOF Influenced by Ground Motion: Equation of Motion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamic-properties">Dynamic Properties</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-methods">Solution Methods</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#time-domain-solution-duhamel-s-integral">1. Time Domain Solution (Duhamel’s Integral)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-time-integration">2. Numerical Time Integration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#frequency-domain-solution">3. Frequency Domain Solution</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#response-spectra">Response Spectra</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#important-considerations">Important Considerations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-sdof-response-to-ground-motion">Example: SDOF Response to Ground Motion</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div style="text-align: right;">
+<a target="_blank" href="https://colab.research.google.com/github/hkaragah/hkaragah.github.io/blob/main/earthquake/response_spectrum/response_spectrum.ipynb">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a>
+<div style="font-size: 0.8em; color: #555;">By Hossein Karagah</div>
+<div style="font-size: 0.8em; color: #555;">© Copyright 2025 GNU GENERAL PUBLIC LICENSE.</div>
+</div><section class="tex2jax_ignore mathjax_ignore" id="earthquake-response-spectrum">
+<h1>Earthquake Response Spectrum<a class="headerlink" href="#earthquake-response-spectrum" title="Link to this heading">#</a></h1>
+<p>The earthquake response spectrum is a plot that shows the maximum response of a series of single-degree-of-freedom (SDOF) oscillators to a specific ground motion (earthquake acceleration record), as a function of the oscillator’s natural period or frequency.</p>
+<p>The response spectrum can be plotted for:</p>
+<ul class="simple">
+<li><p>Displacement spectrum: max. relative displacement (<span class="math notranslate nohighlight">\(u_{max}\)</span>) vs. oscillator’s period</p></li>
+<li><p>Velocity spectrum: max. relative velocity (<span class="math notranslate nohighlight">\(\dot{u}_{max}\)</span>) vs. oscillator’s period</p></li>
+<li><p>Acceleration spectrum: max. relative acceleration (<span class="math notranslate nohighlight">\(\ddot{u}_{max}\)</span>) vs. oscillator’s period</p></li>
+<li><p>Pseudo-velocity spectrum: approxiamte max. velocity response (<span class="math notranslate nohighlight">\(\omega_n u_{max}\)</span>) vs. oscillator’s period</p></li>
+<li><p>Pseudo-acceleration spectrum: aproximate max. acceleration respopnse (<span class="math notranslate nohighlight">\(\omega_n^2u_{max}\)</span>) vs. oscillator’s period</p></li>
+</ul>
+<p>Before dive into calculating the reponse spectrum, let’s obtain an earthquke record. I use <a url="https://ngawest2.berkeley.edu/">PEER Ground Motion Database</a> and download an earthquake record including acceleration, velocity, and displacement time histories.</p>
+<hr class="docutils" />
+<section id="import-earthquake-record">
+<h2>Import Earthquake Record<a class="headerlink" href="#import-earthquake-record" title="Link to this heading">#</a></h2>
+<p>The records I selected to work on here are named</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">RSN5970_SIERRA.MEX_BOR360.AT2</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RSN5970_SIERRA.MEX_BOR360.VT2</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RSN5970_SIERRA.MEX_BOR360.DT2</span></code></p></li>
+</ul>
+<p>representing acceleration, velocity, and displacement time histories of <strong>2010 Baja California earthquake</strong>, respectively. The earthquake had a moment magnitude of 7.2 <span class="math notranslate nohighlight">\(M_w\)</span> and maximum Mercalli intensity of VII. The epicenter was located in south of Guadalupe Vistoria, Baja California, Mexico (32.286°N  115.295°W) at a depth of 10 km (6.2 mile).</p>
+<img alt="2010 Baja California earthquake" src="assets/img/earthquake/response_spectrum/response_spectrum_02.png" />
+<p>Let’s examine the first 10 lines of <code class="docutils literal notranslate"><span class="pre">RSN5970_SIERRA.MEX_BOR360.AT2</span></code> file.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.integrate</span><span class="w"> </span><span class="kn">import</span> <span class="n">solve_ivp</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.interpolate</span><span class="w"> </span><span class="kn">import</span> <span class="n">interp1d</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;../..&quot;</span><span class="p">))</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">assets.modules.earthquake</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">eq</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;pandas&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">file_path</span> <span class="o">=</span> <span class="s2">&quot;../../assets/data/earthquak/peer_records_raw/&quot;</span>
+
+<span class="n">name_str</span> <span class="o">=</span> <span class="s2">&quot;RSN5970_SIERRA.MEX_BOR360&quot;</span>
+
+<span class="n">file_names</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Acceleration&quot;</span><span class="p">:</span> <span class="n">name_str</span> <span class="o">+</span> <span class="s2">&quot;.AT2&quot;</span><span class="p">,</span> 
+    <span class="s2">&quot;Velocity&quot;</span><span class="p">:</span> <span class="n">name_str</span> <span class="o">+</span> <span class="s2">&quot;.VT2&quot;</span><span class="p">,</span> 
+    <span class="s2">&quot;Displacement&quot;</span><span class="p">:</span> <span class="n">name_str</span> <span class="o">+</span> <span class="s2">&quot;.DT2&quot;</span>
+<span class="p">}</span>
+
+<span class="n">file_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">file_names</span><span class="p">[</span><span class="s2">&quot;Acceleration&quot;</span><span class="p">])</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+
+<span class="c1"># Print the first 10 lines of the file</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;...&quot;</span><span class="p">)</span>
+    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PEER NGA STRONG MOTION DATABASE RECORD
+El Mayor-Cucapah, 4/4/2010, Borrego Springs, 360
+ACCELERATION TIME SERIES IN UNITS OF G
+NPTS=  30296, DT=   .0100 SEC
+-.3595791E-05  -.3602476E-05  -.3609122E-05  -.3614762E-05  -.3622277E-05
+-.3629087E-05  -.3634954E-05  -.3641761E-05  -.3647513E-05  -.3656279E-05
+-.3661616E-05  -.3667165E-05  -.3672715E-05  -.3675396E-05  -.3683046E-05
+-.3685863E-05  -.3696702E-05  -.3703039E-05  -.3704650E-05  -.3707040E-05
+-.3713379E-05  -.3714652E-05  -.3718122E-05  -.3746092E-05  -.3728889E-05
+-.3744301E-05  -.3756375E-05  -.3747034E-05  -.3767861E-05  -.3751488E-05
+...
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<p>The data starts from line 5, and there is one recording every 0.01 seconds as explained in the headline. Also, the acceleration data is recorded in <span class="math notranslate nohighlight">\(g\)</span>, and there are five acceleration values per line. Performing similar examination on the files with <code class="docutils literal notranslate"><span class="pre">.VT2</span></code> and <code class="docutils literal notranslate"><span class="pre">.DT2</span></code> shows that the velocity and displacement values are measured in cm/s, and cm, respectively.</p>
+<p>Using this information, I will parse the files as follows.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DT</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>  <span class="c1"># Sampling time interval in seconds</span>
+<span class="n">FIRST_LINE</span> <span class="o">=</span> <span class="mi">5</span>  <span class="c1"># First line to read in the file</span>
+<span class="n">g</span> <span class="o">=</span> <span class="mf">9.81</span> <span class="o">*</span> <span class="mi">100</span> <span class="c1"># gravitational acceleration (cm/s2)</span>
+
+<span class="n">time</span><span class="p">,</span> <span class="n">ground</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="p">{},</span> <span class="p">{},</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">file_names</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+    <span class="n">time</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="n">ground</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="n">header</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">eq</span><span class="o">.</span><span class="n">read_values</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">DT</span><span class="p">,</span> <span class="n">FIRST_LINE</span><span class="p">)</span>
+
+<span class="c1"># Print the first 5 values of the time and ground values</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;First 10 values of time and ground values:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Time (s)    Acceleration (g)    Velocity (cm/s)    Displacement (cm)&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">time</span><span class="p">[</span><span class="s1">&#39;Acceleration&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="si">:</span><span class="s2">8</span><span class="si">}</span><span class="s2">    </span><span class="si">{</span><span class="n">ground</span><span class="p">[</span><span class="s1">&#39;Acceleration&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="si">:</span><span class="s2">16</span><span class="si">}</span><span class="s2">    &quot;</span>
+          <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ground</span><span class="p">[</span><span class="s1">&#39;Velocity&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="si">:</span><span class="s2">15</span><span class="si">}</span><span class="s2">    </span><span class="si">{</span><span class="n">ground</span><span class="p">[</span><span class="s1">&#39;Displacement&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="si">:</span><span class="s2">15</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>First 10 values of time and ground values:
+
+Time (s)    Acceleration (g)    Velocity (cm/s)    Displacement (cm)
+     0.0       -3.595791e-06                0.0                0.0
+    0.01       -3.602476e-06       -3.52895e-05      -1.764475e-07
+    0.02       -3.609122e-06      -7.064436e-05      -7.061168e-07
+    0.03       -3.614762e-06      -0.0001060594      -1.589636e-06
+    0.04       -3.622277e-06       -0.000141539      -2.827628e-06
+    0.05       -3.629087e-06      -0.0001770888      -4.420768e-06
+    0.06       -3.634954e-06      -0.0002127008      -6.369716e-06
+    0.07       -3.641761e-06      -0.0002483749      -8.675094e-06
+    0.08       -3.647513e-06      -0.0002841106      -1.133752e-05
+    0.09       -3.656279e-06      -0.0003199174      -1.435766e-05
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<p>Let’s plot the recording for this earthquake.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the earthquake records</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">)</span>  <span class="c1"># Use default style instead of seaborn</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ground</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="n">ground</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="s1">&#39;r-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1"> [</span><span class="si">{</span><span class="n">header</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="si">}</span><span class="s1">]&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time (s)&#39;</span><span class="p">)</span>
+<span class="n">title_lines</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">header</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">title_lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="si">{</span><span class="n">title_lines</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ad5fb2c5aef00b82d8991fce6c35be21377fdf38984719167e7e531489449f03.png" src="../../_images/ad5fb2c5aef00b82d8991fce6c35be21377fdf38984719167e7e531489449f03.png" />
+</div>
+</div>
+<hr class="docutils" />
+<p>Usually recording devices records the ground acceleration, and the velocity and displacement are computed. To perform a quick check on the downloaded data, I will compute the velocity and displacement by integrating the acceleration using the trapizoid rule. Comparing the plots shows that computed velocity and displacement time histories closely follows the downloaded records.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute the velocity and displacement from acceleration</span>
+<span class="n">acc</span> <span class="o">=</span> <span class="n">ground</span><span class="p">[</span><span class="s1">&#39;Acceleration&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">g</span> <span class="c1"># ground acceleration in cm/s^2</span>
+<span class="n">vel</span><span class="p">,</span> <span class="n">disp</span> <span class="o">=</span> <span class="n">eq</span><span class="o">.</span><span class="n">integrate_acceleration</span><span class="p">(</span><span class="n">acc</span><span class="p">,</span> <span class="n">DT</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">baseline_correction</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">highpass_filter</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the earthquake records</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">)</span>  <span class="c1"># Use default style instead of seaborn</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ground</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="n">ground</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="s1">&#39;k-&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Downloaded </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s1">&#39;Velocity&#39;</span><span class="p">:</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">[</span><span class="s1">&#39;Acceleration&#39;</span><span class="p">],</span> <span class="n">vel</span><span class="p">,</span> <span class="s1">&#39;r-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Computed Velocity&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="s1">&#39;Displacement&#39;</span><span class="p">:</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">[</span><span class="s1">&#39;Acceleration&#39;</span><span class="p">],</span> <span class="n">disp</span><span class="p">,</span> <span class="s1">&#39;r-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Computed Displacement&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1"> [</span><span class="si">{</span><span class="n">header</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="si">}</span><span class="s1">]&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time (s)&#39;</span><span class="p">)</span>
+<span class="n">title_lines</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">header</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">title_lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="si">{</span><span class="n">title_lines</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/a3f81d2605d88e0b93d0bdc0855b1d93dc8df9ad0459e4a365cef9a214c04b5a.png" src="../../_images/a3f81d2605d88e0b93d0bdc0855b1d93dc8df9ad0459e4a365cef9a214c04b5a.png" />
+</div>
+</div>
+</section>
+<section id="sdof-influenced-by-ground-motion-equation-of-motion">
+<h2>SDOF Influenced by Ground Motion: Equation of Motion<a class="headerlink" href="#sdof-influenced-by-ground-motion-equation-of-motion" title="Link to this heading">#</a></h2>
+<a class="reference internal image-reference" href="../../_images/response_spectrum_01.jpg"><img alt="SDOF under groud motion" src="../../_images/response_spectrum_01.jpg" style="width: 600px;" />
+</a>
+<p>The equation of motion for a Single Degree of Freedom (SDOF) system subjected to ground motion acceleration <span class="math notranslate nohighlight">\(\ddot{u}_g(t)\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[m\ddot{u}(t) + c\dot{u}(t) + ku(t) = -m\ddot{u}_g(t)\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(m\)</span>, <span class="math notranslate nohighlight">\(k\)</span>, and <span class="math notranslate nohighlight">\(c\)</span> are the mass, stiffness, and damping coefficient of the system, respectively</p></li>
+<li><p><span class="math notranslate nohighlight">\(u(t)\)</span>, <span class="math notranslate nohighlight">\(\dot{u}(t)\)</span>, and <span class="math notranslate nohighlight">\(\ddot{u}(t)\)</span> are the relative displacement,velocity, and acceleration of the mass with respect to the ground, respectively</p></li>
+<li><p><span class="math notranslate nohighlight">\(\ddot{u}_g(t)\)</span> is the ground acceleration</p></li>
+</ul>
+<p>The equation of motion can be re-arranged as follows:</p>
+<div class="math notranslate nohighlight">
+\[\ddot{u}(t) + \tfrac{c}{m}\dot{u}(t) + \tfrac{k}{m}u(t) = -\ddot{u}_g(t)\]</div>
+<div class="math notranslate nohighlight">
+\[\ddot{u}(t) + 2\zeta\omega_n\dot{u}(t) + \omega_n^2u(t) = -\ddot{u}_g(t)\]</div>
+</section>
+<section id="dynamic-properties">
+<h2>Dynamic Properties<a class="headerlink" href="#dynamic-properties" title="Link to this heading">#</a></h2>
+<p>The system is characterized by its:</p>
+<ol class="arabic simple">
+<li><p>Natural frequency: <span class="math notranslate nohighlight">\(\omega_n = \sqrt{\frac{k}{m}}\)</span></p></li>
+<li><p>Natural period: <span class="math notranslate nohighlight">\(T_n = \frac{2\pi}{\omega_n}\)</span></p></li>
+<li><p>Damping ratio: <span class="math notranslate nohighlight">\(\zeta = \frac{c}{2m\omega_n}\)</span></p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="solution-methods">
+<h2>Solution Methods<a class="headerlink" href="#solution-methods" title="Link to this heading">#</a></h2>
+<p>The solution can be obtained through several methods:</p>
+<section id="time-domain-solution-duhamel-s-integral">
+<h3>1. Time Domain Solution (Duhamel’s Integral)<a class="headerlink" href="#time-domain-solution-duhamel-s-integral" title="Link to this heading">#</a></h3>
+<p>For zero initial conditions, the relative displacement response is given by:</p>
+<div class="math notranslate nohighlight">
+\[u(t) = \frac{1}{m\omega_d}\int_0^t F(\tau)e^{-\zeta\omega_n(t-\tau)}\sin[\omega_d(t-\tau)]d\tau\]</div>
+<p>where <span class="math notranslate nohighlight">\(\omega_d = \omega_n\sqrt{1-\zeta^2}\)</span> is the damped natural frequency and <span class="math notranslate nohighlight">\(F(\tau)\)</span> is the external force. Assuming that the external force is <span class="math notranslate nohighlight">\(F(\tau)=-m\ddot{u}_g(\tau)\)</span>, the above equation is transformed to</p>
+<div class="math notranslate nohighlight">
+\[u(t) = -\frac{1}{m\omega_d}\int_0^t -m\ddot{u}_g(\tau)e^{-\zeta\omega_n(t-\tau)}\sin[\omega_d(t-\tau)]d\tau\]</div>
+<p>Simplifying this equation will lead to</p>
+<div class="math notranslate nohighlight">
+\[u(t) = \frac{1}{\omega_d}\int_0^t \ddot{u}_g(\tau)e^{-\zeta\omega_n(t-\tau)}\sin[\omega_d(t-\tau)]d\tau\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Duhamel Integral is obtained by superposition of the responses of individual palses. So it can only be utilized to solve the equation of motion of linear systems.</p>
+</div>
+</section>
+<section id="numerical-time-integration">
+<h3>2. Numerical Time Integration<a class="headerlink" href="#numerical-time-integration" title="Link to this heading">#</a></h3>
+<p>Common numerical methods include:</p>
+<ul class="simple">
+<li><p>Newmark-β method</p></li>
+<li><p>Central Difference method</p></li>
+<li><p>Wilson-θ method</p></li>
+</ul>
+</section>
+<section id="frequency-domain-solution">
+<h3>3. Frequency Domain Solution<a class="headerlink" href="#frequency-domain-solution" title="Link to this heading">#</a></h3>
+<p>The frequency response function (FRF) relates the input ground motion to the output displacement:</p>
+<div class="math notranslate nohighlight">
+\[H(\omega) = \frac{\omega_n^2}{(\omega_n^2 - \omega^2) + 2i\zeta\omega_n\omega}\]</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="response-spectra">
+<h2>Response Spectra<a class="headerlink" href="#response-spectra" title="Link to this heading">#</a></h2>
+<p>The response spectrum presents the maximum response of SDOF systems with different natural periods to a specific ground motion:</p>
+<ol class="arabic simple">
+<li><p>Displacement Response Spectrum (<span class="math notranslate nohighlight">\(S_d = \tfrac{1}{\omega_n}S_{pv}\)</span>)</p></li>
+<li><p>Pseudo-Velocity Response Spectrum (<span class="math notranslate nohighlight">\(S_{pv}\)</span>)</p></li>
+<li><p>Pseudo-Acceleration Response Spectrum (<span class="math notranslate nohighlight">\(Sp_a = \omega_n S_{pv}\)</span>)</p></li>
+</ol>
+<p>These spectra are essential tools in earthquake engineering for:</p>
+<ul class="simple">
+<li><p>Structural design</p></li>
+<li><p>Seismic analysis</p></li>
+<li><p>Performance assessment</p></li>
+</ul>
+</section>
+<section id="important-considerations">
+<h2>Important Considerations<a class="headerlink" href="#important-considerations" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>The solution assumes linear elastic behavior</p></li>
+<li><p>Ground motion is typically provided as an acceleration time history</p></li>
+<li><p>Damping is usually assumed to be viscous (velocity-proportional)</p></li>
+<li><p>The response depends on the system properties (<span class="math notranslate nohighlight">\(T_n\)</span>, <span class="math notranslate nohighlight">\(\zeta\)</span>) and the characteristics of the ground motion</p></li>
+</ol>
+<p>The analysis of SDOF systems under ground motion provides fundamental insights into structural dynamics and serves as a building block for understanding more complex multi-degree-of-freedom systems.</p>
+</section>
+<section id="example-sdof-response-to-ground-motion">
+<h2>Example: SDOF Response to Ground Motion<a class="headerlink" href="#example-sdof-response-to-ground-motion" title="Link to this heading">#</a></h2>
+<p>Let’s simulate the response of an SDOF system to a simple ground motion.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># System parameters</span>
+<span class="n">t_n</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># natural period (sec)</span>
+<span class="n">omega_n</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">t_n</span> <span class="c1"># natural frequency (rad/s)</span>
+<span class="n">zeta</span> <span class="o">=</span> <span class="mf">0.05</span>  <span class="c1"># damping ratio (5%)</span>
+<span class="c1"># Time parameters</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">time</span><span class="p">[</span><span class="s1">&#39;Acceleration&#39;</span><span class="p">]</span>
+
+<span class="c1"># Create interpolation function for ground motion</span>
+<span class="n">acc_interp</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">ground</span><span class="p">[</span><span class="s1">&#39;Acceleration&#39;</span><span class="p">],</span> <span class="n">bounds_error</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">sdof_system</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="c1"># Get ground acceleration at time t using interpolation function</span>
+    <span class="n">acc_t</span> <span class="o">=</span> <span class="n">acc_interp</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    
+    <span class="c1"># y[0] is displacement, y[1] is velocity</span>
+    <span class="n">dydt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">dydt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">dydt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">omega_n</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">zeta</span><span class="o">*</span><span class="n">omega_n</span><span class="o">*</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">acc_t</span> <span class="o">*</span> <span class="n">g</span>
+    
+    <span class="k">return</span> <span class="n">dydt</span>
+
+<span class="c1"># Initial conditions</span>
+<span class="n">y0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
+
+<span class="c1"># Solve the system</span>
+<span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span>
+    <span class="n">sdof_system</span><span class="p">,</span>
+    <span class="n">t_span</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]],</span>
+    <span class="n">y0</span><span class="o">=</span><span class="n">y0</span><span class="p">,</span>
+    <span class="n">t_eval</span><span class="o">=</span><span class="n">t</span><span class="p">,</span>
+    <span class="n">method</span><span class="o">=</span><span class="s1">&#39;RK45&#39;</span><span class="p">,</span>
+    <span class="n">rtol</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">,</span>
+    <span class="n">atol</span><span class="o">=</span><span class="mf">1e-8</span>
+<span class="p">)</span>
+
+<span class="c1"># Calculate structural response including acceleration</span>
+<span class="n">structure</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Acceleration&#39;</span><span class="p">:</span> <span class="o">-</span><span class="n">omega_n</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">zeta</span><span class="o">*</span><span class="n">omega_n</span><span class="o">*</span><span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">ground</span><span class="p">[</span><span class="s1">&#39;Acceleration&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">g</span><span class="p">,</span>
+    <span class="s1">&#39;Velocity&#39;</span><span class="p">:</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+    <span class="s1">&#39;Displacement&#39;</span><span class="p">:</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot results</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">)</span>  <span class="c1"># Use default style instead of seaborn</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ground</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">ground</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="s1">&#39;k-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Ground&#39;</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s1">&#39;Acceleration&#39;</span><span class="p">:</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">structure</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">/</span> <span class="n">g</span><span class="p">,</span> <span class="s1">&#39;r-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Structure&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">structure</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="s1">&#39;r-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Structure&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="n">header</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time (s)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Linear Dynamic Response of </span><span class="si">{</span><span class="mi">100</span><span class="o">*</span><span class="n">zeta</span><span class="si">}</span><span class="s2">%-Damped SDOF with Tn=</span><span class="si">{</span><span class="n">t_n</span><span class="si">}</span><span class="s2"> sec</span><span class="se">\n</span><span class="s2">Under [</span><span class="si">{</span><span class="n">title_lines</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">] Ground Excitation&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/91ce39d0604fac42ca183dbbe0da9096492dc02e71b3e4ef75670c45c30490dd.png" src="../../_images/91ce39d0604fac42ca183dbbe0da9096492dc02e71b3e4ef75670c45c30490dd.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># System parameters</span>
+<span class="n">t_n_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">4.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">)</span>  <span class="c1"># natural periods from 0.1 to 10 sec</span>
+<span class="n">omega_n</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">t_n_values</span> <span class="c1"># natural frequencies (rad/s)</span>
+<span class="n">zeta</span> <span class="o">=</span> <span class="mf">0.05</span>  <span class="c1"># damping ratio (5%)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="mf">9.81</span> <span class="o">*</span> <span class="mi">100</span>  <span class="c1"># gravitational acceleration (cm/s2)</span>
+<span class="c1"># Time parameters</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">time</span><span class="p">[</span><span class="s1">&#39;Acceleration&#39;</span><span class="p">]</span>
+
+<span class="c1"># Create interpolation function for ground motion</span>
+<span class="n">acc_interp</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">ground</span><span class="p">[</span><span class="s1">&#39;Acceleration&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">g</span><span class="p">,</span> <span class="n">bounds_error</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+
+<span class="c1"># Pre-calculate ground acceleration for all time points</span>
+<span class="n">acc_t</span> <span class="o">=</span> <span class="n">acc_interp</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+
+<span class="c1"># Vectorized system equations</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">sdof_system_vectorized</span><span class="p">(</span><span class="n">t_val</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">omega_n_array</span><span class="p">):</span>
+    <span class="c1"># y shape is (2*n_periods, ) where first n_periods elements are displacements</span>
+    <span class="c1"># and second n_periods elements are velocities</span>
+    <span class="n">n_periods</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">omega_n_array</span><span class="p">)</span>
+    
+    <span class="c1"># Reshape y into displacement and velocity arrays</span>
+    <span class="n">displacement</span> <span class="o">=</span> <span class="n">y</span><span class="p">[:</span><span class="n">n_periods</span><span class="p">]</span>
+    <span class="n">velocity</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">n_periods</span><span class="p">:]</span>
+    
+    <span class="c1"># Calculate derivatives</span>
+    <span class="n">d_displacement</span> <span class="o">=</span> <span class="n">velocity</span>
+    <span class="n">d_velocity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">displacement</span><span class="p">)</span>
+    
+    <span class="c1"># Get current acceleration value using interpolation</span>
+    <span class="n">current_acc</span> <span class="o">=</span> <span class="n">acc_interp</span><span class="p">(</span><span class="n">t_val</span><span class="p">)</span> <span class="k">if</span> <span class="n">t_val</span> <span class="o">&lt;</span> <span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">else</span> <span class="mi">0</span>
+    
+    <span class="c1"># Calculate d_velocity for each period</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_periods</span><span class="p">):</span>
+        <span class="n">d_velocity</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">omega_n_array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">displacement</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> \
+                       <span class="mi">2</span> <span class="o">*</span> <span class="n">zeta</span> <span class="o">*</span> <span class="n">omega_n_array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">velocity</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> \
+                       <span class="n">current_acc</span>
+    
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">d_displacement</span><span class="p">,</span> <span class="n">d_velocity</span><span class="p">])</span>
+
+<span class="c1"># Calculate natural frequencies</span>
+<span class="n">omega_n_array</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">t_n_values</span>
+
+<span class="c1"># Set up initial conditions for all periods at once</span>
+<span class="n">n_periods</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">t_n_values</span><span class="p">)</span>
+<span class="n">y0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">n_periods</span><span class="p">)</span>  <span class="c1"># First n_periods zeros for displacement, second for velocity</span>
+
+<span class="c1"># Solve the system for all periods at once</span>
+<span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span>
+    <span class="k">lambda</span> <span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">sdof_system_vectorized</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">omega_n_array</span><span class="p">),</span>
+    <span class="n">t_span</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]],</span>
+    <span class="n">y0</span><span class="o">=</span><span class="n">y0</span><span class="p">,</span>
+    <span class="n">t_eval</span><span class="o">=</span><span class="n">t</span><span class="p">,</span>
+    <span class="n">method</span><span class="o">=</span><span class="s1">&#39;RK45&#39;</span><span class="p">,</span>
+    <span class="n">rtol</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">,</span>
+    <span class="n">atol</span><span class="o">=</span><span class="mf">1e-8</span>
+<span class="p">)</span>
+
+<span class="c1"># Extract and organize results</span>
+<span class="n">n_time</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="n">displacement</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_periods</span><span class="p">,</span> <span class="n">n_time</span><span class="p">))</span>
+<span class="n">velocity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_periods</span><span class="p">,</span> <span class="n">n_time</span><span class="p">))</span>
+<span class="n">acceleration</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_periods</span><span class="p">,</span> <span class="n">n_time</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_periods</span><span class="p">):</span>
+    <span class="n">displacement</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">velocity</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="n">n_periods</span><span class="p">]</span>
+    <span class="n">acceleration</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">omega_n_array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">displacement</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> \
+                     <span class="mi">2</span> <span class="o">*</span> <span class="n">zeta</span> <span class="o">*</span> <span class="n">omega_n_array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">velocity</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> \
+                     <span class="n">ground</span><span class="p">[</span><span class="s1">&#39;Acceleration&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">g</span>
+
+<span class="n">structure</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Displacement&#39;</span><span class="p">:</span> <span class="n">displacement</span><span class="p">,</span>
+    <span class="s1">&#39;Velocity&#39;</span><span class="p">:</span> <span class="n">velocity</span><span class="p">,</span>
+    <span class="s1">&#39;Acceleration&#39;</span><span class="p">:</span> <span class="n">acceleration</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s_d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">structure</span><span class="p">[</span><span class="s1">&#39;Displacement&#39;</span><span class="p">]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">structure</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+    <span class="n">peak</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">structure</span><span class="p">[</span><span class="n">key</span><span class="p">]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s1">&#39;Acceleration&#39;</span><span class="p">:</span>
+        <span class="n">peak</span> <span class="o">=</span> <span class="n">peak</span> <span class="o">/</span> <span class="n">g</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">s_d</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">omega_n</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">g</span>
+    <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="s1">&#39;Displacement&#39;</span><span class="p">:</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">s_d</span> <span class="o">*</span> <span class="n">omega_n</span>
+    <span class="k">else</span><span class="p">:</span>  <span class="c1"># Displacement</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">s_d</span>
+        
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_n_values</span><span class="p">,</span> <span class="n">peak</span><span class="p">,</span> <span class="s1">&#39;r-&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Spectral </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;Acceleration&#39;</span><span class="p">,</span> <span class="s1">&#39;Velocity&#39;</span><span class="p">]:</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_n_values</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="s1">&#39;k-&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Pseudo-Spectral </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Peak </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="n">header</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+
+<span class="n">ax</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Undamped Natural Period, $T_n$ (s)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Response Spectrum of </span><span class="si">{</span><span class="mi">100</span><span class="o">*</span><span class="n">zeta</span><span class="si">}</span><span class="s2">%-Damped Linear SDOF</span><span class="se">\n</span><span class="s2">Under [</span><span class="si">{</span><span class="n">title_lines</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">] Ground Excitation&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/b88d9cc0681a3c7b9920e2d80e7f5283ae3e9522b9930f3c5a769ed19232411a.png" src="../../_images/b88d9cc0681a3c7b9920e2d80e7f5283ae3e9522b9930f3c5a769ed19232411a.png" />
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./earthquake\response_spectrum"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../frequency_content/frequency_content.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Frequency content of Earthquake</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-earthquake-record">Import Earthquake Record</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sdof-influenced-by-ground-motion-equation-of-motion">SDOF Influenced by Ground Motion: Equation of Motion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamic-properties">Dynamic Properties</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-methods">Solution Methods</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#time-domain-solution-duhamel-s-integral">1. Time Domain Solution (Duhamel’s Integral)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-time-integration">2. Numerical Time Integration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#frequency-domain-solution">3. Frequency Domain Solution</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#response-spectra">Response Spectra</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#important-considerations">Important Considerations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-sdof-response-to-ground-motion">Example: SDOF Response to Ground Motion</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Hossein Karagah
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025 GNU GENERAL PUBLIC LICENSE.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

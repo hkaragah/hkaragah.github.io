@@ -1,0 +1,58 @@
+Traceback (most recent call last):
+  File "c:\Hossein\portfolio\.venv\Lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+    executenb(
+    ~~~~~~~~~^
+        nb,
+        ^^^
+    ...<4 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "c:\Hossein\portfolio\.venv\Lib\site-packages\nbclient\client.py", line 1319, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "c:\Hossein\portfolio\.venv\Lib\site-packages\jupyter_core\utils\__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\hkara\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 720, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "c:\Hossein\portfolio\.venv\Lib\site-packages\nbclient\client.py", line 709, in async_execute
+    await self.async_execute_cell(
+        cell, index, execution_count=self.code_cells_executed + 1
+    )
+  File "c:\Hossein\portfolio\.venv\Lib\site-packages\nbclient\client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "c:\Hossein\portfolio\.venv\Lib\site-packages\nbclient\client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import os
+import sys
+sys.path.append(os.path.abspath("../../../assets/modules/"))
+from shapes import AISC_WSection
+from materials import BilinearA992Steel
+from copy import deepcopy
+import matplotlib.pyplot as plt
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mModuleNotFoundError[39m                       Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[1][39m[32m, line 4[39m
+[32m      2[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01msys[39;00m
+[32m      3[39m sys.path.append(os.path.abspath([33m"[39m[33m../../../assets/modules/[39m[33m"[39m))
+[32m----> [39m[32m4[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mshapes[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m AISC_WSection
+[32m      5[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mmaterials[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m BilinearA992Steel
+[32m      6[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mcopy[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m deepcopy
+
+[36mFile [39m[32mC:\Hossein\portfolio\hkaragah.github.io\assets\modules\shapes.py:21[39m
+[32m     19[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mmatplotlib[39;00m[34;01m.[39;00m[34;01mpyplot[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[34;01mplt[39;00m
+[32m     20[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mdataclasses[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m dataclass, field
+[32m---> [39m[32m21[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mpandas[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[34;01mpd[39;00m
+[32m     22[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mos[39;00m
+[32m     23[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mfunctools[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m lru_cache
+
+[31mModuleNotFoundError[39m: No module named 'pandas'
+
