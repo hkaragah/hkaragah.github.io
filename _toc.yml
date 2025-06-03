@@ -16,3 +16,4 @@ parts:
   - caption: Earthquake Engineering
     chapters:
       - file: earthquake/asce7_2800_spectrum/asce7_2800_spectrum
+      - file: earthquake/response_spectrum_analysis/response_spectrum_analysis
