@@ -1,0 +1,835 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Code Refactoring Analysis and Recommendations &#8212; Hossein Karagah, PhD, PE</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-J3171580FP"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-J3171580FP');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-J3171580FP');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'assets/modules/code_refactoring_analysis';</script>
+    <link rel="icon" href="../../_static/headshot.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+<aside class="bd-header-announcement" aria-label="Announcement">
+  <div class="bd-header-announcement__content">Hossein Karagah, PhD, PE</div>
+</aside>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/headshot.png" class="logo__image only-light" alt="Hossein Karagah, PhD, PE - Home"/>
+    <script>document.write(`<img src="../../_static/headshot.png" class="logo__image only-dark" alt="Hossein Karagah, PhD, PE - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Structural Engineering</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../structure/p_delta/cant_col_p_delta.html">P-Delta Analysis: Cantilever Column</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../structure/moment_curvature/steel_w_sec_moment_curvature.html">Moment-Curvature: Steel W-Section</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../structure/concrete/force_moment_interaction/force_moment_interaction.html">P-M Interaction Diagram</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../structure/shear_wall_neutral_axis/rect_shear_wall_neutral_axis.html">Rectangular Concrete Shear Wall Neutral Axis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../structure/opensees/opensees_steel_materials.html">OpenSees Uniaxial Steel Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../structure/structural_dynamics/modal_analysis_basic.html">Modal Analysis: 3-DOF System</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Earthquake Engineering</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../earthquake/asce7_2800_spectrum/asce7_2800_spectrum.html">ASCE 7 vs. 2800 Standard: Comparing Design Spectral Response Acceleration Parameter (Sa)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../earthquake/frequency_content/frequency_content.html">Frequency content of Earthquake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../earthquake/response_spectrum/response_spectrum.html">Earthquake Response Spectrum</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/hkaragah/hkaragah.github.io" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/hkaragah/hkaragah.github.io/issues/new?title=Issue%20on%20page%20%2Fassets/modules/code_refactoring_analysis.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/assets/modules/code_refactoring_analysis.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Code Refactoring Analysis and Recommendations</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#class-design-issues">1. <strong>Class Design Issues</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#large-class-with-multiple-responsibilities">Large Class with Multiple Responsibilities</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#property-vs-method-inconsistency">Property vs Method Inconsistency</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-issues">2. <strong>Performance Issues</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#repeated-expensive-calculations">Repeated Expensive Calculations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inefficient-array-operations">Inefficient Array Operations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-duplication">3. <strong>Code Duplication</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#repeated-direction-logic">Repeated Direction Logic</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#similar-calculation-patterns">Similar Calculation Patterns</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error-handling-issues">4. <strong>Error Handling Issues</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inconsistent-exception-types">Inconsistent Exception Types</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-validation">Missing Validation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#magic-numbers-and-constants">5. <strong>Magic Numbers and Constants</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hardcoded-values">Hardcoded Values</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#method-naming-issues">6. <strong>Method Naming Issues</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inconsistent-naming-convention">Inconsistent Naming Convention</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#non-descriptive-names">Non-descriptive Names</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#input-parameter-issues">7. <strong>Input Parameter Issues</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complex-parameter-handling">Complex Parameter Handling</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-structure-issues">8. <strong>Data Structure Issues</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inefficient-list-operations">Inefficient List Operations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-abstraction">9. <strong>Missing Abstraction</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#direction-specific-logic-should-be-abstracted">Direction-Specific Logic Should Be Abstracted</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#documentation-issues">10. <strong>Documentation Issues</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inconsistent-docstring-format">Inconsistent Docstring Format</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-type-hints">Missing Type Hints</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recommended-refactoring-strategy">Recommended Refactoring Strategy</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="code-refactoring-analysis-and-recommendations">
+<h1>Code Refactoring Analysis and Recommendations<a class="headerlink" href="#code-refactoring-analysis-and-recommendations" title="Link to this heading">#</a></h1>
+<section id="class-design-issues">
+<h2>1. <strong>Class Design Issues</strong><a class="headerlink" href="#class-design-issues" title="Link to this heading">#</a></h2>
+<section id="large-class-with-multiple-responsibilities">
+<h3>Large Class with Multiple Responsibilities<a class="headerlink" href="#large-class-with-multiple-responsibilities" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">UniaixalBending</span></code> class is doing too much:</p>
+<ul class="simple">
+<li><p>Geometry calculations</p></li>
+<li><p>Material property calculations</p></li>
+<li><p>Force/moment analysis</p></li>
+<li><p>Root finding algorithms</p></li>
+<li><p>Interaction diagram generation</p></li>
+</ul>
+<p><strong>Refactoring:</strong> Split into smaller, focused classes:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">GeometryAnalyzer</span><span class="p">:</span>
+    <span class="c1"># Handle geometric calculations</span>
+    
+<span class="k">class</span><span class="w"> </span><span class="nc">StrainAnalyzer</span><span class="p">:</span>
+    <span class="c1"># Handle strain/stress calculations</span>
+    
+<span class="k">class</span><span class="w"> </span><span class="nc">ForceAnalyzer</span><span class="p">:</span>
+    <span class="c1"># Handle force/moment calculations</span>
+    
+<span class="k">class</span><span class="w"> </span><span class="nc">EquilibriumSolver</span><span class="p">:</span>
+    <span class="c1"># Handle neutral axis solving</span>
+</pre></div>
+</div>
+</section>
+<section id="property-vs-method-inconsistency">
+<h3>Property vs Method Inconsistency<a class="headerlink" href="#property-vs-method-inconsistency" title="Link to this heading">#</a></h3>
+<p>Some expensive computations are properties when they should be methods:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Current - BAD (expensive computation as property)</span>
+<span class="nd">@property</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_xBar_depth</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<span class="c1"># Should be</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_xBar_depth</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="c1"># or better yet</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">calculate_extreme_bar_depth</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="performance-issues">
+<h2>2. <strong>Performance Issues</strong><a class="headerlink" href="#performance-issues" title="Link to this heading">#</a></h2>
+<section id="repeated-expensive-calculations">
+<h3>Repeated Expensive Calculations<a class="headerlink" href="#repeated-expensive-calculations" title="Link to this heading">#</a></h3>
+<p>Many methods recalculate the same values:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is calculated multiple times across methods</span>
+<span class="n">height</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">section_height</span>
+<span class="n">width</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">section_width</span>
+</pre></div>
+</div>
+<p><strong>Solution:</strong> Implement caching or compute once and pass around.</p>
+</section>
+<section id="inefficient-array-operations">
+<h3>Inefficient Array Operations<a class="headerlink" href="#inefficient-array-operations" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Current - creates new arrays repeatedly</span>
+<span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">bar</span><span class="o">.</span><span class="n">area</span> <span class="o">*</span> <span class="n">stress</span> <span class="k">for</span> <span class="n">bar</span><span class="p">,</span> <span class="n">stress</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sec</span><span class="o">.</span><span class="n">lBars</span><span class="p">,</span> <span class="n">stress</span><span class="p">)])</span>
+
+<span class="c1"># Better - vectorized operations</span>
+<span class="n">areas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">bar</span><span class="o">.</span><span class="n">area</span> <span class="k">for</span> <span class="n">bar</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sec</span><span class="o">.</span><span class="n">lBars</span><span class="p">])</span>
+<span class="k">return</span> <span class="n">areas</span> <span class="o">*</span> <span class="n">stress</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="code-duplication">
+<h2>3. <strong>Code Duplication</strong><a class="headerlink" href="#code-duplication" title="Link to this heading">#</a></h2>
+<section id="repeated-direction-logic">
+<h3>Repeated Direction Logic<a class="headerlink" href="#repeated-direction-logic" title="Link to this heading">#</a></h3>
+<p>The direction checking logic is duplicated across many methods:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># This pattern repeats everywhere</span>
+<span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dir</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;-x&#39;</span><span class="p">]:</span>
+    <span class="c1"># do something with y coordinates</span>
+<span class="k">else</span><span class="p">:</span> <span class="c1"># [&#39;y&#39;, &#39;-y&#39;]</span>
+    <span class="c1"># do something with x coordinates</span>
+</pre></div>
+</div>
+<p><strong>Solution:</strong> Create helper methods:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">_get_primary_coordinate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">:</span> <span class="n">Point</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">point</span><span class="o">.</span><span class="n">y</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dir</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;-x&#39;</span><span class="p">]</span> <span class="k">else</span> <span class="n">point</span><span class="o">.</span><span class="n">x</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_get_secondary_coordinate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">:</span> <span class="n">Point</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">point</span><span class="o">.</span><span class="n">x</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dir</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;-x&#39;</span><span class="p">]</span> <span class="k">else</span> <span class="n">point</span><span class="o">.</span><span class="n">y</span>
+</pre></div>
+</div>
+</section>
+<section id="similar-calculation-patterns">
+<h3>Similar Calculation Patterns<a class="headerlink" href="#similar-calculation-patterns" title="Link to this heading">#</a></h3>
+<p>Methods like <code class="docutils literal notranslate"><span class="pre">get_tensile_rebars</span></code> and <code class="docutils literal notranslate"><span class="pre">get_compressive_rebars</span></code> have very similar logic.</p>
+</section>
+</section>
+<section id="error-handling-issues">
+<h2>4. <strong>Error Handling Issues</strong><a class="headerlink" href="#error-handling-issues" title="Link to this heading">#</a></h2>
+<section id="inconsistent-exception-types">
+<h3>Inconsistent Exception Types<a class="headerlink" href="#inconsistent-exception-types" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sometimes ValueError, sometimes TypeError for similar conditions</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">tbar</span><span class="p">,</span> <span class="n">TransverseRebar</span><span class="p">):</span>
+    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;tBar must be an instance of TransverseRebar.&quot;</span><span class="p">)</span>
+
+<span class="c1"># But elsewhere for similar validation:</span>
+<span class="k">if</span> <span class="n">direction</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">valid_directions</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Direction must be one of </span><span class="si">{</span><span class="n">valid_directions</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="missing-validation">
+<h3>Missing Validation<a class="headerlink" href="#missing-validation" title="Link to this heading">#</a></h3>
+<p>Many methods don’t validate inputs (e.g., negative neutral_depth, invalid n_points).</p>
+</section>
+</section>
+<section id="magic-numbers-and-constants">
+<h2>5. <strong>Magic Numbers and Constants</strong><a class="headerlink" href="#magic-numbers-and-constants" title="Link to this heading">#</a></h2>
+<section id="hardcoded-values">
+<h3>Hardcoded Values<a class="headerlink" href="#hardcoded-values" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># These should be class constants or configurable</span>
+<span class="n">strip_thk</span> <span class="o">=</span> <span class="n">height</span> <span class="o">/</span> <span class="n">n_points</span>
+<span class="n">eps_s</span> <span class="o">=</span> <span class="mf">0.005</span>  <span class="c1"># in get_tension_controlled_point</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;x0&#39;</span><span class="p">,</span> <span class="mf">1e-1</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="method-naming-issues">
+<h2>6. <strong>Method Naming Issues</strong><a class="headerlink" href="#method-naming-issues" title="Link to this heading">#</a></h2>
+<section id="inconsistent-naming-convention">
+<h3>Inconsistent Naming Convention<a class="headerlink" href="#inconsistent-naming-convention" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Inconsistent prefixes</span>
+<span class="nd">@property</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_xFiber_coord</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># property with &#39;get_&#39; prefix</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_tensile_rebars</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># method with &#39;get_&#39; prefix</span>
+
+<span class="nd">@property</span>  
+<span class="k">def</span><span class="w"> </span><span class="nf">tBar_max_dia</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># property without &#39;get_&#39; prefix</span>
+</pre></div>
+</div>
+</section>
+<section id="non-descriptive-names">
+<h3>Non-descriptive Names<a class="headerlink" href="#non-descriptive-names" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">get_xBar_depth</span></code> → <code class="docutils literal notranslate"><span class="pre">get_extreme_tensile_bar_depth</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_xBars</span></code> → <code class="docutils literal notranslate"><span class="pre">get_extreme_tensile_bars</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mi</span></code> → <code class="docutils literal notranslate"><span class="pre">depth_multiplier</span></code></p></li>
+</ul>
+</section>
+</section>
+<section id="input-parameter-issues">
+<h2>7. <strong>Input Parameter Issues</strong><a class="headerlink" href="#input-parameter-issues" title="Link to this heading">#</a></h2>
+<section id="complex-parameter-handling">
+<h3>Complex Parameter Handling<a class="headerlink" href="#complex-parameter-handling" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">solve_neutral_depth_equilibrium</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">external_force</span><span class="p">:</span><span class="nb">float</span><span class="p">,</span> <span class="n">method</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">n_points</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+</pre></div>
+</div>
+<p>Too many parameters with unclear relationships.</p>
+<p><strong>Solution:</strong> Use configuration objects:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">SolverConfig</span><span class="p">:</span>
+    <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;secant&#39;</span>
+    <span class="n">tolerance</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1e-2</span>
+    <span class="n">max_iterations</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="n">n_discretization_points</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="data-structure-issues">
+<h2>8. <strong>Data Structure Issues</strong><a class="headerlink" href="#data-structure-issues" title="Link to this heading">#</a></h2>
+<section id="inefficient-list-operations">
+<h3>Inefficient List Operations<a class="headerlink" href="#inefficient-list-operations" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Repeated list comprehensions and iterations</span>
+<span class="n">tensile_rebars</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_tensile_rebars</span><span class="p">(</span><span class="n">neutral_depth</span><span class="p">)</span>
+<span class="n">bar_shapes</span> <span class="o">=</span> <span class="p">[</span><span class="n">bar</span><span class="o">.</span><span class="n">shape</span> <span class="k">for</span> <span class="n">bar</span> <span class="ow">in</span> <span class="n">tensile_rebars</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Solution:</strong> Pre-compute and cache commonly used collections.</p>
+</section>
+</section>
+<section id="missing-abstraction">
+<h2>9. <strong>Missing Abstraction</strong><a class="headerlink" href="#missing-abstraction" title="Link to this heading">#</a></h2>
+<section id="direction-specific-logic-should-be-abstracted">
+<h3>Direction-Specific Logic Should Be Abstracted<a class="headerlink" href="#direction-specific-logic-should-be-abstracted" title="Link to this heading">#</a></h3>
+<p>Create a <code class="docutils literal notranslate"><span class="pre">BendingDirection</span></code> enum or class to encapsulate direction-specific behavior:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">BendingDirection</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">POSITIVE_X</span> <span class="o">=</span> <span class="s2">&quot;x&quot;</span>
+    <span class="n">NEGATIVE_X</span> <span class="o">=</span> <span class="s2">&quot;-x&quot;</span> 
+    <span class="n">POSITIVE_Y</span> <span class="o">=</span> <span class="s2">&quot;y&quot;</span>
+    <span class="n">NEGATIVE_Y</span> <span class="o">=</span> <span class="s2">&quot;-y&quot;</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_primary_axis</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;y&#39;</span> <span class="k">if</span> <span class="bp">self</span> <span class="ow">in</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">POSITIVE_X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">NEGATIVE_X</span><span class="p">]</span> <span class="k">else</span> <span class="s1">&#39;x&#39;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="documentation-issues">
+<h2>10. <strong>Documentation Issues</strong><a class="headerlink" href="#documentation-issues" title="Link to this heading">#</a></h2>
+<section id="inconsistent-docstring-format">
+<h3>Inconsistent Docstring Format<a class="headerlink" href="#inconsistent-docstring-format" title="Link to this heading">#</a></h3>
+<p>Some methods have detailed docstrings, others have minimal or incorrect documentation.</p>
+</section>
+<section id="missing-type-hints">
+<h3>Missing Type Hints<a class="headerlink" href="#missing-type-hints" title="Link to this heading">#</a></h3>
+<p>Some methods lack proper type hints, especially for complex return types.</p>
+</section>
+</section>
+<section id="recommended-refactoring-strategy">
+<h2>Recommended Refactoring Strategy<a class="headerlink" href="#recommended-refactoring-strategy" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Phase 1:</strong> Extract constants and create enums</p></li>
+<li><p><strong>Phase 2:</strong> Split large class into focused classes</p></li>
+<li><p><strong>Phase 3:</strong> Implement caching for expensive calculations</p></li>
+<li><p><strong>Phase 4:</strong> Standardize naming conventions and error handling</p></li>
+<li><p><strong>Phase 5:</strong> Add comprehensive input validation</p></li>
+<li><p><strong>Phase 6:</strong> Optimize array operations and remove code duplication</p></li>
+</ol>
+<p>This refactoring would significantly improve code maintainability, performance, and readability while reducing the likelihood of bugs.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./assets\modules"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#class-design-issues">1. <strong>Class Design Issues</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#large-class-with-multiple-responsibilities">Large Class with Multiple Responsibilities</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#property-vs-method-inconsistency">Property vs Method Inconsistency</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-issues">2. <strong>Performance Issues</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#repeated-expensive-calculations">Repeated Expensive Calculations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inefficient-array-operations">Inefficient Array Operations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-duplication">3. <strong>Code Duplication</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#repeated-direction-logic">Repeated Direction Logic</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#similar-calculation-patterns">Similar Calculation Patterns</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error-handling-issues">4. <strong>Error Handling Issues</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inconsistent-exception-types">Inconsistent Exception Types</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-validation">Missing Validation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#magic-numbers-and-constants">5. <strong>Magic Numbers and Constants</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hardcoded-values">Hardcoded Values</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#method-naming-issues">6. <strong>Method Naming Issues</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inconsistent-naming-convention">Inconsistent Naming Convention</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#non-descriptive-names">Non-descriptive Names</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#input-parameter-issues">7. <strong>Input Parameter Issues</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complex-parameter-handling">Complex Parameter Handling</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-structure-issues">8. <strong>Data Structure Issues</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inefficient-list-operations">Inefficient List Operations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-abstraction">9. <strong>Missing Abstraction</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#direction-specific-logic-should-be-abstracted">Direction-Specific Logic Should Be Abstracted</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#documentation-issues">10. <strong>Documentation Issues</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inconsistent-docstring-format">Inconsistent Docstring Format</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-type-hints">Missing Type Hints</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recommended-refactoring-strategy">Recommended Refactoring Strategy</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Hossein Karagah
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025 GNU GENERAL PUBLIC LICENSE.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

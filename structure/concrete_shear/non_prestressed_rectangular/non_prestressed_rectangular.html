@@ -1,0 +1,1214 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>&lt;no title&gt; &#8212; Hossein Karagah, PhD, PE</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-J3171580FP"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-J3171580FP');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-J3171580FP');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'structure/concrete_shear/non_prestressed_rectangular/non_prestressed_rectangular';</script>
+    <link rel="icon" href="../../../_static/headshot.png"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+<aside class="bd-header-announcement" aria-label="Announcement">
+  <div class="bd-header-announcement__content">Hossein Karagah, PhD, PE</div>
+</aside>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/headshot.png" class="logo__image only-light" alt="Hossein Karagah, PhD, PE - Home"/>
+    <script>document.write(`<img src="../../../_static/headshot.png" class="logo__image only-dark" alt="Hossein Karagah, PhD, PE - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../intro.html">
+                    Welcome
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Structural Engineering</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../p_delta/cant_col_p_delta.html">P-Delta Analysis: Cantilever Column</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../moment_curvature/steel_w_sec_moment_curvature.html">Moment-Curvature: Steel W-Section</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concrete/force_moment_interaction/force_moment_interaction.html">P-M Interaction Diagram</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../shear_wall_neutral_axis/rect_shear_wall_neutral_axis.html">Rectangular Concrete Shear Wall Neutral Axis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../opensees/opensees_steel_materials.html">OpenSees Uniaxial Steel Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../structural_dynamics/modal_analysis_basic.html">Modal Analysis: 3-DOF System</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Earthquake Engineering</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../earthquake/asce7_2800_spectrum/asce7_2800_spectrum.html">ASCE 7 vs. 2800 Standard: Comparing Design Spectral Response Acceleration Parameter (Sa)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../earthquake/frequency_content/frequency_content.html">Frequency content of Earthquake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../earthquake/response_spectrum/response_spectrum.html">Earthquake Response Spectrum</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/hkaragah/hkaragah.github.io" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/hkaragah/hkaragah.github.io/issues/new?title=Issue%20on%20page%20%2Fstructure/concrete_shear/non_prestressed_rectangular/non_prestressed_rectangular.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/structure/concrete_shear/non_prestressed_rectangular/non_prestressed_rectangular.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1><no title></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;../../..&quot;</span><span class="p">))</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">assets.modules.materials</span><span class="w"> </span><span class="kn">import</span> <span class="n">ACIConcrete</span><span class="p">,</span> <span class="n">BilinearSteel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">assets.modules.steel</span><span class="w"> </span><span class="kn">import</span> <span class="n">LongitudinalRebar</span><span class="p">,</span> <span class="n">TransverseRebar</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">assets.modules.shapes</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">assets.modules.concrete</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">concrete</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.axes</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">axes</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.patches</span><span class="w"> </span><span class="kn">import</span> <span class="n">bbox_artist</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;../../..&quot;</span><span class="p">))</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">from</span><span class="w"> </span><span class="nn">assets.modules.materials</span><span class="w"> </span><span class="kn">import</span> <span class="n">ACIConcrete</span><span class="p">,</span> <span class="n">BilinearSteel</span>
+<span class="ne">----&gt; </span><span class="mi">5</span> <span class="kn">from</span><span class="w"> </span><span class="nn">assets.modules.steel</span><span class="w"> </span><span class="kn">import</span> <span class="n">LongitudinalRebar</span><span class="p">,</span> <span class="n">TransverseRebar</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">from</span><span class="w"> </span><span class="nn">assets.modules.shapes</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">import</span><span class="w"> </span><span class="nn">assets.modules.concrete</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">concrete</span>
+
+<span class="n">File</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Hossein</span>\<span class="n">portfolio</span>\<span class="n">hkaragah</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">io</span>\<span class="n">assets</span>\<span class="n">modules</span>\<span class="n">steel</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">12</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.axes</span>
+<span class="ne">---&gt; </span><span class="mi">12</span> <span class="kn">from</span><span class="w"> </span><span class="nn">assets.modules.shapes</span><span class="w"> </span><span class="kn">import</span> <span class="n">Circle</span><span class="p">,</span> <span class="n">Point</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="kn">from</span><span class="w"> </span><span class="nn">assets.modules.materials</span><span class="w"> </span><span class="kn">import</span> <span class="n">BilinearSteel</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Tuple</span>
+
+<span class="n">File</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Hossein</span>\<span class="n">portfolio</span>\<span class="n">hkaragah</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">io</span>\<span class="n">assets</span>\<span class="n">modules</span>\<span class="n">shapes</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">19</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
+<span class="ne">---&gt; </span><span class="mi">19</span> <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="g g-Whitespace">     </span><span class="mi">21</span> <span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">lru_cache</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;pandas&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define axil load</span>
+<span class="n">Nu</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># lb</span>
+
+<span class="c1"># Define material properties</span>
+<span class="n">C3</span> <span class="o">=</span> <span class="n">ACIConcrete</span><span class="p">(</span><span class="n">fc</span><span class="o">=</span><span class="mi">3000</span><span class="p">)</span>
+<span class="n">S60</span> <span class="o">=</span> <span class="n">BilinearSteel</span><span class="p">(</span><span class="s2">&quot;A706&quot;</span><span class="p">,</span> <span class="n">fy</span><span class="o">=</span><span class="mi">60000</span><span class="p">)</span>
+
+<span class="c1"># Define reinforcement properties</span>
+<span class="n">R6</span> <span class="o">=</span> <span class="n">LongitudinalRebar</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">mat</span><span class="o">=</span><span class="n">S60</span><span class="p">,</span> <span class="n">is_skin_bar</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">R10</span> <span class="o">=</span> <span class="n">LongitudinalRebar</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">mat</span><span class="o">=</span><span class="n">S60</span><span class="p">,</span> <span class="n">is_skin_bar</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">T4</span> <span class="o">=</span> <span class="n">TransverseRebar</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">mat</span><span class="o">=</span><span class="n">S60</span><span class="p">,</span> <span class="n">nLegsX</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">nLegsY</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">spacing</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">is_looped</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Define concrete cover</span>
+<span class="n">COVER</span> <span class="o">=</span> <span class="mf">2.0</span>  <span class="c1"># inch</span>
+
+<span class="c1"># Define dimensions of a rectangular section</span>
+<span class="n">RECT_15X20</span> <span class="o">=</span> <span class="n">Rectangle</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define concrete section with reinforcement</span>
+<span class="n">c_sec</span> <span class="o">=</span> <span class="n">concrete</span><span class="o">.</span><span class="n">RectangleReinforcedSection</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">RECT_15X20</span><span class="p">,</span> <span class="n">mat</span><span class="o">=</span><span class="n">C3</span><span class="p">,</span> <span class="n">cover</span><span class="o">=</span><span class="n">COVER</span><span class="p">)</span>
+
+<span class="c1"># Add transverse reinforcement</span>
+<span class="n">c_sec</span><span class="o">.</span><span class="n">add_trans_bar</span><span class="p">(</span><span class="n">T4</span><span class="p">)</span>
+
+<span class="c1"># Add bottom longitudinal reinforcement</span>
+<span class="n">bottomBar</span> <span class="o">=</span> <span class="n">R10</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">c_sec</span><span class="o">.</span><span class="n">shape</span><span class="o">.</span><span class="n">center</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> 
+    <span class="n">y</span> <span class="o">=</span> <span class="o">-</span> <span class="n">c_sec</span><span class="o">.</span><span class="n">shape</span><span class="o">.</span><span class="n">height</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="n">COVER</span> <span class="o">+</span> <span class="n">c_sec</span><span class="o">.</span><span class="n">trans_bar_max_dia</span>  <span class="o">+</span> <span class="n">bottomBar</span><span class="o">.</span><span class="n">dia</span><span class="o">/</span><span class="mi">2</span>
+<span class="p">)</span>
+<span class="n">c_sec</span><span class="o">.</span><span class="n">add_long_bar_row</span><span class="p">(</span><span class="n">bottomBar</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="n">p1</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">n</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="c1"># Add top longitudinal reinforcement</span>
+<span class="n">topBar</span> <span class="o">=</span> <span class="n">R6</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">c_sec</span><span class="o">.</span><span class="n">shape</span><span class="o">.</span><span class="n">center</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> 
+    <span class="n">y</span> <span class="o">=</span> <span class="n">c_sec</span><span class="o">.</span><span class="n">shape</span><span class="o">.</span><span class="n">height</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="n">COVER</span> <span class="o">-</span> <span class="n">c_sec</span><span class="o">.</span><span class="n">trans_bar_max_dia</span> <span class="o">-</span> <span class="n">topBar</span><span class="o">.</span><span class="n">dia</span><span class="o">/</span><span class="mi">2</span>
+<span class="p">)</span>
+<span class="n">c_sec</span><span class="o">.</span><span class="n">add_long_bar_row</span><span class="p">(</span><span class="n">topBar</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="n">p2</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Print longitudinal bars</span>
+<span class="k">for</span> <span class="n">bar</span> <span class="ow">in</span> <span class="n">c_sec</span><span class="o">.</span><span class="n">long_bars</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">bar</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>#10 long. rebar at Point(x=1.455, y=-6.865), fy=60000
+#10 long. rebar at Point(x=-1.455, y=-6.865), fy=60000
+#10 long. rebar at Point(x=4.365, y=-6.865), fy=60000
+#10 long. rebar at Point(x=-4.365, y=-6.865), fy=60000
+#6 long. rebar at Point(x=4.625, y=7.125), fy=60000
+#6 long. rebar at Point(x=-4.625, y=7.125), fy=60000
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_circle</span><span class="p">(</span><span class="n">circle</span><span class="p">:</span> <span class="n">Circle</span><span class="p">,</span> <span class="n">ax</span><span class="p">:</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">Axes</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">Axes</span><span class="p">:</span>        
+    <span class="n">circle</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">Circle</span><span class="p">(</span>
+        <span class="p">(</span><span class="n">circle</span><span class="o">.</span><span class="n">center</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">circle</span><span class="o">.</span><span class="n">center</span><span class="o">.</span><span class="n">y</span><span class="p">),</span> 
+        <span class="n">circle</span><span class="o">.</span><span class="n">radius</span><span class="p">,</span>
+        <span class="n">fill</span><span class="o">=</span><span class="kc">False</span> <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;facecolor&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">facecolor</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;facecolor&#39;</span><span class="p">),</span> 
+        <span class="n">edgecolor</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;edgecolor&#39;</span><span class="p">),</span>
+        <span class="n">linewidth</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;linewidth&#39;</span><span class="p">),</span>
+        <span class="n">alpha</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;alpha&#39;</span><span class="p">),</span> 
+        <span class="n">zorder</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;zorder&#39;</span><span class="p">),</span>
+    <span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">circle</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;centeroid_color&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">circle</span><span class="o">.</span><span class="n">center</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">circle</span><span class="o">.</span><span class="n">center</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;centeroid_color&#39;</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ax</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_rectangle</span><span class="p">(</span><span class="n">rect</span><span class="p">:</span><span class="n">Rectangle</span><span class="p">,</span> <span class="n">ax</span><span class="p">:</span> <span class="n">axes</span><span class="o">.</span><span class="n">Axes</span><span class="p">,</span> <span class="n">show_centroid</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">corners</span> <span class="o">=</span> <span class="n">rect</span><span class="o">.</span><span class="n">corners</span>
+    <span class="n">corners</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">corners</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="c1"># Add the first corner again to close the polygon</span>
+    <span class="n">corners</span> <span class="o">=</span> <span class="p">[(</span><span class="n">p</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">corners</span><span class="p">]</span> <span class="c1"># Convert to tuples</span>
+    <span class="n">xs</span><span class="p">,</span> <span class="n">ys</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">corners</span><span class="p">)</span>
+        
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ticksize&#39;</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;edgecolor&#39;</span><span class="p">,</span> <span class="s1">&#39;black&#39;</span><span class="p">),</span> <span class="n">linewidth</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;linewidth&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">show_centroid</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rect</span><span class="o">.</span><span class="n">center</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">rect</span><span class="o">.</span><span class="n">center</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;facecolor&#39;</span><span class="p">,</span> <span class="s1">&#39;grey&#39;</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;alpha&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ax</span>
+    
+    
+    
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plot_rectangle</span><span class="p">(</span><span class="n">c_sec</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">show_centroid</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plot_rectangle</span><span class="p">(</span><span class="n">c_sec</span><span class="o">.</span><span class="n">core</span><span class="p">(),</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">bar</span> <span class="ow">in</span> <span class="n">c_sec</span><span class="o">.</span><span class="n">long_bars</span><span class="p">:</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">plot_circle</span><span class="p">(</span><span class="n">bar</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;#0B1D51&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/b6044f32ab1c4d9e0df7a0f84e81c309884cc2eecb5cf59a855297cfc61ecfaa.png" src="../../../_images/b6044f32ab1c4d9e0df7a0f84e81c309884cc2eecb5cf59a855297cfc61ecfaa.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_section_strain</span><span class="p">(</span><span class="n">direction</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span><span class="nb">list</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">eps</span><span class="p">:</span><span class="nb">list</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">ax</span><span class="p">:</span><span class="n">axes</span><span class="o">.</span><span class="n">Axes</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;#1B56FD&#39;</span><span class="p">,</span> <span class="s1">&#39;#EB5B00&#39;</span><span class="p">])</span>
+    <span class="n">lw</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;lw&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>
+    
+    <span class="n">max_strain</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">eps</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">eps</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+    <span class="n">min_strain</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">eps</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">eps</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
+    <span class="n">abs_max_strain</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">min_strain</span><span class="p">),</span> <span class="nb">abs</span><span class="p">(</span><span class="n">max_strain</span><span class="p">))</span>
+    
+    <span class="k">if</span> <span class="n">direction</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;-y&#39;</span><span class="p">]:</span>
+        <span class="n">x_val</span><span class="p">,</span> <span class="n">y_val</span> <span class="o">=</span> <span class="n">y</span><span class="p">,</span> <span class="n">eps</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.25</span><span class="o">*</span><span class="n">abs_max_strain</span><span class="p">,</span> <span class="mf">1.25</span><span class="o">*</span><span class="n">abs_max_strain</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Strain (in/in)&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">ticklabel_format</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;sci&#39;</span><span class="p">,</span> <span class="n">scilimits</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+    <span class="k">elif</span> <span class="n">direction</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;-x&#39;</span><span class="p">]:</span>
+        <span class="n">x_val</span><span class="p">,</span> <span class="n">y_val</span> <span class="o">=</span> <span class="n">eps</span><span class="p">,</span> <span class="n">y</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.25</span><span class="o">*</span><span class="n">abs_max_strain</span><span class="p">,</span> <span class="mf">1.25</span><span class="o">*</span><span class="n">abs_max_strain</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Strain (in/in)&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">ticklabel_format</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;sci&#39;</span><span class="p">,</span> <span class="n">scilimits</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;bending_direction must be &#39;x&#39;, &#39;-x&#39;, &#39;y&#39;, or &#39;-y&#39;.&quot;</span><span class="p">)</span>
+        
+    
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_val</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">y_val</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">linewidth</span><span class="o">=</span><span class="n">lw</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Concrete&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_val</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">y_val</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">edgecolor</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ec&#39;</span><span class="p">,</span> <span class="s1">&#39;black&#39;</span><span class="p">),</span> <span class="n">linewidth</span><span class="o">=</span><span class="n">lw</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;alpha&#39;</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Rebar&#39;</span><span class="p">)</span>
+    
+    <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Strain Distribution&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">ax</span>
+    
+    
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_section_stress</span><span class="p">(</span><span class="n">direction</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span><span class="nb">list</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">sigma</span><span class="p">:</span><span class="nb">list</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">ax</span><span class="p">:</span><span class="nb">list</span><span class="p">[</span><span class="n">axes</span><span class="o">.</span><span class="n">Axes</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;#1B56FD&#39;</span><span class="p">,</span> <span class="s1">&#39;#EB5B00&#39;</span><span class="p">])</span>
+    <span class="n">lw</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;lw&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>
+    
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">sigma</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Length of ax must match length of sigma.&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Convert stress from psi to ksi for plotting</span>
+    <span class="n">sigma</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span><span class="o">/</span><span class="mf">1e3</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">sigma</span><span class="p">]</span>  <span class="c1"># Convert psi to ksi</span>
+    
+    <span class="k">if</span> <span class="n">direction</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;-y&#39;</span><span class="p">]:</span>
+        <span class="n">x_val</span><span class="p">,</span> <span class="n">y_val</span> <span class="o">=</span> <span class="n">y</span><span class="p">,</span> <span class="n">sigma</span>
+    <span class="k">elif</span> <span class="n">direction</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;-x&#39;</span><span class="p">]:</span>
+        <span class="n">x_val</span><span class="p">,</span> <span class="n">y_val</span> <span class="o">=</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">y</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;bending_direction must be &#39;x&#39;, &#39;-x&#39;, &#39;y&#39;, or &#39;-y&#39;.&quot;</span><span class="p">)</span>
+    
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_val</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">y_val</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">linewidth</span><span class="o">=</span><span class="n">lw</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Concrete&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Concrete Stress&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_val</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">y_val</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="n">c</span><span class="o">=</span><span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">edgecolor</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ec&#39;</span><span class="p">,</span> <span class="s1">&#39;black&#39;</span><span class="p">),</span> <span class="n">linewidth</span><span class="o">=</span><span class="n">lw</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;alpha&#39;</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Rebar&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Rebar Stress&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ax</span><span class="p">)):</span>
+        <span class="n">min_stress</span> <span class="o">=</span> <span class="n">sigma</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+        <span class="n">max_stress</span> <span class="o">=</span> <span class="n">sigma</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+        <span class="n">abs_max_stress</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">min_stress</span><span class="p">),</span> <span class="nb">abs</span><span class="p">(</span><span class="n">max_stress</span><span class="p">))</span>
+        
+        <span class="k">if</span> <span class="n">direction</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;-y&#39;</span><span class="p">]:</span>
+            <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.25</span><span class="o">*</span><span class="n">abs_max_stress</span><span class="p">,</span> <span class="mf">1.25</span><span class="o">*</span><span class="n">abs_max_stress</span><span class="p">)</span>
+            <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Stress (ksi)&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">direction</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;-x&#39;</span><span class="p">]:</span>
+            <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.25</span><span class="o">*</span><span class="n">abs_max_stress</span><span class="p">,</span> <span class="mf">1.25</span><span class="o">*</span><span class="n">abs_max_stress</span><span class="p">)</span>
+            <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Stress (ksi)&#39;</span><span class="p">)</span>
+            
+        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">ax</span>
+    
+    
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_section_force</span><span class="p">(</span><span class="n">direction</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span><span class="nb">list</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">f</span><span class="p">:</span><span class="nb">list</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">ax</span><span class="p">:</span><span class="n">axes</span><span class="o">.</span><span class="n">Axes</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;#1B56FD&#39;</span><span class="p">,</span> <span class="s1">&#39;#EB5B00&#39;</span><span class="p">,</span><span class="s1">&#39;#EB5B00&#39;</span><span class="p">])</span>
+
+    <span class="n">f</span> <span class="o">=</span> <span class="p">[</span><span class="n">force</span> <span class="o">/</span> <span class="mf">1e3</span> <span class="k">for</span> <span class="n">force</span> <span class="ow">in</span> <span class="n">f</span><span class="p">]</span>  <span class="c1"># Convert force from lb to kips</span>
+    <span class="n">f_max</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">f</span> <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span>
+    
+    <span class="n">arrowprops</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;head_width&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;length_includes_head&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="n">direction</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;-y&#39;</span><span class="p">]:</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">yi</span><span class="p">,</span> <span class="n">fi</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">f</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;-y&#39;</span><span class="p">:</span>
+                <span class="n">offset</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.15</span> <span class="o">*</span> <span class="n">yi</span> <span class="k">if</span> <span class="n">i</span><span class="o">==</span><span class="mi">0</span> <span class="k">else</span> <span class="mf">0.15</span> <span class="o">*</span> <span class="n">yi</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">offset</span> <span class="o">=</span> <span class="mf">0.15</span> <span class="o">*</span> <span class="n">yi</span> <span class="k">if</span> <span class="n">i</span><span class="o">==</span><span class="mi">0</span> <span class="k">else</span> <span class="o">-</span><span class="mf">0.15</span> <span class="o">*</span> <span class="n">yi</span>
+                
+            <span class="k">if</span> <span class="n">yi</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">fi</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span><span class="n">yi</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">fi</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">head_length</span><span class="o">=</span><span class="mf">0.1</span><span class="o">*</span><span class="n">f_max</span><span class="p">,</span> <span class="o">**</span><span class="n">arrowprops</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">yi</span> <span class="o">+</span> <span class="n">offset</span><span class="p">,</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">fi</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">fi</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> kips&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+                
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.25</span><span class="o">*</span><span class="n">f_max</span><span class="p">,</span> <span class="mf">1.25</span><span class="o">*</span><span class="n">f_max</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Normal Force (kips)&#39;</span><span class="p">)</span>
+        
+    <span class="k">elif</span> <span class="n">direction</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;-x&#39;</span><span class="p">]:</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">yi</span><span class="p">,</span> <span class="n">fi</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">f</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;-x&#39;</span><span class="p">:</span>
+                <span class="n">offset</span> <span class="o">=</span> <span class="mf">0.15</span> <span class="o">*</span> <span class="n">yi</span> <span class="k">if</span> <span class="n">i</span><span class="o">==</span><span class="mi">0</span> <span class="k">else</span> <span class="o">-</span><span class="mf">0.15</span> <span class="o">*</span> <span class="n">yi</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">offset</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.15</span> <span class="o">*</span> <span class="n">yi</span> <span class="k">if</span> <span class="n">i</span><span class="o">==</span><span class="mi">0</span> <span class="k">else</span> <span class="mf">0.15</span> <span class="o">*</span> <span class="n">yi</span>
+                
+            <span class="k">if</span> <span class="n">yi</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">fi</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">yi</span><span class="p">,</span> <span class="n">fi</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">head_length</span><span class="o">=</span><span class="mf">0.1</span><span class="o">*</span><span class="n">f_max</span><span class="p">,</span> <span class="o">**</span><span class="n">arrowprops</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="n">fi</span><span class="p">,</span> <span class="n">yi</span> <span class="o">+</span> <span class="n">offset</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">fi</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> kips&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+                
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.25</span><span class="o">*</span><span class="n">f_max</span><span class="p">,</span> <span class="mf">1.25</span><span class="o">*</span><span class="n">f_max</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Normal Force (kips)&#39;</span><span class="p">)</span>
+    
+    <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+    
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Normal Force Distribution&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="c1"># ax.legend(fontsize=8, frameon=False)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">ax</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">D_NEUTR</span> <span class="o">=</span> <span class="mf">7.92278341958316</span> <span class="c1"># in</span>
+<span class="n">B_DIR</span> <span class="o">=</span> <span class="s1">&#39;-x&#39;</span> <span class="c1"># beam direction</span>
+
+<span class="n">beam</span> <span class="o">=</span> <span class="n">concrete</span><span class="o">.</span><span class="n">UniaixalBending</span><span class="p">(</span><span class="n">c_sec</span><span class="p">,</span> <span class="n">bending_direction</span><span class="o">=</span><span class="n">B_DIR</span><span class="p">)</span>
+
+<span class="n">y_s</span> <span class="o">=</span> <span class="n">beam</span><span class="o">.</span><span class="n">get_long_bar_depth</span><span class="p">()</span>
+<span class="n">eps_s</span> <span class="o">=</span> <span class="n">beam</span><span class="o">.</span><span class="n">get_rebar_strain</span><span class="p">(</span><span class="n">D_NEUTR</span><span class="p">)</span>
+<span class="n">sigma_s</span> <span class="o">=</span> <span class="n">beam</span><span class="o">.</span><span class="n">get_rebar_stress</span><span class="p">(</span><span class="n">D_NEUTR</span><span class="p">)</span>
+<span class="n">f_s</span> <span class="o">=</span> <span class="n">beam</span><span class="o">.</span><span class="n">get_rebar_force</span><span class="p">(</span><span class="n">D_NEUTR</span><span class="p">)</span>
+
+<span class="n">y_c</span> <span class="o">=</span> <span class="n">beam</span><span class="o">.</span><span class="n">get_concrete_strip_depth</span><span class="p">()</span>
+<span class="n">eps_c</span> <span class="o">=</span> <span class="n">beam</span><span class="o">.</span><span class="n">get_concrete_strain</span><span class="p">(</span><span class="n">D_NEUTR</span><span class="p">)</span>
+<span class="n">sigma_c</span> <span class="o">=</span> <span class="n">beam</span><span class="o">.</span><span class="n">get_concrete_stress</span><span class="p">(</span><span class="n">D_NEUTR</span><span class="p">)</span>
+<span class="n">f_c</span> <span class="o">=</span> <span class="n">beam</span><span class="o">.</span><span class="n">get_concrete_force</span><span class="p">(</span><span class="n">D_NEUTR</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">beam</span><span class="o">.</span><span class="n">get_tensile_effective_depth</span><span class="p">(</span><span class="n">D_NEUTR</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">beam</span><span class="o">.</span><span class="n">get_compressive_effective_depth</span><span class="p">(</span><span class="n">D_NEUTR</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>16.865
+2.875
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;rebar strains:</span><span class="se">\n</span><span class="si">{</span><span class="n">beam</span><span class="o">.</span><span class="n">get_rebar_strain</span><span class="p">(</span><span class="n">D_NEUTR</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;rebar stress (ksi):</span><span class="se">\n</span><span class="si">{</span><span class="n">beam</span><span class="o">.</span><span class="n">get_rebar_stress</span><span class="p">(</span><span class="n">D_NEUTR</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;rebar force (kips):</span><span class="se">\n</span><span class="si">{</span><span class="n">beam</span><span class="o">.</span><span class="n">get_rebar_force</span><span class="p">(</span><span class="n">D_NEUTR</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rebar strains:
+[ 0.00339  0.00339  0.00339  0.00339 -0.00191 -0.00191]
+
+rebar stress (ksi):
+[ 60000.  60000.  60000.  60000. -55430. -55430.]
+
+rebar force (kips):
+[ 76006.  76006.  76006.  76006. -24488. -24488.]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">config</span> <span class="o">=</span> <span class="n">concrete</span><span class="o">.</span><span class="n">SolverConfig</span><span class="p">(</span>
+    <span class="n">method</span><span class="o">=</span><span class="s1">&#39;secant&#39;</span><span class="p">,</span>
+    <span class="n">tolerance</span><span class="o">=</span><span class="mf">1e-1</span><span class="p">,</span>
+    <span class="n">max_iterations</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">n_disc</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">beam</span><span class="o">.</span><span class="n">solve_neutral_depth_equilibrium</span><span class="p">(</span><span class="n">external_force</span><span class="o">=</span><span class="n">Nu</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;neutral_depth&#39;: 7.92278341958316,
+ &#39;force&#39;: array([-507.16271986]),
+ &#39;moment&#39;: array([4129302.65213753])}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># p1 = beam.get_pure_flexure_point(external_force=Nu, tol=1e-1)</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">beam</span><span class="o">.</span><span class="n">get_tension_conrolled_point</span><span class="p">(</span><span class="n">external_force</span><span class="o">=</span><span class="n">Nu</span><span class="p">,</span> <span class="n">n_disc</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">p3</span> <span class="o">=</span> <span class="n">beam</span><span class="o">.</span><span class="n">get_balance_point</span><span class="p">(</span><span class="n">external_force</span><span class="o">=</span><span class="n">Nu</span><span class="p">,</span> <span class="n">n_disc</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tension-Controlled Point:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;neutral depth: </span><span class="si">{</span><span class="n">p2</span><span class="p">[</span><span class="s1">&#39;neutral_depth&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> in&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;force: </span><span class="si">{</span><span class="p">(</span><span class="n">p2</span><span class="p">[</span><span class="s1">&#39;force&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="mf">1e3</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> kips&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;moment: </span><span class="si">{</span><span class="n">p2</span><span class="p">[</span><span class="s1">&#39;moment&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mf">1e3</span><span class="o">/</span><span class="mi">12</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> kip-in&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Balance Point:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;neutral depth: </span><span class="si">{</span><span class="n">p3</span><span class="p">[</span><span class="s1">&#39;neutral_depth&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> in&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;force: </span><span class="si">{</span><span class="p">(</span><span class="n">p3</span><span class="p">[</span><span class="s1">&#39;force&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="mf">1e3</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> kips&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;moment: </span><span class="si">{</span><span class="n">p3</span><span class="p">[</span><span class="s1">&#39;moment&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mf">1e3</span><span class="o">/</span><span class="mi">12</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> kip-in&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tension-Controlled Point:
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">line</span> <span class="mi">6</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">p3</span> <span class="o">=</span> <span class="n">beam</span><span class="o">.</span><span class="n">get_balance_point</span><span class="p">(</span><span class="n">external_force</span><span class="o">=</span><span class="n">Nu</span><span class="p">,</span> <span class="n">n_disc</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tension-Controlled Point:&quot;</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">6</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;neutral depth: </span><span class="si">{</span><span class="n">p2</span><span class="p">[</span><span class="s1">&#39;neutral_depth&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> in&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;force: </span><span class="si">{</span><span class="p">(</span><span class="n">p2</span><span class="p">[</span><span class="s1">&#39;force&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="mf">1e3</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> kips&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;moment: </span><span class="si">{</span><span class="n">p2</span><span class="p">[</span><span class="s1">&#39;moment&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mf">1e3</span><span class="o">/</span><span class="mi">12</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> kip-in&quot;</span><span class="p">)</span>
+
+<span class="ne">TypeError</span>: unsupported format string passed to numpy.ndarray.__format__
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute total concrete force</span>
+<span class="n">f_ct</span> <span class="o">=</span> <span class="n">f_c</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="c1"># Compute centroid of concrete forces</span>
+<span class="n">y_ct</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y_c</span> <span class="o">*</span> <span class="n">f_c</span><span class="p">)</span> <span class="o">/</span> <span class="n">f_ct</span> <span class="k">if</span> <span class="n">f_ct</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">else</span> <span class="kc">None</span>
+
+<span class="c1"># Compute total tensile rebar force</span>
+<span class="n">mask_st</span> <span class="o">=</span> <span class="n">f_s</span> <span class="o">&gt;</span> <span class="mi">0</span>
+<span class="n">f_st</span> <span class="o">=</span> <span class="n">f_s</span><span class="p">[</span><span class="n">mask_st</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="c1"># Compute centroid of tensile rebar forces</span>
+<span class="n">y_st</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y_s</span><span class="p">[</span><span class="n">mask_st</span><span class="p">]</span> <span class="o">*</span> <span class="n">f_s</span><span class="p">[</span><span class="n">mask_st</span><span class="p">])</span> <span class="o">/</span> <span class="n">f_st</span> <span class="k">if</span> <span class="n">f_st</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">else</span> <span class="kc">None</span>
+
+<span class="c1"># Compute total compressive rebar force</span>
+<span class="n">mask_sc</span> <span class="o">=</span> <span class="n">f_s</span> <span class="o">&lt;</span> <span class="mi">0</span>
+<span class="n">f_sc</span> <span class="o">=</span> <span class="n">f_s</span><span class="p">[</span><span class="n">mask_sc</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="c1"># Compute centroid of compressive rebar forces</span>
+<span class="n">y_sc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y_s</span><span class="p">[</span><span class="n">mask_sc</span><span class="p">]</span> <span class="o">*</span> <span class="n">f_s</span><span class="p">[</span><span class="n">mask_sc</span><span class="p">])</span> <span class="o">/</span> <span class="n">f_sc</span> <span class="k">if</span> <span class="n">f_sc</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">else</span> <span class="kc">None</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total concrete force: </span><span class="si">{</span><span class="n">f_ct</span><span class="o">/</span><span class="mf">1e3</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> kips at </span><span class="si">{</span><span class="n">y_ct</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> in&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total compressive rebar force: </span><span class="si">{</span><span class="n">f_sc</span><span class="o">/</span><span class="mf">1e3</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> kips at </span><span class="si">{</span><span class="n">y_sc</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> in&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total tensile rebar force: </span><span class="si">{</span><span class="n">f_st</span><span class="o">/</span><span class="mf">1e3</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> kips at </span><span class="si">{</span><span class="n">y_st</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> in&quot;</span><span class="p">)</span>
+
+<span class="c1"># The following should be close to zero to statisfy equilibrium</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Total normal force (f_ct + f_sc + f_st): </span><span class="si">{</span><span class="p">(</span><span class="n">f_ct</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">f_sc</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">f_st</span><span class="p">)</span><span class="o">/</span><span class="mf">1e3</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> kips&quot;</span><span class="p">)</span>
+
+<span class="c1"># Calculate location of resultant concrete compressive force from α=½ß1.c</span>
+<span class="c1"># This should match y_ct obtained above</span>
+<span class="k">if</span> <span class="n">B_DIR</span> <span class="o">==</span> <span class="s1">&#39;-x&#39;</span><span class="p">:</span>
+    <span class="n">c_force_depth</span> <span class="o">=</span> <span class="n">c_sec</span><span class="o">.</span><span class="n">shape</span><span class="o">.</span><span class="n">y_max</span> <span class="o">-</span> <span class="n">c_sec</span><span class="o">.</span><span class="n">mat</span><span class="o">.</span><span class="n">beta_1</span> <span class="o">*</span> <span class="n">D_NEUTR</span><span class="o">/</span><span class="mi">2</span>
+<span class="k">elif</span> <span class="n">B_DIR</span> <span class="o">==</span> <span class="s1">&#39;x&#39;</span><span class="p">:</span>
+    <span class="n">c_force_depth</span> <span class="o">=</span> <span class="n">c_sec</span><span class="o">.</span><span class="n">shape</span><span class="o">.</span><span class="n">y_min</span> <span class="o">+</span> <span class="n">c_sec</span><span class="o">.</span><span class="n">mat</span><span class="o">.</span><span class="n">beta_1</span> <span class="o">*</span> <span class="n">D_NEUTR</span><span class="o">/</span><span class="mi">2</span>
+<span class="k">elif</span> <span class="n">B_DIR</span> <span class="o">==</span> <span class="s1">&#39;-y&#39;</span><span class="p">:</span>
+    <span class="n">c_force_depth</span> <span class="o">=</span> <span class="n">c_sec</span><span class="o">.</span><span class="n">shape</span><span class="o">.</span><span class="n">x_max</span> <span class="o">-</span> <span class="n">c_sec</span><span class="o">.</span><span class="n">mat</span><span class="o">.</span><span class="n">beta_1</span> <span class="o">*</span> <span class="n">D_NEUTR</span><span class="o">/</span><span class="mi">2</span>
+<span class="k">elif</span> <span class="n">B_DIR</span> <span class="o">==</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span>
+    <span class="n">c_force_depth</span> <span class="o">=</span> <span class="n">c_sec</span><span class="o">.</span><span class="n">shape</span><span class="o">.</span><span class="n">x_min</span> <span class="o">+</span> <span class="n">c_sec</span><span class="o">.</span><span class="n">mat</span><span class="o">.</span><span class="n">beta_1</span> <span class="o">*</span> <span class="n">D_NEUTR</span><span class="o">/</span><span class="mi">2</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Bending direction must be &#39;-x&#39;, &#39;x&#39;, &#39;-y&#39;, or &#39;y&#39;.&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Depth of concrete resultant compressive force: </span><span class="si">{</span><span class="n">c_force_depth</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> in&quot;</span><span class="p">)</span>
+
+<span class="c1"># Calculate curvature at ultimate stage (ε_cu = 0.003) using the secant method</span>
+<span class="n">curvature</span> <span class="o">=</span> <span class="o">-</span><span class="n">c_sec</span><span class="o">.</span><span class="n">mat</span><span class="o">.</span><span class="n">eps_u</span> <span class="o">/</span> <span class="n">D_NEUTR</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Curvature: </span><span class="si">{</span><span class="n">curvature</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2"> in/in&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total concrete force: -257.85 kips at 6.60 in
+Total compressive rebar force: -48.98 kips at 7.12 in
+Total tensile rebar force: 304.02 kips at -6.87 in
+
+Total normal force (f_ct + f_sc + f_st): -2.80 kips
+
+Depth of concrete resultant compressive force: 6.63 in
+
+Curvature: 3.79e-04 in/in
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">plot_rectangle</span><span class="p">(</span><span class="n">c_sec</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">bar_facecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">show_centroid</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">bar</span> <span class="ow">in</span> <span class="n">c_sec</span><span class="o">.</span><span class="n">long_bars</span><span class="p">:</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">plot_circle</span><span class="p">(</span><span class="n">bar</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;#0B1D51&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">plot_section_strain</span><span class="p">(</span><span class="n">B_DIR</span><span class="p">,</span> <span class="p">[</span><span class="n">y_c</span><span class="p">,</span> <span class="n">y_s</span><span class="p">],</span> <span class="p">[</span><span class="n">eps_c</span><span class="p">,</span> <span class="n">eps_s</span><span class="p">],</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">plot_section_stress</span><span class="p">(</span><span class="n">B_DIR</span><span class="p">,</span> <span class="p">[</span><span class="n">y_c</span><span class="p">,</span> <span class="n">y_s</span><span class="p">],</span> <span class="p">[</span><span class="n">sigma_c</span><span class="p">,</span> <span class="n">sigma_s</span><span class="p">],</span> <span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">plot_section_force</span><span class="p">(</span><span class="n">B_DIR</span><span class="p">,</span> <span class="p">[</span><span class="n">y_ct</span><span class="p">,</span> <span class="n">y_sc</span><span class="p">,</span> <span class="n">y_st</span><span class="p">],</span> <span class="p">[</span><span class="n">f_ct</span><span class="p">,</span> <span class="n">f_sc</span><span class="p">,</span> <span class="n">f_st</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+
+
+<span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">ax</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">B_DIR</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;-y&#39;</span><span class="p">]:</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mf">1.5</span><span class="o">*</span><span class="n">c_sec</span><span class="o">.</span><span class="n">shape</span><span class="o">.</span><span class="n">x_min</span><span class="p">,</span> <span class="mf">1.5</span><span class="o">*</span><span class="n">c_sec</span><span class="o">.</span><span class="n">shape</span><span class="o">.</span><span class="n">x_max</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">B_DIR</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;-x&#39;</span><span class="p">]:</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">1.5</span><span class="o">*</span><span class="n">c_sec</span><span class="o">.</span><span class="n">shape</span><span class="o">.</span><span class="n">y_min</span><span class="p">,</span> <span class="mf">1.5</span><span class="o">*</span><span class="n">c_sec</span><span class="o">.</span><span class="n">shape</span><span class="o">.</span><span class="n">y_max</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/31706528bd1d649e43310b6b647433ba10a4bb0b6563b76bd8744cc484bbc59b.png" src="../../../_images/31706528bd1d649e43310b6b647433ba10a4bb0b6563b76bd8744cc484bbc59b.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Find the tensile and compressive rebars based on the neutral depth and bending direction</span>
+<span class="n">tensile_rebars</span> <span class="o">=</span> <span class="n">beam</span><span class="o">.</span><span class="n">get_tensile_rebars</span><span class="p">(</span><span class="n">D_NEUTR</span><span class="p">)</span>
+<span class="n">compressive_rebars</span> <span class="o">=</span> <span class="n">beam</span><span class="o">.</span><span class="n">get_compressive_rebars</span><span class="p">(</span><span class="n">D_NEUTR</span><span class="p">)</span>
+
+<span class="c1"># Compute the area of the tensile and compressive reinforcements</span>
+<span class="n">A_st</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">bar</span><span class="o">.</span><span class="n">area</span> <span class="k">for</span> <span class="n">bar</span> <span class="ow">in</span> <span class="n">tensile_rebars</span><span class="p">)</span>
+<span class="n">A_sc</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">bar</span><span class="o">.</span><span class="n">area</span> <span class="k">for</span> <span class="n">bar</span> <span class="ow">in</span> <span class="n">compressive_rebars</span><span class="p">)</span>
+
+<span class="c1"># Effective depth for tensile and compressive reinforcements</span>
+<span class="n">d_st</span> <span class="o">=</span> <span class="n">beam</span><span class="o">.</span><span class="n">get_tensile_effective_depth</span><span class="p">(</span><span class="n">D_NEUTR</span><span class="p">)</span>
+<span class="n">d_sc</span> <span class="o">=</span> <span class="n">beam</span><span class="o">.</span><span class="n">get_compressive_effective_depth</span><span class="p">(</span><span class="n">D_NEUTR</span><span class="p">)</span>
+
+<span class="c1"># Compute the ratio of the tensile and compressive reinforcements</span>
+<span class="n">rho_sc</span> <span class="o">=</span> <span class="n">A_sc</span> <span class="o">/</span> <span class="n">d_sc</span>
+<span class="n">rho_st</span> <span class="o">=</span> <span class="n">A_st</span> <span class="o">/</span> <span class="n">d_st</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Effective depth for tensile reinforcement (d): </span><span class="si">{</span><span class="n">d_st</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> in&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Effective depth for compressive reinforcement (d&#39;): </span><span class="si">{</span><span class="n">d_sc</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> in&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Area of tensile reinforcement (As): </span><span class="si">{</span><span class="n">A_st</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> in² [ρs: </span><span class="si">{</span><span class="n">rho_st</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Area of compressive reinforcement (A&#39;s): </span><span class="si">{</span><span class="n">A_sc</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> in² [ρ&#39;s: </span><span class="si">{</span><span class="n">rho_sc</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+
+<span class="c1"># Compute the area of the transverse reinforcement</span>
+<span class="n">A_v</span> <span class="o">=</span> <span class="n">beam</span><span class="o">.</span><span class="n">get_trans_bar_area</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Area of transverse reinforcement (Av): </span><span class="si">{</span><span class="n">A_v</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> in²&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Effective depth for tensile reinforcement (d): 16.87 in
+Effective depth for compressive reinforcement (d&#39;): 2.87 in
+
+Area of tensile reinforcement (As): 5.07 in² [ρs: 3.00e-01]
+Area of compressive reinforcement (A&#39;s): 0.88 in² [ρ&#39;s: 3.07e-01]
+
+Area of transverse reinforcement (Av): 0.39 in²
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">min_neutral_depth</span> <span class="o">=</span> <span class="mf">0.05</span> <span class="o">*</span> <span class="n">beam</span><span class="o">.</span><span class="n">section_height</span><span class="p">()</span>
+<span class="n">max_neutral_depth</span> <span class="o">=</span> <span class="mf">0.95</span> <span class="o">*</span> <span class="n">beam</span><span class="o">.</span><span class="n">section_height</span><span class="p">()</span> <span class="c1"># beam.get_xBar_depth()</span>
+<span class="n">neutral_depth_range</span> <span class="o">=</span> <span class="p">(</span><span class="n">min_neutral_depth</span><span class="p">,</span> <span class="n">max_neutral_depth</span><span class="p">)</span>
+
+<span class="n">yn</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">m</span> <span class="o">=</span> <span class="n">concrete</span><span class="o">.</span><span class="n">generate_force_moment_interaction</span><span class="p">(</span>
+    <span class="n">beam</span><span class="p">,</span> 
+    
+    <span class="n">neutral_depth_range</span><span class="o">=</span><span class="n">neutral_depth_range</span><span class="p">,</span> 
+    <span class="n">external_force</span><span class="o">=</span><span class="n">Nu</span><span class="p">,</span> 
+    <span class="n">n_points</span><span class="o">=</span><span class="mi">1000</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m_scaled</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+<span class="n">f_scaled</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">f</span><span class="p">)))</span>
+
+
+<span class="n">P_cn</span> <span class="o">=</span> <span class="n">concrete</span><span class="o">.</span><span class="n">nominal_compressive_strength</span><span class="p">(</span><span class="n">beam</span><span class="o">.</span><span class="n">sec</span><span class="p">)</span> <span class="c1"># negative</span>
+<span class="n">P_cn_max</span> <span class="o">=</span> <span class="n">concrete</span><span class="o">.</span><span class="n">max_nominal_compressive_strength</span><span class="p">(</span><span class="n">beam</span><span class="o">.</span><span class="n">sec</span><span class="p">)</span> <span class="c1"># negative</span>
+<span class="n">P_tn</span> <span class="o">=</span> <span class="n">concrete</span><span class="o">.</span><span class="n">nominal_tensile_strength</span><span class="p">(</span><span class="n">beam</span><span class="o">.</span><span class="n">sec</span><span class="p">)</span> <span class="c1"># positive</span>
+
+<span class="n">balance_point</span> <span class="o">=</span> <span class="n">beam</span><span class="o">.</span><span class="n">get_balance_point</span><span class="p">(</span><span class="n">Nu</span><span class="p">,</span> <span class="n">n_disc</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">tension_controlled_point</span> <span class="o">=</span> <span class="n">beam</span><span class="o">.</span><span class="n">get_tension_conrolled_point</span><span class="p">(</span><span class="n">Nu</span><span class="p">,</span> <span class="n">n_disc</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">pure_flexure_point</span> <span class="o">=</span> <span class="n">beam</span><span class="o">.</span><span class="n">get_pure_flexure_point</span><span class="p">(</span><span class="n">Nu</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+
+
+<span class="n">special_points</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;f&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="n">P_cn</span> <span class="o">/</span> <span class="nb">abs</span><span class="p">(</span><span class="n">P_cn</span><span class="p">),</span>
+        <span class="n">balance_point</span><span class="p">[</span><span class="s1">&#39;force&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="nb">abs</span><span class="p">(</span><span class="n">P_cn</span><span class="p">),</span>
+        <span class="n">tension_controlled_point</span><span class="p">[</span><span class="s1">&#39;force&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="nb">abs</span><span class="p">(</span><span class="n">P_cn</span><span class="p">),</span>
+        <span class="n">pure_flexure_point</span><span class="p">[</span><span class="s1">&#39;force&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="nb">abs</span><span class="p">(</span><span class="n">P_cn</span><span class="p">),</span>
+        <span class="n">P_tn</span> <span class="o">/</span> <span class="nb">abs</span><span class="p">(</span><span class="n">P_cn</span><span class="p">)</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;m&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="mf">0.0</span><span class="p">,</span>
+        <span class="n">balance_point</span><span class="p">[</span><span class="s1">&#39;moment&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">m</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+        <span class="n">tension_controlled_point</span><span class="p">[</span><span class="s1">&#39;moment&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">m</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+        <span class="n">pure_flexure_point</span><span class="p">[</span><span class="s1">&#39;moment&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">m</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+        <span class="mf">0.0</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">m_scaled</span><span class="p">,</span> <span class="n">f_scaled</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">special_points</span><span class="p">[</span><span class="s1">&#39;m&#39;</span><span class="p">],</span> <span class="n">special_points</span><span class="p">[</span><span class="s1">&#39;f&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#EB5B00&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;M/$M_</span><span class="si">{max}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;P/$P_</span><span class="si">{max}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Force-Moment Interaction Diagram&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span>  <span class="c1"># Reverse the y axis</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="c1"># plt.axis(&#39;equal&#39;)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1"># Move the x-axis to y=0</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;bottom&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_position</span><span class="p">(</span><span class="s1">&#39;zero&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;top&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_ticks_position</span><span class="p">(</span><span class="s1">&#39;bottom&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_label_position</span><span class="p">(</span><span class="s1">&#39;bottom&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/21d4afb18218058f7ba094725b014be6f83edf07e8c20d3de03de6bd87f84cf8.png" src="../../../_images/21d4afb18218058f7ba094725b014be6f83edf07e8c20d3de03de6bd87f84cf8.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute the required minimum area of transverse reinforcement based on ACI 318-19 Section 9.6.3.4</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">min_beam_transverse_rebar</span><span class="p">(</span><span class="n">bending</span><span class="p">:</span> <span class="n">concrete</span><span class="o">.</span><span class="n">UniaixalBending</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="n">fc</span> <span class="o">=</span> <span class="n">bending</span><span class="o">.</span><span class="n">sec</span><span class="o">.</span><span class="n">mat</span><span class="o">.</span><span class="n">fc</span>
+    <span class="n">f_yt_min</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">bar</span><span class="o">.</span><span class="n">mat</span><span class="o">.</span><span class="n">fy</span> <span class="k">for</span> <span class="n">bar</span> <span class="ow">in</span> <span class="n">bending</span><span class="o">.</span><span class="n">sec</span><span class="o">.</span><span class="n">trans_bars</span><span class="p">)</span>
+    <span class="n">bw</span> <span class="o">=</span> <span class="n">bending</span><span class="o">.</span><span class="n">section_width</span><span class="p">()</span>
+    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span>
+        <span class="mf">0.75</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">fc</span><span class="p">)</span> <span class="o">*</span> <span class="n">bw</span> <span class="o">/</span> <span class="n">f_yt_min</span> <span class="p">,</span>
+        <span class="mi">50</span> <span class="o">*</span> <span class="n">bw</span> <span class="o">/</span> <span class="n">f_yt_min</span>
+    <span class="p">)</span>
+    
+<span class="n">A_v_min</span> <span class="o">=</span> <span class="n">min_beam_transverse_rebar</span><span class="p">(</span><span class="n">beam</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Minimum area of transverse reinforcement (Av,min): </span><span class="si">{</span><span class="n">A_v_min</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2"> in²&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Minimum area of transverse reinforcement (Av,min): 1.25e-02 in²
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute the shear strength of concrete based on ACI 318-19 Section 22.5.5.1</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_concrete_shear_strength</span><span class="p">(</span><span class="n">beam</span><span class="p">:</span><span class="n">concrete</span><span class="o">.</span><span class="n">UniaixalBending</span><span class="p">,</span> <span class="n">axial_force</span><span class="p">:</span><span class="nb">float</span><span class="p">,</span> <span class="n">neutral_depth</span><span class="p">:</span><span class="nb">float</span><span class="p">,</span> <span class="n">is_normal_weight</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="n">fc</span> <span class="o">=</span> <span class="n">beam</span><span class="o">.</span><span class="n">sec</span><span class="o">.</span><span class="n">mat</span><span class="o">.</span><span class="n">fc</span>
+    <span class="n">bw</span> <span class="o">=</span> <span class="n">beam</span><span class="o">.</span><span class="n">section_width</span><span class="p">()</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">beam</span><span class="o">.</span><span class="n">get_tensile_effective_depth</span><span class="p">(</span><span class="n">neutral_depth</span><span class="p">)</span>
+    <span class="n">Ag</span> <span class="o">=</span> <span class="n">beam</span><span class="o">.</span><span class="n">sec</span><span class="o">.</span><span class="n">gross_area</span><span class="c1"># in²</span>
+    <span class="n">Nu</span> <span class="o">=</span> <span class="n">axial_force</span>
+    
+    <span class="n">tensile_rebars</span> <span class="o">=</span> <span class="n">beam</span><span class="o">.</span><span class="n">get_tensile_rebars</span><span class="p">(</span><span class="n">neutral_depth</span><span class="p">)</span>
+    <span class="n">A_st</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">bar</span><span class="o">.</span><span class="n">area</span> <span class="k">for</span> <span class="n">bar</span> <span class="ow">in</span> <span class="n">tensile_rebars</span><span class="p">)</span>
+    <span class="n">rho_st</span> <span class="o">=</span> <span class="n">A_st</span> <span class="o">/</span> <span class="n">d</span>
+    
+    <span class="k">if</span> <span class="n">is_normal_weight</span><span class="p">:</span>
+        <span class="n">lambda_</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">lambda_</span> <span class="o">=</span> <span class="mf">0.75</span>
+    
+    <span class="n">V_c_max</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">*</span> <span class="n">lambda_</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">fc</span><span class="p">)</span> <span class="o">*</span> <span class="n">bw</span> <span class="o">*</span> <span class="n">d</span>
+    <span class="n">V_c_min</span> <span class="o">=</span> <span class="n">lambda_</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">fc</span><span class="p">)</span> <span class="o">*</span> <span class="n">bw</span> <span class="o">*</span> <span class="n">d</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;V_c_max: </span><span class="si">{</span><span class="n">V_c_max</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> lb</span><span class="se">\n</span><span class="s2">V_c_min: </span><span class="si">{</span><span class="n">V_c_min</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> lb&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">min</span><span class="p">(</span>
+        <span class="nb">max</span><span class="p">(</span>
+        <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">lambda_</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">fc</span><span class="p">)</span> <span class="o">+</span> <span class="n">Nu</span> <span class="o">/</span> <span class="p">(</span><span class="mi">6</span> <span class="o">*</span> <span class="n">Ag</span><span class="p">))</span> <span class="o">*</span> <span class="n">bw</span> <span class="o">*</span> <span class="n">d</span><span class="p">,</span>
+        <span class="p">(</span> <span class="mi">8</span> <span class="o">*</span> <span class="n">lambda_</span> <span class="o">*</span> <span class="n">rho_st</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">fc</span><span class="p">)</span> <span class="o">+</span> <span class="n">Nu</span> <span class="o">/</span> <span class="p">(</span><span class="mi">6</span> <span class="o">*</span> <span class="n">Ag</span><span class="p">))</span> <span class="o">*</span> <span class="n">bw</span> <span class="o">*</span> <span class="n">d</span><span class="p">,</span>
+        <span class="n">V_c_min</span>
+        <span class="p">),</span>
+        <span class="n">V_c_max</span>
+    <span class="p">)</span>
+    
+    
+<span class="n">V_c</span> <span class="o">=</span> <span class="n">get_concrete_shear_strength</span><span class="p">(</span><span class="n">beam</span><span class="p">,</span> <span class="n">axial_force</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">neutral_depth</span><span class="o">=</span><span class="n">D_NEUTR</span><span class="p">)</span> <span class="o">/</span> <span class="mf">1e3</span>  <span class="c1"># Convert to kips</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Shear strength of concrete (Vc): </span><span class="si">{</span><span class="n">V_c</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> kips&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>V_c_max: 69280 lb
+V_c_min: 13856 lb
+
+Shear strength of concrete (Vc): 69.3 kips
+</pre></div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./structure\concrete_shear\non_prestressed_rectangular"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Hossein Karagah
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025 GNU GENERAL PUBLIC LICENSE.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

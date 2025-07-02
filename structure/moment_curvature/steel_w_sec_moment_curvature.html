@@ -76,7 +76,7 @@
     <link rel="icon" href="../../_static/headshot.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Rectangular Concrete Shear Wall Neutral Axis" href="../shear_wall_neutral_axis/rect_shear_wall_neutral_axis.html" />
+    <link rel="next" title="P-M Interaction Diagram" href="../concrete/force_moment_interaction/force_moment_interaction.html" />
     <link rel="prev" title="P-Delta Analysis: Cantilever Column" href="../p_delta/cant_col_p_delta.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -202,6 +202,7 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../p_delta/cant_col_p_delta.html">P-Delta Analysis: Cantilever Column</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Moment-Curvature: Steel W-Section</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concrete/force_moment_interaction/force_moment_interaction.html">P-M Interaction Diagram</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../shear_wall_neutral_axis/rect_shear_wall_neutral_axis.html">Rectangular Concrete Shear Wall Neutral Axis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../opensees/opensees_steel_materials.html">OpenSees Uniaxial Steel Materials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../structural_dynamics/modal_analysis_basic.html">Modal Analysis: 3-DOF System</a></li>
@@ -436,7 +437,6 @@ document.write(`
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.patches</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">patches</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.axes</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">axes</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
@@ -449,12 +449,17 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.patches</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">patches</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.axes</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">axes</span>
-<span class="ne">----&gt; </span><span class="mi">5</span> <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">10</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;../..&quot;</span><span class="p">))</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="kn">from</span><span class="w"> </span><span class="nn">assets.modules.materials</span><span class="w"> </span><span class="kn">import</span> <span class="n">Material</span><span class="p">,</span> <span class="n">BilinearA992Steel</span><span class="p">,</span> <span class="n">BilinearA36Steel</span>
+<span class="ne">---&gt; </span><span class="mi">10</span> <span class="kn">from</span><span class="w"> </span><span class="nn">assets.modules.shapes</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">File</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Hossein</span>\<span class="n">portfolio</span>\<span class="n">hkaragah</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">io</span>\<span class="n">assets</span>\<span class="n">modules</span>\<span class="n">shapes</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">19</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
+<span class="ne">---&gt; </span><span class="mi">19</span> <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="g g-Whitespace">     </span><span class="mi">21</span> <span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">lru_cache</span>
 
 <span class="ne">ModuleNotFoundError</span>: No module named &#39;pandas&#39;
 </pre></div>
@@ -1151,11 +1156,11 @@ Moment at yield: 424 kip-ft
       </div>
     </a>
     <a class="right-next"
-       href="../shear_wall_neutral_axis/rect_shear_wall_neutral_axis.html"
+       href="../concrete/force_moment_interaction/force_moment_interaction.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Rectangular Concrete Shear Wall Neutral Axis</p>
+        <p class="prev-next-title">P-M Interaction Diagram</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
