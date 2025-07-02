@@ -1067,11 +1067,13 @@ Base moment: 845.835 kip-in
 <ol class="arabic">
 <li><p>Define Geometry</p>
 <p>The geometry is defined in XZ-plane with the dimensions defined earlier. The base support (node 1) is defined as fixed and the top (node 2) will be free. To be able to obtain an accurate result, the column is meshed into a minimum four segments during the analysis.</p>
- <div style="text-align: center"><img src="../../assets/img/structure/p_delta/cant_col_p_delta/cant_col_p_delta_01.png" alt="Define geometry and mesh size" width=600px></div>
+<a class="reference internal image-reference" href="../../_images/cant_col_p_delta_01.png"><img alt="Define geometry and mesh size" src="../../_images/cant_col_p_delta_01.png" style="width: 600px;" />
+</a>
 </li>
 <li><p>Define Load Patterns:</p>
 <p>The axial load is defined as <code class="docutils literal notranslate"><span class="pre">DL</span></code> and the laterl load is defined as <code class="docutils literal notranslate"><span class="pre">NL</span></code>. Note that the <code class="docutils literal notranslate"><span class="pre">Self</span> <span class="pre">Weight</span> <span class="pre">Multiplier</span></code> for the <code class="docutils literal notranslate"><span class="pre">DL</span></code> is set to zero.</p>
- <div style="text-align: center"><img src="../../assets/img/structure/p_delta/cant_col_p_delta/cant_col_p_delta_05.png" alt="Define load pattern" width=600px></div>
+<a class="reference internal image-reference" href="../../_images/cant_col_p_delta_05.png"><img alt="Define load pattern" src="../../_images/cant_col_p_delta_05.png" style="width: 600px;" />
+</a>
 </li>
 <li><p>Define Load Cases:</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">DL</span></code> load pattern is a static load patter. However, the <code class="docutils literal notranslate"><span class="pre">NL</span></code> load case is defined as a nonlinear load pattern since P-Delta is a nonlinear analysis.</p>
@@ -1079,9 +1081,11 @@ Base moment: 845.835 kip-in
 <p class="admonition-title">Note</p>
 <p>Note that superimposition cannot be used in a nonlinear analysis, thus all the applicable load patterns must be considered simultaneously in the nonlinear analysis.</p>
 </div>
- <div style="text-align: center"><img src="../../assets/img/structure/p_delta/cant_col_p_delta/cant_col_p_delta_04.png" alt="Define load cases" width=600px></div>
+<a class="reference internal image-reference" href="../../_images/cant_col_p_delta_04.png"><img alt="Define load cases" src="../../_images/cant_col_p_delta_04.png" style="width: 600px;" />
+</a>
 <p>As shown in the figure below, the <code class="docutils literal notranslate"><span class="pre">DL</span></code> and <code class="docutils literal notranslate"><span class="pre">NL</span></code> load patterns are applied together with scale factors of one for the P-Delta analysis.</p>
- <div style="text-align: center"><img src="../../assets/img/structure/p_delta/cant_col_p_delta/cant_col_p_delta_06.png" alt="P-Delta load pattern" width=600px></div>
+<a class="reference internal image-reference" href="../../_images/cant_col_p_delta_06.png"><img alt="P-Delta load pattern" src="../../_images/cant_col_p_delta_06.png" style="width: 600px;" />
+</a>
 </li>
 <li><p>Perform Analysis</p>
 <p>The following figures show the result of the P-Delta analysis. The values obtained for drift and moments are</p>
@@ -1090,7 +1094,8 @@ Base moment: 845.835 kip-in
 <li><p>Second-order base moment = 846 kip-in</p></li>
 </ul>
 <p>Both the free-end deflection and the moment at the base are within 0.5% of the AISC benchmark results.</p>
- <div style="text-align: center"><img src="../../assets/img/structure/p_delta/cant_col_p_delta/cant_col_p_delta_02.png" alt="Drift, Shear, and Moment diagram" height=500px></div>
+<a class="reference internal image-reference" href="../../_images/cant_col_p_delta_02.png"><img alt="Drift, Shear, and Moment diagram" src="../../_images/cant_col_p_delta_02.png" style="height: 500px;" />
+</a>
 </li>
 </ol>
 </section>

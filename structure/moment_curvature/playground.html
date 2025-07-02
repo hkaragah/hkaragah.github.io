@@ -202,12 +202,16 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../p_delta/cant_col_p_delta.html">P-Delta Analysis: Cantilever Column</a></li>
 <li class="toctree-l1"><a class="reference internal" href="steel_w_sec_moment_curvature.html">Moment-Curvature: Steel W-Section</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concrete/force_moment_interaction/force_moment_interaction.html">P-M Interaction Diagram</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../shear_wall_neutral_axis/rect_shear_wall_neutral_axis.html">Rectangular Concrete Shear Wall Neutral Axis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../opensees/opensees_steel_materials.html">OpenSees Uniaxial Steel Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../structural_dynamics/modal_analysis_basic.html">Modal Analysis: 3-DOF System</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Earthquake Engineering</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../earthquake/asce7_2800_spectrum/asce7_2800_spectrum.html">ASCE 7 vs. 2800 Standard: Comparing Design Spectral Response Acceleration Parameter (Sa)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../earthquake/frequency_content/frequency_content.html">Frequency content of Earthquake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../earthquake/response_spectrum/response_spectrum.html">Earthquake Response Spectrum</a></li>
 </ul>
 
     </div>
@@ -427,12 +431,12 @@ document.write(`
 <span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="kn">from</span><span class="w"> </span><span class="nn">assets.modules.materials</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="ne">----&gt; </span><span class="mi">9</span> <span class="kn">from</span><span class="w"> </span><span class="nn">assets.modules.shapes</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 
-<span class="n">File</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Hossein</span>\<span class="n">portfolio</span>\<span class="n">hkaragah</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">io</span>\<span class="n">assets</span>\<span class="n">modules</span>\<span class="n">shapes</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">13</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
-<span class="ne">---&gt; </span><span class="mi">13</span> <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">lru_cache</span>
+<span class="n">File</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Hossein</span>\<span class="n">portfolio</span>\<span class="n">hkaragah</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">io</span>\<span class="n">assets</span>\<span class="n">modules</span>\<span class="n">shapes</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">19</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
+<span class="ne">---&gt; </span><span class="mi">19</span> <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="g g-Whitespace">     </span><span class="mi">21</span> <span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">lru_cache</span>
 
 <span class="ne">ModuleNotFoundError</span>: No module named &#39;pandas&#39;
 </pre></div>
