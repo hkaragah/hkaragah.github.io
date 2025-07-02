@@ -11,7 +11,6 @@
 from typing import Protocol, Union, Optional
 import numpy as np
 from scipy.optimize import curve_fit, root_scalar
-from traitlets import default
 
 
 class Material(Protocol):
@@ -23,22 +22,48 @@ class Material(Protocol):
 
 # Concrete material classes =========================================================
 class Concrete:
-    def __init__(self, fc: float) -> None:
+    def __init__(self, fc: float, is_lightweight: bool = False, density: float = None) -> None:
         """
 
         Args:
             fc (float): psi, Compressive strength
+            is_lightweight (bool, optional): Whether the concrete is lightweight. Defaults to False.
+            density (float, optional): pcf, Unit weight of lightweight concrete (required if is_lightweight is True).
         """
         self.fc = fc
+        self.is_lightweight = is_lightweight
+        self.density = density
+
+        if self.is_lightweight and self.density is None:
+            raise ValueError("Density must be provided for lightweight concrete.")
+
     
     @property
     def E(self) -> float:
-        """
+        """Returns the modulus of elasticity (E) per ACI 318-25: 19.2.2.
 
         Returns:
-            float: psi, Modulus of elasticity (Ec) per ACI 318-25: 19.2.2
+            float: psi, Modulus of elasticity (Ec) of concrete.
         """
-        return 57000 * np.sqrt(self.fc)  # psi, Modulus of elasticity
+        if self.is_lightweight:
+            return 57000 * np.sqrt(self.fc)
+        else:
+            return self.density ** 1.5 * 33 * np.sqrt(self.fc)
+    
+    @property
+    def lambda_(self) -> float:
+        """Returns the modification factor to reflect the reduced mechanical properties of lightweight concrete relative to normal weight concrete of the same compressive strength per ACI 318-25, section 19.2.4.
+
+        Returns:
+            float: Modification factor (lambda) for lightweight concrete. It varies between 0.75 and 1.0 based on density.
+        """
+        if not self.is_lightweight or self.density > 135:
+            return 1.0
+        elif self.is_lightweight:
+            if not self.density or self.density <= 100:
+                return 0.75
+            else: # density between 100 and 135
+                return 0.0075 * self.density
     
     @property
     def fr(self) -> float:
@@ -47,7 +72,7 @@ class Concrete:
         Returns:
             float: psi, Modulus of rupture (fr) per ACI 318-25: 19.2.3
         """
-        return 7.5 * np.sqrt(self.fc)  # psi, Fracture strength
+        return 7.5 * self.lambda_ * np.sqrt(self.fc)  # psi, Fracture strength
     
     def stress(self, eps:Union[float, np.ndarray]) -> float:
         """Calculate the stress based on the strain using the concrete model.
@@ -68,7 +93,7 @@ class Concrete:
 
 
 class ACIConcrete(Concrete):
-    def __init__(self, fc: float) -> None:
+    def __init__(self, fc: float, is_lightweight: bool = False, density: float = None) -> None:
         super().__init__(fc)
         self.name = "ACI Concrete"
     
@@ -103,6 +128,12 @@ class ACIConcrete(Concrete):
             raise ValueError("Concrete compressive strength (fc) must be within 2500 psi to 8000 psi.")
         
     def stress(self, eps:Union[float, np.ndarray]) -> Union[float, np.ndarray]:
+        if not isinstance(eps, (float, np.ndarray)):
+            raise TypeError("Strain (eps) must be a float or numpy array.")
+        
+        if np.isscalar(eps):
+            eps = np.array([eps])
+            
         eps_array = np.asarray(eps)
         eps_ratio = eps_array / self.eps_u
         stress = np.where(
@@ -114,6 +145,7 @@ class ACIConcrete(Concrete):
                 - 0.85 * self.fc
             )
         )
+        
         return stress.item() if np.isscalar(eps) else stress
     
     def __repr__(self):
@@ -143,37 +175,33 @@ class Steel:
         
     @property
     def E(self) -> float:
-        """Modulus of elasticity for steel in psi.
-        """
+        "Returns modulus of elasticity for steel in psi."
         return self._E
     
     @property
     def nu(self) -> float:
-        """Poisson's ratio for steel.
-        """
+        "Returns poisson's ratio for steel."
         return 0.25
     
     @nu.setter
-    def nu(self, value: float) -> None:
+    def nu(self, new_value: float) -> None:
         """Set the Poisson's ratio for steel.
         
         Args:
-            value (float): Poisson's ratio value.
+            value (float): Poisson's ratio new value.
         """
-        if not (0 < value < 0.5):
+        if not (0 < new_value < 0.5):
             raise ValueError("Poisson's ratio must be between 0 and 0.5.")
-        self._nu = value
+        self._nu = new_value
     
     @property
     def G(self) -> float:
-        """Shear modulus for steel.
-        """
+        "Returns shear modulus for steel."
         return self._E / (2 * (1 + self._nu))
     
     @property
     def eps_y(self) -> float:
-        """Strain at yield point (eps_y) for steel.
-        """
+        "Returns strain at yield point (eps_y) for steel."
         return self.fy / self.E
     
     @property
@@ -244,26 +272,18 @@ class BilinearSteel(Steel, Material):
         
           
 class BilinearA36Steel(BilinearSteel):
-    """
-    ASTM A36 steel material with bilinear stress-strain curve.
-    """
-
+    "ASTM A36 steel material with bilinear stress-strain curve."
     def __init__(self, name= "A36", fy: float=36e3, fu: float=58e3, alpha: float=0.01) -> None:
         super().__init__(name, fy, fu, alpha)
         
         
 class BilinearA992Steel(BilinearSteel):
-    """
-    ASTM A992 steel material with bilinear stress-strain curve.
-    """
-
+    "ASTM A992 steel material with bilinear stress-strain curve."
     def __init__(self, name= "A992", fy: float=50e3, fu: float=65e3, alpha: float=0.01) -> None:
         super().__init__(name, fy, fu, alpha)
     
 class RambergOsgoodSteel(Steel, Material):
-    """ 
-    Uses Ramberg-Osgood equation for stress-strain relationship.
-    """
+    "Uses Ramberg-Osgood equation for stress-strain relationship."
     def __init__(self, name:str, fy: float, fu: float, K: float, n:float, alpha: float=0.01) -> None:
         super().__init__(name, fy, fu)
         self.alpha = alpha  # strain hardening ratio
@@ -313,23 +333,6 @@ class RambergOsgoodSteel(Steel, Material):
 
         return stresses
             
-
-class RambergOsgoodA36Steel(RambergOsgoodSteel):
-    """
-    ASTM A36 steel material with Ramberg-Osgood stress-strain curve.
-    """
-
-    def __init__(self, name= "A36 Steel", fy: float=36, fu: float=58, alpha: float=0.01) -> None:
-        super().__init__(name, fy, fu, alpha)
-        
-        
-class RambergOsgoodA992Steel(RambergOsgoodSteel):
-    """
-    ASTM A992 steel material with Ramberg-Osgood stress-strain curve.
-    """
-
-    def __init__(self, name= "A992 Steel", fy: float=50, fu: float=65, alpha: float=0.01) -> None:
-        super().__init__(name, fy, fu, alpha)
         
         
 # Steel Rebars ==========
