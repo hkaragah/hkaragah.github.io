@@ -9,6 +9,7 @@ parts:
     chapters:
       - file: structure/p_delta/cant_col_p_delta
       - file: structure/moment_curvature/steel_w_sec_moment_curvature
+      - file: structure/concrete/force_moment_interaction/force_moment_interaction
       - file: structure/shear_wall_neutral_axis/rect_shear_wall_neutral_axis
       - file: structure/opensees/opensees_steel_materials
       - file: structure/structural_dynamics/modal_analysis_basic
