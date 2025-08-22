@@ -334,11 +334,11 @@ class GeometryAnalyzer:
             return sum(bar.Ax for bar in self.section.trans_bars)
         else:
             return sum(bar.Ay for bar in self.section.trans_bars)
-    def get_concrete_strip_depth(self, n_disc=100):
+    def get_concrete_strip_depth(self, n_disc=1000):
         height = self.section_height()
         strip_thk = height / n_disc
         return np.linspace(-height/2 + strip_thk/2, height/2 - strip_thk/2, n_disc).reshape(-1, 1)
-    def get_concrete_strip_net_area(self, n_disc=100):
+    def get_concrete_strip_net_area(self, n_disc=1000):
         if not self.section.long_bars:
             return np.zeros((n_disc, 1))
         height = self.section_height()
@@ -412,7 +412,7 @@ class StrainAnalyzer:
         strain = self.get_rebar_strain(neutral_depth)
         return np.array([bar.mat.stress(eps) for bar, eps in zip(self.section.long_bars, strain)])
 
-    def get_concrete_strain(self, neutral_depth: Union[float, np.ndarray], n_disc: int = 100) -> np.ndarray:
+    def get_concrete_strain(self, neutral_depth: Union[float, np.ndarray], n_disc: int = 1000) -> np.ndarray:
         if not isinstance(neutral_depth, np.ndarray):
             neutral_depth = np.array([neutral_depth])
         curv = self.get_curvature(neutral_depth)
@@ -421,7 +421,7 @@ class StrainAnalyzer:
         mi = self._depth_multiplier()
         return curv.T * (depth * mi - (height / 2 - neutral_depth.T))
     
-    def get_concrete_stress(self, neutral_depth: Union[float, np.ndarray], n_disc: int = 100) -> np.ndarray:
+    def get_concrete_stress(self, neutral_depth: Union[float, np.ndarray], n_disc: int = 1000) -> np.ndarray:
         if not isinstance(neutral_depth, np.ndarray):
             neutral_depth = np.array([neutral_depth])
         strain = self.get_concrete_strain(neutral_depth, n_disc)
@@ -542,7 +542,7 @@ class ForceAnalyzer:
                 xBars.append([bar for bar in self.section.long_bars if bar.center.x == d])
         return xBars
         
-    def get_concrete_force(self, neutral_depth: Union[float, np.ndarray], n_disc: int = 100) -> np.ndarray:
+    def get_concrete_force(self, neutral_depth: Union[float, np.ndarray], n_disc: int = 1000) -> np.ndarray:
         if not isinstance(neutral_depth, np.ndarray):
             neutral_depth = np.array([neutral_depth])
         net_areas = GeometryAnalyzer(self.section, self.direction).get_concrete_strip_net_area(n_disc)
@@ -651,10 +651,10 @@ class UniaxialBending:
     def get_trans_bar_area(self):
         return self.geometry.get_trans_bar_area()
     
-    def get_concrete_strip_depth(self, n_disc=100):
+    def get_concrete_strip_depth(self, n_disc=1000):
         return self.geometry.get_concrete_strip_depth(n_disc)
     
-    def get_concrete_strip_net_area(self, n_disc=100):
+    def get_concrete_strip_net_area(self, n_disc=1000):
         return self.geometry.get_concrete_strip_net_area(n_disc)
     
     def get_curvature(self, neutral_depth):
@@ -1240,7 +1240,7 @@ class UniaxialBending:
             'moment': internal_moment
         }
 
-    def get_section_internal_force(self, neutral_depth, n_disc=100):
+    def get_section_internal_force(self, neutral_depth, n_disc=1000):
         """Computes the total internal force in the section based on the bending direction and neutral depth. The total internal force is the sum of the forces in the longitudinal rebars (both tensile and compressive) and the concrete compression zone at the given neutral depth.
         Args:
             neutral_depth (Union[float, np.ndarray]): The depth of the neutral axis from the fiber of maximum compressive strain considering the bending direction. If 'm' values are provided, it is of shape (m,) or (m, 1) and the function will compute the moment for each value.
@@ -1252,7 +1252,7 @@ class UniaxialBending:
         concrete_force = self.force.get_concrete_force(neutral_depth, n_disc) # shape = (n_disc, m)
         return concrete_force.sum(axis=0) + rebar_force.sum(axis=0)  # shape = (m, 1)
 
-    def get_section_internal_moment(self, neutral_depth: Union[float, np.ndarray], n_disc: int = 100) -> np.ndarray:
+    def get_section_internal_moment(self, neutral_depth: Union[float, np.ndarray], n_disc: int = 1000) -> np.ndarray:
         """Computes the total moment in the section based on the bending direction and neutral depth. The total moment is the sum of the moments in the longitudinal rebars (both tensile and compressive) and the concrete compression zone at the given neutral depth.
         Args:
             neutral_depth (Union[float, np.ndarray]): The depth of the neutral axis from the fiber of maximum compressive strain considering the bending direction. If 'm' values are provided, it is of shape (m,) or (m, 1) and the function will compute the moment for each value.
@@ -1284,7 +1284,7 @@ class UniaxialBending:
         # return eps_cu / (eps_cu - xBar_strain) * (xfiber_depth - xbar_depth) * multiplier
         return np.abs(eps_cu / (eps_cu - xBar_strain) * (xfiber_depth - xbar_depth)) 
 
-    def get_internal_force_moment_by_xBar_strain(self, xBar_strain: float, external_force: float, n_disc: int = 100) -> Union[dict, None]:
+    def get_internal_force_moment_by_xBar_strain(self, xBar_strain: float, external_force: float, n_disc: int = 1000) -> Union[dict, None]:
         """Computes the internal force and moment in the section based on the strain in the extreme tensile rebar.
         It computes the neutral depth from the strain, then calculates the internal force and moment at that depth.
         Args:
@@ -1310,16 +1310,16 @@ class UniaxialBending:
             'moment': total_moment
         }
         
-    def get_balance_point(self, external_force: float, n_disc: int = 100) -> Union[dict, None]:
+    def get_balance_point(self, external_force: float, n_disc: int = 1000) -> Union[dict, None]:
         xbars = self.get_xBars() # list of list
         min_yield_strains = get_min_yield_strains(xbars) # positive values
         return self.get_internal_force_moment_by_xBar_strain(min_yield_strains, external_force, n_disc)
 
-    def get_tension_controlled_point(self, external_force: float, n_disc: int = 100) -> Union[dict, None]:
+    def get_tension_controlled_point(self, external_force: float, n_disc: int = 1000) -> Union[dict, None]:
         xbar_strain = 0.005
         return self.get_internal_force_moment_by_xBar_strain(xbar_strain, external_force, n_disc)
     
-    def get_decompression_point(self, external_force: float, n_disc: int = 100) -> Union[dict, None]:
+    def get_decompression_point(self, external_force: float, n_disc: int = 1000) -> Union[dict, None]:
         xbar_strain = 0.0
         return self.get_internal_force_moment_by_xBar_strain(xbar_strain, external_force, n_disc)
         
@@ -1531,6 +1531,11 @@ def get_bending_reduction_factor(beam: UniaxialBending, neutral_depth: Union[flo
     return phi
 
 
+def lightweight_factor(is_lightweight: bool) -> float:
+    if is_lightweight:
+        lambda_ = 0.75
+    else:
+        lambda_ = 1.0
 
 # Utility Functions =========================================================
 def get_min_yield_strains(bar_groups: List[List[LongitudinalRebar]]) -> np.ndarray:
