@@ -28,7 +28,7 @@ class Concrete:
         Args:
             fc (float): psi, Compressive strength
             is_lightweight (bool, optional): Whether the concrete is lightweight. Defaults to False.
-            density (float, optional): pcf, Unit weight of lightweight concrete (required if is_lightweight is True).
+            density (float, optional): pcf, Unit weight of lightweight concrete (required if is_lightweight is True). Defaults to None.
         """
         self.fc = fc
         self.is_lightweight = is_lightweight
@@ -86,15 +86,15 @@ class Concrete:
         raise NotImplementedError("Concrete stress method not implemented.")
     
     def __repr__(self):
-        return f"Concrete Material: {self.name}, fc: {self.fc} psi, E: {self.E} psi, fr: {self.fr} psi"
+        return f"Concrete Material: fc: {self.fc} psi, E: {self.E} psi, fr: {self.fr} psi"
     
     def __str__(self):
-        return f"Concrete Material: {self.name}, fc: {self.fc} psi, E: {self.E} psi, fr: {self.fr} psi"
+        return f"Concrete Material: fc: {self.fc} psi, E: {self.E} psi, fr: {self.fr} psi"
 
 
 class ACIConcrete(Concrete):
     def __init__(self, fc: float, is_lightweight: bool = False, density: float = None) -> None:
-        super().__init__(fc)
+        super().__init__(fc, is_lightweight, density)
         self.name = "ACI Concrete"
     
     @property
@@ -281,7 +281,45 @@ class BilinearA992Steel(BilinearSteel):
     "ASTM A992 steel material with bilinear stress-strain curve."
     def __init__(self, name= "A992", fy: float=50e3, fu: float=65e3, alpha: float=0.01) -> None:
         super().__init__(name, fy, fu, alpha)
+
+
+class PrestressingSteel():
+    def __init__(self, grade: str, fpu: float) -> None:
+        """Defines prestressed reinforcement material properties.
+
+        Args:
+            grade (str): Grade of the prestressed reinforcement material.
+            fpu (float): specified tensile strength of the prestressed reinforcement material (psi).
+        """
+        self.grade = grade
+        self.fpu = fpu
     
+    @property
+    def Ep(self) -> float:
+        "Returns modulus of elasticity for prestressing steel in psi per ACI 318-25 Section 20.3.2.1."
+        return 29e6
+    
+    @property
+    def fpy(self) -> float:
+        "Returns yield strength (fpy) for prestressing steel in psi per book titled Post-Tensioned Concrete Principles and Practice, 3rd Edition, By Drik Bonday & Bryan Allred, Page 86."
+        return 0.9 * self.fpu
+class PrestressingA416Strand(PrestressingSteel):
+    "ASTM A416 steel strand material with bilinear stress-strain curve."
+    def __init__(self, grade = "A416", f_pu: float=270e3) -> None:
+        super().__init__(grade, f_pu)
+        
+
+class PrestressingA421Wire(PrestressingSteel):
+    "ASTM A421 steel wire material with bilinear stress-strain curve."
+    def __init__(self, grade = "A421", f_pu: float=250e3) -> None:
+        super().__init__(grade, f_pu)
+        
+        
+class PrestressingA722HighStrengthBar(PrestressingSteel):
+    "ASTM A722 high-strength bar material with bilinear stress-strain curve."
+    def __init__(self, grade = "A722", f_pu: float=150e3) -> None:
+        super().__init__(grade, f_pu)
+        
 class RambergOsgoodSteel(Steel, Material):
     "Uses Ramberg-Osgood equation for stress-strain relationship."
     def __init__(self, name:str, fy: float, fu: float, K: float, n:float, alpha: float=0.01) -> None:

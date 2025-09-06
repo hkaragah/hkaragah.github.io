@@ -13,10 +13,11 @@ from enum import Enum
 from dataclasses import dataclass
 from typing import Tuple, List, Union, Optional, Callable
 from scipy.optimize import root_scalar, fsolve
+from abc import ABC, abstractmethod
 
 from assets.modules.shapes import Point, Rectangle, Circle, get_circle_group_centroid
 from assets.modules.materials import ACIConcrete, Concrete
-from assets.modules.steel import LongitudinalRebar, TransverseRebar
+from assets.modules.steel import LongitudinalRebar, TransverseRebar, PrestressingTendon
 
 
 # Constants and Enums ##########################################
@@ -72,13 +73,13 @@ class RectangleSection:
 
 class RectangleReinforcedSection(RectangleSection):
     """A class representing a rectangular concrete beam section.
-    Inherits from RectangleSection and is used to model concrete beams with rebars.
+    Inherits from RectangleSection and is used to model a concrete beam section with non-prestressed longitudinal and transverse reinforcement. Longitudinal prestressed tendons are not supported. 
     """
     
     def __init__(self, shape: Rectangle, mat: Concrete, cover: float, center: Union[Point, Tuple[float, float]] = (0.0, 0.0)):
         super().__init__(shape, mat, cover, center)
         self._long_bars: List[LongitudinalRebar] = []
-        self._trans_bars: List[TransverseRebar] = []   
+        self._trans_bars: List[TransverseRebar] = [] 
         
     @property
     def long_bars(self) -> List[LongitudinalRebar]:
@@ -298,15 +299,84 @@ class RectangleReinforcedSection(RectangleSection):
         return self.gross_area - long_bar_area 
 
 
+
+# Define a protocol for prestressed sections that include shape, mat, tendon
+class PrestressedSection(ABC):
+    @property
+    @abstractmethod
+    def shape(self) -> Union[Rectangle]:
+        pass
+
+    @property
+    @abstractmethod
+    def mat(self) -> Concrete:
+        pass
+
+    @property
+    @abstractmethod
+    def tendon(self) -> PrestressingTendon:
+        pass
+        
+    @property
+    def fpc(self) -> float:
+        """Returns compressive stress in concrete after losses at the centroid of the cross-section (F/A)."""
+        pass
+
+
+class PrestressedRecangularSection(RectangleReinforcedSection):
+    def __init__(self, shape: Rectangle, mat: Concrete, cover: float, center: Union[Point, Tuple[float, float]] = (0.0, 0.0)):
+        super().__init__(shape, mat, cover, center)
+        self._tendon: PrestressingTendon = None
+        
+    def add_tendon(self, tendon: PrestressingTendon, center: Union[Point, Tuple[float, float]]):
+        """Adds a prestressing tendon to the section.
+
+        Args:
+            tendon (PrestressingTendon): Tendon object to be added.
+            center (Union[Point, Tuple[float, float]]): The center point of the tendon.
+
+        """
+        if not isinstance(tendon, PrestressingTendon):
+            raise TypeError("tendon must be an instance of PrestressingTendon.")
+        self._tendon = deepcopy(tendon)
+        if isinstance(center, tuple):
+            center = Point(*center)
+        self._tendon.center = center
+        
+    @property
+    def shape(self) -> Rectangle:
+        """Returns the shape of the section."""
+        return self._shape
+    
+    @property
+    def mat(self) -> Concrete:
+        """Returns the concrete material of the section."""
+        return self._mat
+        
+    @property
+    def tendon(self) -> PrestressingTendon:
+        """Returns the prestressing tendon in the section."""
+        return self._tendon
+    
+        
+    @property
+    def fpc(self) -> float:
+        """Returns compressive stress in concrete after losses at the centroid of the cross-section (F/A)."""
+        if self._tendon is None:
+            raise ValueError("No tendon has been added to the section.")
+        net_area = self.shape.area - self.tendon.Aps
+        return self.tendon.prestressing_force / net_area
+
 class GeometryAnalyzer:
-    def __init__(self, section: RectangleReinforcedSection, direction: BendingDirection):
+    def __init__(self, section: Union[RectangleReinforcedSection, PrestressedSection], direction: BendingDirection):
         """
         Args:
-            section (RectangleReinforcedSection): The concrete section.
+            section (Union[RectangleReinforcedSection, PrestressedSection]): The concrete section.
             direction (BendingDirection): The bending direction (must be an enum, not a string).
         """
         self.section = section
         self.direction = direction
+        
     def get_xFiber_coord(self):
         ref_points = {
             BendingDirection.POSITIVE_X: Point(self.section.shape.center.x, self.section.shape.y_min),
@@ -315,11 +385,13 @@ class GeometryAnalyzer:
             BendingDirection.NEGATIVE_Y: Point(self.section.shape.x_min, self.section.shape.center.y)
         }
         return ref_points.get(self.direction, None)
+    
     def section_height(self):
         if self.direction in [BendingDirection.POSITIVE_X, BendingDirection.NEGATIVE_X]:
             return self.section.shape.y_max - self.section.shape.y_min
         else:
             return self.section.shape.x_max - self.section.shape.x_min
+        
     def section_width(self):
         if self.direction in [BendingDirection.POSITIVE_X, BendingDirection.NEGATIVE_X]:
             return self.section.shape.x_max - self.section.shape.x_min
@@ -334,10 +406,13 @@ class GeometryAnalyzer:
             return sum(bar.Ax for bar in self.section.trans_bars)
         else:
             return sum(bar.Ay for bar in self.section.trans_bars)
+        
     def get_concrete_strip_depth(self, n_disc=1000):
         height = self.section_height()
         strip_thk = height / n_disc
         return np.linspace(-height/2 + strip_thk/2, height/2 - strip_thk/2, n_disc).reshape(-1, 1)
+    
+    
     def get_concrete_strip_net_area(self, n_disc=1000):
         if not self.section.long_bars:
             return np.zeros((n_disc, 1))
@@ -354,6 +429,19 @@ class GeometryAnalyzer:
         for i, strip in enumerate(concrete_strips):
             net_areas[i] = strip.get_net_area(bar_shapes)
         return net_areas.reshape(-1, 1)
+    
+    def get_tendon_effective_depth(self) -> float:
+        """Returns the distance from extreme compression fiber to centroid of prestressing strands, dp (inches). The returned value is positive."""
+        if self.section.tendon is None:
+            raise ValueError("No tendon has been added to the section.")
+        if self.direction == BendingDirection.POSITIVE_X:
+            return self.section.tendon.center.y - self.section.shape.y_min
+        elif self.direction == BendingDirection.NEGATIVE_X:
+            return self.section.shape.y_max - self.section.tendon.center.y
+        elif self.direction == BendingDirection.POSITIVE_Y:
+            return self.section.shape.x_max - self.section.tendon.center.x
+        else:  # BendingDirection.NEGATIVE_Y
+            return self.section.tendon.center.x - self.section.shape.x_min
 
 class StrainAnalyzer:
     def __init__(self, section: RectangleReinforcedSection, direction: BendingDirection):
@@ -610,9 +698,9 @@ class EquilibriumSolver:
 
 
 class UniaxialBending:
-    def __init__(self, sec: RectangleReinforcedSection, bending_direction):
-        if not isinstance(sec, RectangleReinforcedSection):
-            raise TypeError("'sec' must be an instance of 'RectangleReinforcedSection'.")
+    def __init__(self, sec: Union[RectangleReinforcedSection, PrestressedSection], bending_direction):
+        if not isinstance(sec, (RectangleReinforcedSection, PrestressedSection)):
+            raise TypeError("'sec' must be an instance of 'RectangleReinforcedSection' or 'PrestressedSection'.")
         if isinstance(bending_direction, str):
             try:
                 self._dir = BendingDirection(bending_direction.lower())
@@ -684,6 +772,9 @@ class UniaxialBending:
     def get_compressive_effective_depth(self, neutral_depth):
         return self.force.get_compressive_effective_depth(neutral_depth)
     
+    def get_tendon_effective_depth(self):
+        return self.geometry.get_tendon_effective_depth()
+    
     def get_xBar_depth(self, neutral_depth: Optional[Union[float, np.ndarray]] = None) -> Union[np.ndarray, None]:
         return self.force.get_xBar_depth(neutral_depth, self.section_height())
     
@@ -699,533 +790,6 @@ class UniaxialBending:
     def get_concrete_force(self, neutral_depth, n_disc=1000):
         return self.force.get_concrete_force(neutral_depth, n_disc)
 
-    # """A class representing uniaxial bending of a rectangular concrete section.
-    # This class is used to compute the bending capacity of a concrete section under uniaxial bending.
-    # """
-    # def __init__(self, sec: RectangleReinforcedSection, bending_direction: str):
-    #     """Initializes the UniaxialBending object.
-
-    #     Args:
-    #         con (RectangleReinforcedSection): Concrete section object containing the longitudinal rebars.
-    #         bending_direction (str): Direction of the bending, must be one of:
-    #             'x': when bending vector is in the positive x direction (bending about the x-axis causing compression on the positive y side)
-    #             '-x': when bending vector is in the negative x direction (bending about the x-axis causing compression on the negative y side)
-    #             'y': when bending vector is in the positive y direction (bending about the y-axis causing compression on the positive x side)
-    #             '-y': when bending vector is in the negative y direction (bending about the y-axis causing compression on the negative x side)
-
-    #     Raises:
-            
-    #     """
-        
-    #     if not isinstance(sec, RectangleReinforcedSection):
-    #         raise TypeError("sec must be an instance of RectangleReinforcedSection.")
-        
-    #     self._sec = sec
-    #     self._dir = self._validate_direction(bending_direction)
-        
-    # @property
-    # def sec(self) -> RectangleReinforcedSection:
-    #     """Returns the concrete section."""
-    #     return self._sec
-    
-    # @property
-    # def dir(self) -> str:
-    #     """Returns the bending direction."""
-    #     return self._dir
-    
-    # @property
-    # def _depth_multiplier(self) -> int:
-    #     """Returns the multiplier for the depth depending on the bending direction.
-
-    #     Returns:
-    #         int: 1 if the '-x' and '+y' bending direction, -1 if the bending direction is '+x' or '-y'.
-    #     """
-    #     return 1 if self._dir in ['-x', 'y'] else -1
-    
-    # @staticmethod
-    # def _validate_direction(direction: str) -> str:
-    #     """Checks if the given direction is valid.
-        
-    #     Args:
-    #         direction (str): Direction string to check.
-        
-    #     Raises:
-    #         TypeError: If the direction is not a string.
-    #         ValueError: If the direction is None or not one of the valid options.
-    #     """
-    #     valid_directions = ['x', '-x', 'y', '-y']
-        
-    #     if not isinstance(direction, str):
-    #         raise TypeError("Direction must be a string.")
-        
-    #     if direction is None:
-    #         raise ValueError("Direction cannot be None.")
-        
-    #     direction = direction.lower()
-    #     if direction not in valid_directions:
-    #         raise ValueError(f"Direction must be one of {valid_directions}.")
-        
-    #     return direction
-    
-    # @property
-    # def net_area(self) -> float:
-    #     """Returns the net area of the section."""
-    #     long_bar_area = sum([bar.area for bar in self.sec.long_bar])
-    #     return self.sec.gross_area - long_bar_area
-
-    # @property
-    # def trans_bar_area(self) -> float:
-    #     """Returns the total area of transverse bars in the section."""
-    #     if not self.sec.trans_bars:
-    #         return 0.0
-        
-    #     if self._dir in ['x', '-x']:
-    #         return sum(bar.Ax for bar in self.sec.trans_bars)
-    #     elif self._dir in ['y', '-y']:
-    #         return sum(bar.Ay for bar in self.sec.trans_bars) 
-
-    # def get_tensile_rebars(self, neutral_depth: Union[float, np.ndarray]) -> List[LongitudinalRebar]:
-    #     """Returns the list of tensile rebars in the section based on the bending direction and neutral depth. The tensile rebars are those that are located in the tension zone of the section and are not marked as skin rebars.
-
-    #     Args:
-    #         neutral_depth Union[float, np.ndarray]: The depth of the neutral axis from the fiber of maximum compressive strain considering the bending direction.
-
-    #     Returns:
-    #         List[LongitudinalRebar]: Returns the list of tensile rebars in the section based on the bending direction and neutral depth. Returns an empty list if no rebars are defined.
-    #     """
-    #     if not self.sec.long_bar:
-    #         return []
-        
-    #     if not isinstance(neutral_depth, np.ndarray):
-    #         neutral_depth = np.array([neutral_depth])
-        
-    #     # Define condition functions for each direction
-    #     conditions:dict[str, Callable[[LongitudinalRebar], bool]] = {
-    #         '-x': lambda bar: bar.center.y < self.sec.shape.y_max - neutral_depth,
-    #         'x': lambda bar: bar.center.y > self.sec.shape.y_min + neutral_depth,
-    #         'y': lambda bar: bar.center.x < self.sec.shape.x_max - neutral_depth,
-    #         '-y': lambda bar: bar.center.x > self.sec.shape.x_min + neutral_depth
-    #     }
-        
-    #     return [
-    #         bar for bar in self.sec.long_bar if conditions[self._dir](bar) and not bar.is_skin_bar
-    #     ]
-
-    # def get_compressive_rebars(self, neutral_depth: Union[float, np.ndarray]) -> List[LongitudinalRebar]:
-    #     """Returns the list of compressive rebars in the section based on the bending direction and neutral depth. The compressive rebars are those that are located in the compression zone of the section and are not marked as skin rebars.
-
-    #     Args:
-    #         neutral_depth Union[float, np.ndarray]: The depth of the neutral axis from the fiber of maximum compressive strain considering the bending direction.
-
-    #     Returns:
-    #         List[LongitudinalRebar]: Returns the list of compressive rebars in the section based on the bending direction and neutral depth. Returns an empty list if no rebars are defined.
-    #     """
-        
-    #     if not self.sec.long_bar:
-    #         return []
-        
-    #     if not isinstance(neutral_depth, np.ndarray):
-    #         neutral_depth = np.array([neutral_depth])
-        
-    #     tensile_rebars = self.get_tensile_rebars(neutral_depth)
-        
-    #     return [bar for bar in self.sec.long_bar if bar not in tensile_rebars and not bar.is_skin_bar]
-    
-    # @property
-    # def get_xFiber_coord(self) -> Point:
-    #     """Returns the coordinates of the extreme compressive fiber for the bending direction in a rectangular concrete section. The point of extreme compressive fiber is the location of the fiber of maximum compressive strain.
-
-    #     Returns:
-    #         Point: Point of extreme compressive fiber considering the bending direction.
-    #     """
-    #     ref_points = {
-    #         'x' : Point(self.sec.shape.center.x, self.sec.shape.y_min),
-    #         '-x': Point(self.sec.shape.center.x, self.sec.shape.y_max),
-    #         'y' : Point(self.sec.shape.x_max, self.sec.shape.center.y),
-    #         '-y': Point(self.sec.shape.x_min, self.sec.shape.center.y)
-    #     }
-        
-    #     return ref_points.get(self._dir, None)
-    
-    # def get_tensile_effective_depth(self, neutral_depth: Union[float, np.ndarray]):
-    #     """Computes the distance from extreme compression fiber to centroid of longitudinal tension reinforcement. If no rebar is defined, it returns None.
-        
-    #     Args:
-    #         neutral_depth Union[float, np.ndarray]: The depth of the neutral axis from the fiber of maximum compressive strain considering the bending direction.
-
-    #     Returns:
-    #         float: Distance from extreme compression fiber to centroid of tension reinforcement.
-    #         None: If no rebars are defined.
-
-    #     """
-        
-    #     if not self.sec.long_bar:
-    #         return None
-        
-    #     # Compute the coornidates of the extreme compressive fiber based on the bending direction
-    #     xFiber_coord = self.get_xFiber_coord
-        
-    #     # Compute the centroid of the longitudinal tension reinforcement based on the bending direction
-    #     tensile_rebars = self.get_tensile_rebars(neutral_depth)
-    #     bar_shapes = [bar.shape for bar in tensile_rebars]
-    #     bar_centroid = shapes.get_circle_group_centroid(bar_shapes)
-        
-    #     return bar_centroid.distance_to(xFiber_coord)
-
-    # def get_compressive_effective_depth(self, neutral_depth: Union[float, np.ndarray]):
-    #     """Computes the distance from extreme compression fiber to centroid of longitudinal compression reinforcement. If no rebar is defined, it returns None.
-        
-    #     Args:
-    #         neutral_depth Union[float, np.ndarray]: The depth of the neutral axis from the fiber of maximum compressive strain considering the bending direction.
-
-    #     Returns:
-    #         float: Distance from extreme compression fiber to centroid of tension reinforcement.
-    #         None: If no rebars are defined.
-    #     """
-        
-    #     if not self.sec.long_bar:
-    #         return None
-        
-    #     if not isinstance(neutral_depth, np.ndarray):   
-    #         neutral_depth = np.array([neutral_depth])
-
-    #     # Compute the coornidates of the extreme compressive fiber based on the bending direction
-    #     xFiber_coord = self.get_xFiber_coord
-        
-    #     # Compute the centroid of the longitudinal compression reinforcement based on the bending direction
-    #     compressive_rebars = self.get_compressive_rebars(neutral_depth)
-    #     bar_shapes = [bar.shape for bar in compressive_rebars]
-    #     bar_centroid = shapes.get_circle_group_centroid(bar_shapes)
-        
-    #     return bar_centroid.distance_to(xFiber_coord)
-            
-    #     # if bending_direction == 'x':
-    #     #     return abs(self.x_max - self.long_bar_x_max)
-    #     # elif bending_direction == '-x':
-    #     #     return abs(self.x_min - self.long_bar_x_min)
-    # def get_xBar_depth(self):
-    #     if not self._sec.long_bar:
-    #         return None
-    #     min_depth = {
-    #         BendingDirection.X: max([bar.center.y for bar in self._sec.long_bar]),
-    #         BendingDirection.NEG_X: min([bar.center.y for bar in self._sec.long_bar]),
-    #         BendingDirection.Y: min([bar.center.x for bar in self._sec.long_bar]),
-    #         BendingDirection.NEG_Y: max([bar.center.x for bar in self._sec.long_bar])
-    #     }
-    #     return min_depth[self._dir]
-        
-    #     if not self.sec.long_bar:
-    #         return []
-
-    #     # Find the depth of the outer most tensile rebar based on the bending direction
-    #     depth = self.get_xBar_depth
-        
-    #     # Find the rebars at the outer most depth based on the bending direction
-    #     if self._dir in ['x', '-x']:
-    #         return [bar for bar in self.sec.long_bar if bar.center.y == depth]
-    #     else:
-    #         return [bar for bar in self.sec.long_bar if bar.center.x == depth]        
-
-    # @property
-    # def get_long_bar_depth(self) -> np.ndarray:
-    #     """Returns the depth of each rebar from the extreme compressive fiber based on the bending direction.
-
-    #     Returns:
-    #         np.ndarray: Returns the depth of each rebar from the extreme compressive fiber based on the bending direction. Returns an empty array if no rebars are defined.
-    #     """
-        
-    #     if not self.sec.long_bar:
-    #         return np.array([])
-        
-    #     # Compute the depth of each rebar based on bending direction
-    #     if self._dir in ['x', '-x']:
-    #         return np.array([bar.center.y for bar in self.sec.long_bar]).reshape(-1, 1)
-    #     else: # bending_direction in ['y', '-y']
-    #         return np.array([bar.center.x for bar in self.sec.long_bar]).reshape(-1, 1)  
-        
-    # @property
-    # def section_height(self) -> float:
-    #     """Returns the height of the section based on the bending direction."""
-    #     if self._dir in ['x', '-x']:
-    #         return self.sec.shape.y_max - self.sec.shape.y_min
-    #     else: # bending_direction in ['y', '-y']
-    #         return self.sec.shape.x_max - self.sec.shape.x_min
-        
-    # @property
-    # def section_width(self) -> float:
-    #     """Returns the width of the section based on the bending direction."""
-    #     if self._dir in ['x', '-x']:
-    #         return self.sec.shape.x_max - self.sec.shape.x_min
-    #     else: # bending_direction in ['y', '-y']
-    #         return self.sec.shape.y_max - self.sec.shape.y_min
-
-    # def get_curvature(self, neutral_depth: Union[float, np.ndarray]) -> np.ndarray:
-    #     """Returns the curvature of the section based on the bending direction and neutral depth.
-    #     The curvature is computed as the ratio of the ultimate compressive strain in concrete to the depth of the neutral axis.
-
-    #     Args:
-    #         neutral_depth Union[float, np.ndarray]: The depth of the neutral axis from the fiber of maximum compressive strain considering the bending direction.
-
-    #     Returns:
-    #         np.ndarray: Returns the curvature of the section based on the bending direction and neutral depth.
-            
-    #     Raises:
-    #         ValueError: If neutral_depth is zero.
-    #     """
-        
-    #     if not isinstance(neutral_depth, np.ndarray):
-    #         neutral_depth = np.array([neutral_depth])
-        
-    #     try:
-    #         return np.divide(self.sec.mat.eps_u, neutral_depth)
-    #     except ZeroDivisionError:
-    #         raise ValueError("Neutral depth cannot be zero.")
-
-    # def get_rebar_strain(self, neutral_depth: Union[float, np.ndarray]) -> np.ndarray:
-    #     """Computes the strain in the longitudinal rebars based on the bending direction and neutral depth.
-
-    #     Args:
-    #         neutral_depth Union[float, np.ndarray]: The depth of the neutral axis from the fiber of maximum compressive strain considering the bending direction.
-
-    #     Returns:
-    #         np.ndarray: Returns the strain in the longitudinal rebars based on the bending direction and neutral depth. Returns an empty array if no rebars are defined.
-    #     """
-    #     if not self.sec.long_bar:
-    #         return np.array([])
-        
-    #     if not isinstance(neutral_depth, np.ndarray):
-    #         neutral_depth = np.array([neutral_depth])
-        
-    #     # Compute curvature based on neutral depth
-    #     curv = self.get_curvature(neutral_depth)
-
-    #     # Compute total depth of the section considering the bending direction
-    #     sec_height = self.section_height
-        
-    #     # Compute the depth of each rebar relative to the section centroid based on bending direction
-    #     bar_depth = self.get_long_bar_depth 
-
-    #     # Adjust depth based on bending direction
-    #     mi = self._depth_multiplier
-
-    #     # Calculate strain, stress, and force for each rebar
-    #     return curv.T * (bar_depth * mi - (sec_height / 2 - neutral_depth.T))
-    
-    # def get_rebar_stress(self, neutral_depth: Union[float, np.ndarray]) -> np.ndarray:
-    #     """Computes the stress in the longitudinal rebars based on the bending direction and neutral depth.
-
-    #     Args:
-    #         neutral_depth Union[float, np.ndarray]: The depth of the neutral axis from the fiber of maximum compressive strain considering the bending direction.
-
-    #     Returns:
-    #         np.ndarray: Returns the stress in the longitudinal rebars based on the bending direction and neutral depth. Returns an empty array if no rebars are defined.
-    #     """
-        
-    #     if not self.sec.long_bar:
-    #         return np.array([])
-        
-    #     if not isinstance(neutral_depth, np.ndarray):
-    #         neutral_depth = np.array([neutral_depth])
-            
-    #     # Compute the strain in each rebar based on bending direction and neutral depth
-    #     strain = self.get_rebar_strain(neutral_depth)
-        
-    #     return np.array([bar.mat.stress(eps) for bar, eps in zip(self.sec.long_bar, strain)])
-    
-    # def get_rebar_force(self, neutral_depth: Union[float, np.ndarray]) -> np.ndarray:
-    #     """Computes the force in the longitudinal rebars based on the bending direction and neutral depth.
-
-    #     Args:
-    #         neutral_depth Union[float, np.ndarray]: The depth of the neutral axis from the fiber of maximum compressive strain considering the bending direction.
-
-    #     Returns:
-    #         np.ndarray: Returns the force in the longitudinal rebars based on the bending direction and neutral depth. Returns an empty array if no rebars are defined.
-    #     """
-
-    #     if not self.sec.long_bar:
-    #         return np.array([])
-
-    #     if not isinstance(neutral_depth, np.ndarray):
-    #         neutral_depth = np.array([neutral_depth])
-
-    #     # Compute the stress in each rebar based on bending direction and neutral depth
-    #     stress = self.get_rebar_stress(neutral_depth)
-
-    #     return np.array([bar.area * stress for bar, stress in zip(self.sec.long_bar, stress)])
-
-    # def get_concrete_strip_depth(self, n_disc: int = 100) -> np.ndarray:
-    #     """Descretizes the concrete section and computes the depth of center of the concrete strips considering the bending direction. The strips are oriented parallel to the bending direction.
-
-    #     Args:
-    #         n_disc (int): Number of points to discretize the section. Default is 100.
-
-    #     Returns:
-    #         np.ndarray: Returns the depth of the center of the concrete strips.
-    #     """
-        
-    #     # Compute total height of the section considering the bending direction
-    #     height = self.section_height
-        
-    #     # Calculate the thickness of each strip based on the number of points
-    #     strip_thk = height / n_disc
-        
-    #     return np.linspace(-height/2 + strip_thk/2, height/2 - strip_thk/2, n_disc).reshape(-1, 1)
-
-    # def get_concrete_strip_net_area(self, n_disc: int = 100) -> np.ndarray:
-    #     """Computes the net area of each concrete strip based on the bending direction and number of points. The net area is the area of the concrete strip minus the area of the rebars.
-
-    #     Args:
-    #         n_disc (int): Number of points to discretize the section. Default is 100.
-
-    #     Returns:
-    #         np.ndarray: Returns the net area of each concrete strip. Returns an array of shape (n_disc, 1) where each element is the net area of the corresponding strip. Returns an array of zeros if no rebars are defined.
-    #     """
-    #     if not self.sec.long_bar:
-    #         return np.zeros((n_disc, 1))
-        
-    #     # Compute height and height of the section based on the bending direction
-    #     height = self.section_height
-    #     width = self.section_width
-        
-    #     # Compute the depth and thickness of the center of each strip based on bending direction
-    #     depth = self.get_concrete_strip_depth(n_disc)
-    #     thk = height / n_disc
-
-    #     # Create concrete strips based on section orientation
-    #     if self._dir in ['x', '-x']:
-    #         concrete_strips = [
-    #             Rectangle(width, thk, (self.sec.shape.center.x, depth[0])) for depth in depth
-    #             ]
-    #     else: # bending_direction in ['y', '-y']:
-    #         concrete_strips = [
-    #             Rectangle(thk, width, (depth[0], self.sec.shape.center.y)) for depth in depth
-    #             ]
-
-    #     # Calculate net areas of strips subtracting rebar areas
-    #     bar_shapes = [bar.shape for bar in self.sec.long_bar]
-    #     net_areas = np.zeros_like(concrete_strips, dtype=float)
-    #     for i, strip in enumerate(concrete_strips):
-    #         net_areas[i] = strip.get_net_area(bar_shapes)
-            
-    #     return net_areas.reshape(-1, 1)
-
-    # def get_concrete_strain(self, neutral_depth: Union[float, np.ndarray], n_disc: int = 100) -> np.ndarray:
-    #     """Computes the strain in the concrete section based on the bending direction and neutral depth.
-
-    #     Args:
-    #         neutral_depth Union[float, np.ndarray]: The depth of the neutral axis from the fiber of maximum compressive strain considering the bending direction.
-    #         n_disc: Number of points to discretize the section. Default is 100.
-
-    #     Returns:
-    #         np.ndarray: Returns the strain in the concrete section based on the bending direction and neutral depth.
-    #     """
-    #     if not isinstance(neutral_depth, np.ndarray):
-    #         neutral_depth = np.array([neutral_depth])
-        
-    #     # Compute curvature based on neutral depth
-    #     curv = self.get_curvature(neutral_depth)
-
-    #     # Compute total depth of the section considering the bending direction
-    #     height = self.section_height
-
-    #     # Compute the depth of the center of each strip based on bending direction
-    #     depth = self.get_concrete_strip_depth(n_disc)
-        
-    #     # Adjust depth of concrete strips based on bending direction
-    #     mi = self._depth_multiplier
-
-    #     return curv.T * (depth * mi - (height / 2 - neutral_depth.T))
-
-    # def get_concrete_stress(self, neutral_depth: Union[float, np.ndarray], n_disc: int = 100) -> np.ndarray:
-    #     """Computes the stress in the concrete section based on the bending direction and neutral depth.
-
-    #     Args:
-    #         neutral_depth Union[float, np.ndarray]: The depth of the neutral axis from the fiber of maximum compressive strain considering the bending direction.
-    #         n_disc: Number of points to discretize the section. Default is 100.
-
-    #     Returns:
-    #         np.ndarray: Returns the stress in the concrete section based on the bending direction and neutral depth.
-    #     """
-    #     if not isinstance(neutral_depth, np.ndarray):
-    #         neutral_depth = np.array([neutral_depth])
-
-    #     # Compute strain at the center of each strip
-    #     strain = self.get_concrete_strain(neutral_depth, n_disc)
-        
-    #     return self.sec.mat.stress(strain)
-    
-    # def get_concrete_force(self, neutral_depth: Union[float, np.ndarray], n_disc: int = 100) -> np.ndarray:
-    #     """Calculate forces in a rectangular concrete section due to bending.
-        
-    #     Args:
-    #         neutral_depth Union[float, np.ndarray]: The depth of the neutral axis from the fiber of maximum compressive strain considering the bending direction. If 'm' values are provided, it is of shape (m,) or (m, 1) and the function will compute the moment for each value.
-    #         n_disc: Number of points to discretize the section. Default is 100.
-            
-    #     Returns:
-    #         np.ndarray: Returns the force in each concrete strip based on the bending direction and neutral depth. Returns an array of shape (n_disc, 1) where each element is the force in the corresponding strip.
-    #     """
-    #     if not isinstance(neutral_depth, np.ndarray):
-    #         neutral_depth = np.array([neutral_depth])
-        
-    #     # Compute the net area of each concrete strip
-    #     net_areas = self.get_concrete_strip_net_area(n_disc)
-        
-    #     # Calculate stress at the center of each strip
-    #     stress = self.get_concrete_stress(neutral_depth, n_disc)
-        
-    #     return stress * net_areas
-
-    # def get_section_internal_force(self, neutral_depth: Union[float, np.ndarray], n_disc: int = 100) -> float:
-    #     """Computes the total internal force in the section based on the bending direction and neutral depth. the total internal force is the sum of the forces in the longitudinal rebars (both tensile and compressive) and the concrete compression zone at the given neutral depth.
-
-    #     Args:
-    #         neutral_depth Union[float, np.ndarray]: The depth of the neutral axis from the fiber of maximum compressive strain considering the bending direction. If 'm' values are provided, it is of shape (m,) or (m, 1) and the function will compute the moment for each value.
-    #         n_disc: Number of points to discretize the section. Default is 100.
-
-    #     Returns:
-    #         float: Returns the total internal force in the section based on the bending direction and neutral depth.
-    #     """
-    #     if not isinstance(neutral_depth, np.ndarray):
-    #         neutral_depth = np.array([neutral_depth])
-        
-    #     # Compute the total rebar forces at the given neutral depth
-    #     rebar_forces = self.get_rebar_force(neutral_depth) # shape = (n_rebars, m)
-    #     total_rebar_force = rebar_forces.sum(axis=0) # shape = (m, 1)
-
-    #     # Compute the total concrete forces at the given neutral depth
-    #     concrete_forces = self.get_concrete_force(neutral_depth, n_disc) # shape = (n_disc, m)
-    #     total_concrete_force = concrete_forces.sum(axis=0) # shape = (m, 1)
-        
-    #     return total_rebar_force + total_concrete_force  
-
-
-    # def get_section_internal_moment(self, neutral_depth: Union[float, np.ndarray], n_disc: int = 100) -> float:
-    #     """Computes the total moment in the section based on the bending direction and neutral depth. The total moment is the sum of the moments in the longitudinal rebars (both tensile and compressive) and the concrete compression zone at the given neutral depth.
-
-    #     Args:
-    #         neutral_depth Union[float, np.ndarray]: The depth of the neutral axis from the fiber of maximum compressive strain considering the bending direction. If 'm' values are provided, it is of shape (m,) or (m, 1) and the function will compute the moment for each value.
-    #         n_disc: Number of points to discretize the section. Default is 100.
-
-    #     Returns:
-    #         float: Returns the total moment in the section based on the bending direction and neutral depth.
-    #     """
-
-    #     if not isinstance(neutral_depth, np.ndarray):
-    #         neutral_depth = np.array([neutral_depth])
-        
-    #     # Compute the lever arm for the rebars and concrete strips based on the bending direction
-    #     rebar_depth = self.get_long_bar_depth # shape = (n_rebars, 1)
-    #     concrete_depth = self.get_concrete_strip_depth(n_disc) # shape = (n_disc, 1)
-        
-    #     # Compute internal forces in rebars and concrete strips
-    #     rebar_forces = self.get_rebar_force(neutral_depth) # shape = (n_rebars, m)
-    #     concrete_forces = self.get_concrete_force(neutral_depth, n_disc) # shape = (n_disc, m)
-
-    #     # Compute the total moment due to rebars and concrete strips
-    #     total_rebar_moment = (rebar_depth.T @ rebar_forces).sum(axis=0) # shape = (m, 1)
-    #     total_concrete_moment = (concrete_depth.T @ concrete_forces).sum(axis=0) # shape = (m, 1)
-
-    #     return total_rebar_moment + total_concrete_moment
     
     def solve_neutral_depth_equilibrium(self, external_force: float, config: SolverConfig) -> dict:
         """
@@ -1330,12 +894,18 @@ class UniaxialBending:
         # if abs(result['force']) > config.tolerance:
         #     raise ValueError("The section is not in equilibrium with the external force.")
         return result
-
-    
-
+     
         
-        
-    
+class PrestressedUniaxialBendingProtocol(ABC):
+    @property
+    @abstractmethod
+    def sec(self) -> PrestressedSection:
+        pass
+
+    @property
+    @abstractmethod
+    def bending_direction(self) -> BendingDirection:
+        pass    
 
 
 # =============================================================        

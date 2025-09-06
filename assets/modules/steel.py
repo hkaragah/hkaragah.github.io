@@ -10,7 +10,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 import matplotlib.axes
 from assets.modules.shapes import Circle, Point
-from assets.modules.materials import BilinearSteel
+from assets.modules.materials import BilinearSteel, PrestressingSteel
 from typing import Union, Tuple
 import numpy as np
 from math import pi
@@ -31,6 +31,28 @@ _REBAR_DIAMETERS = {
     11: 1.410,
     14: 1.693,
     18: 2.257,
+}
+
+# Area of strands in in^2 based on the strand diameterper ACI 318-25 Appendix D (diameter: area)
+_SEVEN_WIRE_STRAND_AREAS = {
+    "A416": {
+        3/8: 0.085,
+        7/16: 0.115,
+        1/2: 0.153,
+        0.520: 0.167,
+        0.563: 0.192,
+        0.600: 0.217,
+        0.620: 0.231,
+        0.700: 0.294
+    },
+    "A421": {
+        1/4: 0.036,
+        5/16: 0.058,
+        3/8: 0.080,
+        7/16: 0.108,
+        1/2: 0.144,
+        0.600: 0.216
+    }
 }
 
 
@@ -192,9 +214,112 @@ class TransverseRebar:
         return (f"#{self._size} {'looped' if self._is_looped else 'single-legged'} trans. rebar {'(spiral)' if self._is_spiral else ''}, fy={self.mat.fy}, nLegsX={self._nLegsX}, nLegsY={self._nLegsY}, spacing={self._spacing}")
     
 
-        
-        
+class Prestressing7WireStrand():
+    def __init__(self, dia: float, mat: PrestressingSteel):
+        """ Initializes a prestressing steel section.
+        This class represents a prestressing steel section, which can be used in concrete section analysis and design.
 
+        Args:
+            dia (float): Nominal diameter of the strands (inches).
+            mat (BilinearSteel): The material properties of the rebar.
+        """       
+        
+        if mat.grade not in ["A416", "A421"]:
+            raise ValueError("Material for prestressing strands must be 'A416' or 'A421'.")
+        self._mat = mat
+        
+        if dia not in _SEVEN_WIRE_STRAND_AREAS[mat.grade]:
+            raise ValueError(f"Invalid strand diameter for {mat.grade}. Valid diameters are {sorted(_SEVEN_WIRE_STRAND_AREAS[mat.grade].keys())}.")
+        self._dia = dia
+
+    @property
+    def dia(self) -> float:
+        return self._dia
+    
+    @property
+    def mat(self) -> BilinearSteel:
+        return self._mat
+    
+    @property
+    def area(self) -> float:
+        return _SEVEN_WIRE_STRAND_AREAS[self._mat.grade][self._dia]
+
+
+class PrestressingTendon():
+    def __init__(self, strand: Prestressing7WireStrand, nStrands: int, center: Union[Point, tuple[float, float]] = (0.0, 0.0)):
+        """ Initializes a prestressing tendon section.
+        This class represents a prestressing tendon section, which can be used in concrete section analysis and design. A tendon consists of one or more prestressing strands.
+
+        Args:
+            strand (Prestressing7WireStrand): The prestressing strand used in the tendon.
+            nStrands (int): The number of strands in the tendon.
+            center (Union[Point, tuple[float, float]], optional): C.G.S., The centeroid of the steel tendon. Defaults to (0.0, 0.0).
+        """       
+        
+        self._strand= strand
+        self._nStrands = nStrands
+        if isinstance(center, tuple):
+            center = Point(*center)
+            
+        # Precompute total area of strands
+        self._Aps = self._strand.area * self._nStrands
+        
+        # Equivalent diameter based on area
+        self._equivalent_diameter = (4 * self._Aps / pi) ** 0.5
+        
+        self._shape = Circle(radius=self._equivalent_diameter / 2, center=center)
+
+
+    @property
+    def Aps(self) -> float:
+        "Returns the total area of prestressing strands in the tendon (in^2)."
+        return self._Aps
+    
+    @property
+    def mat(self) -> PrestressingSteel:
+        return self._strand.mat
+    
+    @property
+    def shape(self) -> Circle: 
+        return self._shape
+    
+    @property
+    def center(self) -> Point:
+        return self._shape.center
+    
+    @center.setter
+    def center(self, new_center: Union[Point, tuple[float, float]]):
+        if isinstance(new_center, tuple):
+            new_center = Point(*new_center)
+        self._shape.center = new_center
+    
+    @property
+    def fpu(self):
+        "Returns fpu, the specified tensile strength of prestressing reinforcement (psi)."
+        return self.mat.fpu
+    
+    @property
+    def fpy(self):
+        "Returns fy, the specified yield strength of prestressing reinforcement (psi)."
+        return self.mat.fpy
+    
+    @property
+    def fse(self):
+        "Returns fse, the effective stress in prestressed reinforcement after allowance for all prestress losses (psi)."
+        loss = 15e3 # Typical prestress loss in psi
+        return 0.7 * self.mat.fpu - loss
+    
+    @property
+    def prestressing_force(self) -> float:
+        return self.fse * self.Aps
+    
+    def __repr__(self) -> str:
+        return (f"PrestressingTendon("
+                f"nStrands={self._nStrands}, "
+                f"Aps={self._Aps:.3f} in², "
+                f"eq_dia={self._equivalent_diameter:.3f} in, "
+                f"center={self.center})")
+    
 # Functions #############################################
 
 def get_rebar_diameter(size: int) -> float:
@@ -204,8 +329,8 @@ def get_rebar_diameter(size: int) -> float:
     except KeyError:
         raise ValueError(f"Invalid rebar size: {size}. Valid sizes are {sorted(_REBAR_DIAMETERS.keys())}.")
 
-
-
+    
+    
 # Main Function #########################################
 def main():
     pass

@@ -21,6 +21,7 @@ import os
 from functools import lru_cache
 from itertools import combinations
 from shapely import geometry as geom
+from scipy.optimize import fsolve
 
 
 @dataclass
@@ -645,6 +646,34 @@ def get_circle_group_centroid(circles: List[Circle]) -> Point:
     y_sum = sum([circle.center.y * circle.area for circle in circles])
     
     return Point(x_sum / total_area, y_sum / total_area)
+
+
+def parabola_from_points(p0: Point, p1: Point, y_ext: float, **kwargs) -> Tuple[float, float, float]:
+    """Returns the coefficients of a parabola defined by three points, two end points and the orinate of extreme point (y-coordinate). No need to provide the x coordinate of extreme point. The parabola is in the form of y = ax^2 + bx + c.
+
+    Args:
+        p0 (Point): coordinates of first end point.
+        p1 (Point): coordinates of second end point.
+        y_ext (float): orinate of extreme point.
+
+    Returns:
+        Tuple[float, float, float]: coefficients a, b, c of the parabola equation y = ax^2 + bx + c.
+    """
+    
+    # Define the system of equations
+    def equations(vars: Tuple[float, float, float]) -> Tuple[float, float, float]:
+        a, b, c = vars
+        eq1 = a * p0.x**2 + b * p0.x + c - p0.y
+        eq2 = a * p1.x**2 + b * p1.x + c - p1.y
+        e_ext = -b / (2 * a)
+        eq3 = a * e_ext**2 + b * e_ext + c - y_ext
+        return (eq1, eq2, eq3)
+    
+    # Solve the system of equations
+    initial_guess = kwargs.get('initial_guess', (1, 1, 1))
+    a, b, c = fsolve(equations, initial_guess)
+    
+    return a, b, c
 
 
 # def get_rectangle_net_area(rectangles: List[Rectangle], circles: List[Circle], show_plot: bool = True) -> float:

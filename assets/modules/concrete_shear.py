@@ -6,7 +6,10 @@
 ################################
 import numpy as np
 import assets.modules.concrete as concrete
-from assets.modules.steel import LongitudinalRebar, TransverseRebar
+from assets.modules.steel import LongitudinalRebar, TransverseRebar, PrestressingTendon
+from assets.modules.shapes import Rectangle, Circle, Point
+from assets.modules.materials import Concrete, Steel
+from assets.modules.concrete import RectangleReinforcedSection, PrestressedSection, PrestressedRecangularSection, UniaxialBending
 
 def get_size_effect_mod_factor(d:float):
     """Computes the size effect modification factor, λs, per ACI 318-19 Section 22.5.5.1.3.
@@ -115,4 +118,56 @@ def get_non_prestressed_max_shear_strength(beam: concrete.UniaxialBending, neutr
 def get_non_prestressed_shear_strength(beam: concrete.UniaxialBending, axial_force: float, neutral_depth: float, is_lightweight: bool = True) -> float:
     """Computes the shear strength of non-prestressed concrete members per ACI 318-19 Section 22.5.5.
     """
+    pass
+
+
+def get_vertical_prestress_force(prestress_force: float, strand_profile):
+    "Return vertical component of prestressing force, Vp, at a given section."
+    pass
+
+
+def get_prestressed_web_shear_strength_(beam: UniaxialBending, vertical_prestress: float = 0) -> float:
+    """Returns web-shear strength, Vcw, per ACI 318-19 Section 22.5.6.2.2.
+
+    Args:
+        conc_strength (float): f'c, specified compressive strength of concrete (psi).
+        web_width (float): bw, web width or circular section diameter (inches).
+        sec_height (float): h, overall section height (inches).
+        strand_depth (float): dp, distance from extreme compression fiber to centroid of prestressing strands (inches).
+        prestressed_comp_stress (float): F/A, compressive stress in concrete after losses at the centroid of the cross-section (psi).
+        is_lightweight (bool, optional): Whether the concrete is lightweight. Defaults to False (normal-weight concrete).
+        vertical_prestress (float): Vp, vertical component of prestressing force at the section (lbs). Defaults to 0.
+        
+    Returns:
+        float: nominal shear strength provided by concrete where diagonal cracking results from high principal stress in web (lbs).
+    """
+    
+    lambda_ = concrete.lightweight_factor(beam.sec.mat.is_lightweight)
+    fc = beam.sec.mat.fc
+    fpc = beam.sec.fpc
+    bw = beam.section_width()
+    dp = max(beam.get_tendon_effective_depth(), 0.8 * beam.section_height())
+    Vp = vertical_prestress
+    return (3.5 * lambda_ * np.sqrt(fc)  + 0.3 * fpc) * bw * dp + Vp
+
+
+def get_cracking_moment_due_to_exernal_loads(beam: UniaxialBending, tensile_sec_mod: float, f_pe: float, f_d: float) -> float:
+    """Computes the cracking moment due to external loads, M_cre, per ACI 318-19 Equation 22.5.6.2.1d.
+    
+    Args:
+        f_c (float): f'c, specified compressive strength of concrete (psi).
+        tensile_sec_mod (float): I/y_t, tensile section modulus of the section (in^3).
+        f_pe (float): compressive stress in concrete due only to effective prestress forces, after prestress losses, at extreme fiber of section if tensile stress is caused by externally applied loads (psi).
+        f_d (float): stress due to unfactored dead load, at extreme fiber of section where tensile stress is caused by extrenally applied loads (psi).
+        is_lightweight (bool, optional): Whether the concrete is lightweight. Defaults to False.
+        
+    Returns:
+        float: cracking moment due to external loads, M_cre (in-lbs).
+    """
+    lambda_ = concrete.lightweight_factor(beam.sec.mat.is_lightweight)
+    fc = beam.sec.mat.fc
+    return tensile_sec_mod * (6 * lambda_ * np.sqrt(fc) + f_pe - f_d)
+    
+
+def min_prestressed_flex_shear_strength(f_c: float, bw, dp, V_d, V_i, M_max, is_lightweight: bool = False) -> float:
     pass
