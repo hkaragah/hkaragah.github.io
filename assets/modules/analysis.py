@@ -1,8 +1,24 @@
+from typing import Optional, List, Union
+import uuid
 from scipy.optimize import fsolve
-
+from dataclasses import dataclass, field
+from assets.modules.shapes import Rectangle, Circle, Point, TSection
+from assets.modules.materials import Concrete, ACIConcrete, Steel
   
-    
-def _moment_area_terms(length: float, x: float, pin_rigid_length: float, fix_rigid_length: float):
+def _generate_id(prefix: str) -> str:
+    """Generate a short unique identifier with a given prefix."""
+    return f"{prefix}_{uuid.uuid4().hex[:8]}"
+
+class IDGenerator:
+    counters = {'C':0, 'B':0, 'J':0}
+
+    @classmethod
+    def generate(cls, prefix: str) -> str:
+        cls.counters[prefix] += 1
+        return f"{prefix}{cls.counters[prefix]}"
+
+
+def _moment_area_terms(length: float, x: float, pin_rigid_length: float, fix_rigid_length: float, EI: float = 1):
     """
     Compute moment areas and lever arms for a beam with pinned and fixed ends.
     
@@ -11,6 +27,7 @@ def _moment_area_terms(length: float, x: float, pin_rigid_length: float, fix_rig
         x (float): Distance from pinned end (candidate inflection point).
         pin_rigid_length (float): Length of rigid zone at pinned end.
         fix_rigid_length (float): Length of rigid zone at fixed end.
+        EI (float, optional): Flexural rigidity. Defaults to 1.
 
     Returns:
         tuple: (pin_moment_area, fix_moment_area, pin_lever_arm, fix_lever_arm)
@@ -24,8 +41,8 @@ def _moment_area_terms(length: float, x: float, pin_rigid_length: float, fix_rig
     fix_rigid_moment = (length - x - fix_rigid_length) * fix_moment / (length - x)
 
     # Moment areas
-    pin_moment_area = pin_rigid_moment * (x - pin_rigid_length) / 2
-    fix_moment_area = fix_rigid_moment * (length - x - fix_rigid_length) / 2
+    pin_moment_area = (pin_rigid_moment * (x - pin_rigid_length) / 2) / EI
+    fix_moment_area = (fix_rigid_moment * (length - x - fix_rigid_length) / 2) / EI
 
     # Lever arms (distance from pinned end to centroid of moment areas)
     pin_lever_arm = pin_rigid_length + (x - pin_rigid_length) / 3
@@ -34,20 +51,21 @@ def _moment_area_terms(length: float, x: float, pin_rigid_length: float, fix_rig
     return pin_moment_area, fix_moment_area, pin_lever_arm, fix_lever_arm
 
 
-def get_pinned_fixed_inflection(length: float, pin_rigid_length: float, fix_rigid_length: float):
+def get_pinned_fixed_inflection(length: float, pin_rigid_length: float, fix_rigid_length: float, EI: float = 1):
     """Return the location of inflection point from the pinned end in a beam with pinned and fixed ends. The beam is assumed prismatic with constant EI. The computation is performed using the moment-area method.
 
     Args:
-        length (_type_): total length of the beam.
-        pin_rigid_length (_type_): length of the rigid zone at the pinned end.
-        fix_rigid_length (_type_): length of the rigid zone at the fixed end.
+        length (float): total length of the beam.
+        pin_rigid_length (float): length of the rigid zone at the pinned end.
+        fix_rigid_length (float): length of the rigid zone at the fixed end.
+        EI (float, optional): flexural rigidity of the beam. Defaults to 1.
         
     Returns:
         float: location of inflection point from the pinned end.
     """
     def equation(x):
         
-        pin_area, fix_area, pin_arm, fix_arm = _moment_area_terms(length, x, pin_rigid_length, fix_rigid_length)
+        pin_area, fix_area, pin_arm, fix_arm = _moment_area_terms(length, x, pin_rigid_length, fix_rigid_length, EI)
         
         # Defletion at pinned end
         return pin_area * pin_arm - fix_area * fix_arm
@@ -56,36 +74,38 @@ def get_pinned_fixed_inflection(length: float, pin_rigid_length: float, fix_rigi
     return fsolve(equation, length / 2)[0]
 
 
-def get_pinned_fixed_carry_over_factor(length: float, pin_rigid_length: float, fix_rigid_length: float):
+def get_pinned_fixed_carry_over_factor(length: float, pin_rigid_length: float, fix_rigid_length: float, EI: float = 1):
     """Return the carry-over (CO)factor for a beam with pinned and fixed ends. It shows what portion of the applied moment at the pinned end is carried over to the fixed end. The beam is assumed prismatic with constant EI.
 
     Args:
         length (float): total length of the beam.
         pin_rigid_length (float): length of the rigid zone at the pinned end.
         fix_rigid_length (float): length of the rigid zone at the fixed end.
+        EI (float, optional): flexural rigidity of the beam. Defaults to 1.
 
     Returns:
         float: carry-over factor.
     """
     # Calculate the carry-over factor using the moment-area method
-    x_inf = get_pinned_fixed_inflection(length, pin_rigid_length, fix_rigid_length)
+    x_inf = get_pinned_fixed_inflection(length, pin_rigid_length, fix_rigid_length, EI)
     return (length - x_inf) / x_inf
 
 
-def get_pinned_fixed_stiffness_factor(length: float, pin_rigid_length: float, fix_rigid_length: float):
+def get_pinned_fixed_stiffness_factor(length: float, pin_rigid_length: float, fix_rigid_length: float, EI: float = 1):
     """Return the stiffness factor (K) for a beam with pinned and fixed ends.
 
     Args:
         length (float): total length of the beam.
         pin_rigid_length (float): length of the rigid zone at the pinned end.
         fix_rigid_length (float): length of the rigid zone at the fixed end.
+        EI (float, optional): flexural rigidity of the beam. Defaults to 1.
 
     Returns:
         float: stiffness factor.
     """
     """Return the stiffness factor (K) for a beam with pinned and fixed ends."""
-    x_inf = get_pinned_fixed_inflection(length, pin_rigid_length, fix_rigid_length)
-    pin_area, fix_area, _, _ = _moment_area_terms(length, x_inf, pin_rigid_length, fix_rigid_length)
+    x_inf = get_pinned_fixed_inflection(length, pin_rigid_length, fix_rigid_length, EI)
+    pin_area, fix_area, _, _ = _moment_area_terms(length, x_inf, pin_rigid_length, fix_rigid_length, EI)
     
     # Stiffness factor
     return length / (pin_area - fix_area)
@@ -103,6 +123,203 @@ def get_fixed_end_moment_uniform_load(uniform_load: float, length: float, left_r
     right_rigid_moment = rigid_end_moment + (rigid_end_shear + right_end_shear) * right_rigid_length / 2
     
     return left_end_moment, -right_rigid_moment
+
+
+def get_joint_distribution_factors(kFactors: list):
+    """Convert stiffness factors to distribution factors. The sum of the distribution factors is 1. The distribution factor for each member is its stiffness factor divided by the total stiffness of all members connected to the joint.
+    
+    Args:
+        kFactors (list): list of stiffness factors for each member connected to the joint.
+
+    Returns:
+        list: distribution factors for each member connected to the joint.
+    """
+    total = sum(kFactors)
+    return [k / total for k in kFactors]
+
+@dataclass
+class ConcreteColumn:
+    length: float
+    width: float
+    depth: float # out-of-plane dimension
+    mat: ACIConcrete
+    joint: Optional['Concrete2DJoint'] = None # Back-link to joint
+    id: str = field(init=False)
+    sec: Rectangle = field(init=False)
+    
+    
+    def __post_init__(self):
+        self.id = IDGenerator.generate("C")
+        self.sec = Rectangle(width=self.width, height=self.depth)
+    
+    @property
+    def rigid_length(self):
+        """Forwarded rigid length from the joint."""
+        return self.joint.column_rigid_length if self.joint else None
+    
+    def __repr__(self):
+        return f"Column {self.id} @ {self.joint.id if self.joint else None} [height={self.length:.2f}', {self.width*12}\" x {self.depth*12}\"]"
+    
+    def __str__(self):
+        return f"Column {self.id} @ {self.joint.id if self.joint else None} [height={self.length:.2f}', {self.width*12}\" x {self.depth*12}\"]"
+
+@dataclass
+class ConcreteRectangleBeam:
+    length: float
+    width: float # out-of-plane dimension
+    depth: float
+    mat: ACIConcrete
+    start_joint: Optional['Concrete2DJoint'] = None
+    end_joint: Optional['Concrete2DJoint'] = None
+    id: str = field(init=False)
+    sec: Rectangle = field(init=False)
+    
+    def __post_init__(self):
+        self.id = IDGenerator.generate("B")
+        self.sec = Rectangle(width=self.width, height=self.depth)
+
+    @property
+    def start_rigid_length(self):
+        """Rigid length at the start joint (0 if no start joint)."""
+        return self.start_joint.beam_rigid_length if self.start_joint else 0
+
+    @property
+    def end_rigid_length(self):
+        """Rigid length at the end joint (0 if no end joint)."""
+        return self.end_joint.beam_rigid_length if self.end_joint else 0
+    
+    def __repr__(self):
+        return f"Beam {self.id} @ {self.start_joint.id if self.start_joint else None} --> {self.end_joint.id if self.end_joint else None} [length={self.length:.2f}', {self.width*12}\" x {self.depth*12}\"]"
+
+    def __str__(self):
+        return f"Beam {self.id} @ {self.start_joint.id if self.start_joint else None} --> {self.end_joint.id if self.end_joint else None} [length={self.length:.2f}', {self.width*12}\" x {self.depth*12}\"]"
+
+@dataclass
+class ConcreteTSectionBeam:
+    length: float
+    width: float
+    depth: float
+    flange_width: float
+    flange_thickness: float
+    mat: Concrete
+    start_joint: Optional['Concrete2DJoint'] = None
+    end_joint: Optional['Concrete2DJoint'] = None
+    id: str = field(init=False)
+    sec: TSection = field(init=False)
+
+    def __post_init__(self):
+        self.id = IDGenerator.generate("B")
+        self.sec = TSection(total_height=self.depth, web_width=self.width, flange_width=self.flange_width, flange_thickness=self.flange_thickness)
+        
+    @property
+    def start_rigid_length(self):
+        """Rigid length at the start joint (0 if no start joint)."""
+        return self.start_joint.beam_rigid_length if self.start_joint else 0
+    
+    @property
+    def end_rigid_length(self):
+        """Rigid length at the end joint (0 if no end joint)."""
+        return self.end_joint.beam_rigid_length if self.end_joint else 0
+    
+    def __repr__(self):
+        return f"T-Beam {self.id} @ {self.start_joint.id if self.start_joint else None} --> {self.end_joint.id if self.end_joint else None} [length={self.length:.2f}', web: {self.width*12}\" x {self.depth*12}\", flange: {self.flange_width*12}\" x {self.flange_thickness*12}\"]"
+    
+    def __str__(self):
+        return f"T-Beam {self.id} @ {self.start_joint.id if self.start_joint else None} --> {self.end_joint.id if self.end_joint else None} [length={self.length:.2f}', web: {self.width*12}\" x {self.depth*12}\", flange: {self.flange_width*12}\" x {self.flange_thickness*12}\"]"
+
+@dataclass
+class Concrete2DJoint:
+    left_beam: Optional[Union[ConcreteRectangleBeam, ConcreteTSectionBeam]] = None
+    right_beam: Optional[Union[ConcreteRectangleBeam, ConcreteTSectionBeam]] = None
+    lower_column: Optional[ConcreteColumn] = None
+    upper_column: Optional[ConcreteColumn] = None
+    id: str = field(init=False)
+
+    def __post_init__(self):
+        self.id = IDGenerator.generate("J")
+        # Collect beams and columns in internal lists
+        self._beams: List["ConcreteRectangleBeam"] = [b for b in [self.left_beam, self.right_beam] if b]
+        self._columns: List["ConcreteColumn"] = [c for c in [self.upper_column, self.lower_column] if c]
+        self._elements: List = self._beams + self._columns
+
+        # Validation
+        if len(self._beams) < 1 or len(self._beams) > 2:
+            raise ValueError("A 2D joint must connect to 1 or 2 beams.")
+        if len(self._columns) > 2:
+            raise ValueError("A joint can connect to a maximum of 2 columns.")
+        
+        # Back-link beams
+        for b in self._beams:
+            if b.start_joint is None:
+                b.start_joint = self
+            elif b.end_joint is None:
+                b.end_joint = self
+            else:
+                raise ValueError(f"Beam {b.id} is already connected to two joints.")
+
+        # Back-link columns
+        for c in self._columns:
+            if c.joint is not None:
+                raise ValueError(f"Column {c.id} is already linked to a joint.")
+            c.joint = self
+            
+    def __repr__(self):
+        return f"2D Joint {self.id} @ {self.left_beam.id if self.left_beam else None}← →{self.right_beam.id if self.right_beam else None}, {self.lower_column.id if self.lower_column else None}↓ ↑{self.upper_column.id if self.upper_column else None}"
+    
+    def __str__(self):
+        return f"2D Joint {self.id} @ {self.left_beam.id if self.left_beam else None}← →{self.right_beam.id if self.right_beam else None}, {self.lower_column.id if self.lower_column else None}↓ ↑{self.upper_column.id if self.upper_column else None}"
+
+    @property
+    def beam_rigid_length(self):
+        """Return half of the sum of connected column widths, or 0 if no columns."""
+        if not self._columns:
+            return 0
+        return sum([c.width / 2 for c in self._columns]) / len(self._columns)
+        
+    @property
+    def column_rigid_length(self):
+        """Return half of the sum of connected beam heights, or None if no beams."""
+        if not self._beams:
+            return None
+        return sum([b.depth / 2 for b in self._beams]) / len(self._beams)
+    
+    @property
+    def stiffness_factors(self):
+        """Return stiffness factors for connected beams."""
+        k_factors = {}
+        for b in self._beams:
+            EI = b.mat.E * (144/1e3) * b.sec.moment_inertia()[0]
+            k = get_pinned_fixed_stiffness_factor(b.length, b.start_rigid_length, b.end_rigid_length, EI)
+            k_factors[b.id] = k
+        for c in self._columns:
+            EI = c.mat.E * (144/1e3) * c.sec.moment_inertia()[0]
+            k = get_pinned_fixed_stiffness_factor(c.length, c.rigid_length, 0, EI)
+            k_factors[c.id] = k
+        return k_factors
+    
+    @property
+    def distribution_factors(self):
+        """Return distribution factors for connected beams and columns."""
+        k_factors = list(self.stiffness_factors.values())
+        d_factors = get_joint_distribution_factors(k_factors)
+        return dict(zip(self.stiffness_factors.keys(), d_factors))
+    
+    @property
+    def carry_over_factors(self):
+        """Return carry-over factors for connected beams."""
+        co_factors = {}
+        for b in self._beams:
+            EI = b.mat.E * (144/1e3) * b.sec.moment_inertia()[0]
+            co = get_pinned_fixed_carry_over_factor(b.length, b.start_rigid_length, b.end_rigid_length, EI)
+            co_factors[b.id] = co
+        for c in self._columns:
+            EI = c.mat.E * (144/1e3) * c.sec.moment_inertia()[0]
+            co = get_pinned_fixed_carry_over_factor(c.length, c.rigid_length, 0, EI)
+            co_factors[c.id] = co
+        return co_factors
+    
+    
+
 
 # Main function =========================================================
 def main():

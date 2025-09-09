@@ -10,7 +10,7 @@ from copy import deepcopy
 import matplotlib
 import matplotlib.axes
 import numpy as np
-from math import pi
+from math import pi, atan2
 from typing import Protocol, Union, Tuple, Optional, List, Dict
 from abc import ABC, abstractmethod
 from math import pi, sqrt, sin, cos, radians, degrees
@@ -211,22 +211,40 @@ class RectangleParams:
         
 class Rectangle:
     def __init__(self, *args, **kwargs):
-        # Handle positional arguments: width, height, [center], [rotation]
-        if len(args) >= 2:
-            kwargs = {
-                'width': args[0],
-                'height': args[1],
-                'center': args[2] if len(args) > 2 else Point(0, 0),
-                'rotation': args[3] if len(args) > 3 else 0
-            }
+        """
+        Accepts:
+          Rectangle(width, height, [center], [rotation])
+          Rectangle(width=..., height=..., center=..., rotation=...)
+          Rectangle(width, height, center=(x,y), rotation=...)
+        """
+        # 1) Merge positionals into kwargs (without clobbering provided keywords)
+        if len(args) >= 1 and 'width' not in kwargs:
+            kwargs['width'] = args[0]
+        if len(args) >= 2 and 'height' not in kwargs:
+            kwargs['height'] = args[1]
+        if len(args) >= 3 and 'center' not in kwargs:
+            kwargs['center'] = args[2]
+        if len(args) >= 4 and 'rotation' not in kwargs:
+            kwargs['rotation'] = args[3]
 
-        center = kwargs.get('center', Point(0, 0))
+        # 2) Defaults
+        kwargs.setdefault('width', None)
+        kwargs.setdefault('height', None)
+        kwargs.setdefault('center', Point(0, 0))
+        kwargs.setdefault('rotation', 0.0)
+        
+        # 3) Validate required fields
+        if kwargs['width'] is None or kwargs['height'] is None:
+            raise TypeError("Rectangle requires width and height.")
+
+        # 4) Normalize center
+        center = kwargs['center']
         if isinstance(center, tuple):
             center = Point(*center)
         kwargs['center'] = center
 
+        # 5) Build params and assign
         params = RectangleParams(**kwargs)
-        
         self.width = params.width
         self.height = params.height
         self._center = params.center
@@ -407,6 +425,157 @@ class Rectangle:
     
     def __str__(self):
         return f"Rectangle(width={self.width:.3f}, height={self.height:.3f}, center={self.center}, rotation={self.rotation:.3f})"
+
+
+@dataclass
+class TSectionParams:
+    total_height: float
+    web_width: float
+    flange_width: float
+    flange_thickness: float
+    center: "Point" = field(default_factory=lambda: Point(0, 0))
+    rotation: float = 0.0  
+    
+
+class TSection:
+    def __init__(self, *args, **kwargs) -> None:
+        """
+        TSection(total_height, web_width, flange_width, flange_thickness, [center], [rotation])
+        or keyword args.
+        """
+
+        # 1) Merge positionals into kwargs without overwriting provided keywords
+        if len(args) >= 1 and "total_height" not in kwargs:
+            kwargs["total_height"] = args[0]
+        if len(args) >= 2 and "web_width" not in kwargs:
+            kwargs["web_width"] = args[1]
+        if len(args) >= 3 and "flange_width" not in kwargs:
+            kwargs["flange_width"] = args[2]
+        if len(args) >= 4 and "flange_thickness" not in kwargs:
+            kwargs["flange_thickness"] = args[3]
+        if len(args) >= 5 and "center" not in kwargs:
+            kwargs["center"] = args[4]
+        if len(args) >= 6 and "rotation" not in kwargs:
+            kwargs["rotation"] = args[5]
+            
+        # 2) Defaults
+        kwargs.setdefault("center", Point(0, 0))
+        kwargs.setdefault("rotation", 0.0)
+
+        # 3) Normalize center
+        center = kwargs["center"]
+        if isinstance(center, tuple):
+            center = Point(*center)
+        kwargs["center"] = center
+        
+        # 4) Build params dataclass (raises if required fields missing)
+        params = TSectionParams(**kwargs)
+
+        # 5) Build + align (components should be created using params.rotation)
+        self._create_components(params)
+        self._align_centroid_to_origin()
+        self._rotation = params.rotation
+
+        # 6) Translate to desired center
+        self.center = params.center
+        
+    def _create_components(self, params: TSectionParams) -> None:
+        if params.flange_width < params.web_width:
+            raise ValueError("flange_width must be ≥ web_width for a T-section.")
+
+        # Web: full height, centered initially, pass rotation here
+        self._web: Rectangle = Rectangle(
+            params.web_width,
+            params.total_height,
+            center=Point(0, 0),
+            rotation=params.rotation
+        )
+
+        # Overhang width on each side
+        overhang_total = params.flange_width - params.web_width
+        overhang_each = overhang_total / 2.0
+
+        # y-center of flange rectangles (top strip)
+        y_flange = 0.5 * (params.total_height - params.flange_thickness)
+
+        self._flange_left = None
+        self._flange_right = None
+
+        if overhang_each > 0:
+            # x-centers of left/right overhangs
+            x_left  = - (params.web_width / 2.0 + overhang_each / 2.0)
+            x_right = + (params.web_width / 2.0 + overhang_each / 2.0)
+
+            # Pass rotation here too
+            self._flange_left: Rectangle = Rectangle(
+                overhang_each,
+                params.flange_thickness,
+                center=Point(x_left, y_flange),
+                rotation=params.rotation
+            )
+            self._flange_right: Rectangle = Rectangle(
+                overhang_each,
+                params.flange_thickness,
+                center=Point(x_right, y_flange),
+                rotation=params.rotation
+            )
+        # If overhang_each == 0 → no separate flange rectangles (pure rectangular web)
+
+        
+    def _align_centroid_to_origin(self):
+        centroid = self._get_centroid()
+        for shape in self.components.values():
+            shape.center = shape.center - centroid
+
+    def _get_centroid(self):
+        ax, ay = 0.0, 0.0
+        for shape in self.components.values():
+            ax += shape.area * (shape.center.x - self._web.center.x)
+            ay += shape.area * (shape.center.y - self._web.center.y)
+        return Point(ax / self.area, ay / self.area)
+    
+    @property
+    def components(self) -> Dict[str, Rectangle]:
+        comps = {"web": self._web}
+        if self._flange_left is not None:
+            comps["flange_left"] = self._flange_left
+        if self._flange_right is not None:
+            comps["flange_right"] = self._flange_right
+        return comps
+               
+    @property
+    def area(self) -> float:
+        return sum(shape.area for shape in self.components.values())
+
+    @property
+    def center(self) -> "Point":
+        centroid = self._get_centroid()
+        return self._web.center + centroid
+
+    @center.setter
+    def center(self, new_center: Union["Point", Tuple[float, float]]) -> "Point":
+        if isinstance(new_center, tuple):
+            new_center = Point(*new_center)
+            
+        current_centroid = self.center
+        dx = new_center.x - current_centroid.x
+        dy = new_center.y - current_centroid.y
+        
+        for shape in self.components.values():
+            shape.translate((dx, dy))
+            
+        return new_center
+
+    def moment_inertia(self, angle_deg: float = 0, pivot: Optional[Union["Point", Tuple[float, float]]] = None) -> Tuple[float, float, float]:
+        ix_rt_total = iy_rt_total = ixy_rt_total = 0.0
+        for shape in self.components.values():
+            ix_rt, iy_rt, ixy_rt = shape.moment_inertia(angle_deg=angle_deg, pivot=pivot)
+            area = shape.area
+            ix_rt_total += ix_rt + area * (self.center.y - shape.center.y)**2
+            iy_rt_total += iy_rt + area * (self.center.x - shape.center.x)**2
+            ixy_rt_total += ixy_rt + area * (self.center.y - shape.center.y) * (self.center.x - shape.center.x)
+        return ix_rt_total, iy_rt_total, ixy_rt_total
+        
 
 @dataclass
 class ISectionParams:

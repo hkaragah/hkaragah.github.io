@@ -46,9 +46,9 @@ class Concrete:
             float: psi, Modulus of elasticity (Ec) of concrete.
         """
         if self.is_lightweight:
-            return 57000 * np.sqrt(self.fc)
-        else:
             return self.density ** 1.5 * 33 * np.sqrt(self.fc)
+        else:
+            return 57000 * np.sqrt(self.fc)
     
     @property
     def lambda_(self) -> float:
