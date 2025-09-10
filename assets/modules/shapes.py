@@ -535,6 +535,16 @@ class TSection:
         return Point(ax / self.area, ay / self.area)
     
     @property
+    def yt(self) -> float:
+        """Distance from centroid of section to top fiber."""
+        return self._web.height / 2 - self._get_centroid().y
+    
+    @property
+    def yb(self) -> float:
+        """Distance from centroid of section to bottom fiber."""
+        return self._web.height / 2 + self._get_centroid().y
+    
+    @property
     def components(self) -> Dict[str, Rectangle]:
         comps = {"web": self._web}
         if self._flange_left is not None:

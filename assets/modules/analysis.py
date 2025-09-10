@@ -18,7 +18,7 @@ class IDGenerator:
         return f"{prefix}{cls.counters[prefix]}"
 
 
-def _moment_area_terms(length: float, x: float, pin_rigid_length: float, fix_rigid_length: float, EI: float = 1):
+def _moment_area_terms(length: float, x: float, pin_rigid_length: float, fix_rigid_length: float):
     """
     Compute moment areas and lever arms for a beam with pinned and fixed ends.
     
@@ -27,7 +27,7 @@ def _moment_area_terms(length: float, x: float, pin_rigid_length: float, fix_rig
         x (float): Distance from pinned end (candidate inflection point).
         pin_rigid_length (float): Length of rigid zone at pinned end.
         fix_rigid_length (float): Length of rigid zone at fixed end.
-        EI (float, optional): Flexural rigidity. Defaults to 1.
+
 
     Returns:
         tuple: (pin_moment_area, fix_moment_area, pin_lever_arm, fix_lever_arm)
@@ -41,8 +41,8 @@ def _moment_area_terms(length: float, x: float, pin_rigid_length: float, fix_rig
     fix_rigid_moment = (length - x - fix_rigid_length) * fix_moment / (length - x)
 
     # Moment areas
-    pin_moment_area = (pin_rigid_moment * (x - pin_rigid_length) / 2) / EI
-    fix_moment_area = (fix_rigid_moment * (length - x - fix_rigid_length) / 2) / EI
+    pin_moment_area = pin_rigid_moment * (x - pin_rigid_length) / 2
+    fix_moment_area = fix_rigid_moment * (length - x - fix_rigid_length) / 2
 
     # Lever arms (distance from pinned end to centroid of moment areas)
     pin_lever_arm = pin_rigid_length + (x - pin_rigid_length) / 3
@@ -51,21 +51,20 @@ def _moment_area_terms(length: float, x: float, pin_rigid_length: float, fix_rig
     return pin_moment_area, fix_moment_area, pin_lever_arm, fix_lever_arm
 
 
-def get_pinned_fixed_inflection(length: float, pin_rigid_length: float, fix_rigid_length: float, EI: float = 1):
+def get_pinned_fixed_inflection(length: float, pin_rigid_length: float, fix_rigid_length: float):
     """Return the location of inflection point from the pinned end in a beam with pinned and fixed ends. The beam is assumed prismatic with constant EI. The computation is performed using the moment-area method.
 
     Args:
         length (float): total length of the beam.
         pin_rigid_length (float): length of the rigid zone at the pinned end.
         fix_rigid_length (float): length of the rigid zone at the fixed end.
-        EI (float, optional): flexural rigidity of the beam. Defaults to 1.
         
     Returns:
         float: location of inflection point from the pinned end.
     """
     def equation(x):
         
-        pin_area, fix_area, pin_arm, fix_arm = _moment_area_terms(length, x, pin_rigid_length, fix_rigid_length, EI)
+        pin_area, fix_area, pin_arm, fix_arm = _moment_area_terms(length, x, pin_rigid_length, fix_rigid_length)
         
         # Defletion at pinned end
         return pin_area * pin_arm - fix_area * fix_arm
@@ -74,38 +73,36 @@ def get_pinned_fixed_inflection(length: float, pin_rigid_length: float, fix_rigi
     return fsolve(equation, length / 2)[0]
 
 
-def get_pinned_fixed_carry_over_factor(length: float, pin_rigid_length: float, fix_rigid_length: float, EI: float = 1):
+def get_pinned_fixed_carry_over_factor(length: float, pin_rigid_length: float, fix_rigid_length: float):
     """Return the carry-over (CO)factor for a beam with pinned and fixed ends. It shows what portion of the applied moment at the pinned end is carried over to the fixed end. The beam is assumed prismatic with constant EI.
 
     Args:
         length (float): total length of the beam.
         pin_rigid_length (float): length of the rigid zone at the pinned end.
         fix_rigid_length (float): length of the rigid zone at the fixed end.
-        EI (float, optional): flexural rigidity of the beam. Defaults to 1.
 
     Returns:
         float: carry-over factor.
     """
     # Calculate the carry-over factor using the moment-area method
-    x_inf = get_pinned_fixed_inflection(length, pin_rigid_length, fix_rigid_length, EI)
+    x_inf = get_pinned_fixed_inflection(length, pin_rigid_length, fix_rigid_length)
     return (length - x_inf) / x_inf
 
 
-def get_pinned_fixed_stiffness_factor(length: float, pin_rigid_length: float, fix_rigid_length: float, EI: float = 1):
+def get_pinned_fixed_stiffness_factor(length: float, pin_rigid_length: float, fix_rigid_length: float):
     """Return the stiffness factor (K) for a beam with pinned and fixed ends.
 
     Args:
         length (float): total length of the beam.
         pin_rigid_length (float): length of the rigid zone at the pinned end.
         fix_rigid_length (float): length of the rigid zone at the fixed end.
-        EI (float, optional): flexural rigidity of the beam. Defaults to 1.
 
     Returns:
         float: stiffness factor.
     """
     """Return the stiffness factor (K) for a beam with pinned and fixed ends."""
-    x_inf = get_pinned_fixed_inflection(length, pin_rigid_length, fix_rigid_length, EI)
-    pin_area, fix_area, _, _ = _moment_area_terms(length, x_inf, pin_rigid_length, fix_rigid_length, EI)
+    x_inf = get_pinned_fixed_inflection(length, pin_rigid_length, fix_rigid_length)
+    pin_area, fix_area, _, _ = _moment_area_terms(length, x_inf, pin_rigid_length, fix_rigid_length)
     
     # Stiffness factor
     return length / (pin_area - fix_area)
@@ -289,12 +286,12 @@ class Concrete2DJoint:
         k_factors = {}
         for b in self._beams:
             EI = b.mat.E * (144/1e3) * b.sec.moment_inertia()[0]
-            k = get_pinned_fixed_stiffness_factor(b.length, b.start_rigid_length, b.end_rigid_length, EI)
-            k_factors[b.id] = k
+            k = get_pinned_fixed_stiffness_factor(b.length, b.start_rigid_length, b.end_rigid_length)
+            k_factors[b.id] = k * EI / b.length
         for c in self._columns:
             EI = c.mat.E * (144/1e3) * c.sec.moment_inertia()[0]
-            k = get_pinned_fixed_stiffness_factor(c.length, c.rigid_length, 0, EI)
-            k_factors[c.id] = k
+            k = get_pinned_fixed_stiffness_factor(c.length, c.rigid_length, 0)
+            k_factors[c.id] = k * EI / c.length
         return k_factors
     
     @property
@@ -309,12 +306,10 @@ class Concrete2DJoint:
         """Return carry-over factors for connected beams."""
         co_factors = {}
         for b in self._beams:
-            EI = b.mat.E * (144/1e3) * b.sec.moment_inertia()[0]
-            co = get_pinned_fixed_carry_over_factor(b.length, b.start_rigid_length, b.end_rigid_length, EI)
+            co = get_pinned_fixed_carry_over_factor(b.length, b.start_rigid_length, b.end_rigid_length)
             co_factors[b.id] = co
         for c in self._columns:
-            EI = c.mat.E * (144/1e3) * c.sec.moment_inertia()[0]
-            co = get_pinned_fixed_carry_over_factor(c.length, c.rigid_length, 0, EI)
+            co = get_pinned_fixed_carry_over_factor(c.length, c.rigid_length, 0)
             co_factors[c.id] = co
         return co_factors
     
