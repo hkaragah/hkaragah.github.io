@@ -4,6 +4,7 @@ from scipy.optimize import fsolve
 from dataclasses import dataclass, field
 from assets.modules.shapes import Rectangle, Circle, Point, TSection
 from assets.modules.materials import Concrete, ACIConcrete, Steel
+import numpy as np
   
 def _generate_id(prefix: str) -> str:
     """Generate a short unique identifier with a given prefix."""
@@ -313,7 +314,180 @@ class Concrete2DJoint:
             co_factors[c.id] = co
         return co_factors
     
+
+def get_beam_reactions(length: float, uniform_load: float, left_moment: float, right_moment: float):
+    """Return the reactions at the left and right supports of a beam with a uniform load and end moments. Ensure units are consistent (e.g., ft for length, kip/ft for uniform load, and kip-ft for moments).
+
+    Args:
+        length (float): length of the beam.
+        uniform_load (float): uniform load applied to the beam. Positive is downward.
+        left_moment (float): moment applied at the left support. Positive is ccw.
+        right_moment (float): moment applied at the right support. Positive is ccw.
+
+    Returns:
+        tuple: reactions at the left and right supports.
+    """
+    left_shear = (uniform_load * length / 2) + (left_moment / length) + (right_moment / length)
+    right_shear = (uniform_load * length / 2) - (left_moment / length) - (right_moment / length)
+    return left_shear, -right_shear
+
+
+def generate_linear_shear_diagram(
+    beam: Union[ConcreteRectangleBeam, ConcreteTSectionBeam],
+    uniform_load: float,
+    left_shear: float,
+    right_shear: float,
+    n_points: int = 100,
+    atol: float = 1e-12,
+):
+    """
+    Builds (x, V) for a beam with rigid offsets and a uniform load.
+    Ensures an (x, V) pair is included where V == 0 (if it lies in the active span).
     
+    Args:
+        beam (ConcreteRectangleBeam or ConcreteTSectionBeam): The beam object.
+        uniform_load (float): Magnitude of the uniform load applied to the beam.
+        left_shear (float): Shear force at the left support.
+        right_shear (float): Shear force at the right support.
+        n_points (int, optional): Number of points to generate along the beam. Defaults to 100.
+        atol (float, optional): Absolute tolerance for zero checks. Defaults to 1e-12.
+        
+    Returns:
+        tuple: (x, V) where x is the array of positions along the beam and V is the array of shear forces at those positions.
+    """
+    length = beam.length
+    left_rigid_length = beam.start_rigid_length
+    right_rigid_length = beam.end_rigid_length
+
+    if left_rigid_length < 0 or right_rigid_length < 0:
+        raise ValueError("Rigid lengths must be non-negative.")
+    if left_rigid_length + right_rigid_length > length:
+        raise ValueError("Sum of rigid lengths cannot exceed the beam length.")
+    n_points = max(int(n_points), 3)
+
+    a = float(left_rigid_length)
+    b = float(length - right_rigid_length)
+
+    # Build a base grid (no zero-crossing yet)
+    n_mid = max(n_points - 2, 1)  # ensure at least one point in [a,b]
+    x_mid = np.linspace(a, b, n_mid, endpoint=True)
+    x = np.concatenate(([0.0], x_mid, [length]))
+
+    # Insert zero-crossing only if signs differ strictly
+    if (left_shear * right_shear) < 0 and (b - a) > atol:
+        # Shear is linear between (a, Vl) and (b, Vr):
+        Vl, Vr = float(left_shear), float(right_shear)
+        m = (Vr - Vl) / (b - a)  # slope across the active span
+        if abs(m) > atol:
+            x0 = a - Vl / m  # solve Vl + m*(x - a) = 0
+            # Clip to guard against tiny FP drift beyond [a,b]
+            x0 = float(np.clip(x0, a, b))
+            # Insert and de-duplicate
+            x = np.unique(np.concatenate((x, [x0])))
+
+    # Compute V with masks
+    V = np.empty_like(x, dtype=float)
+    m1 = x < a
+    m2 = (x >= a) & (x <= b)
+    m3 = x > b
+
+    V[m1] = left_shear
+    V[m2] = left_shear - uniform_load * x[m2]
+    V[m3] = right_shear
+
+    # Snap exact zero at crossing (nice for plotting/logic)
+    if (left_shear * right_shear) < 0 and (b - a) > atol:
+        zero_mask = (x >= a - atol) & (x <= b + atol)
+        # where sign flips within [a,b], find approximate index closest to zero and set exactly 0
+        if zero_mask.any():
+            idx_zero = np.argmin(np.abs(V[zero_mask]))
+            idx_global = np.where(zero_mask)[0][idx_zero]
+            V[idx_global] = 0.0
+
+    return x, V
+
+
+def generate_quadratic_moment_diagram(x: np.ndarray, shear: np.ndarray, left_moment: float, right_moment: float):
+    """Generate moment diagram for a beam given shear diagram and end moments.
+    Args:
+        x (np.ndarray): Array of positions along the beam.
+        shear (np.ndarray): Array of shear forces at the positions in x.
+        left_moment (float): Moment at the left support.
+        right_moment (float): Moment at the right support.
+        
+    Returns:
+        tuple: (x, M) where x is the array of positions along the beam and M is the array of moments at those positions.
+    """
+    moment = np.zeros_like(x)
+    moment[0] = -left_moment
+
+    for i in range(1, len(x)):
+        dx = x[i] - x[i-1]
+        avg_shear = (shear[i] + shear[i-1]) / 2
+        moment[i] = moment[i-1] + avg_shear * dx
+
+    moment[-1] = right_moment
+
+    return x, moment    
+
+
+def generate_shear_moment_diagrams(beam: Union[ConcreteRectangleBeam, ConcreteTSectionBeam], uniform_load: float, support_moments:tuple[float, float], n_points: int = 100, atol: float = 1e-12) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    """Generate shear and moment diagrams for a beam with rigid offsets, uniform load, and end moments.
+    
+    Args:
+        beam (ConcreteRectangleBeam or ConcreteTSectionBeam): The beam object.
+        uniform_load (float): Magnitude of the uniform load applied to the beam.
+        support_moments (tuple): (left_moment, right_moment) applied at the supports. Positive is ccw.
+        n_points (int, optional): Number of points to generate along the beam. Defaults to 100.
+        atol (float, optional): Absolute tolerance for zero checks. Defaults to 1e-12.
+        
+    Returns:
+        tuple: (x, V, M) where x is the array of positions along the beam, V is the array of shear forces, and M is the array of moments at those positions.
+    """
+    left_moment, right_moment = support_moments
+    
+    left_shear, right_shear = get_beam_reactions(beam.length, uniform_load, left_moment, right_moment)
+    x, V = generate_linear_shear_diagram(beam, uniform_load, left_shear, right_shear, n_points=n_points, atol=atol)
+    x, M = generate_quadratic_moment_diagram(x, V, left_moment, right_moment)
+    return x, V, M
+
+
+def generate_moment_distribution_input(ordered_joints: list[Concrete2DJoint], uniform_loads: dict[float]) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+
+    DF = np.zeros((len(ordered_joints), 2), dtype=float)
+    COF = np.zeros((len(ordered_joints), 2), dtype=float)
+    FEM = np.zeros((len(ordered_joints), 2), dtype=float)
+    
+    for i, joint in enumerate(ordered_joints):
+        for j, member in enumerate(joint._beams):
+            DF[i, j] = joint.distribution_factors.get(member.id, 0)
+            COF[i, j] = joint.carry_over_factors.get(member.id, 0)
+            w = uniform_loads.get(member.id, 0)
+            left_fem, right_fem = get_fixed_end_moment_uniform_load(w, member.length, member.start_rigid_length, member.end_rigid_length)
+            if member.start_joint == joint:
+                FEM[i, j] = left_fem
+            if member.end_joint == joint:
+                FEM[i, j] = right_fem
+        
+    return DF, COF, FEM
+
+
+def distribute_moments(ordered_joints: list[Concrete2DJoint], uniform_loads: dict[float], tol: float = 1e-3, max_iter: int = 100):
+    
+    DF, COF, FEM = generate_moment_distribution_input(ordered_joints, uniform_loads)
+
+    total_moments = FEM.copy()
+    
+    for _ in range(max_iter):
+        # Calculate moment distribution
+        unbalanced_moments = total_moments.sum(axis=1, keepdims=True)
+        distributed_moments = DF * -unbalanced_moments
+        carried_moments = COF * distributed_moments
+        # in-place swap of the first two columns
+        carried_moments[:, [0, 1]] = carried_moments[:, [1, 0]]
+        total_moments += unbalanced_moments + carried_moments
+        
+    return total_moments
 
 
 # Main function =========================================================

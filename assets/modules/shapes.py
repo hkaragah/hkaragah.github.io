@@ -325,6 +325,13 @@ class Rectangle:
         
         return ix_rt, iy_rt, ixy_rt
     
+    def section_modulus(self):
+        """Calculate the elastic section modulus about the strong axis (x-axis)"""
+        ix, _, _ = self.moment_inertia(angle_deg=0)
+        sx_top = ix / (self.height / 2)
+        sx_bot = ix / (self.height / 2)
+        return {"top": sx_top, "bottom": sx_bot}
+    
     @property
     def corners(self) -> List[Point]:
         """Return four corners of the rectangle, counterclockwise from bottom-left"""
@@ -585,6 +592,13 @@ class TSection:
             iy_rt_total += iy_rt + area * (self.center.x - shape.center.x)**2
             ixy_rt_total += ixy_rt + area * (self.center.y - shape.center.y) * (self.center.x - shape.center.x)
         return ix_rt_total, iy_rt_total, ixy_rt_total
+    
+    def section_modulus(self):
+        """Calculate the elastic section modulus about the strong axis (x-axis)"""
+        ix, _, _ = self.moment_inertia(angle_deg=0)
+        sx_top = ix / self.yt
+        sx_bot = ix / self.yb
+        return {"top": sx_top, "bottom": sx_bot}
         
 
 @dataclass
