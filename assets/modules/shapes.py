@@ -847,7 +847,7 @@ def parabola_from_points(p0: Point, p1: Point, y_ext: float, **kwargs) -> Tuple[
     Args:
         p0 (Point): coordinates of first end point.
         p1 (Point): coordinates of second end point.
-        y_ext (float): orinate of extreme point.
+        y_ext (float): ordinate of extreme point.
 
     Returns:
         Tuple[float, float, float]: coefficients a, b, c of the parabola equation y = ax^2 + bx + c.

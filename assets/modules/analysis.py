@@ -356,30 +356,37 @@ def generate_linear_shear_diagram(
         tuple: (x, V) where x is the array of positions along the beam and V is the array of shear forces at those positions.
     """
     length = beam.length
-    a = float(beam.start_rigid_length)
+    
+    # Critical section for moment design (face of column)
+    a = float(beam.start_rigid_length) 
     b = float(length - beam.end_rigid_length)
-   
+       
     if a < 0 or (length - b) < 0:
         raise ValueError("Rigid lengths must be non-negative.")
     if a > b:
         raise ValueError("Sum of rigid lengths cannot exceed the beam length.")    
     
-    n_pts = max(int(n_points), 3)
-    n_mid = n_pts - 2
+    # Critical section for shear design per ACI 315-25, section 9.4.3.2
+    a1 = float(beam.start_rigid_length + beam.depth / 2)
+    b1 = float(length - beam.end_rigid_length - beam.depth / 2)
+    
+    n_pts = max(int(n_points), 7)  # minimum 7 points
+    n_mid = n_pts - 4 # only generating points between a1 and b1
 
-    # Build a base grid with fix size: 0 | [a..b] | L
-    x_mid = np.linspace(a, b, n_mid, endpoint=True)
-    x = np.concatenate(([0.0], x_mid, [length]))
+    # Build a base grid with fix size: 0 | [a, a1..b1, b] | L
+    x_mid = np.linspace(a1, b1, n_mid, endpoint=True)
+    x = np.concatenate(([0.0, a], x_mid, [b, length]))
 
     # If there is a zero crossing, move the nearest interior sample to x0 (no insertion)
-    if (left_shear * right_shear) < 0 and (b - a) > atol:
+    if (left_shear * right_shear) < 0 and length > atol:
         Vl, Vr = float(left_shear), float(right_shear)
-        m = (Vr - Vl) / (b - a)  # linear slope across active span
+        m = (right_shear - left_shear) / length  # linear slope across active span
         if abs(m) > atol:
-            x0 = float(np.clip(a - Vl / m, a, b))
-            # choose nearest interior index (avoid endpoints at 0 and L)
-            k = 1 + np.argmin(np.abs(x[1:-1] - x0))
-            x[k] = x0  # replace, do not insert → length stays n_pts
+            x0 = -left_shear / m
+            if a1 <= x0 <= b1:  # only if within active span
+                # choose nearest interior index (avoid endpoints at 0 and L)
+                k = 1 + np.argmin(np.abs(x[1:-1] - x0))
+                x[k] = x0  # replace, do not insert → length stays n_pts
 
     # Compute V with masks
     V = np.empty_like(x, dtype=float)
