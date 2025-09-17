@@ -295,7 +295,7 @@ class PrestressingSteel():
         self.fpu = fpu
     
     @property
-    def Ep(self) -> float:
+    def Esp(self) -> float:
         "Returns modulus of elasticity for prestressing steel in psi per ACI 318-25 Section 20.3.2.1."
         return 29e6
     

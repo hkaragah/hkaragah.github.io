@@ -356,34 +356,30 @@ def generate_linear_shear_diagram(
         tuple: (x, V) where x is the array of positions along the beam and V is the array of shear forces at those positions.
     """
     length = beam.length
-    left_rigid_length = beam.start_rigid_length
-    right_rigid_length = beam.end_rigid_length
-
-    if left_rigid_length < 0 or right_rigid_length < 0:
+    a = float(beam.start_rigid_length)
+    b = float(length - beam.end_rigid_length)
+   
+    if a < 0 or (length - b) < 0:
         raise ValueError("Rigid lengths must be non-negative.")
-    if left_rigid_length + right_rigid_length > length:
-        raise ValueError("Sum of rigid lengths cannot exceed the beam length.")
-    n_points = max(int(n_points), 3)
+    if a > b:
+        raise ValueError("Sum of rigid lengths cannot exceed the beam length.")    
+    
+    n_pts = max(int(n_points), 3)
+    n_mid = n_pts - 2
 
-    a = float(left_rigid_length)
-    b = float(length - right_rigid_length)
-
-    # Build a base grid (no zero-crossing yet)
-    n_mid = max(n_points - 2, 1)  # ensure at least one point in [a,b]
+    # Build a base grid with fix size: 0 | [a..b] | L
     x_mid = np.linspace(a, b, n_mid, endpoint=True)
     x = np.concatenate(([0.0], x_mid, [length]))
 
-    # Insert zero-crossing only if signs differ strictly
+    # If there is a zero crossing, move the nearest interior sample to x0 (no insertion)
     if (left_shear * right_shear) < 0 and (b - a) > atol:
-        # Shear is linear between (a, Vl) and (b, Vr):
         Vl, Vr = float(left_shear), float(right_shear)
-        m = (Vr - Vl) / (b - a)  # slope across the active span
+        m = (Vr - Vl) / (b - a)  # linear slope across active span
         if abs(m) > atol:
-            x0 = a - Vl / m  # solve Vl + m*(x - a) = 0
-            # Clip to guard against tiny FP drift beyond [a,b]
-            x0 = float(np.clip(x0, a, b))
-            # Insert and de-duplicate
-            x = np.unique(np.concatenate((x, [x0])))
+            x0 = float(np.clip(a - Vl / m, a, b))
+            # choose nearest interior index (avoid endpoints at 0 and L)
+            k = 1 + np.argmin(np.abs(x[1:-1] - x0))
+            x[k] = x0  # replace, do not insert → length stays n_pts
 
     # Compute V with masks
     V = np.empty_like(x, dtype=float)
@@ -395,14 +391,10 @@ def generate_linear_shear_diagram(
     V[m2] = left_shear - uniform_load * x[m2]
     V[m3] = right_shear
 
-    # Snap exact zero at crossing (nice for plotting/logic)
+    # Snap exact zero at (approximate) crossing sample—optional but tidy
     if (left_shear * right_shear) < 0 and (b - a) > atol:
-        zero_mask = (x >= a - atol) & (x <= b + atol)
-        # where sign flips within [a,b], find approximate index closest to zero and set exactly 0
-        if zero_mask.any():
-            idx_zero = np.argmin(np.abs(V[zero_mask]))
-            idx_global = np.where(zero_mask)[0][idx_zero]
-            V[idx_global] = 0.0
+        i0 = 1 + np.argmin(np.abs(x[1:-1] - np.clip(a - float(left_shear) / ((right_shear - left_shear)/(b - a)), a, b)))
+        V[i0] = 0.0
 
     return x, V
 
