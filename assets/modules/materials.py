@@ -1,13 +1,13 @@
 #######################################
 # Materials module for structural engineering
 # Written by: Hossein Karagah
-# Date: 2025-02-15
+# Date: 2025-10-29
 # Description: This module provides classes and functions for defining and working with various construction materials, including concrete and steel.
 #######################################
 
 
 
-
+from enum import Enum
 from typing import Protocol, Union, Optional
 import numpy as np
 from scipy.optimize import curve_fit, root_scalar
@@ -156,12 +156,72 @@ class ACIConcrete(Concrete):
         
     
 # Steel material classes =========================================================
+
+# Expected Ry and Rt per AISC 341-22, Table A3.2
+# Ry = Ratio of expected yield stress to specified minimum yield stress (Fy)
+# Rt = Ratio of expected tensile strength to specified minimum tensile strength (Fu)
+mat_R_values = {
+    # Hot-Rolled Structural Shapes and Bars
+    'HR A36': {'Ry': 1.5, 'Rt': 1.2},
+    'HR A529 Gr 50': {'Ry': 1.2, 'Rt': 1.2},
+    'HR A529 Gr 55': {'Ry': 1.1, 'Rt': 1.2},
+    'HR A572 Gr 50': {'Ry': 1.1, 'Rt': 1.1},
+    'HR A572 Gr 55': {'Ry': 1.1, 'Rt': 1.1},
+    'HR A588': {'Ry': 1.1, 'Rt': 1.1},
+    'HR A709 Gr 36': {'Ry': 1.5, 'Rt': 1.2},
+    'HR A709 Gr 50': {'Ry': 1.1, 'Rt': 1.1},
+    'HR A709 Gr 50S': {'Ry': 1.1, 'Rt': 1.1},
+    'HR A709 Gr 55W': {'Ry': 1.1, 'Rt': 1.1},
+    'HR A709 QST 50': {'Ry': 1.1, 'Rt': 1.1},
+    'HR A709 QST 50S': {'Ry': 1.1, 'Rt': 1.1},
+    'HR A709 QST 65': {'Ry': 1.1, 'Rt': 1.1},
+    'HR A709 QST 70': {'Ry': 1.1, 'Rt': 1.1},
+    'HR A913 Gr 50': {'Ry': 1.1, 'Rt': 1.1},
+    'HR A913 Gr 60': {'Ry': 1.1, 'Rt': 1.1},
+    'HR A913 Gr 65': {'Ry': 1.1, 'Rt': 1.1},
+    'HR A913 Gr 70': {'Ry': 1.1, 'Rt': 1.1},
+    'HR A992': {'Ry': 1.1, 'Rt': 1.1},
+    'HR A1043 Gr 36': {'Ry': 1.3, 'Rt': 1.1},
+    'HR A1043 Gr 50': {'Ry': 1.2, 'Rt': 1.1},
+    # Hollow Structural Sections (HSS)
+    'HSS A53': {'Ry': 1.6, 'Rt': 1.2},
+    'HSS A500 Gr B': {'Ry': 1.4, 'Rt': 1.3},
+    'HSS A500 Gr C': {'Ry': 1.3, 'Rt': 1.2},
+    'HSS A501': {'Ry': 1.4, 'Rt': 1.3},
+    'HSS A1085 Gr A': {'Ry': 1.25, 'Rt': 1.15},
+    # Plates, Strips, and Sheets
+    'PL A36': {'Ry': 1.3, 'Rt': 1.2},
+    'PL A572 Gr 42': {'Ry': 1.3, 'Rt': 1.0},
+    'PL A572 Gr 50': {'Ry': 1.1, 'Rt': 1.2},
+    'PL A572 Gr 55': {'Ry': 1.1, 'Rt': 1.2},
+    'PL A588': {'Ry': 1.1, 'Rt': 1.2},
+    'PL A709 Gr 36': {'Ry': 1.3, 'Rt': 1.2},
+    'PL A709 Gr 50': {'Ry': 1.1, 'Rt': 1.2},
+    'PL A709 Gr 50W': {'Ry': 1.1, 'Rt': 1.2},
+    'PL A1011 HSLAS Gr 55': {'Ry': 1.1, 'Rt': 1.1},
+    'PL A1043 Gr 36': {'Ry': 1.3, 'Rt': 1.1},
+    'PL A1043 Gr 50': {'Ry': 1.2, 'Rt': 1.1},
+    # Steel Reinforcement
+    'R A615 Gr 60': {'Ry': 1.2, 'Rt': 1.2},
+    'R A615 Gr 80': {'Ry': 1.1, 'Rt': 1.2},
+    'R A706 Gr 60': {'Ry': 1.2, 'Rt': 1.2},
+    'R A706 Gr 80': {'Ry': 1.2, 'Rt': 1.2}
+}
+
+# Define steel categories: Hot-Rolled (HR), Hollow Structural Sections (HSS), Plates (PL), Reinforcement (R)
+class SteelSectionCategories(Enum):
+    HOT_ROLLED = 'HR'
+    HOLLOW_STRUCTURAL_SECTIONS = 'HSS'
+    PLATES = 'PL'
+    REINFORCEMENT = 'R'
+
+
 class Steel:
     def __init__(self, name: str, fy: float, fu: Optional[float]=None, alpha:Optional[float]=None) -> None:
         """
 
         Args:
-            name (str): ASTM designation of the steel material (e.g., "A36", "A992").
+            name (str): ASTM designation of the steel material (e.g., "A36", "A992")..
             fy (float): Yield strength in psi.
             fu (Optional[float], optional): Ultimate strength in psi. Defaults to None.
             alpha (Optional[float], optional): Strain hardening ratio. Defaults to None.
@@ -282,7 +342,38 @@ class BilinearA992Steel(BilinearSteel):
     def __init__(self, name= "A992", fy: float=50e3, fu: float=65e3, alpha: float=0.01) -> None:
         super().__init__(name, fy, fu, alpha)
 
-
+class ASTMSteel(Steel):
+    "ASTM steel material"
+    def __init__(self, name: str, cat: SteelSectionCategories, fy: float, fu: Optional[float]=None) -> None:
+        """ASTM steel material with elastic-perfectly plastic stress-strain curve.
+        
+        Args:
+            name (str): ASTM designation of the steel material (e.g., "A36", "A992").
+            cat (SteelSectionCategories): Category of the steel material.
+            fy (float): Yield strength in psi.
+            fu (Optional[float], optional): Ultimate strength in psi. Defaults to None.
+        """
+        super().__init__(name, fy, fu, alpha=0.0)
+        self.cat = cat
+        
+        # Check material name validity
+        if f"{cat.value} {name}" not in mat_R_values:
+            raise ValueError(f"Material '{name}' not found defined.")
+        
+        self._Ry = mat_R_values.get(f"{cat.value} {name}", {}).get('Ry')
+        self._Rt = mat_R_values.get(f"{cat.value} {name}", {}).get('Rt')
+    
+    @property 
+    def Ry(self) -> float:
+        "Returns Ry value for the ASTM steel material."
+        return self._Ry
+    
+    @property
+    def Rt(self) -> float:
+        "Returns Rt value for the ASTM steel material."
+        return self._Rt
+        
+        
 class PrestressingSteel():
     def __init__(self, grade: str, fpu: float) -> None:
         """Defines prestressed reinforcement material properties.

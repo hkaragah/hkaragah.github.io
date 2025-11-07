@@ -1,10 +1,18 @@
 ##########################################
 # Shapes Module
 # Written by: Hossein Karagah
-# Date: 2024-08-01
+# Date: 2025-10-29
 # Description: This module provides classes and functions to handle geometric shapes like circles, rectangles, and I-sections.
 ##########################################
 
+from pathlib import Path
+import sys
+
+root = Path(__file__).resolve()
+sys.path.extend([
+    str(root.parents[1]),  # ../..
+    str(root.parents[2]),  # ../../..
+])
 
 from copy import deepcopy
 import matplotlib
@@ -770,9 +778,70 @@ class AISC_WSection(AISCShape):
         return self.props()['tw']
     
     @property
+    def Ix(self) -> float:
+        """Return the moment of inertia about the x-axis [in4]"""
+        return self.props()['Ix']
+    
+    @property
+    def Iy(self) -> float:
+        """Return the moment of inertia about the y-axis [in4]"""
+        return self.props()['Iy']
+    
+    @property
+    def Zx(self) -> float:
+        """Return the plastic section modulus about the x-axis [in3]"""
+        return self.props()['Zx']
+    
+    @property
+    def Zy(self) -> float:
+        """Return the plastic section modulus about the y-axis [in3]"""
+        return self.props()['Zy']
+    
+    @property
+    def rx(self) -> float:
+        """Return the radius of gyration about the x-axis [in]"""
+        return self.props()['rx']
+
+    @property
+    def ry(self) -> float:
+        """Return the radius of gyration about the y-axis [in]"""
+        return self.props()['ry']
+
+    @property
     def Awy(self) -> float:
         """Return the web area of the W-section [in2]"""
         return self.d * self.tw
+    
+    @property
+    def T(self) -> float:
+        """Returns the height of the web between flange fillets [in]"""
+        return self.props()['T']
+    
+    @property
+    def kdes(self) -> float:
+        """Return the distance from outer face of flange to web toe of fillet [in]"""
+        return self.props()['kdes']
+    
+    @property
+    def kdet(self) -> float:
+        """Return the distance from outer face of flange to web toe of fillet [in]"""
+        return self.props()['kdet']
+    
+    @property
+    def k1(self) -> float:
+        """Return the distance from middle of flange to flange toe of fillet [in]"""
+        return self.props()['k1']
+    
+    @property
+    def htw(self) -> float:
+        """Return the ratio of web slenderness ratio (h/tw)"""
+        return self.props()['h/tw']
+    
+    @property
+    def bf2tf(self) -> float:
+        """Return the ratio of flange slenderness ratio (bf/2tf)"""
+        return self.props()['bf/2tf']
+    
     
     @property
     def alphaY(self) -> float:
@@ -786,8 +855,25 @@ class AISC_WSection(AISCShape):
 # Load the full AISC database once and cache it
 @lru_cache(maxsize=1)
 def load_aisc_database():
-    path = os.path.join('..', '..', 'assets', 'data', 'structure', 'aisc-shapes-database-v16.0.xlsx')
-    return pd.read_excel(path, sheet_name='Database v16.0')
+    """
+    Loads the AISC shapes database Excel file, automatically searching upward
+    from the current script location until it finds the file.
+    """
+    filename = 'aisc-shapes-database-v16.0.xlsx'
+    relative_path = Path("assets/data/structure") / filename
+    
+    # start searching upward from where this script lives
+    current_dir = Path(__file__).resolve().parent
+    
+    for parent in [current_dir, *current_dir.parents]:
+        potential_path = parent / relative_path
+        if potential_path.is_file():
+            file_name = potential_path.name
+            break
+    else:
+        raise FileNotFoundError(f"Could not find {filename} in any parent directories.")
+    
+    return pd.read_excel(potential_path, sheet_name='Database v16.0')    
 
 
 # Lookup shape properties from cached DataFrame
