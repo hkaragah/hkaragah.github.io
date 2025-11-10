@@ -450,6 +450,7 @@ document.write(`
 <span class="kn">from</span><span class="w"> </span><span class="nn">assets.modules.shapes</span><span class="w"> </span><span class="kn">import</span> <span class="n">AISC_WSection</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">assets.modules.materials</span><span class="w"> </span><span class="kn">import</span> <span class="n">SteelSectionCategories</span><span class="p">,</span> <span class="n">ASTMSteel</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">openseespywin.opensees</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ops</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">opsvis</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">opsv</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">prod</span><span class="p">,</span> <span class="n">pi</span><span class="p">,</span> <span class="n">sqrt</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
@@ -463,8 +464,8 @@ document.write(`
 <span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">from</span><span class="w"> </span><span class="nn">assets.modules.shapes</span><span class="w"> </span><span class="kn">import</span> <span class="n">AISC_WSection</span>
 <span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">from</span><span class="w"> </span><span class="nn">assets.modules.materials</span><span class="w"> </span><span class="kn">import</span> <span class="n">SteelSectionCategories</span><span class="p">,</span> <span class="n">ASTMSteel</span>
 <span class="ne">----&gt; </span><span class="mi">8</span> <span class="kn">import</span><span class="w"> </span><span class="nn">openseespywin.opensees</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ops</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">prod</span><span class="p">,</span> <span class="n">pi</span><span class="p">,</span> <span class="n">sqrt</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="kn">import</span><span class="w"> </span><span class="nn">opsvis</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">opsv</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">prod</span><span class="p">,</span> <span class="n">pi</span><span class="p">,</span> <span class="n">sqrt</span>
 
 <span class="n">File</span> <span class="n">c</span><span class="p">:</span>\<span class="n">Hossein</span>\<span class="n">portfolio</span>\<span class="o">.</span><span class="n">venv</span>\<span class="n">Lib</span>\<span class="n">site</span><span class="o">-</span><span class="n">packages</span>\<span class="n">openseespywin</span>\<span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">25</span>
 <span class="g g-Whitespace">     </span><span class="mi">23</span>             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Failed to import openseespy on Windows.&#39;</span><span class="p">)</span>
@@ -958,43 +959,50 @@ Computed gravity load from reactions: 405.0 kips
 <h3>Visualize Results<a class="headerlink" href="#visualize-results" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">opsvis</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">opsv</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">axes</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
 
-<span class="n">opsv</span><span class="o">.</span><span class="n">plot_model</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">axes</span><span class="p">):</span>
+    <span class="k">match</span> <span class="n">i</span><span class="p">:</span>
+        <span class="k">case</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">opsv</span><span class="o">.</span><span class="n">plot_model</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+        <span class="k">case</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">opsv</span><span class="o">.</span><span class="n">plot_defo</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+            <span class="k">pass</span>
+        <span class="k">case</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">opsv</span><span class="o">.</span><span class="n">plot_load</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
-</pre></div>
-</div>
-<img alt="../../_images/47a8eb6b4d3be83fb40e763a0150d28b4db13630f821f02ff0e7cfc18d3a391b.png" src="../../_images/47a8eb6b4d3be83fb40e763a0150d28b4db13630f821f02ff0e7cfc18d3a391b.png" />
+<img alt="../../_images/6d6191621493ac64c698ea6b654a7c7249713ff7f172201cac35e335592a9056.png" src="../../_images/6d6191621493ac64c698ea6b654a7c7249713ff7f172201cac35e335592a9056.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">opsv</span><span class="o">.</span><span class="n">plot_defo</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">axes</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="n">sf</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;N&#39;</span><span class="p">,</span> <span class="s1">&#39;V&#39;</span><span class="p">,</span> <span class="s1">&#39;M&#39;</span><span class="p">]</span>
+<span class="n">sfac</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">]</span>
+<span class="n">titles</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Axial Force Diagram&#39;</span><span class="p">,</span> <span class="s1">&#39;Shear Force Diagram&#39;</span><span class="p">,</span> <span class="s1">&#39;Bending Moment Diagram&#39;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">axes</span><span class="p">):</span>
+    <span class="n">opsv</span><span class="o">.</span><span class="n">section_force_diagram_2d</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">sf_type</span><span class="o">=</span><span class="n">sf</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">sfac</span><span class="o">=</span><span class="n">sfac</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">titles</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10090.869163818572
-</pre></div>
-</div>
-<img alt="../../_images/3eed62df2c9ad76d2d8280b023b7e9d6339b7ec0c60c406ce1e8d6dcea277fad.png" src="../../_images/3eed62df2c9ad76d2d8280b023b7e9d6339b7ec0c60c406ce1e8d6dcea277fad.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">opsv</span><span class="o">.</span><span class="n">section_force_diagram_2d</span><span class="p">(</span><span class="n">sf_type</span><span class="o">=</span><span class="s1">&#39;N&#39;</span><span class="p">,</span> <span class="n">sfac</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-0.0055940837254637, -0.0055940837254637, &lt;Axes: &gt;)
-</pre></div>
-</div>
-<img alt="../../_images/da4261ddbed08f1040e05ce06c4a8603767a1661bfaa251814c24691b7481ac9.png" src="../../_images/da4261ddbed08f1040e05ce06c4a8603767a1661bfaa251814c24691b7481ac9.png" />
+<img alt="../../_images/2256704fe708286ba8e60b6219c76da12c3fc93265b79102fea8a43e9f665b15.png" src="../../_images/2256704fe708286ba8e60b6219c76da12c3fc93265b79102fea8a43e9f665b15.png" />
 </div>
 </div>
 </section>
@@ -1091,7 +1099,7 @@ Mode 3: Eigenvalue = 17996, Period = 0.0468374 sec
 <h3>Visualize Mode Shapes<a class="headerlink" href="#visualize-mode-shapes" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nEigens</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nEigens</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
 <span class="n">axes</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
 
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">axes</span><span class="p">):</span>
@@ -1099,11 +1107,14 @@ Mode 3: Eigenvalue = 17996, Period = 0.0468374 sec
     <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Mode </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/95c7f4db72d76d47c1b4f3405d978c8eeca9d0ea1d28fc3a246f171d24a8bbff.png" src="../../_images/95c7f4db72d76d47c1b4f3405d978c8eeca9d0ea1d28fc3a246f171d24a8bbff.png" />
+<img alt="../../_images/aa8b6f9987e5d0c6dd6ee7dffc55665c9afa10dce910c8986edb3f30754ce658.png" src="../../_images/aa8b6f9987e5d0c6dd6ee7dffc55665c9afa10dce910c8986edb3f30754ce658.png" />
 </div>
 </div>
 </section>
