@@ -1,0 +1,63 @@
+Traceback (most recent call last):
+  File "c:\Hossein\portfolio\.venv\Lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+    executenb(
+    ~~~~~~~~~^
+        nb,
+        ^^^
+    ...<4 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "c:\Hossein\portfolio\.venv\Lib\site-packages\nbclient\client.py", line 1319, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "c:\Hossein\portfolio\.venv\Lib\site-packages\jupyter_core\utils\__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\hkara\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 720, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "c:\Hossein\portfolio\.venv\Lib\site-packages\nbclient\client.py", line 709, in async_execute
+    await self.async_execute_cell(
+        cell, index, execution_count=self.code_cells_executed + 1
+    )
+  File "c:\Hossein\portfolio\.venv\Lib\site-packages\nbclient\client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "c:\Hossein\portfolio\.venv\Lib\site-packages\nbclient\client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from __future__ import annotations
+from dataclasses import dataclass
+import os
+import sys
+sys.path.append(os.path.abspath("../.."))
+from assets.modules.shapes import AISC_WSection
+from assets.modules.materials import SteelSectionCategories, ASTMSteel
+import openseespywin.opensees as ops
+from math import prod, pi, sqrt
+import pandas as pd
+import matplotlib.pyplot as plt
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mRuntimeError[39m                              Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[1][39m[32m, line 8[39m
+[32m      6[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01massets[39;00m[34;01m.[39;00m[34;01mmodules[39;00m[34;01m.[39;00m[34;01mshapes[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m AISC_WSection
+[32m      7[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01massets[39;00m[34;01m.[39;00m[34;01mmodules[39;00m[34;01m.[39;00m[34;01mmaterials[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m SteelSectionCategories, ASTMSteel
+[32m----> [39m[32m8[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mopenseespywin[39;00m[34;01m.[39;00m[34;01mopensees[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[34;01mops[39;00m
+[32m      9[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mmath[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m prod, pi, sqrt
+[32m     10[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mpandas[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[34;01mpd[39;00m
+
+[36mFile [39m[32mc:\Hossein\portfolio\.venv\Lib\site-packages\openseespywin\__init__.py:25[39m
+[32m     23[39m             [38;5;28;01mraise[39;00m [38;5;167;01mRuntimeError[39;00m([33m'[39m[33mFailed to import openseespy on Windows.[39m[33m'[39m)
+[32m     24[39m     [38;5;28;01melse[39;00m:
+[32m---> [39m[32m25[39m         [38;5;28;01mraise[39;00m [38;5;167;01mRuntimeError[39;00m(
+[32m     26[39m             [33m'[39m[33mPython version 3.8 is needed for Windows[39m[33m'[39m)
+[32m     28[39m [38;5;28;01melse[39;00m:
+[32m     30[39m     [38;5;28;01mraise[39;00m [38;5;167;01mRuntimeError[39;00m([33m'[39m[33mThis package is for Windows only[39m[33m'[39m)
+
+[31mRuntimeError[39m: Python version 3.8 is needed for Windows
+

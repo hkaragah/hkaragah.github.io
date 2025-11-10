@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -204,6 +204,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../shear_wall_neutral_axis/rect_shear_wall_neutral_axis.html">Rectangular Concrete Shear Wall Neutral Axis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../opensees/opensees_steel_materials.html">OpenSees Uniaxial Steel Materials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../structural_dynamics/modal_analysis_basic.html">Modal Analysis: 3-DOF System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../opensees/two_story_mrf.html">OpenSees: Three-Story MRF Analysis</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Earthquake Engineering</span></p>
 <ul class="nav bd-sidenav">
@@ -432,34 +433,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;../../..&quot;</span><span class="p">))</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">from</span><span class="w"> </span><span class="nn">assets.modules.materials</span><span class="w"> </span><span class="kn">import</span> <span class="n">ACIConcrete</span><span class="p">,</span> <span class="n">BilinearSteel</span>
-<span class="ne">----&gt; </span><span class="mi">5</span> <span class="kn">from</span><span class="w"> </span><span class="nn">assets.modules.steel</span><span class="w"> </span><span class="kn">import</span> <span class="n">LongitudinalRebar</span><span class="p">,</span> <span class="n">TransverseRebar</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">from</span><span class="w"> </span><span class="nn">assets.modules.shapes</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">import</span><span class="w"> </span><span class="nn">assets.modules.concrete</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">concrete</span>
-
-<span class="n">File</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Hossein</span>\<span class="n">portfolio</span>\<span class="n">hkaragah</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">io</span>\<span class="n">assets</span>\<span class="n">modules</span>\<span class="n">steel</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">12</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.axes</span>
-<span class="ne">---&gt; </span><span class="mi">12</span> <span class="kn">from</span><span class="w"> </span><span class="nn">assets.modules.shapes</span><span class="w"> </span><span class="kn">import</span> <span class="n">Circle</span><span class="p">,</span> <span class="n">Point</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="kn">from</span><span class="w"> </span><span class="nn">assets.modules.materials</span><span class="w"> </span><span class="kn">import</span> <span class="n">BilinearSteel</span>
-<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Tuple</span>
-
-<span class="n">File</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Hossein</span>\<span class="n">portfolio</span>\<span class="n">hkaragah</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">io</span>\<span class="n">assets</span>\<span class="n">modules</span>\<span class="n">shapes</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">19</span>
-<span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
-<span class="ne">---&gt; </span><span class="mi">19</span> <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="g g-Whitespace">     </span><span class="mi">21</span> <span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">lru_cache</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;pandas&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -578,7 +551,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/b6044f32ab1c4d9e0df7a0f84e81c309884cc2eecb5cf59a855297cfc61ecfaa.png" src="../../../_images/b6044f32ab1c4d9e0df7a0f84e81c309884cc2eecb5cf59a855297cfc61ecfaa.png" />
+<img alt="../../../_images/ad392320c131d4c5f07764bc97e05e4bd5c4d47f0b37b58e25fbe787786a196e.png" src="../../../_images/ad392320c131d4c5f07764bc97e05e4bd5c4d47f0b37b58e25fbe787786a196e.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -716,7 +689,7 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">D_NEUTR</span> <span class="o">=</span> <span class="mf">7.92278341958316</span> <span class="c1"># in</span>
 <span class="n">B_DIR</span> <span class="o">=</span> <span class="s1">&#39;-x&#39;</span> <span class="c1"># beam direction</span>
 
-<span class="n">beam</span> <span class="o">=</span> <span class="n">concrete</span><span class="o">.</span><span class="n">UniaixalBending</span><span class="p">(</span><span class="n">c_sec</span><span class="p">,</span> <span class="n">bending_direction</span><span class="o">=</span><span class="n">B_DIR</span><span class="p">)</span>
+<span class="n">beam</span> <span class="o">=</span> <span class="n">concrete</span><span class="o">.</span><span class="n">UniaxialBending</span><span class="p">(</span><span class="n">c_sec</span><span class="p">,</span> <span class="n">bending_direction</span><span class="o">=</span><span class="n">B_DIR</span><span class="p">)</span>
 
 <span class="n">y_s</span> <span class="o">=</span> <span class="n">beam</span><span class="o">.</span><span class="n">get_long_bar_depth</span><span class="p">()</span>
 <span class="n">eps_s</span> <span class="o">=</span> <span class="n">beam</span><span class="o">.</span><span class="n">get_rebar_strain</span><span class="p">(</span><span class="n">D_NEUTR</span><span class="p">)</span>
@@ -780,7 +753,7 @@ rebar force (kips):
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;neutral_depth&#39;: 7.92278341958316,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;neutral_depth&#39;: array([7.92278342]),
  &#39;force&#39;: array([-507.16271986]),
  &#39;moment&#39;: array([4129302.65213753])}
 </pre></div>
@@ -790,16 +763,16 @@ rebar force (kips):
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># p1 = beam.get_pure_flexure_point(external_force=Nu, tol=1e-1)</span>
-<span class="n">p2</span> <span class="o">=</span> <span class="n">beam</span><span class="o">.</span><span class="n">get_tension_conrolled_point</span><span class="p">(</span><span class="n">external_force</span><span class="o">=</span><span class="n">Nu</span><span class="p">,</span> <span class="n">n_disc</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">beam</span><span class="o">.</span><span class="n">get_tension_controlled_point</span><span class="p">(</span><span class="n">external_force</span><span class="o">=</span><span class="n">Nu</span><span class="p">,</span> <span class="n">n_disc</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
 <span class="n">p3</span> <span class="o">=</span> <span class="n">beam</span><span class="o">.</span><span class="n">get_balance_point</span><span class="p">(</span><span class="n">external_force</span><span class="o">=</span><span class="n">Nu</span><span class="p">,</span> <span class="n">n_disc</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tension-Controlled Point:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;neutral depth: </span><span class="si">{</span><span class="n">p2</span><span class="p">[</span><span class="s1">&#39;neutral_depth&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> in&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;neutral depth: </span><span class="si">{</span><span class="n">p2</span><span class="p">[</span><span class="s1">&#39;neutral_depth&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> in&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;force: </span><span class="si">{</span><span class="p">(</span><span class="n">p2</span><span class="p">[</span><span class="s1">&#39;force&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="mf">1e3</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> kips&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;moment: </span><span class="si">{</span><span class="n">p2</span><span class="p">[</span><span class="s1">&#39;moment&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mf">1e3</span><span class="o">/</span><span class="mi">12</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> kip-in&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Balance Point:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;neutral depth: </span><span class="si">{</span><span class="n">p3</span><span class="p">[</span><span class="s1">&#39;neutral_depth&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> in&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;neutral depth: </span><span class="si">{</span><span class="n">p3</span><span class="p">[</span><span class="s1">&#39;neutral_depth&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> in&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;force: </span><span class="si">{</span><span class="p">(</span><span class="n">p3</span><span class="p">[</span><span class="s1">&#39;force&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="mf">1e3</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> kips&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;moment: </span><span class="si">{</span><span class="n">p3</span><span class="p">[</span><span class="s1">&#39;moment&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mf">1e3</span><span class="o">/</span><span class="mi">12</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> kip-in&quot;</span><span class="p">)</span>
 </pre></div>
@@ -807,18 +780,14 @@ rebar force (kips):
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tension-Controlled Point:
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">line</span> <span class="mi">6</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">p3</span> <span class="o">=</span> <span class="n">beam</span><span class="o">.</span><span class="n">get_balance_point</span><span class="p">(</span><span class="n">external_force</span><span class="o">=</span><span class="n">Nu</span><span class="p">,</span> <span class="n">n_disc</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tension-Controlled Point:&quot;</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">6</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;neutral depth: </span><span class="si">{</span><span class="n">p2</span><span class="p">[</span><span class="s1">&#39;neutral_depth&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> in&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;force: </span><span class="si">{</span><span class="p">(</span><span class="n">p2</span><span class="p">[</span><span class="s1">&#39;force&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="mf">1e3</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> kips&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;moment: </span><span class="si">{</span><span class="n">p2</span><span class="p">[</span><span class="s1">&#39;moment&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mf">1e3</span><span class="o">/</span><span class="mi">12</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> kip-in&quot;</span><span class="p">)</span>
+neutral depth: 6.324 in
+force: 59 kips
+moment: 323 kip-in
 
-<span class="ne">TypeError</span>: unsupported format string passed to numpy.ndarray.__format__
+Balance Point:
+neutral depth: 9.981 in
+force: -71 kips
+moment: 360 kip-in
 </pre></div>
 </div>
 </div>
@@ -875,11 +844,11 @@ rebar force (kips):
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total concrete force: -257.85 kips at 6.60 in
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total concrete force: -255.56 kips at 6.63 in
 Total compressive rebar force: -48.98 kips at 7.12 in
 Total tensile rebar force: 304.02 kips at -6.87 in
 
-Total normal force (f_ct + f_sc + f_st): -2.80 kips
+Total normal force (f_ct + f_sc + f_st): -0.51 kips
 
 Depth of concrete resultant compressive force: 6.63 in
 
@@ -912,7 +881,7 @@ Curvature: 3.79e-04 in/in
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/31706528bd1d649e43310b6b647433ba10a4bb0b6563b76bd8744cc484bbc59b.png" src="../../../_images/31706528bd1d649e43310b6b647433ba10a4bb0b6563b76bd8744cc484bbc59b.png" />
+<img alt="../../../_images/6b6275d0a45ad7eda85b226692e7a60784b38710e39f1f77f9d3fc66eade0c29.png" src="../../../_images/6b6275d0a45ad7eda85b226692e7a60784b38710e39f1f77f9d3fc66eade0c29.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -965,10 +934,10 @@ Area of transverse reinforcement (Av): 0.39 in²
 
 <span class="n">yn</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">m</span> <span class="o">=</span> <span class="n">concrete</span><span class="o">.</span><span class="n">generate_force_moment_interaction</span><span class="p">(</span>
     <span class="n">beam</span><span class="p">,</span> 
-    
-    <span class="n">neutral_depth_range</span><span class="o">=</span><span class="n">neutral_depth_range</span><span class="p">,</span> 
-    <span class="n">external_force</span><span class="o">=</span><span class="n">Nu</span><span class="p">,</span> 
-    <span class="n">n_points</span><span class="o">=</span><span class="mi">1000</span>
+    <span class="n">min_neutral_depth</span><span class="o">=</span><span class="n">min_neutral_depth</span><span class="p">,</span>
+    <span class="n">max_neutral_depth</span><span class="o">=</span><span class="n">max_neutral_depth</span><span class="p">,</span>
+    <span class="n">n_points</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+    <span class="n">n_disc</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -980,12 +949,12 @@ Area of transverse reinforcement (Av): 0.39 in²
 <span class="n">f_scaled</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">f</span><span class="p">)))</span>
 
 
-<span class="n">P_cn</span> <span class="o">=</span> <span class="n">concrete</span><span class="o">.</span><span class="n">nominal_compressive_strength</span><span class="p">(</span><span class="n">beam</span><span class="o">.</span><span class="n">sec</span><span class="p">)</span> <span class="c1"># negative</span>
+<span class="n">P_cn</span> <span class="o">=</span> <span class="n">concrete</span><span class="o">.</span><span class="n">nominal_compressive_strength</span><span class="p">(</span><span class="n">beam</span><span class="o">.</span><span class="n">sec</span><span class="p">)[</span><span class="s1">&#39;force&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># negative</span>
 <span class="n">P_cn_max</span> <span class="o">=</span> <span class="n">concrete</span><span class="o">.</span><span class="n">max_nominal_compressive_strength</span><span class="p">(</span><span class="n">beam</span><span class="o">.</span><span class="n">sec</span><span class="p">)</span> <span class="c1"># negative</span>
-<span class="n">P_tn</span> <span class="o">=</span> <span class="n">concrete</span><span class="o">.</span><span class="n">nominal_tensile_strength</span><span class="p">(</span><span class="n">beam</span><span class="o">.</span><span class="n">sec</span><span class="p">)</span> <span class="c1"># positive</span>
+<span class="n">P_tn</span> <span class="o">=</span> <span class="n">concrete</span><span class="o">.</span><span class="n">nominal_tensile_strength</span><span class="p">(</span><span class="n">beam</span><span class="o">.</span><span class="n">sec</span><span class="p">)[</span><span class="s1">&#39;force&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># positive</span>
 
 <span class="n">balance_point</span> <span class="o">=</span> <span class="n">beam</span><span class="o">.</span><span class="n">get_balance_point</span><span class="p">(</span><span class="n">Nu</span><span class="p">,</span> <span class="n">n_disc</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
-<span class="n">tension_controlled_point</span> <span class="o">=</span> <span class="n">beam</span><span class="o">.</span><span class="n">get_tension_conrolled_point</span><span class="p">(</span><span class="n">Nu</span><span class="p">,</span> <span class="n">n_disc</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">tension_controlled_point</span> <span class="o">=</span> <span class="n">beam</span><span class="o">.</span><span class="n">get_tension_controlled_point</span><span class="p">(</span><span class="n">Nu</span><span class="p">,</span> <span class="n">n_disc</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
 <span class="n">pure_flexure_point</span> <span class="o">=</span> <span class="n">beam</span><span class="o">.</span><span class="n">get_pure_flexure_point</span><span class="p">(</span><span class="n">Nu</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
 
 
@@ -1035,13 +1004,13 @@ Area of transverse reinforcement (Av): 0.39 in²
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/21d4afb18218058f7ba094725b014be6f83edf07e8c20d3de03de6bd87f84cf8.png" src="../../../_images/21d4afb18218058f7ba094725b014be6f83edf07e8c20d3de03de6bd87f84cf8.png" />
+<img alt="../../../_images/51fbb072af691db8c8fa41b7bf62810b17d2d5c609bf2148e93bb28b62af86c1.png" src="../../../_images/51fbb072af691db8c8fa41b7bf62810b17d2d5c609bf2148e93bb28b62af86c1.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute the required minimum area of transverse reinforcement based on ACI 318-19 Section 9.6.3.4</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">min_beam_transverse_rebar</span><span class="p">(</span><span class="n">bending</span><span class="p">:</span> <span class="n">concrete</span><span class="o">.</span><span class="n">UniaixalBending</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">min_beam_transverse_rebar</span><span class="p">(</span><span class="n">bending</span><span class="p">:</span> <span class="n">concrete</span><span class="o">.</span><span class="n">UniaxialBending</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
     <span class="n">fc</span> <span class="o">=</span> <span class="n">bending</span><span class="o">.</span><span class="n">sec</span><span class="o">.</span><span class="n">mat</span><span class="o">.</span><span class="n">fc</span>
     <span class="n">f_yt_min</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">bar</span><span class="o">.</span><span class="n">mat</span><span class="o">.</span><span class="n">fy</span> <span class="k">for</span> <span class="n">bar</span> <span class="ow">in</span> <span class="n">bending</span><span class="o">.</span><span class="n">sec</span><span class="o">.</span><span class="n">trans_bars</span><span class="p">)</span>
     <span class="n">bw</span> <span class="o">=</span> <span class="n">bending</span><span class="o">.</span><span class="n">section_width</span><span class="p">()</span>
@@ -1065,7 +1034,7 @@ Area of transverse reinforcement (Av): 0.39 in²
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute the shear strength of concrete based on ACI 318-19 Section 22.5.5.1</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">get_concrete_shear_strength</span><span class="p">(</span><span class="n">beam</span><span class="p">:</span><span class="n">concrete</span><span class="o">.</span><span class="n">UniaixalBending</span><span class="p">,</span> <span class="n">axial_force</span><span class="p">:</span><span class="nb">float</span><span class="p">,</span> <span class="n">neutral_depth</span><span class="p">:</span><span class="nb">float</span><span class="p">,</span> <span class="n">is_normal_weight</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_concrete_shear_strength</span><span class="p">(</span><span class="n">beam</span><span class="p">:</span><span class="n">concrete</span><span class="o">.</span><span class="n">UniaxialBending</span><span class="p">,</span> <span class="n">axial_force</span><span class="p">:</span><span class="nb">float</span><span class="p">,</span> <span class="n">neutral_depth</span><span class="p">:</span><span class="nb">float</span><span class="p">,</span> <span class="n">is_normal_weight</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
     <span class="n">fc</span> <span class="o">=</span> <span class="n">beam</span><span class="o">.</span><span class="n">sec</span><span class="o">.</span><span class="n">mat</span><span class="o">.</span><span class="n">fc</span>
     <span class="n">bw</span> <span class="o">=</span> <span class="n">beam</span><span class="o">.</span><span class="n">section_width</span><span class="p">()</span>
     <span class="n">d</span> <span class="o">=</span> <span class="n">beam</span><span class="o">.</span><span class="n">get_tensile_effective_depth</span><span class="p">(</span><span class="n">neutral_depth</span><span class="p">)</span>

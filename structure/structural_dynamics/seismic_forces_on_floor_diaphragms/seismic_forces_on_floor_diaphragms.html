@@ -1,0 +1,2006 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Seismic Forces on Floor Diaphragms &#8212; Hossein Karagah, PhD, PE</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-J3171580FP"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-J3171580FP');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-J3171580FP');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'structure/structural_dynamics/seismic_forces_on_floor_diaphragms/seismic_forces_on_floor_diaphragms';</script>
+    <link rel="icon" href="../../../_static/headshot.png"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+<aside class="bd-header-announcement" aria-label="Announcement">
+  <div class="bd-header-announcement__content">Hossein Karagah, PhD, PE</div>
+</aside>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/headshot.png" class="logo__image only-light" alt="Hossein Karagah, PhD, PE - Home"/>
+    <script>document.write(`<img src="../../../_static/headshot.png" class="logo__image only-dark" alt="Hossein Karagah, PhD, PE - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../intro.html">
+                    Welcome
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Structural Engineering</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../p_delta/cant_col_p_delta.html">P-Delta Analysis: Cantilever Column</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../moment_curvature/steel_w_sec_moment_curvature.html">Moment-Curvature: Steel W-Section</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concrete/force_moment_interaction/force_moment_interaction.html">P-M Interaction Diagram</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../shear_wall_neutral_axis/rect_shear_wall_neutral_axis.html">Rectangular Concrete Shear Wall Neutral Axis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../opensees/opensees_steel_materials.html">OpenSees Uniaxial Steel Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modal_analysis_basic.html">Modal Analysis: 3-DOF System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../opensees/two_story_mrf.html">OpenSees: Three-Story MRF Analysis</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Earthquake Engineering</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../earthquake/asce7_2800_spectrum/asce7_2800_spectrum.html">ASCE 7 vs. 2800 Standard: Comparing Design Spectral Response Acceleration Parameter (Sa)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../earthquake/frequency_content/frequency_content.html">Frequency content of Earthquake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../earthquake/response_spectrum/response_spectrum.html">Earthquake Response Spectrum</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/hkaragah/hkaragah.github.io" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/hkaragah/hkaragah.github.io/issues/new?title=Issue%20on%20page%20%2Fstructure/structural_dynamics/seismic_forces_on_floor_diaphragms/seismic_forces_on_floor_diaphragms.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/structure/structural_dynamics/seismic_forces_on_floor_diaphragms/seismic_forces_on_floor_diaphragms.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Seismic Forces on Floor Diaphragms</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Seismic Forces on Floor Diaphragms</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Seismic Forces on Floor Diaphragms</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-environment">Setup Environment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#define-structural-model">Define Structural Model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seismic-design-parameters">Seismic Design Parameters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loads">Loads</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-parameters">Model Parameters</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etabs-model">ETABS Model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-etabs-model-analysis">Run ETABS Model Analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modal-analysis-results">Modal Analysis Results</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mode-shapes">Mode Shapes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-story-and-diaphragm-forces">Get Story and Diaphragm Forces</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-model">Python Model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-data-classes">Define Data Classes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Define Structural Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-seismic-parameters">Define Seismic Parameters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-structure-period">Compute Structure Period</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#story-forces-and-shears">Story Forces and Shears</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diaphragm-forces">Diaphragm Forces</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-seismic-forces-with-modal-shapes">Compare Seismic Forces with Modal Shapes</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div style="text-align: right;">
+<a target="_blank" href="https://colab.research.google.com/github/hkaragah/hkaragah.github.io/blob/main/structure/concrete/force_moment_interaction/force_moment_interaction.ipynb">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a>
+<div style="font-size: 0.8em; color: #555;">By Hossein Karagah</div>
+<div style="font-size: 0.8em; color: #555;">© Copyright 2025 GNU GENERAL PUBLIC LICENSE.</div>
+</div><section class="tex2jax_ignore mathjax_ignore" id="seismic-forces-on-floor-diaphragms">
+<h1>Seismic Forces on Floor Diaphragms<a class="headerlink" href="#seismic-forces-on-floor-diaphragms" title="Link to this heading">#</a></h1>
+<a class="reference internal image-reference" href="../../../_images/seismic_forces_on_floor_diaphragm_concrete_slab.jpg"><img alt="Frame properties" src="../../../_images/seismic_forces_on_floor_diaphragm_concrete_slab.jpg" style="width: 100%;" />
+</a>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>Seismic Forces on Floor Diaphragms<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<section id="setup-environment">
+<h2>Setup Environment<a class="headerlink" href="#setup-environment" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># !pip install comtypes</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">comtypes.client</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="define-structural-model">
+<h2>Define Structural Model<a class="headerlink" href="#define-structural-model" title="Link to this heading">#</a></h2>
+<section id="seismic-design-parameters">
+<h3>Seismic Design Parameters<a class="headerlink" href="#seismic-design-parameters" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Location: San Diego, CA (Lat: 32.71576, Long: -117.163817)</p></li>
+<li><p>Soil Class: D-Stiff Soil (<span class="math notranslate nohighlight">\(V_{S30}=260\)</span>)</p></li>
+<li><p>Risk Category: II</p></li>
+<li><p><span class="math notranslate nohighlight">\(PGA_{M}=0.69\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(T_L=8\)</span> sec</p></li>
+<li><p><span class="math notranslate nohighlight">\(S_S = 1.65\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(S_1 = 0.5\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(S_{MS}=1.64\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(S_{M1}=1.19\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(S_{DS}=1.09\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(S_{D1}=0.79\)</span></p></li>
+</ul>
+</section>
+<section id="loads">
+<h3>Loads<a class="headerlink" href="#loads" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Dead load: 95 psf (including 6” concrete slab)</p></li>
+<li><p>Live load: 50 psf (office)</p></li>
+<li><p>Roof live load: 20 psf</p></li>
+<li><p>Tributary width: 18 ft</p></li>
+</ul>
+</section>
+<section id="model-parameters">
+<h3>Model Parameters<a class="headerlink" href="#model-parameters" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Lateral force resisting: Steel special moment-resisting frame</p></li>
+<li><p><span class="math notranslate nohighlight">\(R=8\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\Omega_0=3\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(C_d=5.5\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(I_e=1.0\)</span></p></li>
+</ul>
+<p>The section used for beams and columns are as follows:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Story</p></th>
+<th class="head text-center"><p>1</p></th>
+<th class="head text-center"><p>2</p></th>
+<th class="head text-center"><p>3</p></th>
+<th class="head text-center"><p>4</p></th>
+<th class="head text-center"><p>5</p></th>
+<th class="head text-center"><p>6</p></th>
+<th class="head text-center"><p>7</p></th>
+<th class="head text-center"><p>8</p></th>
+<th class="head text-center"><p>9</p></th>
+<th class="head text-center"><p>10</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Columns</p></td>
+<td class="text-center"><p>W8x67<br>12 ft</p></td>
+<td class="text-center"><p>W12x96<br>9 ft</p></td>
+<td class="text-center"><p>W8x40<br>9 ft</p></td>
+<td class="text-center"><p>W14x68<br>9 ft</p></td>
+<td class="text-center"><p>W12x45<br>9 ft</p></td>
+<td class="text-center"><p>W14x53<br>9 ft</p></td>
+<td class="text-center"><p>W12x45<br>9 ft</p></td>
+<td class="text-center"><p>W14x48<br>9 ft</p></td>
+<td class="text-center"><p>W12x45<br>9 ft</p></td>
+<td class="text-center"><p>W12x45<br>9 ft</p></td>
+</tr>
+<tr class="row-odd"><td><p>Beam</p></td>
+<td class="text-center"><p>W18x35</p></td>
+<td class="text-center"><p>W18x35</p></td>
+<td class="text-center"><p>W18x35</p></td>
+<td class="text-center"><p>W18x35</p></td>
+<td class="text-center"><p>W18x35</p></td>
+<td class="text-center"><p>W18x35</p></td>
+<td class="text-center"><p>W18x35</p></td>
+<td class="text-center"><p>W18x35</p></td>
+<td class="text-center"><p>W18x35</p></td>
+<td class="text-center"><p>W18x35</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The beam’s spans are 18 ft. Also the frame is assumed simply supported at the base.</p>
+</section>
+</section>
+<section id="etabs-model">
+<h2>ETABS Model<a class="headerlink" href="#etabs-model" title="Link to this heading">#</a></h2>
+<section id="setup">
+<h3>Setup<a class="headerlink" href="#setup" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create API helper object</span>
+<span class="n">helper</span> <span class="o">=</span> <span class="n">comtypes</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">CreateObject</span><span class="p">(</span><span class="s2">&quot;ETABSv1.Helper&quot;</span><span class="p">)</span>
+<span class="n">helper</span> <span class="o">=</span> <span class="n">helper</span><span class="o">.</span><span class="n">QueryInterface</span><span class="p">(</span><span class="n">comtypes</span><span class="o">.</span><span class="n">gen</span><span class="o">.</span><span class="n">ETABSv1</span><span class="o">.</span><span class="n">cHelper</span><span class="p">)</span>
+<span class="n">ETABSObject</span> <span class="o">=</span> <span class="n">helper</span><span class="o">.</span><span class="n">QueryInterface</span><span class="p">(</span><span class="n">comtypes</span><span class="o">.</span><span class="n">gen</span><span class="o">.</span><span class="n">ETABSv1</span><span class="o">.</span><span class="n">cHelper</span><span class="p">)</span>
+<span class="n">ETABSObject</span> <span class="o">=</span> <span class="n">helper</span><span class="o">.</span><span class="n">CreateObjectProgID</span><span class="p">(</span><span class="s2">&quot;CSI.ETABS.API.ETABSObject&quot;</span><span class="p">)</span>
+
+<span class="c1"># Start ETABS application</span>
+<span class="n">ETABSObject</span><span class="o">.</span><span class="n">ApplicationStart</span><span class="p">()</span>
+
+<span class="c1"># Create and initialize SapModel object</span>
+<span class="n">SapModel</span> <span class="o">=</span> <span class="n">ETABSObject</span><span class="o">.</span><span class="n">SapModel</span>
+<span class="n">SapModel</span><span class="o">.</span><span class="n">InitializeNewModel</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="run-etabs-model-analysis">
+<h3>Run ETABS Model Analysis<a class="headerlink" href="#run-etabs-model-analysis" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Open the model</span>
+<span class="n">etabs_model</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;C:\Users\hkara\OneDrive\Desktop\sap model\modal_analysis_10_story.edb&quot;</span>
+<span class="n">SapModel</span><span class="o">.</span><span class="n">File</span><span class="o">.</span><span class="n">OpenFile</span><span class="p">(</span><span class="n">etabs_model</span><span class="p">)</span>
+
+<span class="c1"># Save the model under new name</span>
+<span class="n">etabs_model</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;C:\Users\hkara\OneDrive\Desktop\sap model\modal_analysis_10_story.edb&quot;</span>
+<span class="n">SapModel</span><span class="o">.</span><span class="n">File</span><span class="o">.</span><span class="n">Save</span><span class="p">(</span><span class="n">etabs_model</span><span class="p">)</span>
+
+<span class="c1"># Run the analysis</span>
+<span class="n">SapModel</span><span class="o">.</span><span class="n">Analyze</span><span class="o">.</span><span class="n">RunAnalysis</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="modal-analysis-results">
+<h3>Modal Analysis Results<a class="headerlink" href="#modal-analysis-results" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make sure to deselect all cases and combos for output</span>
+<span class="n">SapModel</span><span class="o">.</span><span class="n">Results</span><span class="o">.</span><span class="n">Setup</span><span class="o">.</span><span class="n">DeselectAllCasesAndCombosForOutput</span><span class="p">()</span>
+
+<span class="c1"># Set the load case for output to &quot;MODAL&quot;</span>
+<span class="n">SapModel</span><span class="o">.</span><span class="n">Results</span><span class="o">.</span><span class="n">Setup</span><span class="o">.</span><span class="n">SetCaseSelectedForOutput</span><span class="p">(</span><span class="s2">&quot;MODAL&quot;</span><span class="p">)</span>
+
+<span class="c1"># Set units to US Customary (kip, ft, sec)</span>
+<span class="n">SapModel</span><span class="o">.</span><span class="n">SetPresentUnits</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>  
+
+<span class="c1"># Retrieve modal periods</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">SapModel</span><span class="o">.</span><span class="n">Results</span><span class="o">.</span><span class="n">ModalPeriod</span><span class="p">()</span>
+
+<span class="c1"># Extract modal results and reshaope into a DataFrame</span>
+<span class="n">modal_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;mode&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">),</span>
+    <span class="s2">&quot;period_sec&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="mi">3</span><span class="p">),</span>
+    <span class="c1"># &quot;frequency_Hz&quot;: np.round(out[5], 3),</span>
+    <span class="c1"># &quot;circular_frequency_rad_sec&quot;: np.round(out[6], 3),</span>
+    <span class="c1"># &quot;eigenvalue&quot;: np.round(out[7], 3)</span>
+<span class="p">})</span>
+
+<span class="c1"># Set the index to mode</span>
+<span class="n">modal_df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;mode&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Get modal participating mass ratios</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">SapModel</span><span class="o">.</span><span class="n">Results</span><span class="o">.</span><span class="n">ModalParticipatingMassRatios</span><span class="p">()</span>
+
+<span class="c1"># Add mass ratios and accumulated mass ratios in x-direction to the &quot;modal_df&quot; DataFrame</span>
+<span class="n">modal_df</span><span class="p">[</span><span class="s2">&quot;mass_ux&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">modal_df</span><span class="p">[</span><span class="s2">&quot;sum_mass_ux&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># Get modal participation factors</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">SapModel</span><span class="o">.</span><span class="n">Results</span><span class="o">.</span><span class="n">ModalParticipationFactors</span><span class="p">()</span>
+
+<span class="c1"># Add modal participation factors in x-direction to the &quot;modal_df&quot; DataFrame</span>
+<span class="n">modal_df</span><span class="p">[</span><span class="s2">&quot;ux_factor&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="n">modal_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>period_sec</th>
+      <th>mass_ux</th>
+      <th>sum_mass_ux</th>
+      <th>ux_factor</th>
+    </tr>
+    <tr>
+      <th>mode</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>2.462</td>
+      <td>0.917</td>
+      <td>0.917</td>
+      <td>-27.043</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.762</td>
+      <td>0.065</td>
+      <td>0.982</td>
+      <td>-7.173</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.393</td>
+      <td>0.011</td>
+      <td>0.993</td>
+      <td>2.948</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.254</td>
+      <td>0.004</td>
+      <td>0.996</td>
+      <td>1.716</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0.179</td>
+      <td>0.002</td>
+      <td>0.998</td>
+      <td>1.185</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0.134</td>
+      <td>0.001</td>
+      <td>0.999</td>
+      <td>0.784</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0.107</td>
+      <td>0.001</td>
+      <td>0.999</td>
+      <td>0.635</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>0.088</td>
+      <td>0.000</td>
+      <td>1.000</td>
+      <td>0.437</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>0.077</td>
+      <td>0.000</td>
+      <td>1.000</td>
+      <td>0.352</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>0.068</td>
+      <td>0.000</td>
+      <td>1.000</td>
+      <td>-0.301</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="mode-shapes">
+<h3>Mode Shapes<a class="headerlink" href="#mode-shapes" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the mode shapes (the following code only returns the first mode shape)</span>
+
+<span class="c1"># SapModel.Results.Setup.DeselectAllCasesAndCombosForOutput()</span>
+<span class="c1"># SapModel.Results.Setup.SetCaseSelectedForOutput(&quot;Modal&quot;)</span>
+
+<span class="c1"># Name = &quot;MNodes&quot;</span>
+<span class="c1"># ItemTypeElm = 2</span>
+
+<span class="c1"># out = SapModel.Results.ModeShape(Name, ItemTypeElm)</span>
+
+<span class="c1"># # Convert node_id and node_disp to numpy arrays</span>
+<span class="c1"># node_id = np.array(out[1])</span>
+<span class="c1"># node_disp = np.array(out[6])</span>
+
+<span class="c1"># # Get z coordinates using vectorized operation</span>
+<span class="c1"># node_zcoord = np.array([SapModel.PointObj.GetCoordCartesian(node)[2] for node in node_id])</span>
+
+<span class="c1"># # Sort all arrays based on z coordinates</span>
+<span class="c1"># sorted_indices = np.argsort(node_zcoord)</span>
+<span class="c1"># sorted_zcoord = node_zcoord[sorted_indices]</span>
+<span class="c1"># sorted_node_id = node_id[sorted_indices] </span>
+<span class="c1"># sorted_node_disp = node_disp[sorted_indices]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mode_shape_v1_file</span> <span class="o">=</span> <span class="s2">&quot;modal_analysis_10_story_v1.csv&quot;</span>
+<span class="n">mode_shape_df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">mode_shape_v1_file</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Scale the mode shape to the maximum displacement in each mode</span>
+<span class="n">mode_shape_df1_scaled</span> <span class="o">=</span> <span class="n">mode_shape_df1</span><span class="o">.</span><span class="n">div</span><span class="p">(</span><span class="n">mode_shape_df1</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Name = &quot;ALL&quot;</span>
+<span class="c1"># GroupElm = 1</span>
+<span class="c1"># ItemTypeElm = 2</span>
+<span class="c1"># NumberResults = 1</span>
+<span class="c1"># Obj = []</span>
+<span class="c1"># Elm = []</span>
+<span class="c1"># LoadCase = [&quot;MODAL&quot;]</span>
+<span class="c1"># StepType = []</span>
+<span class="c1"># StepNum = []</span>
+<span class="c1"># U1, U2, U3 = [0], [1], [0]</span>
+<span class="c1"># R1, R2, R3 = [0], [0], [0]</span>
+<span class="c1"># out = SapModel.Results.ModeShape(</span>
+<span class="c1">#     Name, </span>
+<span class="c1">#     GroupElm, </span>
+<span class="c1">#     NumberResults, </span>
+<span class="c1">#     Obj, </span>
+<span class="c1">#     Elm, </span>
+<span class="c1">#     LoadCase, </span>
+<span class="c1">#     StepType, </span>
+<span class="c1">#     StepNum, </span>
+<span class="c1">#     U1, </span>
+<span class="c1">#     U2, </span>
+<span class="c1">#     U3, </span>
+<span class="c1">#     R1, </span>
+<span class="c1">#     R2, </span>
+<span class="c1">#     R3</span>
+<span class="c1"># )</span>
+<span class="c1"># out = SapModel.Results.ModeShape()</span>
+<span class="c1"># out</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># # Deselect previous load combinations</span>
+<span class="c1"># SapModel.Results.Setup.DeselectAllCasesAndCombosForOutput()</span>
+
+<span class="c1"># # Get load combination names</span>
+<span class="c1"># out = SapModel.RespCombo.GetNameList()</span>
+<span class="c1"># combinations = list(out[1])</span>
+
+<span class="c1"># # 3) Select each combo for output</span>
+<span class="c1"># for combo in combinations:</span>
+<span class="c1">#     SapModel.Results.Setup.SetComboSelectedForOutput(combo, True)</span>
+    
+<span class="c1"># # Get base reactions for all load combinations</span>
+<span class="c1"># out = SapModel.Results.BaseReact()</span>
+
+<span class="c1"># # Extract the relevant data from the output</span>
+<span class="c1"># reaction_df = pd.DataFrame({</span>
+<span class="c1">#     &#39;Load Case&#39;: out[1],</span>
+<span class="c1">#     &#39;FX&#39;: np.round(out[4], 3),</span>
+<span class="c1">#     &#39;FY&#39;: np.round(out[5], 3), </span>
+<span class="c1">#     &#39;FZ&#39;: np.round(out[6], 3),</span>
+<span class="c1">#     &#39;MX&#39;: np.round(out[7], 3),</span>
+<span class="c1">#     &#39;MY&#39;: np.round(out[8], 3),</span>
+<span class="c1">#     &#39;MZ&#39;: np.round(out[9], 3)</span>
+<span class="c1"># })</span>
+
+<span class="c1"># reaction_df</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="get-story-and-diaphragm-forces">
+<h3>Get Story and Diaphragm Forces<a class="headerlink" href="#get-story-and-diaphragm-forces" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">out</span> <span class="o">=</span> <span class="n">SapModel</span><span class="o">.</span><span class="n">Story</span><span class="o">.</span><span class="n">GetStories</span><span class="p">()</span>
+
+<span class="n">story_names</span> <span class="o">=</span> <span class="n">out</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">story_elevations</span> <span class="o">=</span> <span class="n">out</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">story_heights</span> <span class="o">=</span> <span class="n">out</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># List of available tables</span>
+
+<span class="n">NumberTables</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">TableKey</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">TableName</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">ImportType</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">out</span> <span class="o">=</span> <span class="n">SapModel</span><span class="o">.</span><span class="n">DatabaseTables</span><span class="o">.</span><span class="n">GetAvailableTables</span><span class="p">(</span><span class="n">NumberTables</span><span class="p">,</span> <span class="n">TableKey</span><span class="p">,</span> <span class="n">TableName</span><span class="p">,</span> <span class="n">ImportType</span><span class="p">)</span>
+
+<span class="n">number_of_tables</span> <span class="o">=</span> <span class="n">out</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">table_names</span> <span class="o">=</span> <span class="n">out</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># Filter table names to include only those related to &quot;Story&quot;</span>
+<span class="n">table_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">name</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">table_names</span> <span class="k">if</span> <span class="s2">&quot;Story&quot;</span> <span class="ow">in</span> <span class="n">name</span><span class="p">]</span>
+<span class="n">table_names</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Mass Summary by Story&#39;,
+ &#39;Material List by Story&#39;,
+ &#39;Story Definitions&#39;,
+ &#39;Story Drifts&#39;,
+ &#39;Story Forces&#39;,
+ &#39;Story Max Over Avg Displacements&#39;,
+ &#39;Story Max Over Avg Drifts&#39;,
+ &#39;Story Stiffness&#39;,
+ &#39;Tower and Base Story Definitions&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make sure no cases *or* combos are selected</span>
+<span class="n">SapModel</span><span class="o">.</span><span class="n">DatabaseTables</span><span class="o">.</span><span class="n">SetLoadCasesSelectedForDisplay</span><span class="p">([])</span>
+<span class="n">SapModel</span><span class="o">.</span><span class="n">DatabaseTables</span><span class="o">.</span><span class="n">SetLoadCombinationsSelectedForDisplay</span><span class="p">([])</span>
+
+<span class="c1"># Select only the &quot;Exh&quot; case</span>
+<span class="n">SapModel</span><span class="o">.</span><span class="n">DatabaseTables</span><span class="o">.</span><span class="n">SetLoadCasesSelectedForDisplay</span><span class="p">([</span><span class="s2">&quot;Eh&quot;</span><span class="p">])</span>
+
+<span class="c1"># Pull the Story Forces table</span>
+<span class="n">TableKey</span> <span class="o">=</span> <span class="s1">&#39;Story Forces&#39;</span>
+<span class="n">FieldKeyList</span> <span class="o">=</span> <span class="p">[]</span>    <span class="c1"># empty = all fields</span>
+<span class="n">GroupName</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>    <span class="c1"># empty = all objects</span>
+<span class="n">TableVersion</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">FieldsKeysIncluded</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">NumberRecords</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">TableData</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">out</span> <span class="o">=</span> <span class="n">SapModel</span><span class="o">.</span><span class="n">DatabaseTables</span><span class="o">.</span><span class="n">GetTableForDisplayArray</span><span class="p">(</span>
+    <span class="n">TableKey</span><span class="p">,</span>
+    <span class="n">FieldKeyList</span><span class="p">,</span>
+    <span class="n">GroupName</span><span class="p">,</span>
+    <span class="n">TableVersion</span><span class="p">,</span>
+    <span class="n">FieldsKeysIncluded</span><span class="p">,</span>
+    <span class="n">NumberRecords</span><span class="p">,</span>
+    <span class="n">TableData</span>
+<span class="p">)</span>
+
+<span class="n">column_names</span> <span class="o">=</span> <span class="n">out</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">n_rows</span>       <span class="o">=</span> <span class="n">out</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">flat_data</span>    <span class="o">=</span> <span class="n">out</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+
+<span class="c1"># Reshape into a DataFrame</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">flat_data</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_rows</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">column_names</span><span class="p">))</span>
+<span class="n">story_force_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">column_names</span><span class="p">)</span>
+
+<span class="c1"># Convert any numeric columns</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">story_force_df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">story_force_df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">story_force_df</span><span class="p">[</span><span class="n">col</span><span class="p">])</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="k">continue</span>
+
+<span class="c1"># Filter to only those rows where Location == &quot;Bottom&quot;</span>
+<span class="n">story_force_bottom</span> <span class="o">=</span> <span class="n">story_force_df</span><span class="p">[</span><span class="n">story_force_df</span><span class="p">[</span><span class="s2">&quot;Location&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Bottom&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Drop all columns except &quot;Story&quot;, &quot;OutputCase&quot;, &quot;Location&quot;, and &quot;VX&quot;</span>
+<span class="n">story_force_bottom</span> <span class="o">=</span> <span class="n">story_force_bottom</span><span class="p">[[</span><span class="s2">&quot;Story&quot;</span><span class="p">,</span> <span class="s2">&quot;OutputCase&quot;</span><span class="p">,</span> <span class="s2">&quot;Location&quot;</span><span class="p">,</span> <span class="s2">&quot;VX&quot;</span><span class="p">]]</span>
+
+<span class="c1"># Set the index to &quot;Story&quot;</span>
+<span class="n">story_force_bottom</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;Story&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">story_force_bottom</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>OutputCase</th>
+      <th>Location</th>
+      <th>VX</th>
+    </tr>
+    <tr>
+      <th>Story</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Story10</th>
+      <td>Eh</td>
+      <td>Bottom</td>
+      <td>-4.428</td>
+    </tr>
+    <tr>
+      <th>Story9</th>
+      <td>Eh</td>
+      <td>Bottom</td>
+      <td>-8.234</td>
+    </tr>
+    <tr>
+      <th>Story8</th>
+      <td>Eh</td>
+      <td>Bottom</td>
+      <td>-11.450</td>
+    </tr>
+    <tr>
+      <th>Story7</th>
+      <td>Eh</td>
+      <td>Bottom</td>
+      <td>-14.109</td>
+    </tr>
+    <tr>
+      <th>Story6</th>
+      <td>Eh</td>
+      <td>Bottom</td>
+      <td>-16.248</td>
+    </tr>
+    <tr>
+      <th>Story5</th>
+      <td>Eh</td>
+      <td>Bottom</td>
+      <td>-17.905</td>
+    </tr>
+    <tr>
+      <th>Story4</th>
+      <td>Eh</td>
+      <td>Bottom</td>
+      <td>-19.121</td>
+    </tr>
+    <tr>
+      <th>Story3</th>
+      <td>Eh</td>
+      <td>Bottom</td>
+      <td>-19.945</td>
+    </tr>
+    <tr>
+      <th>Story2</th>
+      <td>Eh</td>
+      <td>Bottom</td>
+      <td>-20.430</td>
+    </tr>
+    <tr>
+      <th>Story1</th>
+      <td>Eh</td>
+      <td>Bottom</td>
+      <td>-20.641</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The calculated fundamental period is less than the ASCE 7 upper bound and I can use it in the ETABS model, but for simlicity I am going to keep using the ASCE 7 approximate period in the model.</p>
+</section>
+</section>
+<section id="python-model">
+<h2>Python Model<a class="headerlink" href="#python-model" title="Link to this heading">#</a></h2>
+<section id="define-data-classes">
+<h3>Define Data Classes<a class="headerlink" href="#define-data-classes" title="Link to this heading">#</a></h3>
+<p>To facilitate my calculation, I define classes to store the structure information and seismic parameters as follows</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Section</span></code>: stores the section properties including <code class="docutils literal notranslate"><span class="pre">name</span></code> and <code class="docutils literal notranslate"><span class="pre">self_weight</span></code> of the section.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Element</span></code>: stores the element (e.g., beam or column) properties including <code class="docutils literal notranslate"><span class="pre">section</span></code>, <code class="docutils literal notranslate"><span class="pre">length</span></code>, and <code class="docutils literal notranslate"><span class="pre">unit_dead_load</span></code>. It can compute the total weight of the element including the total self-weight and dead load.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Story</span></code>: stores the story properties including <code class="docutils literal notranslate"><span class="pre">name</span></code>, <code class="docutils literal notranslate"><span class="pre">beam</span></code>, <code class="docutils literal notranslate"><span class="pre">column_below</span></code>, <code class="docutils literal notranslate"><span class="pre">n_column_below</span></code>, <code class="docutils literal notranslate"><span class="pre">column_above</span></code>, and <code class="docutils literal notranslate"><span class="pre">n_column_above</span></code>. It can calculate the total effective seicmi weight of the story which is the weight of elements assuming half of the columns above and below contribute to the story weight.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Building</span></code>: stores the building properties including <code class="docutils literal notranslate"><span class="pre">name</span></code> and list of stories as well its seismic-related parameteres such as <code class="docutils literal notranslate"><span class="pre">R</span></code>, <code class="docutils literal notranslate"><span class="pre">Cd</span></code>, <code class="docutils literal notranslate"><span class="pre">Omega_0</span></code>, <code class="docutils literal notranslate"><span class="pre">Ie</span></code>, and <code class="docutils literal notranslate"><span class="pre">period</span></code>. It can also calculate vertical seismic force distribution factor, <span class="math notranslate nohighlight">\(C_{vx}
+\)</span>, for each story</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SeismicParams</span></code>: stores seismic parameters including <code class="docutils literal notranslate"><span class="pre">PGA_M</span></code>, <code class="docutils literal notranslate"><span class="pre">T_L</span></code>, <code class="docutils literal notranslate"><span class="pre">S_S</span></code>, <code class="docutils literal notranslate"><span class="pre">S_1</span></code>, <code class="docutils literal notranslate"><span class="pre">S_MS</span></code>, and <code class="docutils literal notranslate"><span class="pre">S_M1</span></code>. It also computes <code class="docutils literal notranslate"><span class="pre">S_DS</span></code> and <code class="docutils literal notranslate"><span class="pre">S_D1</span></code>.</p></li>
+</ul>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Section</span><span class="p">:</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">self_weight</span><span class="p">:</span> <span class="nb">float</span> <span class="c1"># in lb/ft</span>
+    
+    
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Element</span><span class="p">:</span>
+    <span class="n">section</span><span class="p">:</span> <span class="n">Section</span>
+    <span class="n">length</span><span class="p">:</span> <span class="nb">float</span> <span class="c1"># in feet</span>
+    <span class="n">unit_dead_load</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>  <span class="c1"># Unit dead load in lb/ft, optional</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">weight</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate the weight of the element.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="o">.</span><span class="n">self_weight</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">unit_dead_load</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">length</span>
+  
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">load_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;, DL=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">unit_dead_load</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> lb/ft&quot;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">unit_dead_load</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">, L=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">length</span><span class="si">}</span><span class="s2"> ft</span><span class="si">{</span><span class="n">load_str</span><span class="si">}</span><span class="s2">&quot;</span>
+    
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Story</span><span class="p">:</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">beam</span><span class="p">:</span> <span class="n">Element</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># Optional for the base</span>
+    <span class="n">n_beams</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Optional for the base, number of beams in the story</span>
+    <span class="n">col_below</span><span class="p">:</span> <span class="n">Element</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># Optional, for the base</span>
+    <span class="n">col_above</span><span class="p">:</span> <span class="n">Element</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># Optional, for the top story</span>
+    <span class="n">n_col_above_base</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># For base story only, renamed from _n_col_above</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">n_col_below</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_beams</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">col_below</span> <span class="k">else</span> <span class="mi">0</span>
+    
+    <span class="nd">@property</span> 
+    <span class="k">def</span><span class="w"> </span><span class="nf">n_col_above</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">col_above</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">col_below</span><span class="p">:</span>  <span class="c1"># base has no columns below</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_col_above_base</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;n_col_above_base must be provided for base story&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_col_above_base</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_beams</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">col_above</span> <span class="k">else</span> <span class="mi">0</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">seismic_weight</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate the effective seismic weight of the story.</span>
+<span class="sd">        This includes the weight of the beam, columns below, and optionally columns above.&quot;&quot;&quot;</span>
+        <span class="n">floor_weight</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">beam</span><span class="o">.</span><span class="n">weight</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_beams</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">beam</span> <span class="k">else</span> <span class="mf">0.0</span>
+        <span class="n">col_below_weight</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">col_below</span><span class="o">.</span><span class="n">weight</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_col_below</span> <span class="o">/</span> <span class="mi">2</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">col_below</span> <span class="k">else</span> <span class="mf">0.0</span>
+        <span class="n">col_above_weight</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">col_above</span><span class="o">.</span><span class="n">weight</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_col_above</span> <span class="o">/</span> <span class="mi">2</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">col_above</span> <span class="k">else</span> <span class="mf">0.0</span>
+        <span class="k">return</span> <span class="n">floor_weight</span> <span class="o">+</span> <span class="n">col_below_weight</span> <span class="o">+</span> <span class="n">col_above_weight</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">height</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="o">|</span><span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate the height of the story based on the columns below.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">col_below</span><span class="o">.</span><span class="n">length</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">col_below</span> <span class="k">else</span> <span class="kc">None</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">beam_info</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;beam (</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n_beams</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">beam</span><span class="si">}</span><span class="s2">)&quot;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">beam</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">col_below_info</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;columns below (</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n_col_below</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">col_below</span><span class="si">}</span><span class="s2">)&quot;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">col_below</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">col_above_info</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;columns above (</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n_col_above</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">col_above</span><span class="si">}</span><span class="s2">)&quot;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">col_above</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: &quot;</span> <span class="o">+</span> <span class="n">beam_info</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> <span class="n">col_below_info</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> <span class="n">col_above_info</span>
+        
+<span class="k">class</span><span class="w"> </span><span class="nc">Building</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">R</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">Cd</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">Omega_0</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">Ie</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">period</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">R</span> <span class="o">=</span> <span class="n">R</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Cd</span> <span class="o">=</span> <span class="n">Cd</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Omega_0</span> <span class="o">=</span> <span class="n">Omega_0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Ie</span> <span class="o">=</span> <span class="n">Ie</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">period</span> <span class="o">=</span> <span class="n">period</span>  <span class="c1"># Optional, can be set later</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stories</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Story</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_story</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">story</span><span class="p">:</span> <span class="n">Story</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add a story to the building.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stories</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">story</span><span class="p">)</span>
+        
+    <span class="k">def</span><span class="w"> </span><span class="nf">seismic_weight</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate the total effective seismic weight of the building</span>
+<span class="sd">        by adding the effective weights of all stories.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">story</span><span class="o">.</span><span class="n">seismic_weight</span> <span class="k">for</span> <span class="n">story</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">stories</span><span class="p">)</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">story_heights</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the elevations of all stories in the building.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">story</span><span class="o">.</span><span class="n">height</span> <span class="k">for</span> <span class="n">story</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">stories</span><span class="p">]</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">story_elevations</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the elevations of all stories in the building.&quot;&quot;&quot;</span>
+        <span class="n">elevations</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">current_elevation</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="k">for</span> <span class="n">story</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">stories</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">story</span><span class="o">.</span><span class="n">height</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">current_elevation</span> <span class="o">+=</span> <span class="n">story</span><span class="o">.</span><span class="n">height</span>
+                <span class="n">elevations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_elevation</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">elevations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">elevations</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">story_weights</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the effective seismic weights of all stories in the building.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">story</span><span class="o">.</span><span class="n">seismic_weight</span> <span class="k">for</span> <span class="n">story</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">stories</span><span class="p">]</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_k</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">period</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Period must be set to calculate k.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mf">1.0</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">period</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mf">2.5</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">Cvx</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate the vertical seismic force distribution factor for each story</span>
+<span class="sd">        per ASCE 7-22 §12.8.3.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">stories</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No stories in the building to calculate Cvx.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">period</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Period must be set to calculate Cvx.&quot;</span><span class="p">)</span>
+        
+        <span class="n">k</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_k</span><span class="p">()</span>
+        <span class="n">wx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">story_weights</span><span class="p">)</span>
+        <span class="n">hx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">story_elevations</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">wx</span> <span class="o">*</span> <span class="n">hx</span><span class="o">**</span><span class="n">k</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">wx</span> <span class="o">*</span> <span class="n">hx</span><span class="o">**</span><span class="n">k</span><span class="p">)</span>
+    
+    
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Create header</span>
+        <span class="n">header</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Building: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">header</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;R: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">R</span><span class="si">}</span><span class="s2">, Cd: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">Cd</span><span class="si">}</span><span class="s2">, Omega_0: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">Omega_0</span><span class="si">}</span><span class="s2">, Ie: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">Ie</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">header</span> <span class="o">+=</span> <span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">45</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">header</span> <span class="o">+=</span> <span class="s2">&quot;Story  Weight(lb)  Height(ft)  Elevation(ft)</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">header</span> <span class="o">+=</span> <span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">45</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        
+        <span class="c1"># Build table rows in reverse order</span>
+        <span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">story</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">elev</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span>
+            <span class="nb">reversed</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stories</span><span class="p">[</span><span class="mi">1</span><span class="p">:]),</span>
+            <span class="nb">reversed</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">story_heights</span><span class="p">[</span><span class="mi">1</span><span class="p">:]),</span> 
+            <span class="nb">reversed</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">story_elevations</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+        <span class="p">)):</span>
+            <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stories</span><span class="p">)</span><span class="o">-</span><span class="n">i</span><span class="si">:</span><span class="s2">^5d</span><span class="si">}</span><span class="s2">  </span><span class="si">{</span><span class="n">story</span><span class="o">.</span><span class="n">seismic_weight</span><span class="si">:</span><span class="s2">^10.1f</span><span class="si">}</span><span class="s2">  &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">height</span><span class="si">:</span><span class="s2">^10.1f</span><span class="si">}</span><span class="s2">  </span><span class="si">{</span><span class="n">elev</span><span class="si">:</span><span class="s2">^12.1f</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+            
+        <span class="c1"># Add base story</span>
+        <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">stories</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="si">:</span><span class="s2">^5s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">stories</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">seismic_weight</span><span class="si">:</span><span class="s2">^10.1f</span><span class="si">}</span><span class="s2">  &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s2">&quot; &quot;</span><span class="si">:</span><span class="s2">^10s</span><span class="si">}</span><span class="s2">  </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">story_elevations</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">^14.1f</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+        
+        <span class="c1"># Add dashed line and total weight</span>
+        <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">45</span><span class="p">)</span>
+        <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;Total&#39;</span><span class="si">:</span><span class="s2">^5s</span><span class="si">}</span><span class="s2">  </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">seismic_weight</span><span class="p">()</span><span class="si">:</span><span class="s2">^10.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            
+        <span class="k">return</span> <span class="n">header</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
+    
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">SeismicParams</span><span class="p">:</span>
+    <span class="n">PGA_M</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">TL</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">S_S</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">S_1</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">S_MS</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">S_M1</span><span class="p">:</span> <span class="nb">float</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">S_DS</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">S_MS</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">S_D1</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">S_M1</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;SeismicParams:</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;PGAₘ = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">PGA_M</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;TL = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">TL</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;Sₛ = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">S_S</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;S₁ = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">S_1</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;Sₘₛ = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">S_MS</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;Sₘ₁ = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">S_M1</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;Sdₛ = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">S_DS</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;Sd₁ = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">S_D1</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__str__</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<p>I use the above classes and the properties used in ETABS model to define the building model in Python.</p>
+</section>
+<section id="id2">
+<h3>Define Structural Model<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">unit_dead_load</span> <span class="o">=</span> <span class="mi">95</span> <span class="c1"># psf</span>
+<span class="n">tirbutary_width</span> <span class="o">=</span> <span class="mi">18</span> <span class="c1"># ft</span>
+<span class="n">beam_dead_load</span> <span class="o">=</span> <span class="n">unit_dead_load</span> <span class="o">*</span> <span class="n">tirbutary_width</span> <span class="c1"># lb/ft</span>
+
+<span class="c1"># Height of each story in ft</span>
+<span class="n">story_heights</span> <span class="o">=</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+
+<span class="c1"># Total height of the frame</span>
+<span class="n">total_height</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">story_heights</span><span class="p">)</span>
+
+<span class="c1"># Define beam properties</span>
+<span class="n">W18x35</span> <span class="o">=</span> <span class="n">Section</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;W18x35&quot;</span><span class="p">,</span> <span class="n">self_weight</span><span class="o">=</span><span class="mi">35</span><span class="p">)</span>
+<span class="n">W18x40</span> <span class="o">=</span> <span class="n">Section</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;W18x40&quot;</span><span class="p">,</span> <span class="n">self_weight</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+<span class="n">B1</span> <span class="o">=</span> <span class="n">Element</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="n">W18x40</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">unit_dead_load</span><span class="o">=</span><span class="n">beam_dead_load</span><span class="p">)</span>
+<span class="n">B2</span> <span class="o">=</span> <span class="n">Element</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="n">W18x35</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">unit_dead_load</span><span class="o">=</span><span class="n">beam_dead_load</span><span class="p">)</span>
+<span class="n">beams</span> <span class="o">=</span> <span class="p">[</span><span class="n">B1</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">B2</span><span class="p">]</span> <span class="o">*</span> <span class="mi">10</span>
+
+<span class="c1"># Define column properties</span>
+<span class="n">W10x88</span> <span class="o">=</span> <span class="n">Section</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;W10x88&quot;</span><span class="p">,</span> <span class="n">self_weight</span><span class="o">=</span><span class="mi">67</span><span class="p">)</span>
+<span class="n">W10x68</span> <span class="o">=</span> <span class="n">Section</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;W10x68&quot;</span><span class="p">,</span> <span class="n">self_weight</span><span class="o">=</span><span class="mi">96</span><span class="p">)</span>
+<span class="n">W14x68</span> <span class="o">=</span> <span class="n">Section</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;W14x68&quot;</span><span class="p">,</span> <span class="n">self_weight</span><span class="o">=</span><span class="mi">68</span><span class="p">)</span>
+<span class="n">W12x45</span> <span class="o">=</span> <span class="n">Section</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;W12x45&quot;</span><span class="p">,</span> <span class="n">self_weight</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">W14x53</span> <span class="o">=</span> <span class="n">Section</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;W14x53&quot;</span><span class="p">,</span> <span class="n">self_weight</span><span class="o">=</span><span class="mi">53</span><span class="p">)</span>
+<span class="n">W14x48</span> <span class="o">=</span> <span class="n">Section</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;W14x48&quot;</span><span class="p">,</span> <span class="n">self_weight</span><span class="o">=</span><span class="mi">48</span><span class="p">)</span>
+<span class="n">col_sections</span> <span class="o">=</span> <span class="p">[</span><span class="n">W10x88</span><span class="p">,</span> <span class="n">W10x68</span><span class="p">,</span> <span class="n">W10x68</span><span class="p">,</span> <span class="n">W14x53</span><span class="p">,</span> <span class="n">W14x48</span><span class="p">,</span> <span class="n">W14x53</span><span class="p">,</span> <span class="n">W12x45</span><span class="p">,</span> <span class="n">W14x48</span><span class="p">,</span> <span class="n">W12x45</span><span class="p">,</span> <span class="n">W12x45</span><span class="p">]</span>
+<span class="n">cols</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">section</span><span class="p">,</span> <span class="n">height</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">col_sections</span><span class="p">,</span> <span class="n">story_heights</span><span class="p">):</span>
+    <span class="n">cols</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Element</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="n">section</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="n">height</span><span class="p">))</span>
+
+<span class="c1"># Define stories with beams and columns</span>
+<span class="n">base_story</span> <span class="o">=</span> <span class="n">Story</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Base&quot;</span><span class="p">,</span> <span class="n">beam</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_beams</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">col_below</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">col_above</span><span class="o">=</span><span class="n">cols</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">n_col_above_base</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">base_story</span><span class="p">)</span>
+<span class="n">stories</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Story</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">base_story</span><span class="p">]</span>
+<span class="n">story_count</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">beam</span><span class="p">,</span> <span class="n">column_below</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">beams</span><span class="p">,</span> <span class="n">cols</span><span class="p">)):</span>
+    <span class="n">story_count</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">stories</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Story</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Story </span><span class="si">{</span><span class="n">story_count</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">beam</span><span class="o">=</span><span class="n">beam</span><span class="p">,</span>
+        <span class="n">n_beams</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">col_below</span><span class="o">=</span><span class="n">column_below</span><span class="p">,</span>
+        <span class="n">col_above</span><span class="o">=</span><span class="n">cols</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">cols</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">stories</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Base: , , columns above (2-W10x88, L=12 ft)
+Story 1: beam (1-W18x40, L=18 ft, DL=1710.0 lb/ft), columns below (2-W10x88, L=12 ft), columns above (2-W10x68, L=9 ft)
+Story 2: beam (1-W18x35, L=18 ft, DL=1710.0 lb/ft), columns below (2-W10x68, L=9 ft), columns above (2-W10x68, L=9 ft)
+Story 3: beam (1-W18x35, L=18 ft, DL=1710.0 lb/ft), columns below (2-W10x68, L=9 ft), columns above (2-W14x53, L=9 ft)
+Story 4: beam (1-W18x35, L=18 ft, DL=1710.0 lb/ft), columns below (2-W14x53, L=9 ft), columns above (2-W14x48, L=9 ft)
+Story 5: beam (1-W18x35, L=18 ft, DL=1710.0 lb/ft), columns below (2-W14x48, L=9 ft), columns above (2-W14x53, L=9 ft)
+Story 6: beam (1-W18x35, L=18 ft, DL=1710.0 lb/ft), columns below (2-W14x53, L=9 ft), columns above (2-W12x45, L=9 ft)
+Story 7: beam (1-W18x35, L=18 ft, DL=1710.0 lb/ft), columns below (2-W12x45, L=9 ft), columns above (2-W14x48, L=9 ft)
+Story 8: beam (1-W18x35, L=18 ft, DL=1710.0 lb/ft), columns below (2-W14x48, L=9 ft), columns above (2-W12x45, L=9 ft)
+Story 9: beam (1-W18x35, L=18 ft, DL=1710.0 lb/ft), columns below (2-W12x45, L=9 ft), columns above (2-W12x45, L=9 ft)
+Story 10: beam (1-W18x35, L=18 ft, DL=1710.0 lb/ft), columns below (2-W12x45, L=9 ft), 
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<p>Now, let’s compute the effective seismic weight for each story.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create the building and add stories</span>
+<span class="n">building</span> <span class="o">=</span> <span class="n">Building</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;modal_analysis_10_story&quot;</span><span class="p">,</span> <span class="n">R</span><span class="o">=</span><span class="mf">8.0</span><span class="p">,</span> <span class="n">Cd</span><span class="o">=</span><span class="mf">5.5</span><span class="p">,</span> <span class="n">Omega_0</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">Ie</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">story</span> <span class="ow">in</span> <span class="n">stories</span><span class="p">:</span>
+    <span class="n">building</span><span class="o">.</span><span class="n">add_story</span><span class="p">(</span><span class="n">story</span><span class="p">)</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    
+    <span class="s2">&quot;weight_kips&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">story</span><span class="o">.</span><span class="n">seismic_weight</span> <span class="k">for</span> <span class="n">story</span> <span class="ow">in</span> <span class="n">building</span><span class="o">.</span><span class="n">stories</span><span class="p">])[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mf">1e3</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+    <span class="s2">&quot;height_ft&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">story</span><span class="o">.</span><span class="n">height</span> <span class="k">for</span> <span class="n">story</span> <span class="ow">in</span> <span class="n">building</span><span class="o">.</span><span class="n">stories</span><span class="p">][::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+    <span class="s2">&quot;elevation_ft&quot;</span><span class="p">:</span> <span class="n">building</span><span class="o">.</span><span class="n">story_elevations</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="p">},</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="n">story</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">story</span> <span class="ow">in</span> <span class="n">building</span><span class="o">.</span><span class="n">stories</span><span class="p">][::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">building</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Building: modal_analysis_10_story
+R: 8.0, Cd: 5.5, Omega_0: 3.0, Ie: 1.0
+---------------------------------------------
+Story  Weight(lb)  Height(ft)  Elevation(ft)
+---------------------------------------------
+ 11     31815.0       9.0          93.0    
+ 10     32220.0       9.0          84.0    
+  9     32247.0       9.0          75.0    
+  8     32247.0       9.0          66.0    
+  7     32292.0       9.0          57.0    
+  6     32319.0       9.0          48.0    
+  5     32319.0       9.0          39.0    
+  4     32751.0       9.0          30.0    
+  3     33138.0       9.0          21.0    
+  2     33168.0       12.0         12.0    
+Base    804.0                      0.0      
+---------------------------------------------
+Total   325320.0 
+</pre></div>
+</div>
+</div>
+</div>
+<p>The calculated effective weights are almost equal to those computed in ETABS.</p>
+</section>
+<hr class="docutils" />
+<section id="define-seismic-parameters">
+<h3>Define Seismic Parameters<a class="headerlink" href="#define-seismic-parameters" title="Link to this heading">#</a></h3>
+<p>I use <code class="docutils literal notranslate"><span class="pre">SeismicParams</span></code> to define the seismic parameters as follows.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">seismic</span> <span class="o">=</span> <span class="n">SeismicParams</span><span class="p">(</span>
+    <span class="n">PGA_M</span><span class="o">=</span><span class="mf">0.69</span><span class="p">,</span>  <span class="c1"># Peak Ground Acceleration in g</span>
+    <span class="n">TL</span><span class="o">=</span><span class="mf">8.0</span><span class="p">,</span>    <span class="c1"># Long period transition in seconds</span>
+    <span class="n">S_S</span><span class="o">=</span><span class="mf">1.65</span><span class="p">,</span>    <span class="c1"># Short period spectral acceleration</span>
+    <span class="n">S_1</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>    <span class="c1"># Long period spectral acceleration</span>
+    <span class="n">S_MS</span><span class="o">=</span><span class="mf">1.64</span><span class="p">,</span>   <span class="c1"># Site coefficient for short period</span>
+    <span class="n">S_M1</span><span class="o">=</span><span class="mf">1.19</span>    <span class="c1"># Site coefficient for long period</span>
+<span class="p">)</span>
+
+<span class="n">seismic</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SeismicParams:
+PGAₘ = 0.69
+TL = 8.0
+Sₛ = 1.65
+S₁ = 0.5
+Sₘₛ = 1.64
+Sₘ₁ = 1.19
+Sdₛ = 1.09
+Sd₁ = 0.79
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="compute-structure-period">
+<h3>Compute Structure Period<a class="headerlink" href="#compute-structure-period" title="Link to this heading">#</a></h3>
+<p>The period of the structure is calculated per ASCE7-22 §12.8.2. The approximate period, <span class="math notranslate nohighlight">\(T_a\)</span>, is compued per ASCE 7-22 Equation 12.8-8, and can be used to calculate seismic forces. However, I will use the fundamental period computed in ETABS which shall not exceed <span class="math notranslate nohighlight">\(T_{max}\)</span> as defined in ASCE 7-22 §12.8.2.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_approx_period</span><span class="p">(</span><span class="n">building</span><span class="p">:</span> <span class="n">Building</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate the approximate fundamental period of the building.&quot;&quot;&quot;</span>
+    <span class="n">total_height</span> <span class="o">=</span> <span class="n">building</span><span class="o">.</span><span class="n">story_elevations</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">Ct</span> <span class="o">=</span> <span class="mf">0.028</span>  <span class="c1"># ASCE 7-22 Table 12.8-2 coefficient</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="mf">0.8</span>      <span class="c1"># ASCE 7-22 Table 12.8-2 exponent</span>
+    <span class="k">return</span> <span class="n">Ct</span> <span class="o">*</span> <span class="p">(</span><span class="n">total_height</span> <span class="o">**</span> <span class="n">x</span><span class="p">)</span> <span class="c1"># Ta</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_upper_bound_period</span><span class="p">(</span><span class="n">building</span><span class="p">:</span> <span class="n">Building</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate the upper bound of the fundamental period.&quot;&quot;&quot;</span>
+    <span class="n">Ta</span> <span class="o">=</span> <span class="n">get_approx_period</span><span class="p">(</span><span class="n">building</span><span class="p">)</span>
+    <span class="n">Cu</span> <span class="o">=</span> <span class="mf">1.4</span>  <span class="c1"># ASCE 7-22 §12.8.2 coefficient</span>
+    <span class="k">return</span> <span class="n">Cu</span> <span class="o">*</span> <span class="n">Ta</span> <span class="c1"># Tmax</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_period</span><span class="p">(</span><span class="n">building</span><span class="p">:</span> <span class="n">Building</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">building</span><span class="o">.</span><span class="n">period</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">building</span><span class="o">.</span><span class="n">period</span> <span class="o">=</span> <span class="n">get_approx_period</span><span class="p">(</span><span class="n">building</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">Tmax</span> <span class="o">=</span> <span class="n">get_upper_bound_period</span><span class="p">(</span><span class="n">building</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">building</span><span class="o">.</span><span class="n">period</span> <span class="o">&gt;</span> <span class="n">Tmax</span><span class="p">:</span>
+            <span class="n">building</span><span class="o">.</span><span class="n">period</span> <span class="o">=</span> <span class="n">Tmax</span>
+    <span class="k">return</span> <span class="n">building</span><span class="o">.</span><span class="n">period</span>
+
+<span class="n">Ta</span> <span class="o">=</span> <span class="n">get_approx_period</span><span class="p">(</span><span class="n">building</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Approximate fundamental period:</span><span class="se">\n</span><span class="s2">Ta = </span><span class="si">{</span><span class="n">Ta</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> sec&quot;</span><span class="p">)</span>
+
+<span class="n">Tmax</span> <span class="o">=</span> <span class="n">get_upper_bound_period</span><span class="p">(</span><span class="n">building</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Upper bound of the fundamental period:</span><span class="se">\n</span><span class="s2">Tmax = </span><span class="si">{</span><span class="n">Tmax</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> sec&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Approximate fundamental period:
+Ta = 1.052 sec
+
+Upper bound of the fundamental period:
+Tmax = 1.473 sec
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_Cs</span><span class="p">(</span><span class="n">building</span><span class="p">:</span> <span class="n">Building</span><span class="p">,</span> <span class="n">seismic</span><span class="p">:</span> <span class="n">SeismicParams</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate seismic response coefficient Cs per ASCE 7-22&quot;&quot;&quot;</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">_get_design_period</span><span class="p">(</span><span class="n">building</span><span class="p">)</span>
+    <span class="n">Cs_max</span> <span class="o">=</span> <span class="n">_get_Cs_max</span><span class="p">(</span><span class="n">building</span><span class="p">,</span> <span class="n">seismic</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span>
+    <span class="n">Cs_min</span> <span class="o">=</span> <span class="n">_get_Cs_min</span><span class="p">(</span><span class="n">building</span><span class="p">,</span> <span class="n">seismic</span><span class="p">)</span>
+    <span class="n">Cs</span> <span class="o">=</span> <span class="n">_get_base_Cs</span><span class="p">(</span><span class="n">building</span><span class="p">,</span> <span class="n">seismic</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">Cs</span><span class="p">,</span> <span class="n">Cs_max</span><span class="p">),</span> <span class="n">Cs_min</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_get_design_period</span><span class="p">(</span><span class="n">building</span><span class="p">:</span> <span class="n">Building</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get design period T&quot;&quot;&quot;</span>
+    <span class="n">Ta</span> <span class="o">=</span> <span class="n">get_approx_period</span><span class="p">(</span><span class="n">building</span><span class="p">)</span>
+    <span class="n">Tmax</span> <span class="o">=</span> <span class="n">get_upper_bound_period</span><span class="p">(</span><span class="n">building</span><span class="p">)</span> 
+    <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="n">building</span><span class="o">.</span><span class="n">period</span><span class="p">,</span> <span class="n">Tmax</span><span class="p">)</span> <span class="k">if</span> <span class="n">building</span><span class="o">.</span><span class="n">period</span> <span class="k">else</span> <span class="n">Ta</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_get_Cs_max</span><span class="p">(</span><span class="n">building</span><span class="p">:</span> <span class="n">Building</span><span class="p">,</span> <span class="n">seismic</span><span class="p">:</span> <span class="n">SeismicParams</span><span class="p">,</span> <span class="n">T</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate maximum seismic coefficient&quot;&quot;&quot;</span>
+    <span class="n">R_Ie</span> <span class="o">=</span> <span class="n">building</span><span class="o">.</span><span class="n">R</span> <span class="o">/</span> <span class="n">building</span><span class="o">.</span><span class="n">Ie</span>
+    <span class="k">if</span> <span class="n">T</span> <span class="o">&lt;=</span> <span class="n">seismic</span><span class="o">.</span><span class="n">TL</span><span class="p">:</span>
+        <span class="c1"># ASCE 7-22 Equation 12.8-4</span>
+        <span class="k">return</span> <span class="n">seismic</span><span class="o">.</span><span class="n">S_D1</span> <span class="o">/</span> <span class="p">(</span><span class="n">R_Ie</span> <span class="o">*</span> <span class="n">T</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">seismic</span><span class="o">.</span><span class="n">S_D1</span> <span class="o">*</span> <span class="n">seismic</span><span class="o">.</span><span class="n">TL</span> <span class="o">/</span> <span class="p">(</span><span class="n">R_Ie</span> <span class="o">*</span> <span class="n">T</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_get_Cs_min</span><span class="p">(</span><span class="n">building</span><span class="p">:</span> <span class="n">Building</span><span class="p">,</span> <span class="n">seismic</span><span class="p">:</span> <span class="n">SeismicParams</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate minimum seismic coefficient&quot;&quot;&quot;</span>
+    <span class="n">R_Ie</span> <span class="o">=</span> <span class="n">building</span><span class="o">.</span><span class="n">R</span> <span class="o">/</span> <span class="n">building</span><span class="o">.</span><span class="n">Ie</span>
+    <span class="n">Cs_min</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mf">0.044</span> <span class="o">*</span> <span class="n">seismic</span><span class="o">.</span><span class="n">S_DS</span> <span class="o">*</span> <span class="n">building</span><span class="o">.</span><span class="n">Ie</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">seismic</span><span class="o">.</span><span class="n">S_1</span> <span class="o">&gt;=</span> <span class="mf">0.6</span><span class="p">:</span>
+        <span class="n">Cs_min</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">Cs_min</span><span class="p">,</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">seismic</span><span class="o">.</span><span class="n">S_1</span> <span class="o">/</span> <span class="n">R_Ie</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Cs_min</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_get_base_Cs</span><span class="p">(</span><span class="n">building</span><span class="p">:</span> <span class="n">Building</span><span class="p">,</span> <span class="n">seismic</span><span class="p">:</span> <span class="n">SeismicParams</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate base seismic coefficient&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">seismic</span><span class="o">.</span><span class="n">S_DS</span> <span class="o">/</span> <span class="p">(</span><span class="n">building</span><span class="o">.</span><span class="n">R</span> <span class="o">/</span> <span class="n">building</span><span class="o">.</span><span class="n">Ie</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<hr class="docutils" />
+<section id="story-forces-and-shears">
+<h3>Story Forces and Shears<a class="headerlink" href="#story-forces-and-shears" title="Link to this heading">#</a></h3>
+<p>The equivalent lateral force (ELF) procedure is used to calculate the seismic base shear, <span class="math notranslate nohighlight">\(V\)</span>, in accordance with ASCE 7-22 §12.8.1. The resulting seismic base shear is then distributed vertically per ASCE 7-22 §12.8.3. The table below summarizes the seismic story forces, <span class="math notranslate nohighlight">\(F_x\)</span>, and shear, <span class="math notranslate nohighlight">\(V_x\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the building period to the priod of the ETABS model</span>
+<span class="n">building</span><span class="o">.</span><span class="n">period</span> <span class="o">=</span> <span class="mf">2.462</span> <span class="c1"># seconds</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">get_period</span><span class="p">(</span><span class="n">building</span><span class="p">)</span>  <span class="c1"># Use the calculated period</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Period used T = </span><span class="si">{</span><span class="n">T</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> sec&quot;</span><span class="p">)</span>
+
+<span class="c1"># Calculate seismic response coefficient per ASCE 7-22 §12.8.1.1</span>
+<span class="n">Cs</span><span class="o">=</span> <span class="n">get_Cs</span><span class="p">(</span><span class="n">building</span><span class="p">,</span> <span class="n">seismic</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Seismic response coefficient Cs = </span><span class="si">{</span><span class="n">Cs</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total seismic weight W = </span><span class="si">{</span><span class="n">building</span><span class="o">.</span><span class="n">seismic_weight</span><span class="p">()</span><span class="o">/</span><span class="mf">1e3</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> kips&quot;</span><span class="p">)</span>
+<span class="c1"># Calculate seismc base shear per ASCE 7-22 §12.8.1</span>
+<span class="n">V</span> <span class="o">=</span> <span class="n">Cs</span> <span class="o">*</span> <span class="n">building</span><span class="o">.</span><span class="n">seismic_weight</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Seismic base shear V = Cs * W = </span><span class="si">{</span><span class="n">V</span><span class="o">/</span><span class="mf">1e3</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> kips&quot;</span><span class="p">)</span>
+
+<span class="n">Cvx</span> <span class="o">=</span> <span class="n">building</span><span class="o">.</span><span class="n">Cvx</span>
+<span class="n">Fx</span> <span class="o">=</span> <span class="n">Cvx</span> <span class="o">*</span> <span class="n">V</span>
+
+<span class="c1"># compute accumulative sum</span>
+<span class="n">Vx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">Fx</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># Reverse the order for cumulative sum</span>
+
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Cvx&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Cvx</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Fx_kips&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">Fx</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="mf">1e3</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Vx_kips&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">Vx</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="mf">1e3</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Print results</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Story</span><span class="se">\t</span><span class="s2">C_vx</span><span class="se">\t</span><span class="s2">F_x (kips)</span><span class="se">\t</span><span class="s2">V_x (kips)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">45</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">cv</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">Cvx</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">Fx</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">Vx</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">building</span><span class="o">.</span><span class="n">stories</span><span class="p">)</span><span class="o">-</span><span class="n">i</span><span class="si">:</span><span class="s2">4d</span><span class="si">}</span><span class="se">\t</span><span class="si">{</span><span class="n">cv</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="se">\t</span><span class="si">{</span><span class="n">f</span><span class="o">/</span><span class="mf">1e3</span><span class="si">:</span><span class="s2">8.1f</span><span class="si">}</span><span class="se">\t</span><span class="si">{</span><span class="n">v</span><span class="o">/</span><span class="mf">1e3</span><span class="si">:</span><span class="s2">8.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">45</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;Total&#39;</span><span class="si">:</span><span class="s2">^5s</span><span class="si">}</span><span class="se">\t\t</span><span class="si">{</span><span class="n">Fx</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">/</span><span class="mf">1e3</span><span class="si">:</span><span class="s2">^11.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Period used T = 1.473 sec
+Seismic response coefficient Cs = 0.067
+Total seismic weight W = 325.3 kips
+Seismic base shear V = Cs * W = 21.9 kips
+
+Story	C_vx	F_x (kips)	V_x (kips)
+---------------------------------------------
+  11	0.212	     4.6	     4.6
+  10	0.184	     4.0	     8.7
+   9	0.156	     3.4	    12.1
+   8	0.129	     2.8	    14.9
+   7	0.104	     2.3	    17.2
+   6	0.081	     1.8	    19.0
+   5	0.059	     1.3	    20.3
+   4	0.041	     0.9	    21.1
+   3	0.024	     0.5	    21.7
+   2	0.011	     0.2	    21.9
+   1	0.000	     0.0	    21.9
+---------------------------------------------
+Total		   21.9    
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="diaphragm-forces">
+<h3>Diaphragm Forces<a class="headerlink" href="#diaphragm-forces" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_diaphragm_forces</span><span class="p">(</span><span class="n">building</span><span class="p">:</span> <span class="n">Building</span><span class="p">,</span> <span class="n">seismic_story_shear</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+    <span class="n">sum_Fx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">seismic_story_shear</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">wx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">building</span><span class="o">.</span><span class="n">story_weights</span><span class="p">)</span>
+    <span class="n">sum_wx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">wx</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">Fpx</span> <span class="o">=</span> <span class="p">(</span><span class="n">sum_Fx</span> <span class="o">/</span> <span class="n">sum_wx</span><span class="p">)</span> <span class="o">*</span> <span class="n">wx</span>       
+
+    <span class="k">return</span> <span class="n">sum_wx</span><span class="p">,</span> <span class="n">Fpx</span>
+
+<span class="n">sum_wx</span><span class="p">,</span> <span class="n">Fpx</span> <span class="o">=</span> <span class="n">get_diaphragm_forces</span><span class="p">(</span><span class="n">building</span><span class="p">,</span> <span class="n">Fx</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;sum_wx_kips&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">sum_wx</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mf">1e3</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Fpx_kips&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">Fpx</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mf">1e3</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>weight_kips</th>
+      <th>height_ft</th>
+      <th>elevation_ft</th>
+      <th>Cvx</th>
+      <th>Fx_kips</th>
+      <th>Vx_kips</th>
+      <th>sum_wx_kips</th>
+      <th>Fpx_kips</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Story 10</th>
+      <td>31.8</td>
+      <td>9.0</td>
+      <td>93.0</td>
+      <td>0.212</td>
+      <td>4.6</td>
+      <td>4.6</td>
+      <td>31.8</td>
+      <td>4.6</td>
+    </tr>
+    <tr>
+      <th>Story 9</th>
+      <td>32.2</td>
+      <td>9.0</td>
+      <td>84.0</td>
+      <td>0.184</td>
+      <td>4.0</td>
+      <td>8.7</td>
+      <td>64.0</td>
+      <td>4.4</td>
+    </tr>
+    <tr>
+      <th>Story 8</th>
+      <td>32.2</td>
+      <td>9.0</td>
+      <td>75.0</td>
+      <td>0.156</td>
+      <td>3.4</td>
+      <td>12.1</td>
+      <td>96.3</td>
+      <td>4.1</td>
+    </tr>
+    <tr>
+      <th>Story 7</th>
+      <td>32.2</td>
+      <td>9.0</td>
+      <td>66.0</td>
+      <td>0.129</td>
+      <td>2.8</td>
+      <td>14.9</td>
+      <td>128.5</td>
+      <td>3.7</td>
+    </tr>
+    <tr>
+      <th>Story 6</th>
+      <td>32.3</td>
+      <td>9.0</td>
+      <td>57.0</td>
+      <td>0.104</td>
+      <td>2.3</td>
+      <td>17.2</td>
+      <td>160.8</td>
+      <td>3.5</td>
+    </tr>
+    <tr>
+      <th>Story 5</th>
+      <td>32.3</td>
+      <td>9.0</td>
+      <td>48.0</td>
+      <td>0.081</td>
+      <td>1.8</td>
+      <td>19.0</td>
+      <td>193.1</td>
+      <td>3.2</td>
+    </tr>
+    <tr>
+      <th>Story 4</th>
+      <td>32.3</td>
+      <td>9.0</td>
+      <td>39.0</td>
+      <td>0.059</td>
+      <td>1.3</td>
+      <td>20.3</td>
+      <td>225.5</td>
+      <td>2.9</td>
+    </tr>
+    <tr>
+      <th>Story 3</th>
+      <td>32.8</td>
+      <td>9.0</td>
+      <td>30.0</td>
+      <td>0.041</td>
+      <td>0.9</td>
+      <td>21.1</td>
+      <td>258.2</td>
+      <td>2.7</td>
+    </tr>
+    <tr>
+      <th>Story 2</th>
+      <td>33.1</td>
+      <td>9.0</td>
+      <td>21.0</td>
+      <td>0.024</td>
+      <td>0.5</td>
+      <td>21.7</td>
+      <td>291.3</td>
+      <td>2.5</td>
+    </tr>
+    <tr>
+      <th>Story 1</th>
+      <td>33.2</td>
+      <td>12.0</td>
+      <td>12.0</td>
+      <td>0.011</td>
+      <td>0.2</td>
+      <td>21.9</td>
+      <td>324.5</td>
+      <td>2.2</td>
+    </tr>
+    <tr>
+      <th>Base</th>
+      <td>0.8</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>21.9</td>
+      <td>325.3</td>
+      <td>0.1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="compare-seismic-forces-with-modal-shapes">
+<h2>Compare Seismic Forces with Modal Shapes<a class="headerlink" href="#compare-seismic-forces-with-modal-shapes" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Scale the story forces (F_x) and diaphragm forces (F_px) to their maximum values</span>
+<span class="n">Fx_scaled</span> <span class="o">=</span> <span class="n">Fx</span> <span class="o">/</span> <span class="n">Fx</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">Fpx_scaled</span> <span class="o">=</span> <span class="n">Fpx</span> <span class="o">/</span> <span class="n">Fpx</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Combine modal shapes</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">combine_modal_shapes</span><span class="p">(</span><span class="n">modal_df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">mode_shape_df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">max_mode</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">max_mode</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">max_mode</span> <span class="o">=</span> <span class="n">modal_df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+        
+    <span class="c1"># Filter modal_df to include only modes up to max_mode</span>
+    <span class="n">modal_df_filtered</span> <span class="o">=</span> <span class="n">modal_df</span><span class="p">[</span><span class="n">modal_df</span><span class="o">.</span><span class="n">index</span> <span class="o">&lt;=</span> <span class="n">max_mode</span><span class="p">]</span>
+    
+    <span class="c1"># Scale mode shapes by modal participation factors and add them together</span>
+    <span class="c1"># factor = &#39;ux_factor&#39;</span>
+    <span class="n">factor</span> <span class="o">=</span> <span class="s1">&#39;mass_ux&#39;</span>
+    <span class="n">combined_shape</span> <span class="o">=</span> <span class="n">mode_shape_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="n">modal_df_filtered</span><span class="o">.</span><span class="n">index</span><span class="p">]</span> <span class="o">*</span> <span class="n">modal_df_filtered</span><span class="p">[</span><span class="n">factor</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+    
+    <span class="k">return</span> <span class="n">combined_shape</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Combine the modal shapes</span>
+<span class="n">combined_modal_shape</span> <span class="o">=</span> <span class="n">combine_modal_shapes</span><span class="p">(</span><span class="n">modal_df</span><span class="p">,</span> <span class="n">mode_shape_df1_scaled</span><span class="p">)</span>
+
+<span class="c1"># Scale the mode shape to the maximum displacement</span>
+<span class="n">scaled_combined_modal_shape</span> <span class="o">=</span> <span class="n">combined_modal_shape</span> <span class="o">/</span> <span class="n">combined_modal_shape</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot scaled mode shapes and compare with scaled story and diaphragm forces with story elevation on y-axis</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="c1"># for i, mode_shape in enumerate(mode_shape_df1_scaled.columns):</span>
+<span class="c1">#     plt.plot(</span>
+<span class="c1">#         mode_shape_df1_scaled[mode_shape][:-1],</span>
+<span class="c1">#         building.story_elevations[::-1], </span>
+<span class="c1">#         label=f&quot;Mode {i+1} (scaled)&quot;, </span>
+<span class="c1">#         linestyle=&#39;--&#39;</span>
+<span class="c1">#     )</span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+        <span class="n">mode_shape_df1_scaled</span><span class="p">[</span><span class="s2">&quot;Mode_1&quot;</span><span class="p">],</span>
+        <span class="n">building</span><span class="o">.</span><span class="n">story_elevations</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> 
+        <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Mode </span><span class="si">{</span><span class="mi">1</span><span class="si">}</span><span class="s2"> (scaled)&quot;</span><span class="p">,</span> 
+        <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span>
+    <span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+        <span class="n">scaled_combined_modal_shape</span><span class="p">,</span>
+        <span class="n">building</span><span class="o">.</span><span class="n">story_elevations</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> 
+        <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Combined Modes (scaled)&quot;</span><span class="p">,</span> 
+        <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span>
+    <span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="o">-</span><span class="n">Fx_scaled</span><span class="p">,</span>
+    <span class="n">building</span><span class="o">.</span><span class="n">story_elevations</span><span class="p">,</span>  
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Scaled Story Forces (F_x)&quot;</span><span class="p">,</span> 
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> 
+    <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="o">-</span><span class="n">Fpx_scaled</span><span class="p">,</span> 
+    <span class="n">building</span><span class="o">.</span><span class="n">story_elevations</span><span class="p">,</span> 
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Scaled Diaphragm Forces (F_px)&quot;</span><span class="p">,</span> 
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> 
+    <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;x&#39;</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/85a48597ecffd888f42c5a6cac09f1506c19607fb698a976a8aff290f94241f9.png" src="../../../_images/85a48597ecffd888f42c5a6cac09f1506c19607fb698a976a8aff290f94241f9.png" />
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./structure\structural_dynamics\seismic_forces_on_floor_diaphragms"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Seismic Forces on Floor Diaphragms</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Seismic Forces on Floor Diaphragms</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-environment">Setup Environment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#define-structural-model">Define Structural Model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seismic-design-parameters">Seismic Design Parameters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loads">Loads</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-parameters">Model Parameters</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etabs-model">ETABS Model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-etabs-model-analysis">Run ETABS Model Analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modal-analysis-results">Modal Analysis Results</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mode-shapes">Mode Shapes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-story-and-diaphragm-forces">Get Story and Diaphragm Forces</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-model">Python Model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-data-classes">Define Data Classes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Define Structural Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-seismic-parameters">Define Seismic Parameters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-structure-period">Compute Structure Period</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#story-forces-and-shears">Story Forces and Shears</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diaphragm-forces">Diaphragm Forces</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-seismic-forces-with-modal-shapes">Compare Seismic Forces with Modal Shapes</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Hossein Karagah
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025 GNU GENERAL PUBLIC LICENSE.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

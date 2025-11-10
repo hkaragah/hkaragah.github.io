@@ -103,11 +103,34 @@ else:
 
 
 [31m---------------------------------------------------------------------------[39m
-[31mModuleNotFoundError[39m                       Traceback (most recent call last)
+[31mRuntimeError[39m                              Traceback (most recent call last)
+[36mFile [39m[32mc:\Hossein\portfolio\.venv\Lib\site-packages\openseespy\opensees\__init__.py:19[39m
+[32m     18[39m [38;5;28;01mtry[39;00m:
+[32m---> [39m[32m19[39m     [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mopenseespywin[39;00m[34;01m.[39;00m[34;01mopensees[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m *
+[32m     21[39m [38;5;28;01mexcept[39;00m:
+
+[36mFile [39m[32mc:\Hossein\portfolio\.venv\Lib\site-packages\openseespywin\__init__.py:25[39m
+[32m     24[39m     [38;5;28;01melse[39;00m:
+[32m---> [39m[32m25[39m         [38;5;28;01mraise[39;00m [38;5;167;01mRuntimeError[39;00m(
+[32m     26[39m             [33m'[39m[33mPython version 3.8 is needed for Windows[39m[33m'[39m)
+[32m     28[39m [38;5;28;01melse[39;00m:
+
+[31mRuntimeError[39m: Python version 3.8 is needed for Windows
+
+During handling of the above exception, another exception occurred:
+
+[31mRuntimeError[39m                              Traceback (most recent call last)
 [36mCell[39m[36m [39m[32mIn[9][39m[32m, line 1[39m
 [32m----> [39m[32m1[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mopenseespy[39;00m[34;01m.[39;00m[34;01mopensees[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[34;01mops[39;00m
 [32m      2[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mvfo[39;00m[34;01m.[39;00m[34;01mvfo[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[34;01mvfo[39;00m
 [32m      5[39m ops.wipe()
 
-[31mModuleNotFoundError[39m: No module named 'openseespy'
+[36mFile [39m[32mc:\Hossein\portfolio\.venv\Lib\site-packages\openseespy\opensees\__init__.py:22[39m
+[32m     19[39m         [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mopenseespywin[39;00m[34;01m.[39;00m[34;01mopensees[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m *
+[32m     21[39m     [38;5;28;01mexcept[39;00m:
+[32m---> [39m[32m22[39m         [38;5;28;01mraise[39;00m [38;5;167;01mRuntimeError[39;00m([33m'[39m[33mFailed to import openseespy on Windows.[39m[33m'[39m)
+[32m     24[39m [38;5;28;01melif[39;00m sys.platform.startswith([33m'[39m[33mdarwin[39m[33m'[39m):
+[32m     26[39m     [38;5;28;01mtry[39;00m:
+
+[31mRuntimeError[39m: Failed to import openseespy on Windows.
 
