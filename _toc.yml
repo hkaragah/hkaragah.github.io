@@ -13,6 +13,7 @@ parts:
       - file: structure/shear_wall_neutral_axis/rect_shear_wall_neutral_axis
       - file: structure/opensees/opensees_steel_materials
       - file: structure/structural_dynamics/modal_analysis_basic
+      - file: structure/opensees/two_story_mrf
 
   - caption: Earthquake Engineering
     chapters:

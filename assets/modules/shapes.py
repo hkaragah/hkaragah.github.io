@@ -4,6 +4,7 @@
 # Date: 2025-10-29
 # Description: This module provides classes and functions to handle geometric shapes like circles, rectangles, and I-sections.
 ##########################################
+from __future__ import annotations
 
 from pathlib import Path
 import sys
