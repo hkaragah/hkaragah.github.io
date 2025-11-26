@@ -536,3 +536,12 @@ def _generate_beam_x_coordinate_masks(x: np.ndarray,x_wp: float, gussets: Dict[s
         itvl[key] = (L1, x_wp + Delta, L2)
         
     return masks, itvl
+
+
+# Main function =========================================================
+def main():
+    pass
+    
+    
+if __name__ == "__main__":
+    main()
