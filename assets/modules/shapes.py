@@ -19,7 +19,7 @@ from copy import deepcopy
 import matplotlib
 import matplotlib.axes
 import numpy as np
-from math import pi, atan2
+from math import pi, atan2, sqrt
 from typing import Protocol, Union, Tuple, Optional, List, Dict
 from abc import ABC, abstractmethod
 from math import pi, sqrt, sin, cos, radians, degrees
@@ -51,6 +51,10 @@ class Point:
     def distance_to(self, other: 'Point') -> float:
         """Calculate the Euclidean distance to another point."""
         return np.linalg.norm(self.to_array() - other.to_array())
+    
+    def position(self, other: 'Point') -> 'Vector':
+        """Calculate the position vector from another point to this point."""
+        return Vector(self.x - other.x, self.y - other.y)
     
     def within(self, shape: Union['Rectangle', 'Circle']) -> bool:
         """
@@ -88,6 +92,52 @@ class Point:
 
     def __repr__(self):
         return f"Point(x={self.x}, y={self.y})"
+
+
+@dataclass(frozen=True)
+class Vector:
+    x: float
+    y: float
+    z: float = 0.0  # default 2D usage
+
+    def __add__(self, other: Vector) -> Vector:
+        return Vector(self.x + other.x, self.y + other.y, self.z + other.z)
+
+    def __sub__(self, other: Vector) -> Vector:
+        return Vector(self.x - other.x, self.y - other.y, self.z - other.z)
+
+    def __mul__(self, scalar: float) -> Vector:
+        return Vector(self.x * scalar, self.y * scalar, self.z * scalar)
+
+    def __truediv__(self, scalar: float) -> Vector:
+        return Vector(self.x / scalar, self.y / scalar, self.z / scalar)
+
+    def dot(self, other: Vector) -> float:
+        """Dot product: scalar"""
+        return self.x * other.x + self.y * other.y + self.z * other.z
+
+    def cross(self, other: Vector) -> Vector:
+        """Cross product: returns vector perpendicular to both"""
+        return Vector(
+            self.y * other.z - self.z * other.y,
+            self.z * other.x - self.x * other.z,
+            self.x * other.y - self.y * other.x
+        )
+
+    @property
+    def magnitude(self) -> float:
+        return sqrt(self.dot(self))
+
+    @property
+    def norm(self) -> Vector:
+        """Unit vector"""
+        mag = self.magnitude
+        if mag == 0:
+            raise ZeroDivisionError("Cannot normalize zero vector")
+        return self / mag
+
+    def to_tuple(self) -> tuple[float, float, float]:
+        return (self.x, self.y, self.z)
 
 @dataclass
 class TransParams:
